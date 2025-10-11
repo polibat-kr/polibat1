@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>공지사항 상세보기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Nanum Gothic', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .post-container {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 32px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .post-header {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .post-meta {
+        display: block;
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 16px;
+    }
+    .post-divider {
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    .post-content {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 32px;
+      white-space: pre-wrap;
+    }
+    .post-actions {
+      text-align: right;
+    }
+    .post-actions button {
+      background: none;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #333;
+      margin-left: 6px;
+      cursor: pointer;
+    }
+    .post-actions button:hover {
+      background-color: #f0f0f0;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1, h2, h3, h4, h5, h6, figure {
+      color: #000;
+      font-family: "Pretendard", serif;
+      font-weight: 400;
+      margin: 0 0 20px 0;
+      padding-top: 0px;
+      text-align: initial;
+    }
+    .free-notice-container {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 로딩 -->
+  <div id="header-include"></div>
+
+  <div id="wrap">
+    <div class="container">
+      <h1>공지방</h1>
+
+      <div class="post-container">
+        <div class="post-header">[안내] 정치방망이 서비스 점검 안내</div>
+        <div class="post-meta" style="display: block;">작성자: 운영자 · 작성일: 2025-05-27 · 조회수: 124</div>
+        <div class="post-divider"></div>
+        <div class="post-content">
+정치방망이 사이트는 아래 일정에 따라 시스템 점검을 진행합니다.
+
+📅 점검 일시:
+2025년 6월 1일(토) 00:00 ~ 06:00
+
+⛔ 점검 중 제한 사항:
+- 사이트 접속 불가
+- 투표 및 댓글 작성 불가
+- 계정 정보 수정 불가
+
+불편을 드려 죄송하며, 보다 안정적인 서비스 제공을 위한 작업이오니 양해 부탁드립니다.
+        </div>
+        <div class="post-actions">
+          <button onclick="location.href='notice.html'">목록으로</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 푸터 로딩 -->
+  <div id="footer-include"></div>
+
+  <!-- 공통 헤더/푸터 삽입용 함수 -->
+  <script>
+    function includeHTML(id, file) {
+      fetch(file)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById(id).innerHTML = data;
+        });
+    }
+
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+  
+  <!-- 페이지 관리자 스크립트 추가 -->
+  <script src="page-manager.js"></script>
+</body>
+</html>

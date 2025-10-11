@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정치방망이 - 쉽고 빠르게, 정치와 소통하다!</title>
+  <meta name="description" content="정치인과 국민이 쉽고 빠르게 소통하는 커뮤니티, 실시간 댓글, 인기글, 투표 등 다양한 정치 참여 서비스 제공.">
+  <meta name="keywords" content="정치, 커뮤니티, 투표, 자유게시판, 정치인, 실시간 댓글, 정치방망이">
+  <!-- 네이버 소유확인 메타태그 예시 (실제 발급값으로 교체 필요) -->
+  <meta content="5fa68c229b6a80fe78209f803f0a0ba9d7bbc4b5" name="naver-site-verification">
+  <!-- Open Graph 태그 -->
+  <meta property="og:title" content="정치방망이 - 쉽고 빠르게, 정치와 소통하다!">
+  <meta property="og:description" content="정치인과 국민이 쉽고 빠르게 소통하는 커뮤니티, 실시간 댓글, 인기글, 투표 등 다양한 정치 참여 서비스 제공.">
+  <meta property="og:image" content="https://www.polibat.com/images/og_image.png">
+  <meta property="og:url" content="https://www.polibat.com/">
+  <meta property="og:type" content="website">
+  <!-- robots.txt, sitemap.xml은 사이트 루트에 별도 파일로 추가 필요 -->
+  <link rel="icon" type="image/x-icon" href="image/oguring_favicon.ico">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* PC 레이아웃 (기본) */
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .logo a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* PC에서 nav-wrapper는 flex: 1로 나머지 공간을 차지하고 우측 정렬 */
+    .nav-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 20px;
+      font-family: 'Giants-Bold', sans-serif;
+      overflow-x: auto;
+      overflow-y: hidden; /* 상하 스크롤 방지 */
+    }
+
+    .menu a {
+      position: relative;
+      text-decoration: none;
+      font-size: 21px;
+      color: #333;
+      transition: color 0.3s;
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+
+    .menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0px;
+      width: 0;
+      height: 3px;
+      background-color: #000;  /* 주석 해제하고 검은색 밑줄 */
+      transition: width 0.3s ease;
+    }
+    /* 호버 시에도 색상 변경 */
+    .menu a:hover {
+      color: #000;
+    }
+
+    .menu a:hover::after,
+    .menu a.active::after {
+      width: 100% !important;
+    }
+
+    /* 더 강력한 active 스타일 */
+    .menu a.active {
+      color: #000 !important;
+      font-weight: 700 !important;
+    }
+
+    /* 사용자 메뉴 컨테이너 */
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    /* 로그인 버튼 */
+    .login-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #000000;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+      white-space: nowrap;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .login-btn:hover { 
+      background: #eee;
+      color: #000;
+    }
+
+    /* 마이페이지 아이콘 버튼 */
+    .mypage-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #f8f9fa;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .mypage-icon:hover {
+      background: #e9ecef;
+      border-color: #000;
+    }
+
+    .mypage-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #333;
+      transition: fill 0.3s ease;
+    }
+
+    .mypage-icon:hover svg {
+      fill: #000;
+    }
+
+    /* 사용자 타입 뱃지 */
+    .user-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: bold;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .user-badge.politician {
+      background: #dc3545;
+    }
+
+    .user-badge.user {
+      background: #28a745;
+    }
+
+    /* 로그아웃 버튼 */
+    .logout-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #6c757d;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.3s;
+      white-space: nowrap;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .logout-btn:hover { 
+      background: #5a6268; 
+      color: #fff; 
+    }
+
+    /* 숨김 클래스 */
+    .hidden {
+      display: none !important;
+    }
+
+    /* 로그인된 상태 표시 */
+    .logged-in-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+      font-size: 14px;
+      color: #000;
+    }
+
+    .logged-in-indicator.politician {
+      background: #fdeaea;
+      color: #7a2e2e;
+    }
+
+    /* 사용자명 표시 */
+    .username-display {
+      font-size: 12px;
+      color: #555;
+      margin-right: 4px;
+      font-weight: bold;
+    }
+
+    /* 모바일 메뉴 버튼 */
+    .mobile-menu-button {
+      display: none;
+      width: 32px;
+      height: 32px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .mobile-menu-button:hover {
+      background: #e0e0e0;
+    }
+
+    .mobile-menu-button:active {
+      transform: scale(0.95);
+    }
+
+    /* 점 3개 아이콘 */
+    .dots-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      pointer-events: none;
+    }
+
+    .dot {
+      width: 4px;
+      height: 4px;
+      background: #333;
+      border-radius: 50%;
+    }
+
+    /* 드롭다운 메뉴 */
+    .mobile-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 160px;
+      z-index: 1001;
+      margin-top: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-dropdown.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #eee;
+      margin: 4px 0;
+    }
+
+    /* 사용자 정보 영역 */
+    .user-info-section {
+      padding: 12px 16px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #eee;
+    }
+
+    .user-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .user-type {
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* 모바일 레이아웃 */
+    @media (max-width: 768px) {
+      .header-container {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 12px;
+        padding: 10px 15px;
+        align-items: center;
+      }
+
+      /* 로고를 첫 번째 행 첫 번째 열에 배치 */
+      .logo {
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 20px;
+        justify-self: start;
+      }
+
+      .logo img {
+        width: 120px !important;
+      }
+
+      /* nav-wrapper를 재구성 */
+      .nav-wrapper {
+        display: contents;
+      }
+
+      /* 메뉴를 두 번째 행 전체에 배치 */
+      .menu {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-content: center;
+        gap: 15px;
+        /*padding: 8px 0;*/
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .menu a {
+        font-size: 16px;
+        padding: 8px 12px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+
+      /* 사용자 메뉴를 첫 번째 행 두 번째 열에 배치 */
+      .user-menu {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        gap: 8px;
+      }
+
+      /* 모바일에서 기존 버튼들 숨기고 메뉴 버튼만 표시 */
+      .login-btn,
+      .logout-btn,
+      .mypage-icon,
+      .logged-in-indicator {
+        display: none;
+      }
+
+      .mobile-menu-button {
+        display: flex;
+      }
+    }
+
+    .header-placeholder {
+      height: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .header-placeholder {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <!-- 로고 -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Group_2@2xx.png" alt="정치방망이" style="width: clamp(100px, 28vw, 140px); height: auto;">
+        </a>
+      </div>
+      
+      <div class="nav-wrapper">
+        <!-- 네비게이션 메뉴 -->
+        <nav class="menu">
+          <a href="board.html">자유게시판</a>
+          <a href="voice.html">정치인게시판</a>
+          <a href="vote_board.html">투표</a>
+        </nav>
+        
+        <!-- 로그인하지 않은 상태 (기본 표시) -->
+        <div class="user-menu" id="loginMenu">
+          <a href="login.html" class="login-btn">로그인/회원가입</a>
+          
+          <!-- 모바일 메뉴 버튼 -->
+          <button type="button" class="mobile-menu-button" data-menu-type="login">
+            <div class="dots-icon">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </button>
+          
+          <!-- 드롭다운 메뉴 -->
+          <div class="mobile-dropdown" id="loginDropdown">
+            <a href="login.html" class="dropdown-item">로그인/회원가입</a>
+          </div>
+        </div>
+        
+        <!-- 로그인한 상태 (기본 숨김) -->
+        <div class="user-menu hidden" id="loggedInMenu">
+          <!--
+          <div class="logged-in-indicator" id="userIndicator">
+            <span class="username-display" id="usernameDisplay">사용자명</span>
+            <span id="userTypeText">일반회원</span>
+          </div>
+          -->
+          <a href="member_info.html" class="mypage-icon" id="mypageBtn" title="마이페이지">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </a>
+          <button type="button" class="logout-btn" id="logoutBtn">로그아웃</button>
+          
+          <!-- 모바일 메뉴 버튼 -->
+          <button type="button" class="mobile-menu-button" data-menu-type="user">
+            <div class="dots-icon">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </button>
+          
+          <!-- 드롭다운 메뉴 -->
+          <div class="mobile-dropdown" id="userDropdown">
+            <div class="user-info-section">
+              <div class="user-name" id="dropdownUsername">사용자명</div>
+              <div class="user-type" id="dropdownUsertype">일반회원</div>
+            </div>
+            <a href="member_info.html" class="dropdown-item">마이페이지</a>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item logout-dropdown-btn">로그아웃</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="header-placeholder"></div>
+
+  <script>
+    // 🔒 전역 중복 실행 방지 시스템
+    (function() {
+        'use strict';
+        
+        // 이미 헤더 시스템이 초기화되었는지 확인
+        if (window.HEADER_SYSTEM_INITIALIZED) {
+            console.log('⚠️ 헤더 시스템이 이미 초기화됨, 중복 실행 방지');
+            return;
+        }
+        
+        // 헤더 시스템 초기화 플래그 설정
+        window.HEADER_SYSTEM_INITIALIZED = true;
+        console.log('🔒 헤더 시스템 초기화 플래그 설정');
+
+        // 🆕 자동 페이지 감지 기능을 포함한 통합 헤더 상태 관리 시스템
+        class UnifiedHeaderManager {
+            constructor() {
+                this.menuHighlightExecuted = false; // 메뉴 하이라이트 중복 실행 방지
+                this.init();
+                this.bindEvents();
+            }
+
+            init() {
+                console.log('🚀 헤더 상태 관리 시스템 초기화');
+                this.updateHeaderState();
+                this.highlightCurrentPageMenu(); // 🆕 자동 페이지 감지 하이라이트
+            }
+
+            // 🆕 자동으로 현재 페이지를 감지하여 메뉴 하이라이트 (중복 실행 방지)
+            highlightCurrentPageMenu() {
+                // 중복 실행 방지 - 이미 실행된 경우 return
+                if (this.menuHighlightExecuted) {
+                    console.log('⚠️ 메뉴 하이라이트 이미 실행됨, 중복 방지');
+                    return;
+                }
+                
+                try {
+                    // 실행 플래그 설정
+                    this.menuHighlightExecuted = true;
+                    
+                    // 현재 페이지 자동 감지
+                    const currentPath = window.location.pathname;
+                    const currentFile = currentPath.split('/').pop() || 'index.html';
+                    
+                    console.log('🔍 헤더에서 현재 페이지 자동 감지:', {
+                        href: window.location.href,
+                        pathname: currentPath,
+                        currentFile: currentFile
+                    });
+
+                    // 모든 메뉴 아이템 찾기
+                    const menuItems = document.querySelectorAll('.menu a');
+                    console.log('📋 찾은 메뉴 아이템 수:', menuItems.length);
+
+                    if (menuItems.length === 0) {
+                        console.warn('⚠️ 메뉴 아이템을 찾을 수 없습니다');
+                        return;
+                    }
+
+                    // 모든 메뉴 아이템에서 active 클래스 제거
+                    let removedCount = 0;
+                    for (let i = 0; i < menuItems.length; i++) {
+                        if (menuItems[i].classList.contains('active')) {
+                            menuItems[i].classList.remove('active');
+                            removedCount++;
+                        }
+                    }
+                    console.log('🧹 active 클래스 제거된 메뉴 수:', removedCount);
+
+                    // 현재 페이지와 정확히 일치하는 메뉴 찾기
+                    let foundMatch = false;
+                    for (let i = 0; i < menuItems.length; i++) {
+                        const item = menuItems[i];
+                        const href = item.getAttribute('href');
+                        
+                        console.log(`🔎 메뉴 ${i + 1} 검사:`, {
+                            href: href,
+                            text: item.textContent.trim()
+                        });
+                        
+                        if (href) {
+                            const menuFile = href.split('/').pop();
+                            const isMatch = menuFile === currentFile;
+                            
+                            console.log(`   매칭 검사: ${menuFile} === ${currentFile} -> ${isMatch}`);
+                            
+                            if (isMatch) {
+                                item.classList.add('active');
+                                foundMatch = true;
+                                
+                                // 스타일이 실제로 적용되었는지 확인
+                                const computedStyle = window.getComputedStyle(item, '::after');
+                                console.log('🎯 메뉴 활성화 완료:', {
+                                    href: href,
+                                    text: item.textContent.trim(),
+                                    hasActiveClass: item.classList.contains('active'),
+                                    afterWidth: computedStyle.width
+                                });
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!foundMatch) {
+                        console.warn('⚠️ 현재 페이지와 일치하는 메뉴를 찾지 못했습니다');
+                    }
+
+                } catch (error) {
+                    console.error('❌ 메뉴 하이라이트 처리 중 오류:', error);
+                }
+            }
+
+            bindEvents() {
+                // 로그인 성공 이벤트 리스너
+                window.addEventListener('userLoginSuccess', (e) => {
+                    console.log('📡 로그인 성공 이벤트 수신:', e.detail);
+                    this.updateHeaderState();
+                });
+
+                // 로그아웃 버튼 이벤트
+                document.addEventListener('click', (e) => {
+                    if (e.target.matches('.logout-btn, .logout-dropdown-btn')) {
+                        e.preventDefault();
+                        this.handleLogout();
+                    }
+                });
+
+                // 모바일 메뉴 버튼 이벤트
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('.mobile-menu-button')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const button = e.target.closest('.mobile-menu-button');
+                        const menuType = button.getAttribute('data-menu-type');
+                        this.toggleMobileMenu(menuType);
+                    }
+                });
+
+                // 외부 클릭으로 드롭다운 닫기
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.user-menu')) {
+                        this.closeAllDropdowns();
+                    }
+                });
+
+                // 저장소 변경 감지 (다른 탭에서의 로그인/로그아웃)
+                window.addEventListener('storage', (e) => {
+                    if (e.key === 'userLoggedIn' || e.key === 'userNickname' || e.key === 'userType') {
+                        console.log('📦 저장소 변경 감지:', e.key);
+                        this.updateHeaderState();
+                    }
+                });
+            }
+
+            updateHeaderState() {
+                const loginMenu = document.getElementById('loginMenu');
+                const loggedInMenu = document.getElementById('loggedInMenu');
+                
+                // localStorage와 sessionStorage 모두 확인
+                const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true' || 
+                                  sessionStorage.getItem('userLoggedIn') === 'true';
+                
+                console.log('🔍 로그인 상태 확인:', isLoggedIn);
+                
+                if (isLoggedIn) {
+                    this.showLoggedInState(loginMenu, loggedInMenu);
+                } else {
+                    this.showLoggedOutState(loginMenu, loggedInMenu);
+                }
+            }
+
+            showLoggedInState(loginMenu, loggedInMenu) {
+                // 메뉴 표시/숨김 처리
+                if (loginMenu) {
+                    loginMenu.style.display = 'none';
+                    loginMenu.classList.add('hidden');
+                }
+                if (loggedInMenu) {
+                    loggedInMenu.style.display = 'flex';
+                    loggedInMenu.classList.remove('hidden');
+                }
+                
+                // 사용자 정보 가져오기
+                const userNickname = localStorage.getItem('userNickname') || 
+                                   sessionStorage.getItem('userNickname') || '사용자';
+                const userType = localStorage.getItem('userType') || 
+                                sessionStorage.getItem('userType') || 'user';
+                
+                const userTypeText = userType === 'politician' ? '정치인' : '일반회원';
+                
+                // 사용자 정보 업데이트
+                this.updateUserInfo(userNickname, userTypeText, userType);
+                
+                console.log('✅ 로그인 상태 표시:', { userNickname, userType });
+            }
+
+            showLoggedOutState(loginMenu, loggedInMenu) {
+                if (loginMenu) {
+                    loginMenu.style.display = 'flex';
+                    loginMenu.classList.remove('hidden');
+                }
+                if (loggedInMenu) {
+                    loggedInMenu.style.display = 'none';
+                    loggedInMenu.classList.add('hidden');
+                }
+                
+                console.log('✅ 로그아웃 상태 표시');
+            }
+
+            updateUserInfo(nickname, userTypeText, userType) {
+                // PC 버전 사용자 정보 업데이트
+                const usernameDisplay = document.getElementById('usernameDisplay');
+                const userTypeDisplay = document.getElementById('userTypeText');
+                const userIndicator = document.getElementById('userIndicator');
+                
+                if (usernameDisplay) usernameDisplay.textContent = nickname;
+                if (userTypeDisplay) userTypeDisplay.textContent = userTypeText;
+                
+                // 정치인/일반회원 구분 스타일 적용
+                if (userIndicator) {
+                    userIndicator.classList.remove('politician', 'user');
+                    userIndicator.classList.add(userType);
+                }
+                
+                // 모바일 드롭다운 사용자 정보 업데이트
+                const dropdownUsername = document.getElementById('dropdownUsername');
+                const dropdownUsertype = document.getElementById('dropdownUsertype');
+                if (dropdownUsername) dropdownUsername.textContent = nickname;
+                if (dropdownUsertype) dropdownUsertype.textContent = userTypeText;
+            }
+
+            toggleMobileMenu(type) {
+                console.log('📱 모바일 메뉴 토글:', type);
+                
+                const dropdownId = type === 'login' ? 'loginDropdown' : 'userDropdown';
+                const dropdown = document.getElementById(dropdownId);
+                
+                if (!dropdown) {
+                    console.error('❌ 드롭다운 요소를 찾을 수 없음:', dropdownId);
+                    return;
+                }
+                
+                if (this.activeDropdown === dropdown) {
+                    this.closeAllDropdowns();
+                    return;
+                }
+                
+                this.closeAllDropdowns();
+                dropdown.classList.add('active');
+                this.activeDropdown = dropdown;
+            }
+
+            closeAllDropdowns() {
+                const dropdowns = document.querySelectorAll('.mobile-dropdown');
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('active');
+                }
+                this.activeDropdown = null;
+            }
+
+            handleLogout() {
+                console.log('🚪 로그아웃 처리');
+                
+                // 모든 저장소에서 로그인 정보 제거
+                const keysToRemove = ['userLoggedIn', 'userType', 'userEmail', 'userNickname'];
+                keysToRemove.forEach(key => {
+                    localStorage.removeItem(key);
+                    sessionStorage.removeItem(key);
+                });
+                
+                // 헤더 상태 업데이트
+                this.updateHeaderState();
+                
+                // 로그아웃 이벤트 발생
+                window.dispatchEvent(new CustomEvent('userLogout'));
+                
+                // 메인 페이지로 리디렉션
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 500);
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            // 중복 실행 방지
+            if (window.headerManager) {
+                console.log('⚠️ 헤더 관리자가 이미 존재함, 중복 생성 방지');
+                return;
+            }
+            
+            window.headerManager = new UnifiedHeaderManager();
+            
+            // 전역으로 노출 (기존 코드와의 호환성)
+            window.GlobalHeaderManager = window.headerManager;
+            
+            console.log('✅ 중복 방지 헤더 시스템 초기화 완료');
+        });
+        
+    })(); // IIFE로 스코프 분리
+  </script>
+</body>
+</html>

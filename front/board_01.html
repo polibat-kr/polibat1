@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="게시글 보기 페이지" name="description"/>
+<meta content="게시글, 자유게시판, 보기, HTML, CSS" name="keywords"/>
+<meta content="freehtml5.co" name="author"/>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"/>
+<!-- Bootstrap, Style 등 기본 CSS -->
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body { 
+      font-family: sans-serif; 
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      /*background-color: #f8f9fa;*/
+    }
+    #wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 페이드 인 애니메이션 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 게시글 컨테이너 */
+    .post-container {
+      width: 1200px !important;
+      margin: 40px auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .post-header {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+
+    .post-title {
+      font-size: 1.4em;
+      margin: 0;
+      padding-bottom: 8px;
+    }
+
+    .post-meta {
+      font-size: 1em;
+      color: #777;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .post-content {
+      font-size: 1em;
+      line-height: 1.6;
+      margin-top: 20px;
+      color: #444;
+      white-space: pre-wrap;
+    }
+
+    .post-actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      color: inherit;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.2);
+    }
+
+    .btn:hover {
+      background-color: #f2f2f2;
+    }
+
+    .post-reactions {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .reaction-btn {
+      background: none;
+      border: none;
+      font-size: 26px;
+      color: #aaa;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .reaction-btn:hover {
+      color: #666;
+    }
+
+    .reaction-btn.active-like {
+      color: #28a745;
+    }
+
+    .reaction-btn.active-dislike {
+      color: #dc3545;
+    }
+
+    .district-label {
+      padding: 2px 8px;
+      background: #e0e0e5;
+      color: #555;
+      border-radius: 6px;
+      font-size: 0.85em;
+      font-weight: 500;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+
+    /* 댓글 섹션 스타일 */
+    .comments-container {
+      margin-top: 40px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .comments-title {
+      font-size: 1.2em;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .comments-title::before {
+      content: "💬";
+      font-size: 1.1em;
+    }
+
+    .comment-item {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      position: relative;
+      animation: fadeIn 0.5s ease;
+      border: none;
+      font-size: 1em;
+    }
+
+    .comment-item.reply {
+      margin-left: 20px;
+      background-color: #e8e8e8;
+      position: relative;
+    }
+
+    .comment-item.reply::before {
+      content: "↳";
+      position: absolute;
+      left: -15px;
+      top: 12px;
+      color: #666;
+      font-weight: bold;
+    }
+
+    .comment-meta {
+      font-size: 0.95em;
+      color: #666;
+      margin-bottom: 6px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .comment-text {
+      font-size: 1em;
+      color: #333;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .comment-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .comment-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #888;
+      padding: 2px 6px;
+      border-radius: 3px;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .comment-actions button:hover {
+      color: #555;
+    }
+
+    .comment-actions span {
+      font-size: 16px;
+      color: #999;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+    }
+
+    .dropdown button {
+      background: none;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      color: #999;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
+    .dropdown button:hover {
+      color: #666;
+      background-color: rgba(0,0,0,0.05);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background-color: #fff;
+      min-width: 100px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+      border-radius: 4px;
+      z-index: 10;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    .dropdown-content button {
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 8px 12px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 12px;
+      color: #333;
+    }
+
+    .dropdown-content button:hover {
+      background-color: #f8f9fa;
+    }
+
+    /* ========================================
+         작성자 배지 시스템 (추가)
+    ======================================== */
+    
+    /* 작성자 정보 컨테이너 */
+    .author-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* 작성자명 */
+    .author-name {
+      font-weight: 600;
+      color: #666;
+      font-size: 1em;
+    }
+
+    /* 기본 작성자 배지 스타일 */
+    .author-badge {
+            display: inline-block;
+    padding: 1px 4px;
+    font-size: 13px;
+    /* font-weight: bold; */
+    border-radius: 5px;
+    margin-left: 3px;
+    vertical-align: middle;
+    border: 1px solid;
+    white-space: nowrap;
+    line-height: 1.2;
+    }
+
+    /* 운영자 배지 */
+    .admin-badge {
+         background: #ff6b6b;
+    color: white;
+    border-color: #ff5252;
+    }
+
+    .admin-badge::before {
+      /*content: "👑";*/
+      font-size: 8px;
+    }
+
+    /* 정치인 배지 */
+    .politician-author-badge {
+      background: linear-gradient(135deg, #4a90e2, #005bea);
+      color: white;
+      border: 1px solid #005bea;
+      box-shadow: 0 1px 2px rgba(74, 144, 226, 0.3);
+    }
+
+    .politician-author-badge::before {
+      /*content: "🏛️";*/
+      font-size: 8px;
+    }
+
+    /* 일반 회원 배지 (선택적 표시) */
+    .user-badge {
+      background: #f8f9fa;
+      color: #6c757d;
+      border: 1px solid #dee2e6;
+      display: none; /* 기본적으로 숨김 */
+    }
+
+    .user-badge::before {
+      content: "👤";
+      font-size: 8px;
+    }
+
+    /* 게시글 작성자 정보에서 배지 스타일 */
+    .post-meta .author-info {
+      margin-bottom: 0;
+      display: inline-flex;
+    }
+
+    .post-meta .author-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+    }
+
+    
+
+    .reply-box {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: #f8f8f8;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .reply-text {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 13px;
+  resize: none;
+  height: 36px;
+  box-sizing: border-box;
+  outline: none;
+  line-height: 1.4;
+  overflow: hidden; /* 스크롤 제거 */
+  display: flex;
+  align-items: center;  /* 텍스트 수직 정렬 */
+}
+
+.reply-text::placeholder {
+  color: #999;
+  line-height: 1.4;
+}
+
+
+    .reply-text:focus {
+      border-color: #007bff;
+    }
+
+    .reply-box button {
+      padding: 9px 16px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      height: 36px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reply-box button:hover {
+      background-color: #555;
+    }
+    @media (max-width: 768px) {
+      .reply-box {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .reply-text {
+        width: 100%;
+        height: 40px;
+        font-size: 14px;
+        padding: 10px 12px;
+      }
+
+      .reply-box button {
+        width: 100%;
+        height: 40px;
+        font-size: 14px;
+        padding: 10px 0;
+        margin-top: 8px;
+      }
+    }
+
+    .comment-form {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .comment-form textarea {
+      flex: 1;
+      height: 40px;
+      padding: 10px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.4;
+      resize: none;
+      overflow: hidden;
+      outline: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .comment-form textarea::placeholder {
+      color: #999;
+    }
+
+    .comment-form button {
+      height: 40px;
+      padding: 0 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #333;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .comment-form button:hover {
+      background-color: #555;
+    }
+    @media (max-width: 768px) {
+      .comment-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .comment-form textarea {
+        width: 100%;
+        height: 40px;
+        font-size: 14px;
+        padding: 10px 14px;
+      }
+
+      .comment-form button {
+        width: 100%;
+        margin-top: 8px;
+        height: 40px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .post-container {
+        width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box;
+      }
+      
+      .post-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+
+      .comment-item.reply {
+        margin-left: 15px;
+      }
+
+      /* 작성자 배지 모바일 조정 */
+      .author-badge {
+        font-size: 8px;
+        padding: 1px 4px;
+      }
+    }
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  justify-content: flex-end;
+}
+
+.dropdown {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  left: auto;
+}
+
+/* 게시글 하단 이미지 스타일 */
+.post-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  background: #fff; /* 페이지 배경과 맞추기 */
+      margin-top: -50px;
+}
+
+.post-image-wrapper img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+@media (max-width: 768px) {
+  .post-image-wrapper img {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .post-title, h1.post-title {
+    word-break: keep-all;
+    white-space: normal;
+    font-size: 1.1em;
+    line-height: 1.4;
+    text-align: left;
+  }
+  .post-meta {
+    font-size: 0.75em;
+  }
+  .post-content {
+    font-size: 0.97em;
+  }
+  .comment-item {
+    font-size: 0.97em;
+  }
+  .comment-meta {
+    font-size: 0.92em;
+  }
+  .comment-text {
+    font-size: 0.97em;
+  }
+  .author-name {
+    font-size: 0.97em;
+  }
+}
+
+/* ========================================
+         정치인 명함 카드 시스템
+    ======================================== */
+    
+    /* 명함 카드 컨테이너 - 기본적으로 표시 */
+    .politician-card {
+      background: #ffffff;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      display: block; /* 기본적으로 표시 */
+      background-color: #f8f8f8;
+    }
+
+    .politician-card.show {
+      display: block;
+      animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* 명함 카드 애니메이션 */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* 명함 카드 메인 컨테이너 */
+    .politician-card-main {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    /* 명함 카드 헤더 */
+    .politician-card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      min-width: 140px;
+      padding-right: 16px;
+      border-right: 1px solid #e9ecef;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* 프로필 사진 컨테이너 - 배지와 함께 */
+    .photo-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* 정치인 프로필 이미지 */
+    .politician-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid #e9ecef;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* 정당 배지 - 사진 왼쪽 상단에 겹치게 */
+    .politician-party {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      background: #4a90e2;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 500;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    /* 정치인 기본 정보 */
+    .politician-info {
+      text-align: center;
+      width: 100%;
+    }
+
+    .politician-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.2;
+      display: block;
+    }
+
+    .politician-title {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 6px;
+      font-weight: 400;
+      display: block;
+    }
+
+    .politician-party {
+      display: inline-block;
+      background: #4a90e2;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    /* 명함 카드 본문 - 심플한 연락처 */
+    .politician-card-body {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex: 1;
+      flex-wrap: nowrap;
+      overflow: visible;
+      padding-left: 4px;
+    }
+
+    /* 연락처 아이템 (아이콘 + 제목) */
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    /* 모든 연락처 아이템 - 아이콘과 제목을 가로로 배치 */
+    .contact-item.email-item,
+    .contact-item.website-item,
+    .contact-item.youtube-item,
+    .contact-item.bank-item {
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 연락처 아이콘 - 심플한 디자인 */
+    .contact-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      color: #666;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-right: 6px;
+      opacity: 0.8;
+    }
+
+    .contact-icon.email {
+      color: #666;
+    }
+
+    .contact-icon.website {
+      color: #666;
+    }
+
+    .contact-icon.youtube {
+      color: #666;
+    }
+
+    .contact-icon.bank {
+      color: #666;
+    }
+
+    /* 연락처 제목 - 심플한 디자인 */
+    .contact-label {
+      font-size: 15px;
+      color: #555;
+      font-weight: 400;
+      text-align: left;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    /* 호버 효과 - 심플하게 */
+    .contact-item:hover .contact-label {
+      color: #333;
+    }
+
+    /* 명함 카드 푸터 - 심플한 디자인 */
+    .politician-card-footer {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e9ecef;
+      text-align: center;
+    }
+
+    .politician-motto {
+      color: #666;
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 400;
+      max-width: 400px;
+      margin: 0 auto;
+      word-break: keep-all;
+    }
+
+    /* 모바일 반응형 - 현대적이고 세련된 디자인 */
+    @media (max-width: 768px) {
+      .politician-card {
+        padding: 12px;
+        margin-top: 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      .politician-card-main {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .politician-card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 16px;
+        min-width: auto;
+        width: 100%;
+      }
+
+      .politician-photo {
+        width: 40px;
+        height: 40px;
+        border-width: 2px;
+      }
+
+      .politician-party {
+        top: -6px;
+        left: -6px;
+        padding: 3px 6px;
+        font-size: 9px;
+        border-radius: 10px;
+      }
+
+      .politician-name {
+        font-size: 16px;
+      }
+
+      .politician-title {
+        font-size: 12px;
+      }
+
+      .politician-party {
+        padding: 4px 8px;
+        font-size: 10px;
+      }
+
+      .politician-card-body {
+        flex-direction: row;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        padding-left: 0;
+      }
+
+      .contact-item {
+        gap: 4px;
+      }
+
+      .contact-item.email-item,
+      .contact-item.website-item,
+      .contact-item.youtube-item,
+      .contact-item.bank-item {
+        gap: 6px;
+      }
+
+      .contact-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 11px;
+        margin-right: 6px;
+      }
+
+      .contact-label {
+        font-size: 10px;
+      }
+
+      .contact-label.bank-label {
+        font-size: 9px;
+      }
+
+      .politician-motto {
+        font-size: 12px;
+        line-height: 1.4;
+        padding: 0 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .politician-card {
+        padding: 10px;
+        margin: 10px 8px;
+        border-radius: 6px;
+      }
+
+      .politician-card-main {
+        gap: 12px;
+        align-items: center;
+      }
+
+      .politician-photo {
+        width: 36px;
+        height: 36px;
+        border-width: 1px;
+      }
+
+      .politician-party {
+        top: -5px;
+        left: -5px;
+        padding: 2px 5px;
+        font-size: 8px;
+        border-radius: 8px;
+      }
+
+      .politician-name {
+        font-size: 14px;
+      }
+
+      .politician-title {
+        font-size: 11px;
+      }
+
+      .politician-card-body {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        padding-left: 0;
+      }
+
+      .contact-item {
+        gap: 3px;
+      }
+
+      .contact-item.email-item,
+      .contact-item.website-item,
+      .contact-item.youtube-item,
+      .contact-item.bank-item {
+        gap: 5px;
+      }
+
+      .contact-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 11px;
+        margin-right: 5px;
+      }
+
+      .contact-label {
+        font-size: 9px;
+      }
+
+      .contact-label.bank-label {
+        font-size: 9px;
+      }
+
+      .politician-motto {
+        font-size: 11px;
+        line-height: 1.4;
+        padding: 0 8px;
+      }
+    }
+
+    /* 명함 카드 표시 조건 */
+    .politician-card[data-user-type="politician"],
+    .politician-card[data-user-type="mp"],
+    .politician-card[data-user-type="staff"] {
+      display: block;
+    }
+
+    /* 연락처 아이콘 래퍼 - 원형 배경 */
+    .contact-icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ffffff;
+      /*border: 1px solid #e9ecef;*/
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+
+    /* 연락처 아이콘 - 원형 배경 안의 아이콘 */
+    .contact-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      color: #666;
+      font-size: 18px;
+      flex-shrink: 0;
+      line-height: 1;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 연락처 제목 - 심플한 디자인 */
+    .contact-label {
+      font-size: 15px;
+      color: #555;
+      font-weight: 400;
+      text-align: left;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    /* 호버 효과 - 원형 배경 강조 */
+    .contact-item:hover .contact-icon-wrapper {
+      background: #f8f9fa;
+      border-color: #4a90e2;
+      box-shadow: 0 2px 6px rgba(74, 144, 226, 0.2);
+    }
+
+    .contact-item:hover .contact-icon {
+      color: #4a90e2;
+    }
+
+    .contact-item:hover .contact-label {
+      color: #333;
+    }
+</style>
+<title>게시글 보기</title>
+<style>
+/* 📱 모바일 최적화 스타일 시작 */
+@media screen and (max-width: 768px) {
+  body {
+    /*padding: 16px;*/
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    line-height: 1.4;
+  }
+
+  p, ul, li, button {
+    margin-bottom: 1em;
+  }
+
+  .container, .content, .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .btn, button {
+    padding: 10px 14px;
+    font-size: 1.3rem;
+  }
+}
+/* 📱 모바일 최적화 스타일 끝 */
+</style></head>
+<body>
+<!-- 헤더 로딩 -->
+<div id="header-include"></div>
+<!-- 메인 콘텐츠 영역 -->
+<main id="wrap" role="main">
+<div class="container">  
+<div class="post-container">
+<!-- 게시글 헤더 -->
+<div class="post-header">
+<h1 class="post-title" id="postTitle">청년 주거 정책, 실효성 있다고 보시나요?</h1>
+<div class="post-meta" id="postMeta">
+          작성자: <span id="postAuthor">정책분석가</span> · 작성일: <span id="postDate">25.05.12.</span> · 
+  조회수: <span id="postViews">842</span> · 좋아요: <span id="postLikes">31</span>
+</div>
+</div>
+<!-- 게시글 내용 -->
+<div class="post-content" id="postContent">
+  최근 정부에서 발표한 청년 주거 지원 정책에 대해 다양한 의견이 나오고 있습니다.<br>
+  실제로 청년들에게 도움이 된다고 생각하시나요? 직접 경험한 사례나 바라는 점, 개선 아이디어를 자유롭게 남겨주세요.
+</div>
+
+<!-- 정치인 명함 카드 -->
+<div class="politician-card show" id="politicianCard" data-user-type="politician">
+  <div class="politician-card-main">
+    <div class="politician-card-header">
+      <div class="photo-container">
+        <img src="https://www.assembly.go.kr/static/portal/img/openassm/new/4e926bae67ad43a6a87ad68da8d0c0fe.png" alt="정치인 프로필" class="politician-photo" id="politicianPhoto">
+        <span class="politician-party" id="politicianParty">민주당</span>
+      </div>
+      <div class="politician-info">
+        <h3 class="politician-name" id="politicianName">박주민</h3>
+        <!-- <p class="politician-title" id="politicianTitle">국회의원</p> -->
+      </div>
+    </div>
+    
+    <div class="politician-card-body">
+      <div class="contact-item email-item">
+        <div class="contact-icon-wrapper email">
+          <i class="fas fa-envelope contact-icon"></i>
+        </div>
+        <span class="contact-label email-label">dh337dh@naver.com</span>
+      </div>
+      
+      <div class="contact-item website-item">
+        <div class="contact-icon-wrapper website">
+          <i class="fas fa-link contact-icon"></i>
+        </div>
+        <span class="contact-label website-label">www.assembly.go.kr</span>
+      </div>
+      
+      <div class="contact-item youtube-item">
+        <div class="contact-icon-wrapper youtube">
+          <i class="fas fa-play contact-icon"></i>
+        </div>
+        <span class="contact-label youtube-label">박주민티비</span>
+      </div>
+      
+      <div class="contact-item bank-item">
+        <div class="contact-icon-wrapper bank">
+          <i class="fas fa-credit-card contact-icon"></i>
+        </div>
+        <span class="contact-label bank-label">국민은행 123-456-789012</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="politician-card-footer">
+    <p class="politician-motto" id="politicianMotto">
+      "국민과 함께하는 정치, 투명하고 공정한 사회를 만들어가겠습니다."
+    </p>
+  </div>
+</div>
+
+<!-- 행동 버튼 -->
+<div class="post-actions">
+<button class="btn" onclick="location.href='write.html'">글쓰기</button>
+<button class="btn" onclick="reportPost()">신고하기</button>
+<button aria-label="목록으로 이동" class="btn" onclick="location.href='board.html'">목록으로</button>
+<button aria-label="게시글 수정" class="btn" onclick="location.href='edit.html'">수정하기</button>
+<button aria-label="게시글 삭제" class="btn" onclick="deletePost()">삭제하기</button>
+<button aria-label="공유하기" class="btn" onclick="sharePost()">
+<i class="fas fa-share-alt"></i> 공유하기
+</button>
+</div>
+<!-- 좋아요 / 싫어요 아이콘 버튼 -->
+<div aria-label="게시글 반응" class="post-reactions">
+<button aria-label="좋아요" class="reaction-btn" onclick="likePost()">
+<i class="fas fa-thumbs-up"></i>
+<div class="reaction-count" id="likeCount">0</div>
+</button>
+<button aria-label="싫어요" class="reaction-btn" onclick="dislikePost()">
+<i class="fas fa-thumbs-down"></i>
+<div class="reaction-count" id="dislikeCount">0</div>
+</button>
+</div>
+<!-- 댓글 섹션 -->
+<section aria-label="댓글 섹션" class="comments-container">
+<div class="comments-title">실시간 댓글 <span id="commentCount">0</span></div>
+<div id="commentList">
+<!-- 댓글 리스트가 여기에 렌더링됩니다 -->
+</div>
+<!-- 댓글 작성 폼 -->
+<div class="comment-form">
+<textarea aria-label="댓글 입력" id="commentInput" placeholder="댓글을 입력하세요..."></textarea>
+<button aria-label="댓글 등록" id="commentSubmit">등록</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- 푸터 로딩 -->
+<div id="footer-include"></div>
+<script>
+function sharePost() {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => setTimeout(() => alert('링크 복사 완료!'), 10));
+  } else {
+    alert('복사를 지원하지 않는 환경입니다.');
+  }
+}
+</script>
+<script>
+    /**
+     * 작성자 배지 생성 함수
+     * @param {string} userType - 'admin', 'politician', 'user'
+     * @returns {string} HTML 문자열
+     */
+    function createAuthorBadge(userType) {
+      switch(userType) {
+        case 'admin':
+          return '<span class="author-badge admin-badge">운영자</span>';
+        case 'politician':
+          return '<span class="author-badge politician-author-badge">정치인</span>';
+        default:
+          return '';
+      }
+    }
+
+    /**
+     * 작성자 정보 HTML 생성 함수
+     * @param {string} authorName - 작성자명
+     * @param {string} userType - 사용자 타입
+     * @returns {string} HTML 문자열
+     */
+    function createAuthorInfo(authorName, userType) {
+      const badge = createAuthorBadge(userType);
+      return `
+        <div class="author-info">
+          <span class="author-name">${authorName}</span>
+          ${badge}
+        </div>
+      `;
+    }
+
+    let comments = [
+      {
+        author: '테스트 사용자',
+        userType: 'user',
+        date: '25.05.26.',
+        text: '이것은 테스트 댓글입니다.'
+      },
+      {
+        author: '운영진',
+        userType: 'admin',
+        date: '25.07.04.',
+        text: '두 번째 테스트 댓글입니다. 잘 작동하는지 확인해보세요!'
+      },
+      {
+        author: '정청래',
+        userType: 'politician',
+        date: '25.07.04.',
+        text: '정치인이 작성한 댓글입니다.'
+      }
+    ];
+
+    function renderComments() {
+      const commentList = document.getElementById('commentList');
+      commentList.innerHTML = '';
+      comments.forEach((comment, index) => {
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.innerHTML = `
+          <div class="comment-meta">
+            ${createAuthorInfo(comment.author, comment.userType)}
+            <span>⋅ ${comment.date}</span>
+          </div>
+          <div class="comment-text">${comment.text}</div>
+          <div class="dropdown">
+            <button>⋮</button>
+            <div class="dropdown-content">
+              <button onclick="reportComment()">🚩 신고하기</button>
+            </div>
+          </div>
+          <div class="comment-actions">
+            <button onclick="likeComment(this)">
+    <i class="fa-regular fa-thumbs-up"></i> <span>0</span>
+  </button>
+  <button onclick="dislikeComment(this)">
+    <i class="fa-regular fa-thumbs-down"></i> <span>0</span>
+  </button>
+  <button onclick="toggleReply(this)">
+    <i class="fa-regular fa-comment-dots"></i> 답글
+  </button>
+          </div>
+          <div class="reply-box" style="display: none;">
+            <textarea class="reply-text" placeholder="답글을 입력하세요"></textarea>
+            <button onclick="submitReply(this)">답글</button>
+          </div>
+          <div class="replies"></div>
+        `;
+
+        commentList.appendChild(item);
+      });
+      document.getElementById('commentCount').textContent = comments.length;
+    }
+
+   function addComment() {
+  const input = document.getElementById('commentInput');
+  const text = input.value.trim();
+  if (!text) return alert('댓글을 입력하세요.');
+
+  const date = new Date();
+  const formattedDate = `${String(date.getFullYear()).slice(2)}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}.`;
+
+  // 랜덤으로 사용자 타입 결정 (테스트용)
+  const userTypes = ['user', 'admin', 'politician'];
+  const randomUserType = userTypes[Math.floor(Math.random() * userTypes.length)];
+  
+  let authorName = '익명';
+  if (randomUserType === 'admin') authorName = '관리자';
+  else if (randomUserType === 'politician') authorName = '정치인';
+
+  comments.push({
+    author: authorName,
+    userType: randomUserType,
+    date: formattedDate,
+    text
+  });
+
+  input.value = '';
+  renderComments();
+}
+
+    function likeComment(btn) {
+      const span = btn.querySelector('span');
+      span.textContent = parseInt(span.textContent) + 1;
+    }
+
+    function dislikeComment(btn) {
+      const span = btn.querySelector('span');
+      span.textContent = parseInt(span.textContent) + 1;
+    }
+
+    function reportComment() {
+      alert("신고가 접수되었습니다.");
+    }
+
+    function toggleReply(btn) {
+      const box = btn.closest('.comment-item').querySelector('.reply-box');
+      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function submitReply(btn) {
+      const replyBox = btn.closest('.reply-box');
+      const textarea = replyBox.querySelector('.reply-text');
+      const text = textarea.value.trim();
+      if (!text) return alert('답글을 입력하세요.');
+
+      // 랜덤으로 사용자 타입 결정 (테스트용)
+      const userTypes = ['user', 'admin', 'politician'];
+      const randomUserType = userTypes[Math.floor(Math.random() * userTypes.length)];
+      
+      let authorName = '익명';
+      if (randomUserType === 'admin') authorName = '관리자';
+      else if (randomUserType === 'politician') authorName = '정치인';
+
+      const replyDiv = document.createElement('div');
+      replyDiv.className = 'comment-item reply';
+      replyDiv.innerHTML = `
+        <div class="comment-meta">
+          ${createAuthorInfo(authorName, randomUserType)}
+          <span>⋅ ${
+            (() => {
+              const date = new Date();
+              const year = String(date.getFullYear()).slice(2); // '25'
+              const month = String(date.getMonth() + 1).padStart(2, '0'); // '06'
+              const day = String(date.getDate()).padStart(2, '0'); // '06'
+              return `${year}.${month}.${day}.`;
+            })()
+          }</span>
+        </div>
+
+        <div class="comment-text">${text}</div>
+        <div class="dropdown">
+          <button>⋮</button>
+          <div class="dropdown-content">
+            <button onclick="reportComment()">🚩신고하기</button>
+          </div>
+        </div>
+        <div class="comment-actions">
+          <button onclick="likeComment(this)">
+    <i class="fa-regular fa-thumbs-up"></i> <span>0</span>
+  </button>
+  <button onclick="dislikeComment(this)">
+    <i class="fa-regular fa-thumbs-down"></i> <span>0</span>
+  </button>
+  <button onclick="toggleReply(this)">
+    <i class="fa-regular fa-comment-dots"></i> 답글
+  </button>
+        </div>
+        <div class="reply-box" style="display: none;">
+          <textarea class="reply-text" placeholder="답글을 입력하세요"></textarea>
+          <button onclick="submitReply(this)">답글</button>
+        </div>
+        <div class="replies"></div>
+      `;
+
+      const commentItem = btn.closest('.comment-item');
+      const repliesContainer = commentItem.querySelector('.replies');
+      repliesContainer.appendChild(replyDiv);
+
+      textarea.value = '';
+      replyBox.style.display = 'none';
+    }
+
+    document.getElementById('commentSubmit').addEventListener('click', addComment);
+    document.getElementById('commentInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        addComment();
+      }
+    });
+
+    // 페이지 로드 시 댓글 렌더링
+    renderComments();
+</script>
+<script>
+    function includeHTML(id, file) {
+      fetch(file)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById(id).innerHTML = data;
+        });
+    }
+
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+<script>
+  document.addEventListener("click", function (event) {
+    document.querySelectorAll(".dropdown-content").forEach(menu => {
+      menu.style.display = "none";
+    });
+
+    if (event.target.closest(".dropdown")) {
+      const dropdown = event.target.closest(".dropdown");
+      const content = dropdown.querySelector(".dropdown-content");
+      if (content) {
+        content.style.display = "block";
+        event.stopPropagation();
+      }
+    }
+  });
+</script>
+
+<!-- 
+=================================================
+🌐 모든 페이지에 추가할 통합 스크립트
+=================================================
+
+각 페이지의 </body> 태그 바로 앞에 추가하세요.
+페이지별로 currentPage 값만 변경하면 됩니다.
+-->
+
+<!-- ===================== board_01.html용 ===================== -->
+<script>
+// 현재 페이지 식별 (각 페이지마다 이 값만 변경)
+var CURRENT_PAGE = 'board';
+
+// 통합 페이지 관리 시스템
+(function() {
+    'use strict';
+    
+    console.log('🌐 통합 페이지 관리 시스템 로드 - 페이지:', CURRENT_PAGE);
+    
+    // 전역 헤더 관리자
+    window.GlobalHeaderManager = {
+        initialized: false,
+        retryCount: 0,
+        maxRetries: 10,
+        currentPage: CURRENT_PAGE,
+        
+        // 헤더 상태 초기화
+        init: function() {
+            var self = this;
+            console.log('🚀 전역 헤더 관리자 초기화 시도');
+            
+            this.waitForHeader(function() {
+                self.setupHeaderManager();
+                self.updateHeaderState();
+                // self.highlightCurrentMenu(); // 헤더 메뉴 하이라이트는 header.html에서만 실행
+                self.initialized = true;
+                console.log('✅ 전역 헤더 관리자 초기화 완료');
+            });
+        },
+        
+        // 헤더 로드 대기
+        waitForHeader: function(callback) {
+            var self = this;
+            var loginMenu = document.getElementById('loginMenu');
+            var loggedInMenu = document.getElementById('loggedInMenu');
+            
+            if (loginMenu && loggedInMenu) {
+                console.log('📍 헤더 요소 발견, 초기화 진행');
+                callback();
+            } else if (this.retryCount < this.maxRetries) {
+                this.retryCount++;
+                console.log('⏳ 헤더 로딩 대기 중... (' + this.retryCount + '/' + this.maxRetries + ')');
+                setTimeout(function() {
+                    self.waitForHeader(callback);
+                }, 200);
+            } else {
+                console.error('❌ 헤더 로딩 실패 - 최대 재시도 횟수 초과');
+            }
+        },
+        
+        // 현재 페이지 메뉴 하이라이트
+        highlightCurrentMenu: function() {
+            var menuItems = document.querySelectorAll('.menu a');
+            var currentPageMap = {
+                'index': ['index.html', '/'],
+                'board': ['board.html'],
+                'voice': ['voice.html'],
+                'vote_board': ['vote_board.html'],
+                'member_info': ['member_info.html']
+            };
+            
+            for (var i = 0; i < menuItems.length; i++) {
+                var item = menuItems[i];
+                var href = item.getAttribute('href');
+                
+                // 현재 페이지와 일치하는 메뉴 찾기
+                var pagesToCheck = currentPageMap[this.currentPage] || [];
+                var isActive = false;
+                
+                for (var j = 0; j < pagesToCheck.length; j++) {
+                    if (href && href.includes(pagesToCheck[j])) {
+                        isActive = true;
+                        break;
+                    }
+                }
+                
+                if (isActive) {
+                    item.classList.add('active');
+                    console.log('🎯 현재 페이지 메뉴 하이라이트:', href);
+                } else {
+                    item.classList.remove('active');
+                }
+            }
+        },
+        
+        // 헤더 관리자 설정
+        setupHeaderManager: function() {
+            console.log('🔧 헤더 이벤트 리스너 설정');
+            var self = this;
+            
+            // 로그아웃 버튼 이벤트
+            document.addEventListener('click', function(e) {
+                if (e.target.matches('.logout-btn, .logout-dropdown-btn')) {
+                    e.preventDefault();
+                    console.log('🚪 로그아웃 버튼 클릭');
+                    self.handleLogout();
+                }
+            });
+            
+            // 모바일 메뉴 버튼 이벤트
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.mobile-menu-button')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var button = e.target.closest('.mobile-menu-button');
+                    var menuType = button.getAttribute('data-menu-type');
+                    self.toggleMobileMenu(menuType);
+                }
+            });
+            
+            // 외부 클릭으로 드롭다운 닫기
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.user-menu')) {
+                    self.closeAllDropdowns();
+                }
+            });
+            
+            // 로그인 성공 이벤트 리스너
+            window.addEventListener('userLoginSuccess', function(e) {
+                console.log('📡 로그인 성공 이벤트 수신:', e.detail);
+                self.updateHeaderState();
+            });
+            
+            // 저장소 변경 감지
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'userLoggedIn' || e.key === 'userNickname' || e.key === 'userType') {
+                    console.log('📦 저장소 변경 감지:', e.key);
+                    self.updateHeaderState();
+                }
+            });
+        },
+        
+        // 헤더 상태 업데이트
+        updateHeaderState: function() {
+            console.log('🔄 헤더 상태 업데이트 시작');
+            
+            var loginMenu = document.getElementById('loginMenu');
+            var loggedInMenu = document.getElementById('loggedInMenu');
+            
+            if (!loginMenu || !loggedInMenu) {
+                console.warn('⚠️ 헤더 메뉴 요소를 찾을 수 없음');
+                return;
+            }
+            
+            var isLoggedIn = localStorage.getItem('userLoggedIn') === 'true' || 
+                            sessionStorage.getItem('userLoggedIn') === 'true';
+            
+            console.log('🔍 로그인 상태 확인:', isLoggedIn);
+            
+            if (isLoggedIn) {
+                this.showLoggedInState(loginMenu, loggedInMenu);
+            } else {
+                this.showLoggedOutState(loginMenu, loggedInMenu);
+            }
+        },
+        
+        // 로그인 상태 표시
+        showLoggedInState: function(loginMenu, loggedInMenu) {
+            console.log('👤 로그인 상태 UI 표시');
+            
+            if (loginMenu) {
+                loginMenu.style.display = 'none';
+                loginMenu.classList.add('hidden');
+            }
+            if (loggedInMenu) {
+                loggedInMenu.style.display = 'flex';
+                loggedInMenu.classList.remove('hidden');
+            }
+            
+            var userNickname = localStorage.getItem('userNickname') || 
+                             sessionStorage.getItem('userNickname') || '사용자';
+            var userType = localStorage.getItem('userType') || 
+                          sessionStorage.getItem('userType') || 'user';
+            
+            var userTypeText = userType === 'politician' ? '정치인' : '일반회원';
+            this.updateUserInfo(userNickname, userTypeText, userType);
+            
+            console.log('✅ 로그인 상태 표시 완료:', { userNickname, userType });
+        },
+        
+        // 로그아웃 상태 표시
+        showLoggedOutState: function(loginMenu, loggedInMenu) {
+            console.log('🔓 로그아웃 상태 UI 표시');
+            
+            if (loginMenu) {
+                loginMenu.style.display = 'flex';
+                loginMenu.classList.remove('hidden');
+            }
+            if (loggedInMenu) {
+                loggedInMenu.style.display = 'none';
+                loggedInMenu.classList.add('hidden');
+            }
+            
+            console.log('✅ 로그아웃 상태 표시 완료');
+        },
+        
+        // 사용자 정보 업데이트
+        updateUserInfo: function(nickname, userTypeText, userType) {
+            console.log('📝 사용자 정보 업데이트:', { nickname, userTypeText, userType });
+            
+            var usernameDisplay = document.getElementById('usernameDisplay');
+            var userTypeDisplay = document.getElementById('userTypeText');
+            var userIndicator = document.getElementById('userIndicator');
+            
+            if (usernameDisplay) {
+                usernameDisplay.textContent = nickname;
+                console.log('📝 사용자명 업데이트:', nickname);
+            }
+            if (userTypeDisplay) {
+                userTypeDisplay.textContent = userTypeText;
+                console.log('📝 사용자 타입 업데이트:', userTypeText);
+            }
+            
+            if (userIndicator) {
+                userIndicator.classList.remove('politician', 'user');
+                userIndicator.classList.add(userType);
+                console.log('🎨 사용자 타입 스타일 적용:', userType);
+            }
+            
+            var dropdownUsername = document.getElementById('dropdownUsername');
+            var dropdownUsertype = document.getElementById('dropdownUsertype');
+            if (dropdownUsername) dropdownUsername.textContent = nickname;
+            if (dropdownUsertype) dropdownUsertype.textContent = userTypeText;
+        },
+        
+        // 로그아웃 처리
+        handleLogout: function() {
+            console.log('🚪 로그아웃 처리 시작');
+            
+            var keysToRemove = ['userLoggedIn', 'userType', 'userEmail', 'userNickname'];
+            keysToRemove.forEach(function(key) {
+                localStorage.removeItem(key);
+                sessionStorage.removeItem(key);
+            });
+            
+            console.log('🗑️ 로그인 정보 삭제 완료');
+            this.updateHeaderState();
+            window.dispatchEvent(new CustomEvent('userLogout'));
+            
+            setTimeout(function() {
+                console.log('🏠 메인 페이지로 리디렉션');
+                window.location.href = 'index.html';
+            }, 500);
+        },
+        
+        // 모바일 메뉴 토글
+        toggleMobileMenu: function(type) {
+            console.log('📱 모바일 메뉴 토글:', type);
+            
+            var dropdownId = type === 'login' ? 'loginDropdown' : 'userDropdown';
+            var dropdown = document.getElementById(dropdownId);
+            
+            if (!dropdown) {
+                console.error('❌ 드롭다운 요소를 찾을 수 없음:', dropdownId);
+                return;
+            }
+            
+            if (this.activeDropdown === dropdown) {
+                this.closeAllDropdowns();
+                return;
+            }
+            
+            this.closeAllDropdowns();
+            dropdown.classList.add('active');
+            this.activeDropdown = dropdown;
+        },
+        
+        // 모든 드롭다운 닫기
+        closeAllDropdowns: function() {
+            var dropdowns = document.querySelectorAll('.mobile-dropdown');
+            for (var i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].classList.remove('active');
+            }
+            this.activeDropdown = null;
+        }
+    };
+    
+    // 이전 페이지 추적 (로그인 페이지 제외)
+    if (CURRENT_PAGE !== 'login') {
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentPage = window.location.href;
+            sessionStorage.setItem('previousPage', currentPage);
+            console.log('📍 현재 페이지 저장:', currentPage);
+            
+            // 로그인 링크에 redirect 파라미터 추가
+            setTimeout(function() {
+                var loginLinks = document.querySelectorAll('a[href*="login.html"], .login-btn');
+                
+                for (var i = 0; i < loginLinks.length; i++) {
+                    loginLinks[i].addEventListener('click', function(e) {
+                        var currentUrl = window.location.href;
+                        var loginUrl = this.getAttribute('href') || 'login.html';
+                        var separator = loginUrl.includes('?') ? '&' : '?';
+                        var newUrl = loginUrl + separator + 'redirect=' + encodeURIComponent(currentUrl);
+                        
+                        console.log('🔗 로그인 링크 클릭, 리디렉션 URL 설정:', newUrl);
+                        this.href = newUrl;
+                    });
+                }
+            }, 1000);
+        });
+    }
+    
+    // 헤더/푸터 포함 함수
+    window.includeHTML = function(id, file) {
+        console.log('�� 파일 포함 시작:', file);
+        
+        fetch(file)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('파일 로딩 실패: ' + response.status);
+            }
+            return response.text();
+        })
+        .then(function(data) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.innerHTML = data;
+                
+                if (id === 'header-include') {
+                    console.log('🔧 헤더 로드 완료, 상태 관리 시스템 초기화');
+                    setTimeout(function() {
+                        window.GlobalHeaderManager.init();
+                    }, 100);
+                }
+                
+                console.log('✅ ' + file + ' 포함 완료');
+            } else {
+                console.error('❌ 요소를 찾을 수 없음:', id);
+            }
+        })
+        .catch(function(error) {
+            console.error('❌ 파일 로딩 실패:', error);
+        });
+    };
+    
+    // DOM 로드 시 헤더/푸터 포함
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎯 페이지 로드 완료, 헤더/푸터 포함 시작');
+        
+        if (document.getElementById('header-include')) {
+            window.includeHTML("header-include", "header.html");
+        }
+        
+        if (document.getElementById('footer-include')) {
+            window.includeHTML("footer-include", "footer.html");
+        }
+    });
+    
+    // 디버깅용 전역 함수들
+    window.testLogin = function(userType, nickname) {
+        userType = userType || 'user';
+        nickname = nickname || '테스트사용자';
+        
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userType', userType);
+        localStorage.setItem('userEmail', 'test@example.com');
+        localStorage.setItem('userNickname', nickname);
+        
+        if (window.GlobalHeaderManager && window.GlobalHeaderManager.initialized) {
+            window.GlobalHeaderManager.updateHeaderState();
+        }
+        
+        console.log('🧪 테스트 로그인 완료:', { userType, nickname });
+    };
+    
+    window.testLogout = function() {
+        ['userLoggedIn', 'userType', 'userEmail', 'userNickname'].forEach(function(key) {
+            localStorage.removeItem(key);
+            sessionStorage.removeItem(key);
+        });
+        
+        if (window.GlobalHeaderManager && window.GlobalHeaderManager.initialized) {
+            window.GlobalHeaderManager.updateHeaderState();
+        }
+        
+        console.log('🧪 테스트 로그아웃 완료');
+    };
+    
+    console.log('🎉 통합 페이지 관리 시스템 로드 완료 - 페이지:', CURRENT_PAGE);
+    
+})();
+</script>
+
+<!-- 
+=================================================
+📋 페이지별 설정 가이드
+=================================================
+
+각 페이지에서 맨 위의 CURRENT_PAGE 값만 변경하세요:
+
+• index.html:      var CURRENT_PAGE = 'index';
+• board.html:      var CURRENT_PAGE = 'board';
+• voice.html:      var CURRENT_PAGE = 'voice';
+• vote_board.html: var CURRENT_PAGE = 'vote_board';
+• member_info.html: var CURRENT_PAGE = 'member_info';
+• login.html:      var CURRENT_PAGE = 'login';
+
+나머지 코드는 모든 페이지에서 동일합니다!
+-->
+
+<!-- ==================== 정치인 명함 카드 시스템 ==================== -->
+<script>
+/**
+ * 명함 카드 표시/숨김 처리
+ * @param {string} userType - 사용자 타입 ('politician', 'mp', 'staff', 'user', 'admin')
+ */
+function togglePoliticianCard(userType) {
+  const politicianCard = document.getElementById('politicianCard');
+  if (!politicianCard) return;
+  
+  // 정치인, 국회의원, 보좌관인 경우에만 명함 카드 표시
+  const shouldShow = ['politician', 'mp', 'staff'].includes(userType);
+  
+  if (shouldShow) {
+    politicianCard.style.display = 'block';
+    politicianCard.classList.add('show');
+    politicianCard.setAttribute('data-user-type', userType);
+    
+    // 사용자 타입에 따른 명함 카드 내용 업데이트
+    updatePoliticianCard(userType);
+  } else {
+    politicianCard.style.display = 'none';
+    politicianCard.classList.remove('show');
+  }
+}
+
+/**
+ * 명함 카드 내용 업데이트
+ * @param {string} userType - 사용자 타입
+ */
+function updatePoliticianCard(userType) {
+  // 사용자 타입에 따른 기본 정보 설정
+  let politicianData = {
+    name: '박주민',
+    title: '국회의원',
+    party: '민주당',
+    email: 'politician@assembly.go.kr',
+    website: 'https://www.assembly.go.kr',
+    youtube: 'https://www.youtube.com',
+    youtubeName: '박주민티비',
+    bankAccount: '국민은행 123-456-789012',
+    motto: '"국민과 함께하는 정치, 투명하고 공정한 사회를 만들어가겠습니다."',
+    photo: 'images/person1.jpg'
+  };
+  
+  // 사용자 타입별 맞춤 정보
+  switch(userType) {
+    case 'mp':
+      politicianData.title = '국회의원';
+      politicianData.party = '더불어민주당';
+      politicianData.motto = '"국민의 목소리를 국정에 반영하겠습니다."';
+      break;
+    case 'staff':
+      politicianData.title = '정치인 보좌관';
+      politicianData.party = '더불어민주당';
+      politicianData.motto = '"정치인을 보좌하여 더 나은 정책을 만들어가겠습니다."';
+      break;
+    case 'politician':
+    default:
+      politicianData.title = '정치인';
+      politicianData.party = '정당명';
+      politicianData.motto = '"국민과 함께하는 정치, 투명하고 공정한 사회를 만들어가겠습니다."';
+      break;
+  }
+  
+  // DOM 요소 업데이트
+  document.getElementById('politicianName').textContent = politicianData.name;
+  document.getElementById('politicianTitle').textContent = politicianData.title;
+  document.getElementById('politicianParty').textContent = politicianData.party;
+  document.getElementById('politicianMotto').textContent = politicianData.motto;
+  document.getElementById('politicianPhoto').src = politicianData.photo;
+}
+
+/**
+ * 페이지 로드 시 명함 카드 초기화
+ */
+function initializePoliticianCard() {
+  // 기본적으로 정치인 명함 카드 표시
+  const userType = 'politician'; // 기본값으로 정치인 설정
+  
+  // 명함 카드 표시/숨김 처리
+  togglePoliticianCard(userType);
+  
+  // 기본 명함 카드 데이터로 업데이트
+  updatePoliticianCard(userType);
+  
+  console.log('✅ 정치인 명함 카드 초기화 완료 - 사용자 타입:', userType);
+}
+
+// 페이지 로드 시 명함 카드 초기화
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(initializePoliticianCard, 100);
+});
+
+// 테스트용 함수들 (개발 완료 후 제거 가능)
+window.testPoliticianCard = function(userType) {
+  togglePoliticianCard(userType);
+  console.log('🧪 명함 카드 테스트:', userType);
+};
+
+window.hidePoliticianCard = function() {
+  const politicianCard = document.getElementById('politicianCard');
+  if (politicianCard) {
+    politicianCard.style.display = 'none';
+    politicianCard.classList.remove('show');
+  }
+};
+
+// 명함 카드 데이터 테스트 함수
+window.testPoliticianCardData = function() {
+  const testData = {
+    name: '박주민',
+    title: '국회의원',
+    party: '민주당',
+    email: 'test@assembly.go.kr',
+    website: 'https://www.test.com',
+    youtube: 'https://youtube.com/@testchannel',
+    youtubeName: '테스트채널',
+    bankAccount: '국민은행 987-654-321098',
+    motto: '"테스트용 정치 철학입니다."',
+    photo: 'images/person2.jpg'
+  };
+  
+  updatePoliticianCardWithData(testData);
+  console.log('🧪 명함 카드 데이터 테스트:', testData);
+};
+
+/**
+ * 외부 데이터로 명함 카드 업데이트
+ * @param {Object} cardData - 명함 카드 데이터
+ */
+function updatePoliticianCardWithData(cardData) {
+  if (cardData.name) {
+    document.getElementById('politicianName').textContent = cardData.name;
+  }
+  if (cardData.title) {
+    document.getElementById('politicianTitle').textContent = cardData.title;
+  }
+  if (cardData.party) {
+    document.getElementById('politicianParty').textContent = cardData.party;
+  }
+  if (cardData.motto) {
+    document.getElementById('politicianMotto').textContent = cardData.motto;
+  }
+  if (cardData.photo) {
+    document.getElementById('politicianPhoto').src = cardData.photo;
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>투표</title>
+<!-- 기본 SEO 메타 -->
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="index, follow" name="robots"/>
+<meta content="정치방망이" name="author"/>
+<meta content="정치방망이는 쉽고 빠르게 정치와 소통하는 공간입니다. 투표, 인기글, 자유게시판을 통해 다양한 의견을 나눠보세요." name="description"/>
+<meta content="정치, 투표, 자유게시판, 정치 커뮤니티, 정치방망이, polibat" name="keywords"/>
+
+<!-- 스타일시트 -->
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="css/animate.css" rel="stylesheet"/>
+<link href="css/icomoon.css" rel="stylesheet"/>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<link href="css/flexslider.css" rel="stylesheet"/>
+<link href="css/pricing.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<!-- jQuery 추가 (🔥 이 부분이 중요!) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="js/main.js"></script>
+<style>
+    /* 투표 게시판 스타일 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        background: #f8f9fa;
+    }
+    
+    :root {
+        --primary-color: #222;
+        --primary-hover: #333;
+        --secondary-color: #555;
+        --accent-color: #1976d2;
+        --danger-color: #e53935;
+        --success-color: #2e7d32;
+        --warning-color: #ff6b35;
+        --border-color: #e0e0e0;
+        --bg-white: #fff;
+        --bg-light: #f8f9fa;
+        --bg-card: #ffffff;
+        --shadow-light: 0 2px 8px rgba(0,0,0,0.08);
+        --shadow-medium: 0 4px 16px rgba(0,0,0,0.12);
+        --border-radius: 12px;
+        --border-radius-sm: 8px;
+        --font-main: 'Pretendard', 'Nanum Gothic', Arial, sans-serif;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1, h2, h3, h4, h5, h6, figure {
+        color: var(--primary-color);
+        font-family: "Pretendard", serif;
+        font-weight: 400;
+        margin: 0 0 20px 0;
+        padding-top: 0px;
+        text-align: initial;
+        line-height: 1.4;
+    }
+    .board-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    }
+    
+    h1 { font-size: 28px; font-weight: 700; }
+    /*h2 { font-size: 24px; font-weight: 600; }*/
+    h3 { font-size: 20px; font-weight: 600; }
+
+    .free-board-container {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 32px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .board-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+        padding-top: 0;
+    }
+    /*    
+    .board-header h2 {
+        margin: 0;
+        flex: 1 1 100%;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+    */    
+    .board-controls {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 100%;
+    }
+
+    /* board.html과 동일한 검색/글쓰기 UI 스타일 */
+    .search-wrapper {
+      position: relative;
+      flex: 0 1 auto;
+      min-width: 180px;
+      max-width: 300px;
+      width: 100%;
+    }
+    .search-wrapper input {
+      width: 100%;
+      padding: 8px 30px 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+      autocomplete: off;
+      autocapitalize: off;
+      autocorrect: off;
+      spellcheck: false;
+    }
+    .search-wrapper input:focus {
+      border-color: #1976d2;
+    }
+    .search-wrapper::after {
+      content: '\1F50D';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #888;
+      pointer-events: none;
+    }
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      width: 100%;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 2px;
+    }
+    .search-dropdown.show {
+      display: block;
+    }
+    .search-option {
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #333;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s;
+    }
+    .search-option:last-child {
+      border-bottom: none;
+    }
+    .search-option:hover {
+      background-color: #f8f9fa;
+    }
+    .search-option.selected {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      font-weight: 500;
+    }
+    .search-condition-display {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: #1976d2;
+      background: #e3f2fd;
+      padding: 2px 6px;
+      border-radius: 3px;
+      display: none;
+      max-width: 70px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      border: 1px solid #bbdefb;
+    }
+    .search-condition-display.show {
+      display: block;
+    }
+    .search-wrapper input.with-condition {
+      padding-left: 85px;
+    }
+    .write-button {
+      padding: 8px 14px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .write-button:hover {
+      background-color: #333;
+    }
+    /* 투표 리스트 스타일 */
+    ul.vote-list {
+        list-style: none;
+        padding: 0;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    ul.vote-list li {
+        background: var(--bg-card);
+        margin-bottom: 16px;
+        border-radius: var(--border-radius);
+        transition: all 0.3s ease;
+        padding: 20px;
+        cursor: pointer;
+        border: 1px solid var(--border-color);
+        display: none;
+    }
+    
+    ul.vote-list li.visible {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: 80px 80px;
+        overflow: hidden;
+    }
+    
+    ul.vote-list li.visible:hover {
+        /*transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
+        border-color: var(--accent-color);*/
+    }
+
+    /* 투표 상태 텍스트 */
+    .vote-status-overlay {
+        position: absolute;
+        bottom: 8px;
+        left: 12px;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        z-index: 4;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        pointer-events: none;
+    }
+    
+    ul.vote-list li.visible:hover .vote-status-overlay {
+        opacity: 1;
+    }
+    
+    .vote-status-overlay i {
+        font-size: 14px;
+    }
+    
+    .vote-status-overlay .status-text {
+        background: rgba(255,255,255,0.2);
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+    }
+    
+    .vote-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        flex-shrink: 0;
+        background: var(--bg-light);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
+    
+    /* 이미지 위 오버레이 */
+    .vote-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border-radius: var(--border-radius);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 5;
+    }
+    
+    ul.vote-list li.visible:hover .vote-image-overlay {
+        opacity: 1;
+    }
+    
+    .vote-image-overlay i {
+        color: white;
+        font-size: 20px;
+    }
+    
+    .vote-image-overlay .status-text {
+        background: rgba(255,255,255,0.2);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .vote-image-overlay .vote-count-display {
+        background: rgba(33, 150, 243, 0.9);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .vote-content {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    ul.vote-list li.visible::before {
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        right: 10px;
+        width: 150px;
+        height: 117px;
+        background-image: url(images/visible.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        opacity: 0.1;
+        filter: grayscale(100%);
+        z-index: 1;
+        background-size: 150px 150px;
+    }
+    
+    .vote-title {
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 2;
+        line-height: 1.4;
+    }
+    
+    .vote-subtitle {
+        font-size: 14px;
+        color: var(--secondary-color);
+        margin-bottom: 12px;
+        position: relative;
+        z-index: 2;
+        line-height: 1.5;
+    }
+    
+    .vote-period {
+        font-size: 13px;
+        color: var(--warning-color);
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .vote-period i {
+        margin-right: 6px;
+        color: var(--warning-color);
+    }
+    
+    .vote-stats {
+        font-size: 13px;
+        color: var(--secondary-color);
+        position: relative;
+        z-index: 2;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    
+    .vote-stats i {
+        margin-right: 4px;
+        color: var(--secondary-color);
+    }
+    
+    .vote-stats span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    
+    .load-more {
+        display: block;
+        margin: 32px auto 0;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: 500;
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+
+    .load-more:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
+    }
+
+    /* 반응형 디자인 */
+    @media screen and (max-width: 768px) {
+        .container {
+            padding: 0 16px;
+        }
+        
+        .free-board-container {
+            padding: 24px;
+            margin: 20px auto 20px;
+        }
+        
+        .board-header {
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .board-header h2 {
+            font-size: 20px;
+        }
+        
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 18px; }
+
+        .board-controls {
+            justify-content: stretch;
+        }
+
+        .search-wrapper {
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+        }
+        
+        .search-wrapper input {
+            padding: 12px 40px 12px 16px;
+            font-size: 16px;
+        }
+
+        .search-option {
+            padding: 14px 16px;
+            font-size: 16px;
+        }
+
+        .search-condition-display {
+            font-size: 10px;
+            max-width: 70px;
+            padding: 2px 4px;
+        }
+
+        .search-wrapper input.with-condition {
+            padding-left: 80px;
+        }
+
+        .vote-image {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16 / 9;
+            margin-bottom: 12px;
+            object-fit: cover;
+        }
+
+        ul.vote-list li.visible {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            padding: 16px;
+        }
+
+        .vote-content {
+            width: 100%;
+        }
+
+        .vote-title {
+            font-size: 16px;
+        }
+
+        .vote-subtitle {
+            font-size: 13px;
+        }
+        
+        .vote-stats {
+            gap: 12px;
+        }
+        
+        .load-more {
+            padding: 12px 24px;
+            font-size: 15px;
+        }
+        
+        .vote-image-overlay {
+            border-radius: var(--border-radius);
+            gap: 3px;
+        }
+        
+        .vote-image-overlay i {
+            font-size: 16px;
+        }
+        
+        .vote-image-overlay .status-text,
+        .vote-image-overlay .vote-count-display {
+            font-size: 8px;
+            padding: 1px 4px;
+        }
+    }
+    @media (max-width: 768px) {
+      .free-board-container {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+      }
+    }
+    .vote-image-container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .vote-image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        flex-shrink: 0;
+        margin-bottom: 8px;
+      }
+    }
+    
+    .vote-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background: var(--bg-light);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        display: block;
+    }
+    
+    /* 이미지 위 오버레이 */
+    .vote-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border-radius: var(--border-radius);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 5;
+    }
+    
+    ul.vote-list li.visible:hover .vote-image-overlay {
+        opacity: 1;
+    }
+    
+    .vote-image-overlay i {
+        color: white;
+        font-size: 18px;
+    }
+    
+    .vote-image-overlay .status-text {
+        background: rgba(255,255,255,0.2);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 9px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 1.2;
+    }
+    
+    .vote-image-overlay .vote-count-display {
+        background: rgba(33, 150, 243, 0.9);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 9px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 1.2;
+    }
+</style>
+</head>
+<body>
+<!-- 헤더 -->
+<div id="header-include"></div>
+
+<div id="wrap">
+<div class="container">
+<section class="free-board-container">
+<div class="board-header">
+<h2>유쾌한 한방! 당신의 한표! 정치방망이!</h2>
+<div class="board-controls">
+  <div class="search-wrapper">
+    <div class="search-condition-display" id="searchConditionDisplay">통합검색</div>
+    <input id="searchInput" placeholder="검색..." type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+    <div class="search-dropdown" id="searchDropdown">
+      <div class="search-option selected" data-value="all">통합검색</div>
+      <div class="search-option" data-value="title-content">제목+내용</div>
+      <div class="search-option" data-value="title">제목</div>
+      <div class="search-option" data-value="author">작성자</div>
+      <div class="search-option" data-value="date">작성일</div>
+    </div>
+  </div>
+  <!--<button class="write-button" onclick="location.href='write.html';">글쓰기</button>-->
+</div>
+</div>
+
+<ul class="vote-list" id="voteList">
+<li class="visible" onclick="location.href='vote.html'" data-title="무인도에 단둘이 남는다면?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.01 ~ 2025.06.15" data-vote-count="132">
+<div class="vote-image-container">
+<img src="images/001.png" alt="무인도" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">132표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">무인도에 단둘이 남는다면?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.01 ~ 2025.10.15</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 512회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 132명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 23개</span>
+</div>
+</div>
+</li>
+
+<li class="visible" onclick="location.href='vote.html'" data-title="고3 수험생인데 과외 선생님 누구?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.05.28 ~ 2025.06.10">
+<div class="vote-image-container">
+<img src="images/002.png" alt="과외" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">98표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">고3 수험생인데 과외 선생님 누구?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.05.28 ~ 2025.06.10</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 512회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 98명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 11개</span>
+</div>
+</div>
+</li>
+
+<li class="visible" onclick="location.href='vote.html'" data-title="집까지 한시간 거리! 차 한 대가 섰다! 누구 차 탈래?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.02 ~ 2025.06.08">
+<div class="vote-image-container">
+<img src="images/003.png" alt="차량" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">77표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">집까지 한시간 거리! 차 한 대가 섰다! 누구 차 탈래?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.02 ~ 2025.06.08</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 512회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 77명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 6개</span>
+</div>
+</div>
+</li>
+
+<li class="visible" onclick="location.href='vote.html'" data-title="신뢰하는 대선 후보는?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.05.20 ~ 2025.06.20">
+<div class="vote-image-container">
+<img src="images/004.png" alt="대선" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">210표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">신뢰하는 대선 후보는?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.05.20 ~ 2025.06.20</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 512회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 210명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 14개</span>
+</div>
+</div>
+</li>
+
+<li class="visible" onclick="location.href='vote.html'" data-title="원룸 계약 조건 똑같다. 누구랑 계약할래?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.03 ~ 2025.06.12">
+<div class="vote-image-container">
+<img src="images/005.png" alt="부동산" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">66표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">원룸 계약 조건 똑같다. 누구랑 계약할래?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.03 ~ 2025.06.12</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 512회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 66명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 7개</span>
+</div>
+</div>
+</li>
+
+<li data-title="기후 변화에 가장 적극적인 후보는?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.04 ~ 2025.06.18">
+<div class="vote-image-container">
+<img src="https://via.placeholder.com/100x100/27ae60/white?text=🌍" alt="기후변화" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">42표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">기후 변화에 가장 적극적인 후보는?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.04 ~ 2025.06.18</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 512회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 42명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 3개</span>
+</div>
+</div>
+</li>
+
+<li data-title="청년 지원 정책 만족도는?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.05 ~ 2025.06.19">
+<div class="vote-image-container">
+<img src="https://via.placeholder.com/100x100/e67e22/white?text=👨‍💼" alt="청년정책" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">81표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">청년 지원 정책 만족도는?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.05 ~ 2025.06.19</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 512회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 81명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 9개</span>
+</div>
+</div>
+</li>
+
+<li data-title="교육 정책 개혁 방향은?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.06 ~ 2025.06.20">
+<div class="vote-image-container">
+<img src="https://via.placeholder.com/100x100/3498db/white?text=🎓" alt="교육정책" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">55표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">교육 정책 개혁 방향은?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.06 ~ 2025.06.20</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 312회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 55명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 12개</span>
+</div>
+</div>
+</li>
+
+<li data-title="의료보험 확대 찬반은?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.07 ~ 2025.06.21">
+<div class="vote-image-container">
+<img src="https://via.placeholder.com/100x100/e74c3c/white?text=🏥" alt="의료보험" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">89표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">의료보험 확대 찬반은?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.07 ~ 2025.06.21</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 428회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 89명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 15개</span>
+</div>
+</div>
+</li>
+
+<li data-title="부동산 정책 만족도는?" data-subtitle="이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연" data-period="2025.06.08 ~ 2025.06.22">
+<div class="vote-image-container">
+<img src="https://via.placeholder.com/100x100/8e44ad/white?text=🏢" alt="부동산정책" class="vote-image" />
+<div class="vote-image-overlay">
+<i class="fa-solid fa-vote-yea"></i>
+<span class="status-text">투표중</span>
+<span class="vote-count-display">143표</span>
+</div>
+</div>
+<div class="vote-content">
+<div class="vote-title">부동산 정책 만족도는?</div>
+<div class="vote-subtitle">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+<div class="vote-period"><i class="fa-solid fa-calendar-days"></i>투표기간: 2025.06.08 ~ 2025.06.22</div>
+<div class="vote-stats">
+<span><i class="fa-solid fa-eye"></i>조회수 671회</span>
+<span><i class="fa-solid fa-user-check"></i>투표수 143명</span>
+<span><i class="fa-solid fa-comment-dots"></i>댓글수 28개</span>
+</div>
+</div>
+</li>
+</ul>
+
+<button class="load-more" onclick="loadMore()">더보기</button>
+</section>
+</div>
+</div>
+
+<!-- 푸터 -->
+<div id="footer-include"></div>
+
+<!-- Main -->
+  <script src="js/main.js"></script>
+
+<!-- 투표 게시판 페이지 전용 스크립트 -->
+<script>
+    // 검색 관련 변수
+    let currentSearchCondition = 'all';
+    const searchInput = document.getElementById('searchInput');
+    const searchDropdown = document.getElementById('searchDropdown');
+    const searchConditionDisplay = document.getElementById('searchConditionDisplay');
+    const voteList = document.getElementById('voteList');
+    let allVoteItems = [];
+    let filteredVoteItems = [];
+
+    // 페이지 로딩 시 모든 투표 항목 수집
+    window.addEventListener('DOMContentLoaded', () => {
+      allVoteItems = Array.from(voteList.querySelectorAll('li'));
+      filteredVoteItems = [...allVoteItems];
+      updateSearchInputStyle();
+      updateVoteStatus(); // 투표 상태 업데이트 추가
+    });
+
+    // 검색창 클릭 시에만 드롭다운 표시
+    searchInput.addEventListener('click', function(e) {
+      e.stopPropagation();
+      searchInput.setAttribute('autocomplete', 'new-password');
+      searchDropdown.classList.add('show');
+      updateSearchInputStyle();
+    });
+
+    // 문서 클릭 시 드롭다운 숨김
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.search-wrapper')) {
+        searchDropdown.classList.remove('show');
+        updateSearchInputStyle();
+      }
+    });
+
+    // 검색창에서 포커스가 벗어날 때 드롭다운 숨김
+    searchInput.addEventListener('blur', function(e) {
+      setTimeout(() => {
+        if (!searchDropdown.matches(':hover')) {
+          searchDropdown.classList.remove('show');
+          updateSearchInputStyle();
+        }
+      }, 150);
+    });
+
+    // 검색 조건 선택 이벤트
+    searchDropdown.addEventListener('click', function(e) {
+      if (e.target.classList.contains('search-option')) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        document.querySelectorAll('.search-option').forEach(option => {
+          option.classList.remove('selected');
+        });
+        
+        e.target.classList.add('selected');
+        currentSearchCondition = e.target.dataset.value;
+        searchConditionDisplay.textContent = e.target.textContent;
+        
+        searchDropdown.classList.remove('show');
+        updateSearchInputStyle();
+        performSearch();
+      }
+    });
+
+    // 검색 입력 이벤트
+    searchInput.addEventListener('input', function(e) {
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      performSearch();
+    });
+
+    // 엔터 키 검색 기능
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        searchDropdown.classList.remove('show');
+        updateSearchInputStyle();
+        performSearch();
+        searchInput.blur();
+      } else if (e.key === 'ArrowDown' && searchDropdown.classList.contains('show')) {
+        e.preventDefault();
+      }
+    });
+
+    // 검색 수행 함수
+    function performSearch() {
+      const keyword = searchInput.value.toLowerCase().trim();
+      
+      if (!keyword) {
+        filteredVoteItems = [...allVoteItems];
+      } else {
+        filteredVoteItems = allVoteItems.filter(item => {
+          const title = item.dataset.title ? item.dataset.title.toLowerCase() : '';
+          const subtitle = item.dataset.subtitle ? item.dataset.subtitle.toLowerCase() : '';
+          const period = item.dataset.period ? item.dataset.period.toLowerCase() : '';
+          
+          switch (currentSearchCondition) {
+            case 'all':
+              return title.includes(keyword) || 
+                     subtitle.includes(keyword) || 
+                     period.includes(keyword);
+            case 'title-content':
+              return title.includes(keyword) || subtitle.includes(keyword);
+            case 'title':
+              return title.includes(keyword);
+            case 'subtitle':
+              return subtitle.includes(keyword);
+            case 'period':
+              return period.includes(keyword);
+            default:
+              return true;
+          }
+        });
+      }
+      
+      renderFilteredResults();
+    }
+
+    // 필터링된 결과 렌더링
+    function renderFilteredResults() {
+      // 모든 항목 숨김
+      allVoteItems.forEach(item => {
+        item.classList.remove('visible');
+        item.style.display = 'none';
+      });
+      
+      // 필터링된 항목만 표시 (처음 5개)
+      filteredVoteItems.slice(0, 5).forEach(item => {
+        item.classList.add('visible');
+        item.style.display = 'flex';
+      });
+      
+      // 더보기 버튼 표시/숨김
+      const loadMoreBtn = document.querySelector('.load-more');
+      if (filteredVoteItems.length > 5) {
+        loadMoreBtn.style.display = 'block';
+      } else {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+
+    // 검색 입력 필드 스타일 업데이트
+    function updateSearchInputStyle() {
+      if (searchDropdown.classList.contains('show') || currentSearchCondition !== 'all') {
+        searchConditionDisplay.classList.add('show');
+        searchInput.classList.add('with-condition');
+      } else {
+        searchConditionDisplay.classList.remove('show');
+        searchInput.classList.remove('with-condition');
+      }
+    }
+
+    // 더보기 버튼 기능 (검색 결과에 맞게 수정)
+    function loadMore() {
+      const currentVisible = voteList.querySelectorAll('li.visible').length;
+      const remainingItems = filteredVoteItems.slice(currentVisible, currentVisible + 3);
+      
+      remainingItems.forEach(item => {
+        item.classList.add('visible');
+        item.style.display = 'flex';
+      });
+      
+      // 더 이상 표시할 항목이 없으면 더보기 버튼 숨김
+      if (currentVisible + remainingItems.length >= filteredVoteItems.length) {
+        document.querySelector('.load-more').style.display = 'none';
+      }
+    }
+
+    // ESC 키로 드롭다운 닫기
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        searchDropdown.classList.remove('show');
+        updateSearchInputStyle();
+        searchInput.blur();
+      }
+    });
+
+    // 투표 상태 확인 및 오버레이 추가
+    function updateVoteStatus() {
+        const voteItems = document.querySelectorAll('ul.vote-list li.visible');
+        const currentDate = new Date();
+        
+        voteItems.forEach(item => {
+            const periodText = item.querySelector('.vote-period').textContent;
+            const periodMatch = periodText.match(/(\d{4}\.\d{2}\.\d{2})\s*~\s*(\d{4}\.\d{2}\.\d{2})/);
+            
+            if (periodMatch) {
+                const endDate = new Date(periodMatch[2].replace(/\./g, '-'));
+                const isActive = currentDate <= endDate;
+                
+                // 투표수 가져오기 (data-vote-count 속성 또는 vote-stats에서)
+                let voteCount = item.dataset.voteCount || '0';
+                if (!voteCount || voteCount === '0') {
+                    const voteStats = item.querySelector('.vote-stats');
+                    const voteCountSpan = voteStats ? voteStats.querySelector('span:nth-child(2)') : null;
+                    const voteCountText = voteCountSpan ? voteCountSpan.textContent : '투표수 0명';
+                    voteCount = voteCountText.match(/(\d+)/) ? voteCountText.match(/(\d+)/)[1] : '0';
+                }
+                
+                // 이미지 오버레이 업데이트
+                const imageOverlay = item.querySelector('.vote-image-overlay');
+                if (imageOverlay) {
+                    imageOverlay.innerHTML = `
+                        <i class="fa-solid fa-vote-yea"></i>
+                        <span class="status-text">${isActive ? '투표중' : '종료'}</span>
+                        <span class="vote-count-display">${voteCount}표</span>
+                    `;
+                }
+            }
+        });
+    }
+</script>
+<!-- 🆕 새로운 로그인 시스템 - 페이지 관리자 -->
+<script src="page-manager.js"></script>
+</body>
+</html>

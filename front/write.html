@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="polibat Website Template by freehtml5.co" />
+  <meta name="keywords" content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+  <meta name="author" content="freehtml5.co" />
+
+  <!-- Facebook and Twitter integration -->
+  <meta property="og:title" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content=""/>
+  <meta property="og:description" content=""/>
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:url" content="" />
+  <meta name="twitter:card" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.css">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href="css/icomoon.css">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <!-- Owl Carousel  -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <!-- Flexslider  -->
+  <link rel="stylesheet" href="css/flexslider.css">
+
+  <!-- Pricing -->
+  <link rel="stylesheet" href="css/pricing.css">
+
+  <!-- Theme style  -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Modernizr JS -->
+  <script src="js/modernizr-2.6.2.min.js"></script>
+
+  <!-- Toast UI Editor 스타일 및 스크립트 추가 -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script src="https://uicdn.toast.com/editor/latest/i18n/ko.js"></script>
+
+  <!-- FOR IE9 below -->
+  <!--[if lt IE 9]>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+
+  <title>자유게시판 - 글쓰기</title>
+  <style>
+    .board-container {
+      max-width: 1200px;
+      margin: auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      margin: 40px auto 30px;
+    }
+    
+    .login-required-message {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+      background: #f8f9fa;
+      border-radius: 12px;
+      margin: 40px auto;
+    }
+    
+    .login-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #000;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+    
+    .login-button:hover {
+      background-color: #333;
+      text-decoration: none;
+      color: white;
+    }
+    
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 180px;
+    }
+    
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    
+    .write-button {
+      padding: 10px 20px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .write-button:hover {
+      background-color: #333;
+    }
+    
+    .cancel-button {
+      background-color: #6c757d;
+      color: white;
+    }
+    
+    .cancel-button:hover {
+      background-color: #5a6268;
+    }
+    
+    /* 하단 사진 첨부 숨김 */
+    #drop-area,
+    #imagePreview,
+    label[for="imageInput"] {
+      display: none !important;
+    }
+    
+    /* 모바일 좌우 여백 최적화 (notice.html과 동일한 16px 패턴) */
+    @media (max-width: 768px) {
+      .board-container {
+        margin: 20px 16px 15px 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 로딩 -->
+  <div id="header-include"></div>
+  
+  <div id="wrap"> 
+    <div class="board-container">
+      <!-- 글쓰기 폼 -->
+      <div id="writeFormContainer">
+          <h2>자유게시판 글쓰기</h2>
+          <p class="description">자유롭게 글을 작성해보세요. 게시글은 등록 후 자유게시판에 표시됩니다.</p>
+          
+          <form id="writeForm">
+            <label for="title">제목</label>
+            <input type="text" id="title" placeholder="제목을 입력하세요" required>
+
+            <label for="editor">내용</label>
+            <div id="editor"></div>
+            <input type="hidden" id="hiddenContent" name="content">
+
+            <div class="form-actions">
+              <button type="submit" class="write-button">등록하기</button>
+              <button type="button" class="write-button cancel-button" onclick="history.back()">취소</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+  
+  <!-- 푸터 로딩 -->
+  <div id="footer-include"></div>
+
+  <script>
+    // 에디터 초기화
+    function initializeEditor() {
+      editor = new toastui.Editor({
+        el:      document.querySelector('#editor'),
+        height:  '500px',
+        initialEditType: 'wysiwyg',
+        previewStyle:    'vertical',
+        language:        'ko'
+      });
+    }
+
+    // Toast UI Editor 초기화
+    let editor;
+    function initializeEditor() {
+      editor = new toastui.Editor({
+        el:      document.querySelector('#editor'),
+        height:  '500px',
+        initialEditType: 'wysiwyg',
+        previewStyle:    'vertical',
+        language:        'ko'
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeEditor();
+      const form = document.getElementById('writeForm');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const htmlContent = editor.getHTML();
+          document.getElementById('hiddenContent').value = htmlContent;
+          const submitBtn = form.querySelector('.write-button');
+          submitBtn.disabled = true;
+          submitBtn.textContent = '등록 중...';
+
+          const userNickname = '익명';
+          const userEmail    = '';
+          const postData = {
+            title:     document.getElementById('title').value,
+            content:   htmlContent,
+            author:    userNickname,
+            email:     userEmail,
+            timestamp: new Date().toISOString()
+          };
+          console.log('📝 게시글 데이터:', postData);
+
+          setTimeout(() => {
+            alert('게시글이 성공적으로 등록되었습니다!');
+            submitBtn.disabled = false;
+            submitBtn.textContent = '등록하기';
+            window.location.href = 'board.html';
+          }, 1500);
+        });
+      }
+    });
+
+    // header/footer 포함
+    function includeHTML(id, file) {
+      fetch(file)
+        .then(res => res.text())
+        .then(html => { document.getElementById(id).innerHTML = html; })
+        .catch(err => console.error('파일 로딩 실패:', err));
+    }
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+  <!-- 🆕 새로운 로그인 시스템 - 페이지 관리자 -->
+<script src="page-manager.js"></script>
+</body>
+</html>

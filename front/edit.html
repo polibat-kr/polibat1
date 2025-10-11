@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="polibat Website Template by freehtml5.co" />
+  <meta name="keywords" content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+  <meta name="author" content="freehtml5.co" />
+
+  <!-- 
+  //////////////////////////////////////////////////////
+
+  FREE HTML5 TEMPLATE 
+  DESIGNED & DEVELOPED by FreeHTML5.co
+    
+  Website:    http://freehtml5.co/
+  Email:      info@freehtml5.co
+  Twitter:    http://twitter.com/fh5co
+  Facebook:     https://www.facebook.com/fh5co
+
+  //////////////////////////////////////////////////////
+   -->
+
+    <!-- Facebook and Twitter integration -->
+  <meta property="og:title" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content=""/>
+  <meta property="og:description" content=""/>
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:url" content="" />
+  <meta name="twitter:card" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+  
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.css">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href="css/icomoon.css">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <!-- Owl Carousel  -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <!-- Flexslider  -->
+  <link rel="stylesheet" href="css/flexslider.css">
+
+  <!-- Pricing -->
+  <link rel="stylesheet" href="css/pricing.css">
+
+  <!-- Theme style  -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Modernizr JS -->
+  <script src="js/modernizr-2.6.2.min.js"></script>
+
+  <!-- Toast UI Editor 스타일 및 스크립트 추가 -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script src="https://uicdn.toast.com/editor/latest/i18n/ko.js"></script>
+
+
+  <!-- FOR IE9 below -->
+  <!--[if lt IE 9]>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <title>게시글 수정/삭제</title>
+  <style>
+    .board-container {
+      max-width: 1440px;
+      margin: auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%; /* 수정 */
+      margin: 40px auto 30px;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+    p.description {
+      color: #666;
+      font-size: 0.95em;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    input:focus,
+    textarea:focus {
+      border-color: #28a745;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 180px;
+    }
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .write-button {
+      padding: 10px 20px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .cancel-button {
+      background-color: #ccc;
+      color: #333;
+    }
+    @media (max-width: 768px) {
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .write-button {
+        width: 100%;
+      }
+    }
+    #autocomplete-list {
+    position: relative;
+  }
+
+  .autocomplete-items {
+    position: absolute;
+    background: white;
+    max-height: 200px; /* 고정 높이 */
+    overflow-y: auto;  /* 스크롤 가능 */
+    /*border: 1px solid #ccc;*/
+    border-radius: 6px;
+    z-index: 10;
+    width: 100%;
+    margin-top: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .autocomplete-item:hover {
+    background-color: #f1f1f1;
+  }
+
+  .drop-area {
+    border: 1px dashed #cccccc;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    background-color: #fff;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .drop-area:hover {
+    background-color: #eeeeee;
+    border-color: #cccccc;
+  }
+
+  .drop-area::before {
+    /*content: "📷";*/
+    font-size: 36px;
+    display: block;
+    margin-bottom: 10px;
+    color: #28a745;
+  }
+
+  .drop-area p {
+    font-size: 15px;
+    color: #555;
+    margin: 30px;
+  }
+
+  @media (max-width: 768px) {
+    .drop-area {
+      padding: 20px;
+    }
+    .drop-area::before {
+      font-size: 28px;
+    }
+  }
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-preview .thumbnail {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.image-preview .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-preview .thumbnail .remove-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+
+  .image-preview .thumbnail {
+    max-width: 120px;
+    width: 100%;
+  }
+}
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+  /* Toast UI Editor 테마 조정 시 사용 가능 */
+  .toastui-editor-defaultUI {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+  }
+
+    /* Toast UI Editor 테마 조정 시 사용 가능 */
+  .toastui-editor-defaultUI {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+  }
+
+  /* 하단 사진 첨부 숨김 */
+  #drop-area,
+  #imagePreview,
+  label[for="imageInput"] {
+    display: none !important;
+  }
+    /* 비밀번호 input 필드 스타일 기존 input과 통일 */
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  input[type="password"]:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+  }
+
+  .toastui-editor-defaultUI {
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    input[type="password"], input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    input:focus, select:focus {
+      border-color: #28a745;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+    }
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- 헤더 로딩 -->
+  <div id="header-include"></div>
+  <div id="wrap"> 
+  <div class="board-container">
+    <h2>게시글 수정/삭제</h2>
+    <p class="description">자유롭게 글을 작성해보세요. 게시글은 등록 후 자유게시판에 표시됩니다.</p>
+    <form id="editForm">
+    <label for="password">비밀번호</label>
+    <input type="password" id="password" name="password" placeholder="작성 시 입력한 비밀번호" required>
+
+    <label for="author">작성자</label>
+    <input type="text" id="author" name="author" placeholder="작성자 이름" required>
+    <!--
+    <label for="district">지역구 <span style="font-weight: normal; color: #999;">(선택사항)</span></label>
+    <input type="text" id="district" name="district" placeholder="지역구를 입력하세요">
+    -->
+    <label for="visibility">공개 범위</label>
+    <select id="visibility" name="visibility" required>
+      <option value="public">전체 공개</option>
+      <option value="private">비공개</option>
+      <option value="followers">회원만 공개</option>
+    </select>
+
+    <label for="title">제목</label>
+    <input type="text" id="title" name="title" placeholder="글 제목을 입력하세요" required>
+
+    <label for="editor">내용</label>
+    <div id="editor"></div>
+    <input type="hidden" id="hiddenContent" name="content">
+
+    <div class="form-actions">
+      <button type="submit" class="write-button">수정 완료</button>
+      <button type="button" class="write-button cancel-button" onclick="deletePost()">삭제</button>
+    </div>
+  </form>
+  </div>
+</div>
+  <!-- 푸터 로딩 -->
+  <div id="footer-include"></div>
+
+  <script>
+  const districtInput = document.getElementById("district");
+  const autocompleteList = document.getElementById("autocomplete-list");
+
+  const districts = [
+  "서울특별시 종로구", "서울특별시 중구", "서울특별시 용산구", "서울특별시 성동구", "서울특별시 광진구",
+  "서울특별시 동대문구", "서울특별시 중랑구", "서울특별시 성북구", "서울특별시 강북구", "서울특별시 도봉구",
+  "서울특별시 노원구", "서울특별시 은평구", "서울특별시 서대문구", "서울특별시 마포구", "서울특별시 양천구",
+  "서울특별시 강서구", "서울특별시 구로구", "서울특별시 금천구", "서울특별시 영등포구", "서울특별시 동작구",
+  "서울특별시 관악구", "서울특별시 서초구", "서울특별시 강남구", "서울특별시 송파구", "서울특별시 강동구",
+  "부산광역시 중구", "부산광역시 서구", "부산광역시 동구", "부산광역시 영도구", "부산광역시 부산진구",
+  "부산광역시 동래구", "부산광역시 남구", "부산광역시 북구", "부산광역시 해운대구", "부산광역시 사하구",
+  "부산광역시 금정구", "부산광역시 강서구", "부산광역시 연제구", "부산광역시 수영구", "부산광역시 사상구", "부산광역시 기장군",
+  "인천광역시 중구", "인천광역시 동구", "인천광역시 미추홀구", "인천광역시 연수구", "인천광역시 남동구",
+  "인천광역시 부평구", "인천광역시 계양구", "인천광역시 서구", "인천광역시 강화군", "인천광역시 옹진군",
+  "대구광역시 중구", "대구광역시 동구", "대구광역시 서구", "대구광역시 남구", "대구광역시 북구",
+  "대구광역시 수성구", "대구광역시 달서구", "대구광역시 달성군", "대구광역시 군위군",
+  "광주광역시 동구", "광주광역시 서구", "광주광역시 남구", "광주광역시 북구", "광주광역시 광산구",
+  "대전광역시 동구", "대전광역시 중구", "대전광역시 서구", "대전광역시 유성구", "대전광역시 대덕구",
+  "울산광역시 중구", "울산광역시 남구", "울산광역시 동구", "울산광역시 북구", "울산광역시 울주군",
+  "세종특별자치시 세종시",
+  "경기도 수원시", "경기도 고양시", "경기도 용인시", "경기도 성남시", "경기도 부천시", "경기도 화성시",
+  "경기도 남양주시", "경기도 안산시", "경기도 안양시", "경기도 평택시", "경기도 시흥시", "경기도 파주시",
+  "경기도 의정부시", "경기도 김포시", "경기도 광주시", "경기도 하남시", "경기도 군포시", "경기도 오산시",
+  "경기도 이천시", "경기도 안성시", "경기도 구리시", "경기도 의왕시", "경기도 포천시", "경기도 여주시",
+  "경기도 동두천시", "경기도 과천시", "경기도 가평군", "경기도 양평군", "경기도 연천군", "경기도 양주시", "경기도 광명시",
+  "강원특별자치도 춘천시", "강원특별자치도 원주시", "강원특별자치도 강릉시", "강원특별자치도 동해시", "강원특별자치도 태백시",
+  "강원특별자치도 속초시", "강원특별자치도 삼척시", "강원특별자치도 홍천군", "강원특별자치도 횡성군", "강원특별자치도 영월군",
+  "강원특별자치도 평창군", "강원특별자치도 정선군", "강원특별자치도 철원군", "강원특별자치도 화천군", "강원특별자치도 양구군",
+  "강원특별자치도 인제군", "강원특별자치도 고성군", "강원특별자치도 양양군",
+  "충청북도 청주시", "충청북도 충주시", "충청북도 제천시", "충청북도 보은군", "충청북도 옥천군", "충청북도 영동군",
+  "충청북도 증평군", "충청북도 진천군", "충청북도 괴산군", "충청북도 음성군", "충청북도 단양군",
+  "충청남도 천안시", "충청남도 공주시", "충청남도 보령시", "충청남도 아산시", "충청남도 서산시", "충청남도 논산시",
+  "충청남도 계룡시", "충청남도 당진시", "충청남도 금산군", "충청남도 부여군", "충청남도 서천군", "충청남도 청양군",
+  "충청남도 홍성군", "충청남도 예산군", "충청남도 태안군",
+  "전북특별자치도 전주시", "전북특별자치도 군산시", "전북특별자치도 익산시", "전북특별자치도 정읍시", "전북특별자치도 남원시",
+  "전북특별자치도 김제시", "전북특별자치도 완주군", "전북특별자치도 진안군", "전북특별자치도 무주군", "전북특별자치도 장수군",
+  "전북특별자치도 임실군", "전북특별자치도 순창군", "전북특별자치도 고창군", "전북특별자치도 부안군",
+  "전라남도 목포시", "전라남도 여수시", "전라남도 순천시", "전라남도 나주시", "전라남도 광양시",
+  "전라남도 담양군", "전라남도 곡성군", "전라남도 구례군", "전라남도 고흥군", "전라남도 보성군", "전라남도 화순군",
+  "전라남도 장흥군", "전라남도 강진군", "전라남도 해남군", "전라남도 영암군", "전라남도 무안군", "전라남도 함평군",
+  "전라남도 영광군", "전라남도 장성군", "전라남도 완도군", "전라남도 진도군", "전라남도 신안군",
+  "경상북도 포항시", "경상북도 경주시", "경상북도 김천시", "경상북도 안동시", "경상북도 구미시", "경상북도 영주시",
+  "경상북도 영천시", "경상북도 상주시", "경상북도 문경시", "경상북도 경산시", "경상북도 군위군", "경상북도 의성군",
+  "경상북도 청송군", "경상북도 영양군", "경상북도 영덕군", "경상북도 청도군", "경상북도 고령군", "경상북도 성주군",
+  "경상북도 칠곡군", "경상북도 예천군", "경상북도 봉화군", "경상북도 울진군", "경상북도 울릉군",
+  "경상남도 창원시", "경상남도 진주시", "경상남도 통영시", "경상남도 사천시", "경상남도 김해시", "경상남도 밀양시",
+  "경상남도 거제시", "경상남도 양산시", "경상남도 의령군", "경상남도 함안군", "경상남도 창녕군", "경상남도 고성군",
+  "경상남도 남해군", "경상남도 하동군", "경상남도 산청군", "경상남도 함양군", "경상남도 거창군", "경상남도 합천군",
+  "제주특별자치도 제주시", "제주특별자치도 서귀포시"
+];
+ // 자동완성 필터링
+  districtInput.addEventListener("input", function () {
+    const value = this.value.toLowerCase();
+    autocompleteList.innerHTML = "";
+
+    if (!value) return;
+
+    const filtered = districts.filter(d => d.toLowerCase().includes(value)).slice(0, 10);
+
+    filtered.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("autocomplete-item");
+      div.textContent = item;
+      div.addEventListener("click", () => {
+        districtInput.value = item;
+        autocompleteList.innerHTML = "";
+      });
+      autocompleteList.appendChild(div);
+    });
+  });
+
+  // 외부 클릭 시 자동완성 닫기
+  document.addEventListener("click", function (e) {
+    if (!autocompleteList.contains(e.target) && e.target !== districtInput) {
+      autocompleteList.innerHTML = "";
+    }
+  });
+
+  // 작성자 자동 저장
+   document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById('editForm');
+    const authorInput = document.getElementById('author');
+    const hiddenContent = document.getElementById('hiddenContent');
+
+    // Toast UI Editor 초기화
+    const editor = new toastui.Editor({
+      el: document.querySelector('#editor'),
+      height: '500px',
+      initialEditType: 'wysiwyg',
+      previewStyle: 'vertical',
+      language: 'ko'
+    });
+
+    // 자동 작성자 채우기
+    authorInput.value = localStorage.getItem('boardAuthor') || '';
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // 저장
+      localStorage.setItem('boardAuthor', authorInput.value);
+
+      // Toast UI 내용 저장
+      hiddenContent.value = editor.getHTML();
+
+      const submitBtn = form.querySelector('.write-button');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '등록 중...';
+
+      setTimeout(() => {
+        alert('게시글이 성공적으로 등록되었습니다!');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '등록하기';
+        form.reset();
+        authorInput.value = localStorage.getItem('boardAuthor');
+      }, 1500);
+    });
+  });
+
+  function showAutocompleteList(value) {
+  autocompleteList.innerHTML = "";
+  const filtered = value
+    ? districts.filter(d => d.toLowerCase().includes(value.toLowerCase()))
+    : districts;
+
+  filtered.forEach(item => {
+    const div = document.createElement("div");
+    div.classList.add("autocomplete-item");
+    div.textContent = item;
+    div.addEventListener("click", () => {
+      districtInput.value = item;
+      autocompleteList.innerHTML = "";
+    });
+    autocompleteList.appendChild(div);
+  });
+}
+
+// 입력 시 필터링
+districtInput.addEventListener("input", function () {
+  showAutocompleteList(this.value);
+});
+
+// 클릭 시 전체 리스트 노출
+districtInput.addEventListener("focus", function () {
+  showAutocompleteList(""); // 전체 지역구 보여줌
+});
+
+// 외부 클릭 시 닫기
+document.addEventListener("click", function (e) {
+  if (!autocompleteList.contains(e.target) && e.target !== districtInput) {
+    autocompleteList.innerHTML = "";
+  }
+});
+
+const dropArea = document.getElementById("drop-area");
+const imageInput = document.getElementById("imageInput");
+const imagePreview = document.getElementById("imagePreview");
+
+let uploadedFiles = [];
+
+dropArea.addEventListener("click", () => imageInput.click());
+
+dropArea.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  dropArea.classList.add("active");
+});
+
+dropArea.addEventListener("dragleave", () => {
+  dropArea.classList.remove("active");
+});
+
+dropArea.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dropArea.classList.remove("active");
+  handleFiles(e.dataTransfer.files);
+});
+
+imageInput.addEventListener("change", () => {
+  handleFiles(imageInput.files);
+});
+
+function handleFiles(files) {
+  for (let file of files) {
+    if (uploadedFiles.length >= 5) {
+      alert("최대 5장의 이미지만 업로드할 수 있습니다.");
+      break;
+    }
+
+    if (!file.type.startsWith("image/")) continue;
+
+    uploadedFiles.push(file);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const div = document.createElement("div");
+      div.classList.add("thumbnail");
+
+      const img = document.createElement("img");
+      img.src = e.target.result;
+
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "×";
+      removeBtn.className = "remove-btn";
+      removeBtn.onclick = () => {
+        imagePreview.removeChild(div);
+        uploadedFiles = uploadedFiles.filter(f => f !== file);
+      };
+
+      div.appendChild(img);
+      div.appendChild(removeBtn);
+      imagePreview.appendChild(div);
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+const visibility = document.getElementById("visibility").value;
+console.log("공개 범위:", visibility);
+
+ // Toast UI Editor 초기화
+  const editor = new toastui.Editor({
+    el: document.querySelector('#editor'),
+    height: '500px',
+    initialEditType: 'wysiwyg',
+    previewStyle: 'vertical',
+    language: 'ko'
+  });
+
+  // 폼 제출 시 숨겨진 input에 내용 삽입
+  form.addEventListener('submit', function () {
+    const htmlContent = editor.getHTML();
+    document.getElementById('hiddenContent').value = htmlContent;
+  });
+  // 예시 검증 로직 (서버 통신 없을 경우)
+  function verifyPassword() {
+    const inputPwd = document.getElementById('verifyPassword').value;
+  const savedPwd = localStorage.getItem('postPassword'); // 실제론 서버에서 가져와야 함
+
+  if (inputPwd === savedPwd) {
+    alert("비밀번호 인증 성공. 수정 또는 삭제 가능.");
+    // 이후 수정폼 이동 or 삭제 요청
+  } else {
+    document.getElementById('authMsg').innerText = "비밀번호가 일치하지 않습니다.";
+  }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////// 수정하기
+  const postId = new URLSearchParams(window.location.search).get('id');
+    const formEl = document.getElementById('editForm');
+
+
+
+    fetch(`/api/posts/${postId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (!data) return alert("게시글 데이터를 불러올 수 없습니다.");
+        document.getElementById('author').value = data.author || '';
+        document.getElementById('district').value = data.district || '';
+        document.getElementById('visibility').value = data.visibility || 'public';
+        document.getElementById('title').value = data.title || '';
+        editor.setHTML(data.content || '임시 내용입니다. 이곳에 게시글 본문이 표시됩니다.');
+      })
+      .catch(() => alert("게시글 조회 중 오류가 발생했습니다."));
+
+    formEl.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const htmlContent = editor.getHTML();
+      const password = document.getElementById('password').value;
+
+      const res = await fetch(`/api/posts/${postId}/verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      const result = await res.json();
+      if (!result.valid) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+      }
+
+      const updateRes = await fetch(`/api/posts/${postId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: htmlContent,
+          author: document.getElementById('author').value,
+          district: document.getElementById('district').value,
+          visibility: document.getElementById('visibility').value,
+          title: document.getElementById('title').value
+        })
+      });
+
+      if (updateRes.ok) {
+        alert("수정 완료!");
+        location.href = `/board/${postId}`;
+      } else {
+        alert("수정 실패");
+      }
+    });
+
+    async function deletePost() {
+      const password = document.getElementById('password').value;
+      if (!password) {
+        alert("비밀번호를 입력하세요");
+        return;
+      }
+
+      const res = await fetch(`/api/posts/${postId}/verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      const result = await res.json();
+      if (!result.valid) {
+        alert("비밀번호가 틀렸습니다.");
+        return;
+      }
+
+      const confirmDelete = confirm("정말 삭제하시겠습니까?");
+      if (!confirmDelete) return;
+
+      const delRes = await fetch(`/api/posts/${postId}`, {
+        method: 'DELETE'
+      });
+
+      if (delRes.ok) {
+        alert("삭제 완료!");
+        location.href = "/board";
+      } else {
+        alert("삭제 실패");
+      }
+    }
+  </script>
+  <!-- JavaScript 인클루드 코드 -->
+  <script>
+    function includeHTML(id, file) {
+      fetch(file)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+      });
+    }
+
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+  
+  <!-- 페이지 관리자 스크립트 추가 -->
+  <script src="page-manager.js"></script>
+
+</body>
+</html>

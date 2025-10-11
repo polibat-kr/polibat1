@@ -1,0 +1,44 @@
+# Node modules
+admin/node_modules/
+admin/build/
+
+# IDE 설정
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS 파일
+.DS_Store
+Thumbs.db
+nul
+
+# 로그 파일
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 환경 변수
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Claude/AI 작업 디렉토리
+.claude/
+.serena/
+claudedocs/
+
+# 임시 파일
+*.tmp
+*.bak
+
+# 테스트 커버리지
+admin/coverage/
+
+# 빌드 파일
+admin/.pnp
+admin/.pnp.js

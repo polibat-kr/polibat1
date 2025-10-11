@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="polibat Website Template by freehtml5.co" />
+  <meta name="keywords" content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+  <meta name="author" content="freehtml5.co" />
+
+  <!-- Facebook and Twitter integration -->
+  <meta property="og:title" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content=""/>
+  <meta property="og:description" content=""/>
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:url" content="" />
+  <meta name="twitter:card" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.css">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href="css/icomoon.css">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <!-- Owl Carousel  -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <!-- Flexslider  -->
+  <link rel="stylesheet" href="css/flexslider.css">
+
+  <!-- Pricing -->
+  <link rel="stylesheet" href="css/pricing.css">
+
+  <!-- Theme style  -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Modernizr JS -->
+  <script src="js/modernizr-2.6.2.min.js"></script>
+
+  <!-- Toast UI Editor 스타일 및 스크립트 추가 -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script src="https://uicdn.toast.com/editor/latest/i18n/ko.js"></script>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  <title>불편/제안 접수 - 정치방망이</title>
+  
+  <style>
+    .board-container {
+      max-width: 1200px;
+      margin: auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      margin: 40px auto 30px;
+    }
+    
+    .login-required-message {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+      background: #f8f9fa;
+      border-radius: 12px;
+      margin: 40px auto;
+    }
+    
+    .login-required-message h3 {
+      color: #333;
+      margin-bottom: 16px;
+    }
+    
+    .login-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #000;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 16px;
+      transition: background-color 0.3s;
+    }
+    
+    .login-button:hover {
+      background-color: #333;
+      text-decoration: none;
+      color: white;
+    }
+    
+    h2 {
+      margin-top: 0;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+    
+    p.description {
+      color: #666;
+      font-size: 0.95em;
+      margin-bottom: 24px;
+    }
+    
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 180px;
+    }
+    
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    
+    .write-button {
+      padding: 10px 20px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .write-button:hover {
+      background-color: #333;
+    }
+    
+    .cancel-button {
+      background-color: #6c757d;
+      color: white;
+    }
+    
+    .cancel-button:hover {
+      background-color: #5a6268;
+    }
+
+    /* 안내 섹션 */
+    .info-notice {
+      background: #e3f2fd;
+      border: 1px solid #bbdefb;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .info-notice h3 {
+      margin: 0 0 8px 0;
+      color: #1976d2;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .info-notice ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #1565c0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .info-notice li {
+      margin-bottom: 4px;
+    }
+
+    /* 체크박스 섹션 */
+    .checkbox-section {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .checkbox-section label {
+      color: #333;
+      font-size: 14px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .checkbox-options {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: white;
+      margin: 0 !important;
+      font-weight: normal !important;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .checkbox-option:hover {
+      border-color: #007bff;
+      background: #f8f9ff;
+    }
+
+    .checkbox-option input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkbox-custom {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #dee2e6;
+      border-radius: 3px;
+      background: white;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .checkbox-option input[type="checkbox"]:checked + .checkbox-custom {
+      border-color: #007bff;
+      background: #007bff;
+    }
+
+    .checkbox-option input[type="checkbox"]:checked + .checkbox-custom::after {
+      content: '✓';
+      color: white;
+      font-size: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .checkbox-option input[type="checkbox"]:checked ~ .option-text strong {
+      color: #007bff;
+    }
+
+    .option-text strong {
+      font-size: 13px;
+      color: #333;
+      transition: color 0.2s ease;
+    }
+
+    .checkbox-help {
+      display: block;
+      margin-top: 8px;
+      color: #666;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* 에러 메시지 */
+    .error-message {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .toastui-editor-defaultUI {
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .write-button {
+        width: 100%;
+      }
+      
+      .checkbox-options {
+        flex-direction: column;
+      }
+    }
+  </style>
+<style>
+/* 모바일 좌우 여백 통일 (16px) */
+@media (max-width: 768px) {
+  .board-container {
+    margin: 20px 16px 15px 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- 헤더 로딩 -->
+  <div id="header-include"></div>
+  
+  <div id="wrap"> 
+    <div class="board-container">
+      <!-- 글쓰기 폼 -->
+      <div id="writeFormContainer">
+          <h2>불편/제안 접수</h2>
+          <p class="description">정치방망이를 더 나은 서비스로 만들어가는 소중한 의견을 들려주세요</p>
+
+          <div class="info-notice">
+            <h3><i class="fa-solid fa-info-circle"></i> 작성 안내</h3>
+            <ul>
+              <li><strong>기능제안:</strong> 새로운 기능이나 서비스 개선 아이디어</li>
+              <li><strong>불편사항:</strong> 사이트 이용 중 발생한 문제나 오류</li>
+              <li><strong>투표제안:</strong> 새로운 투표 주제나 설문조사 제안</li>
+              <li>접수된 내용은 검토 후 순차적으로 처리됩니다</li>
+            </ul>
+          </div>
+          
+          <form id="feedbackForm">
+            <label for="category">구분 <span style="color: #e74c3c;">*</span></label>
+            <select id="category" name="category" required>
+              <option value="">구분을 선택해주세요</option>
+              <option value="suggestion">기능제안</option>
+              <option value="complaint">불편사항</option>
+              <option value="poll">투표제안</option>
+            </select>
+            <div class="error-message" id="categoryError">구분을 선택해주세요.</div>
+
+            <label for="title">제목 <span style="color: #e74c3c;">*</span></label>
+            <input type="text" id="title" placeholder="제목을 입력해주세요" maxlength="100" required>
+            <div class="error-message" id="titleError">제목을 입력해주세요.</div>
+
+            <label for="editor">내용 <span style="color: #e74c3c;">*</span></label>
+            <div id="editor"></div>
+            <input type="hidden" id="hiddenContent" name="content">
+            <div class="error-message" id="contentError">내용을 입력해주세요.</div>
+
+            <!-- 비공개 등록 체크박스 -->
+            <div class="checkbox-section">
+              <label>공개 설정</label>
+              <div class="checkbox-options">
+                <label class="checkbox-option">
+                  <input type="checkbox" id="isPrivate" name="isPrivate">
+                  <span class="checkbox-custom"></span>
+                  <span class="option-text">
+                    <strong><i class="fa-solid fa-lock"></i> 비공개로 등록</strong>
+                  </span>
+                </label>
+              </div>
+              <small class="checkbox-help">
+                ※ 체크 시 운영자만 열람 가능하며, 다른 사용자에게는 비공개 처리됩니다
+              </small>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="write-button">
+                <i class="fa-solid fa-paper-plane"></i> 접수하기
+              </button>
+              <button type="button" class="write-button cancel-button" onclick="resetForm()">
+                <i class="fa-solid fa-redo"></i> 다시작성
+              </button>
+              <button type="button" class="write-button cancel-button" onclick="goBack()">
+                <i class="fa-solid fa-arrow-left"></i> 목록으로
+              </button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 푸터 로딩 -->
+  <div id="footer-include"></div>
+
+  <script>
+    // 페이지 초기화 함수
+    function initializePage() {
+      console.log('🎯 페이지 초기화 - 불편/제안 접수 폼 표시');
+        initializeEditor();
+    }
+
+    // Toast UI Editor 초기화
+    let editor;
+    function initializeEditor() {
+      editor = new toastui.Editor({
+        el: document.querySelector('#editor'),
+        height: '400px',
+        initialEditType: 'wysiwyg',
+        previewStyle: 'vertical',
+        language: 'ko',
+        placeholder: '자세한 내용을 입력해주세요...'
+      });
+    }
+
+    // 폼 유효성 검사
+    function validateForm() {
+      let isValid = true;
+      
+      // 구분 검사
+      const category = document.getElementById('category');
+      const categoryError = document.getElementById('categoryError');
+      if (!category.value) {
+        categoryError.style.display = 'block';
+        category.focus();
+        isValid = false;
+      } else {
+        categoryError.style.display = 'none';
+      }
+      
+      // 제목 검사
+      const title = document.getElementById('title');
+      const titleError = document.getElementById('titleError');
+      if (!title.value.trim()) {
+        titleError.style.display = 'block';
+        if (isValid) title.focus();
+        isValid = false;
+      } else {
+        titleError.style.display = 'none';
+      }
+      
+      // 내용 검사
+      const htmlContent = editor.getHTML();
+      const contentError = document.getElementById('contentError');
+      if (!htmlContent.trim() || htmlContent === '<p><br></p>') {
+        contentError.style.display = 'block';
+        if (isValid) editor.focus();
+        isValid = false;
+      } else {
+        contentError.style.display = 'none';
+      }
+      
+      return isValid;
+    }
+
+    // 피드백 제출
+    function submitFeedback() {
+      const htmlContent = editor.getHTML();
+      document.getElementById('hiddenContent').value = htmlContent;
+      
+      // 익명 사용자 정보
+      const userNickname = '익명';
+      const userEmail = '';
+      
+      const formData = {
+        category: document.getElementById('category').value,
+        title: document.getElementById('title').value.trim(),
+        content: htmlContent,
+        isPrivate: document.getElementById('isPrivate').checked,
+        author: userNickname,
+        email: userEmail,
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('📝 제출된 피드백:', formData);
+      
+      // 성공 메시지 표시
+      alert('소중한 의견 감사합니다!\n접수된 내용은 검토 후 처리 상태를 업데이트해드리겠습니다.');
+      
+      // 목록 페이지로 이동
+      window.location.href = 'feedback.html';
+    }
+
+    // 폼 초기화
+    function resetForm() {
+      if (confirm('작성 중인 내용이 모두 삭제됩니다. 계속하시겠습니까?')) {
+        document.getElementById('feedbackForm').reset();
+        editor.setHTML('');
+        // 에러 메시지 숨김
+        document.querySelectorAll('.error-message').forEach(el => {
+          el.style.display = 'none';
+        });
+      }
+    }
+
+    // 목록으로 돌아가기
+    function goBack() {
+      const hasContent = document.getElementById('title').value.trim() || 
+                        (editor && editor.getHTML() && editor.getHTML() !== '<p><br></p>');
+      
+      if (hasContent) {
+        if (confirm('작성 중인 내용이 저장되지 않습니다. 목록으로 돌아가시겠습니까?')) {
+          window.location.href = 'feedback.html';
+        }
+      } else {
+        window.location.href = 'feedback.html';
+      }
+    }
+    
+    // DOM 로드 완료 시 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🎯 DOM 로드 완료 - 불편/제안 접수 페이지 초기화');
+      initializePage();
+      
+      const form = document.getElementById('feedbackForm');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          if (validateForm()) {
+            const submitBtn = form.querySelector('.write-button');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '접수 중...';
+            
+            setTimeout(() => {
+              submitFeedback();
+              submitBtn.disabled = false;
+              submitBtn.textContent = '접수하기';
+            }, 1000);
+          }
+        });
+      }
+
+      // 입력 시 에러 메시지 숨김
+      document.getElementById('category').addEventListener('change', function() {
+        document.getElementById('categoryError').style.display = 'none';
+      });
+
+      document.getElementById('title').addEventListener('input', function() {
+        document.getElementById('titleError').style.display = 'none';
+      });
+    });
+    
+
+
+    // 페이지 떠나기 전 확인
+    window.addEventListener('beforeunload', function(e) {
+      const hasContent = document.getElementById('title').value.trim() || 
+                        (editor && editor.getHTML() && editor.getHTML() !== '<p><br></p>');
+      
+      if (hasContent) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+  </script>
+  
+  <!-- JavaScript 인클루드 코드 -->
+  <script>
+    function includeHTML(id, file) {
+      fetch(file)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        console.log('✅ ' + file + ' 포함 완료');
+      })
+      .catch(error => {
+        console.error('❌ 파일 로딩 실패:', error);
+      });
+    }
+
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+  
+  <!-- 페이지 관리자 -->
+  <script src="page-manager.js"></script>
+</body>
+</html>

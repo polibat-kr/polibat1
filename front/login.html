@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="polibat 로그인 페이지" name="description"/>
+    <meta content="로그인, 정치인, 일반회원, polibat" name="keywords"/>
+    <title>로그인 - 정치방망이</title>
+    
+    <!-- 웹폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"/>
+    
+    <!-- 스타일시트 -->
+    <link href="css/animate.css" rel="stylesheet"/>
+    <link href="css/icomoon.css" rel="stylesheet"/>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/magnific-popup.css" rel="stylesheet"/>
+    <link href="css/owl.carousel.min.css" rel="stylesheet"/>
+    <link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+    <link href="css/flexslider.css" rel="stylesheet"/>
+    <link href="css/pricing.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    
+    <!-- 커스텀 스타일 -->
+    <style>
+        /* 로그인 컨테이너 */
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            margin: 80px auto;
+        }
+        
+        /* 제목 스타일 */
+        h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #333;
+        }
+        
+        /* 폼 그룹 */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        /* 라벨 스타일 */
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* 입력 필드 스타일 */
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        /* 포커스 상태 */
+        .form-group input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 에러 상태 */
+        .form-group input.error {
+            border-color: #ff0000;
+            background-color: #ffeaea;
+        }
+        
+        /* 체크박스 그룹 */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label {
+            margin: 0;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+        
+        /* 에러 메시지 */
+        .error-msg {
+            color: #ff0000;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+        
+        /* 성공 메시지 */
+        .success-msg {
+            color: #008000;
+            text-align: center;
+            font-size: 15px;
+            margin-top: 20px;
+            display: none;
+            font-weight: bold;
+        }
+        
+        /* 로그인 버튼 */
+        .login-button {
+            background-color: #000;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 8px;
+            box-sizing: border-box;
+        }
+        
+        .login-button:hover:not(:disabled) {
+            background-color: #333;
+        }
+        
+        .login-button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+        
+        /* 탭 컨테이너 */
+        .tab-container {
+            display: flex;
+            margin-bottom: 24px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        /* 탭 버튼 */
+        .tab-button {
+            flex: 1;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            border: none;
+            background-color: #f8f8f8;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button:not(:last-child) {
+            border-right: 1px solid #ddd;
+        }
+        
+        .tab-button.active {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .tab-button:hover:not(.active) {
+            background-color: #eee;
+        }
+        
+        /* 추가 링크 */
+        .extra-links {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+        
+        .extra-links a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 8px;
+            transition: color 0.3s ease;
+        }
+        
+        .extra-links a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+        
+        /* 폼 애니메이션 */
+        .login-form {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 로딩 스피너 */
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 로그인 에러 메시지 */
+        .login-error-message {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* 테스트 계정 안내 */
+        .test-accounts {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #6c757d;
+        }
+        
+        /* 모바일 반응형 */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .tab-button {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .form-group label {
+                font-size: 13px;
+            }
+            
+            .login-button {
+                font-size: 14px;
+            }
+            
+            .extra-links {
+                font-size: 12px;
+            }
+            
+            .extra-links a {
+                margin: 0 4px;
+            }
+        }
+
+        /* 모바일 메뉴 버튼 스타일 */
+        .mobile-menu-button {
+            display: none;
+            width: 32px;
+            height: 32px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-button:hover {
+            background: #e0e0e0;
+        }
+
+        .mobile-menu-button:active {
+            transform: scale(0.95);
+        }
+
+        /* 점 3개 아이콘 */
+        .dots-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            pointer-events: none;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        /* 드롭다운 메뉴 */
+        .mobile-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 160px;
+            z-index: 1001;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+
+        .mobile-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #eee;
+            margin: 4px 0;
+        }
+
+        /* 사용자 정보 영역 */
+        .user-info-section {
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .user-type {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* 모바일에서 메뉴 버튼 표시 */
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: flex !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 포함 영역 -->
+    <div id="header-include"></div>
+
+    <!-- 메인 컨텐츠 -->
+    <div id="wrap">
+        <div class="login-container">
+            <!-- 로그인 폼 컨테이너 -->
+            <div id="loginFormContainer">
+                <h2>로그인</h2>
+                
+                <!-- 사용자 타입 선택 탭 -->
+                <div class="tab-container">
+                    <button class="tab-button active" id="userTab" type="button">일반회원</button>
+                    <button class="tab-button" id="politicianTab" type="button">정치인</button>
+                </div>
+                
+                <!-- 일반회원 로그인 폼 -->
+                <form id="userForm" class="login-form" novalidate>
+                    <div class="form-group">
+                        <label for="userEmail">이메일</label>
+                        <input type="email" id="userEmail" name="userEmail" autocomplete="email" placeholder="이메일을 입력하세요" value="test@example.com" />
+                        <div class="error-msg" id="userEmailError">이메일을 입력해 주세요.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">비밀번호</label>
+                        <input type="password" id="password" name="password" autocomplete="current-password" placeholder="비밀번호를 입력하세요" value="test123" />
+                        <div class="error-msg" id="passwordError">비밀번호를 입력해 주세요.</div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rememberMe" name="rememberMe" />
+                        <label for="rememberMe">로그인 상태 유지</label>
+                    </div>
+                    
+                    <button class="login-button" type="submit">
+                        <span class="loading-spinner"></span>
+                        <span class="button-text">일반회원 로그인</span>
+                    </button>
+                </form>
+                
+                <!-- 정치인 로그인 폼 -->
+                <form id="politicianForm" class="login-form" style="display: none;" novalidate>
+                    <div class="form-group">
+                        <label for="politicianEmail">이메일</label>
+                        <input type="email" id="politicianEmail" name="politicianEmail" autocomplete="email" placeholder="이메일을 입력하세요" value="politician@example.com" />
+                        <div class="error-msg" id="politicianEmailError">이메일을 입력해 주세요.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="politicianPassword">비밀번호</label>
+                        <input type="password" id="politicianPassword" name="politicianPassword" autocomplete="current-password" placeholder="비밀번호를 입력하세요" value="pol123" />
+                        <div class="error-msg" id="politicianPasswordError">비밀번호를 입력해 주세요.</div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rememberPolitician" name="rememberPolitician" />
+                        <label for="rememberPolitician">로그인 상태 유지</label>
+                    </div>
+                    
+                    <button class="login-button" type="submit">
+                        <span class="loading-spinner"></span>
+                        <span class="button-text">정치인 로그인</span>
+                    </button>
+                </form>
+                
+                <!-- 성공 메시지 -->
+                <div class="success-msg" id="successMessage">
+                    로그인에 성공하였습니다!
+                </div>
+                
+                <!-- 테스트 계정 안내 -->
+                <div class="test-accounts">
+                    <strong>🧪 테스트 계정:</strong><br>
+                    일반회원: test@example.com / test123<br>
+                    정치인: politician@example.com / pol123<br>
+                    <!--마이페이지 테스트: yona@example.com / yona123-->    
+                </div>
+                
+                <!-- 추가 링크 -->
+                <div class="extra-links">
+                    <a href="signup.html" id="signupLink">일반회원 회원가입</a>
+                    <span>|</span>
+                    <a href="find_account.html">비밀번호 찾기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 푸터 포함 영역 -->
+    <div id="footer-include"></div>
+    
+    <!-- 필수 스크립트들 -->
+    <!-- 페이지 관리자 (모든 페이지에서 공통 사용) -->
+    <script src="page-manager.js"></script>
+    
+    <!-- 로그인 시스템 (로그인 페이지에서만 사용) -->
+    <script src="login.js"></script>
+    
+    <!-- 디버깅용 콘솔 메시지 -->
+    <script>
+        console.log('🔐 로그인 페이지 로드 완료');
+        console.log('📋 테스트 계정 정보:');
+        console.log('일반회원: test@example.com / test123');
+        console.log('정치인: politician@example.com / pol123');
+        console.log('마이페이지 테스트: yona@example.com / yona123');
+        console.log('💡 콘솔에서 테스트: window.PolibatLogin.testLogin("user", "테스트유저")');
+    </script>
+    
+    <!-- 헤더/푸터 로드 및 모바일 메뉴 이벤트 바인딩 -->
+    <script>
+        function includeHTML(id, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.innerHTML = data;
+                        
+                        if (id === 'header-include') {
+                            console.log('🔧 헤더 로드 완료');
+                            
+                            // 헤더 로드 후 모바일 메뉴 이벤트 바인딩
+                            setTimeout(() => {
+                                bindMobileMenuEvents();
+                            }, 100);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log('파일을 불러올 수 없습니다:', error);
+                });
+        }
+
+        function bindMobileMenuEvents() {
+            console.log(' 모바일 메뉴 이벤트 바인딩 시작');
+            
+            // 모바일 메뉴 버튼 이벤트
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.mobile-menu-button')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const button = e.target.closest('.mobile-menu-button');
+                    const menuType = button.getAttribute('data-menu-type');
+                    toggleMobileMenu(menuType);
+                }
+            });
+            
+            // 외부 클릭으로 드롭다운 닫기
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.user-menu')) {
+                    closeAllDropdowns();
+                }
+            });
+            
+            console.log('✅ 모바일 메뉴 이벤트 바인딩 완료');
+        }
+
+        function toggleMobileMenu(type) {
+            console.log('📱 모바일 메뉴 토글:', type);
+            
+            const dropdownId = type === 'login' ? 'loginDropdown' : 'userDropdown';
+            const dropdown = document.getElementById(dropdownId);
+            
+            if (!dropdown) {
+                console.error('❌ 드롭다운 요소를 찾을 수 없음:', dropdownId);
+                return;
+            }
+            
+            if (window.activeDropdown === dropdown) {
+                closeAllDropdowns();
+                return;
+            }
+            
+            closeAllDropdowns();
+            dropdown.classList.add('active');
+            window.activeDropdown = dropdown;
+        }
+
+        function closeAllDropdowns() {
+            const dropdowns = document.querySelectorAll('.mobile-dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            window.activeDropdown = null;
+        }
+
+        // 헤더/푸터 로드
+        includeHTML("header-include", "header.html");
+        includeHTML("footer-include", "footer.html");
+    </script>
+</body>
+</html>

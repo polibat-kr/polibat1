@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="정치방망이 비밀번호 찾기" />
+  <meta name="keywords" content="정치방망이, 비밀번호 찾기, 계정 복구" />
+  <meta name="author" content="정치방망이" />
+
+  <!-- Facebook and Twitter integration -->
+  <meta property="og:title" content="정치방망이 - 비밀번호 찾기"/>
+  <meta property="og:description" content="정치방망이 계정의 비밀번호를 찾아보세요"/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content="정치방망이"/>
+  <meta name="twitter:title" content="정치방망이 - 비밀번호 찾기" />
+  <meta name="twitter:description" content="정치방망이 계정의 비밀번호를 찾아보세요" />
+  <meta name="twitter:card" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.css">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href="css/icomoon.css">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <!-- Owl Carousel  -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <!-- Flexslider  -->
+  <link rel="stylesheet" href="css/flexslider.css">
+  <!-- Pricing -->
+  <link rel="stylesheet" href="css/pricing.css">
+  <!-- Theme style  -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Modernizr JS -->
+  <script src="js/modernizr-2.6.2.min.js"></script>
+
+  <title>정치방망이 - 비밀번호 찾기</title>
+  <style>
+    body {
+      font-family: 'Pretendard', 'Nanum Gothic', sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+    }
+
+    #wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 80px 0px 80px 0px;
+      min-height: 60vh;
+    }
+    
+    .container_find {
+      background: #fff;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+      margin: 80px 20px;
+    }
+    
+    .container_find h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .form {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { 
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .form input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      background: #fff;
+    }
+
+    .form input:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .form input.error {
+      border-color: #ff0000;
+      background-color: #ffeaea;
+    }
+
+    .form input:disabled {
+      background-color: #f8f9fa;
+      color: #6c757d;
+      cursor: not-allowed;
+      border-color: #e9ecef;
+    }
+
+    .error-msg {
+      color: #ff0000;
+      font-size: 13px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .form button {
+      width: 100%;
+      padding: 14px 16px;
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      margin-bottom: 24px;
+    }
+
+    .form button:hover:not(:disabled) {
+      background: #333;
+    }
+
+    .form button:disabled {
+      background: #999;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    /* 인증 관련 스타일 */
+    .verify-btn {
+      width: 100%;
+      height: 48px;
+      padding: 14px 16px;
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .verify-btn:hover:not(:disabled) {
+      background: #333;
+    }
+
+    .verify-btn:disabled {
+      background: #999;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .timer {
+      color: #ff6b35;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: right;
+      margin-top: 8px;
+      display: none;
+      padding-right: 4px;
+    }
+
+    .timer.show {
+      display: block;
+    }
+
+    .loading-spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ffffff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .success-msg {
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      color: #155724;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 15px 0;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .error-message {
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 15px 0;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .verification-success {
+      background: #d1ecf1;
+      border: 1px solid #bee5eb;
+      color: #0c5460;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .verification-success.show {
+      display: block;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .back-link a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .back-link a:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .info-text {
+      background: #e7f3ff;
+      border: 1px solid #bee5eb;
+      color: #0c5460;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 12px;
+    }
+
+    .step {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: background 0.3s ease;
+    }
+
+    .step.active {
+      background: #000;
+    }
+
+    .step.completed {
+      background: #28a745;
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      .timer {
+        text-align: center;
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container_find {
+        padding: 24px 20px;
+        margin: 20px 12px;
+      }
+      
+      .container_find h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .form input, .form button {
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .step-indicator {
+        margin-bottom: 24px;
+        gap: 10px;
+      }
+
+      .info-text {
+        font-size: 13px;
+        padding: 10px;
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 로딩 -->
+  <div id="header-include"></div>
+  
+  <div id="wrap"> 
+    <div class="container_find">
+      <h2>비밀번호 찾기</h2>
+      
+      <!-- 단계 표시 -->
+      <div class="step-indicator">
+        <div class="step active" id="step1"></div>
+        <div class="step" id="step2"></div>
+        <div class="step" id="step3"></div>
+      </div>
+      
+      <div class="info-text">
+        회원가입 시 등록한 이메일과 닉네임이 일치하면 인증코드를<br>
+        이메일로 보내드리며, 인증 완료 후 일회용 임시 비밀번호가 발급됩니다.
+      </div>
+      
+      <!-- 비밀번호 찾기 폼 -->
+      <div id="pw-form" class="form">
+        <!-- 이메일 입력 -->
+        <div class="form-group">
+          <label for="findPwEmail">이메일</label>
+          <input type="email" id="findPwEmail" name="email" placeholder="이메일을 입력하세요" autocomplete="email">
+          <div class="error-msg" id="emailError">이메일을 입력하세요</div>
+        </div>
+
+        <!-- 닉네임 입력 -->
+        <div class="form-group">
+          <label for="findPwNickname">닉네임</label>
+          <input type="text" id="findPwNickname" name="nickname" placeholder="닉네임을 입력하세요" autocomplete="username">
+          <div class="error-msg" id="nicknameError">닉네임을 입력하세요</div>
+        </div>
+
+        <!-- 인증코드 발송 버튼 -->
+        <button type="button" id="sendVerificationBtn">
+          <span class="loading-spinner"></span>
+          <span class="button-text">인증코드 발송</span>
+        </button>
+
+        <!-- 인증코드 입력 -->
+        <div class="form-group">
+          <label for="verificationCode">인증코드</label>
+          <input type="text" id="verificationCode" name="verification" placeholder="인증코드 6자리" maxlength="6" disabled>
+          <button type="button" id="verifyCodeBtn" class="verify-btn" disabled>
+            <span class="loading-spinner"></span>
+            <span class="button-text">임시 비밀번호 발송</span>
+          </button>
+          <div class="timer" id="timer">05:00</div>
+          <div class="error-msg" id="verificationError">인증코드를 입력해 주세요.</div>
+          <div class="verification-success" id="verificationSuccess">
+            ✓ 이메일 인증이 완료되었습니다. 새로운 비밀번호를 발송합니다.
+          </div>
+        </div>
+
+        <div class="success-msg" id="pwSuccess"></div>
+      </div>
+      
+      <!-- 로그인 페이지로 돌아가기 -->
+      <div class="back-link">
+        <a href="login.html">← 로그인 페이지로 돌아가기</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 테스트 정보 -->
+  <div style="background: #f8f9fa; padding: 20px; margin: 20px auto; max-width: 450px; border-radius: 8px; font-size: 13px; color: #666; text-align: center;">
+    <h4 style="margin: 0 0 15px 0; color: #333; font-size: 14px;">📋 테스트 데이터</h4>
+    <div style="text-align: left; margin-bottom: 15px;">
+      <strong>등록된 회원:</strong><br>
+      • test@example.com / 테스트유저<br>
+      • politician@example.com / 정치인<br>
+      • hong@example.com / 홍길동<br>
+      • user@naver.com / 네이버유저<br>
+      • admin@gmail.com / 관리자
+    </div>
+    <div style="text-align: center;">
+      <strong>인증코드:</strong> <span style="background: #e3f2fd; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: #1976d2;">123456</span>
+    </div>
+  </div>
+  
+  <!-- 푸터 로딩 -->
+  <div id="footer-include"></div>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      console.log('🔧 비밀번호 찾기 시스템 초기화');
+      
+      var PasswordResetManager = {
+        isSubmitting: false,
+        isEmailVerified: false,
+        verificationTimer: null,
+        timeLeft: 300, // 5분
+        
+        init: function() {
+          console.log('🎯 비밀번호 찾기 페이지 초기화 시작');
+          
+          this.cacheElements();
+          this.bindEvents();
+          this.setupValidation();
+          
+          console.log('✅ 비밀번호 찾기 시스템 초기화 완료');
+        },
+        
+        cacheElements: function() {
+          // 기본 요소들
+          this.pwForm = document.getElementById('pw-form');
+          this.pwSuccess = document.getElementById('pwSuccess');
+          this.emailInput = document.getElementById('findPwEmail');
+          this.nicknameInput = document.getElementById('findPwNickname');
+          
+          // 인증 관련 요소들
+          this.sendVerificationBtn = document.getElementById('sendVerificationBtn');
+          this.verificationCodeInput = document.getElementById('verificationCode');
+          this.verifyCodeBtn = document.getElementById('verifyCodeBtn');
+          this.timer = document.getElementById('timer');
+          this.verificationSuccess = document.getElementById('verificationSuccess');
+          
+          // 단계 표시 요소들
+          this.step1 = document.getElementById('step1');
+          this.step2 = document.getElementById('step2');
+          this.step3 = document.getElementById('step3');
+        },
+        
+        bindEvents: function() {
+          var self = this;
+          
+          // 인증코드 발송 버튼
+          if (this.sendVerificationBtn) {
+            this.sendVerificationBtn.addEventListener('click', function() {
+              self.handleSendVerification();
+            });
+          }
+          
+          // 인증코드 확인 버튼
+          if (this.verifyCodeBtn) {
+            this.verifyCodeBtn.addEventListener('click', function() {
+              self.handleVerifyCode();
+            });
+          }
+        },
+        
+        setupValidation: function() {
+          var self = this;
+          var inputs = document.querySelectorAll('input');
+          
+          inputs.forEach(function(input) {
+            input.addEventListener('input', function() {
+              self.clearFieldError(this);
+            });
+            
+            input.addEventListener('keypress', function(e) {
+              if (e.key === 'Enter') {
+                if (input === self.emailInput || input === self.nicknameInput) {
+                  if (!self.sendVerificationBtn.disabled) {
+                    self.sendVerificationBtn.click();
+                  }
+                } else if (input === self.verificationCodeInput && !self.verifyCodeBtn.disabled) {
+                  self.verifyCodeBtn.click();
+                }
+              }
+            });
+          });
+        },
+        
+        handleSendVerification: function() {
+          var email = this.emailInput.value.trim();
+          var nickname = this.nicknameInput.value.trim();
+          
+          if (!this.validateUserInfo(email, nickname)) {
+            return;
+          }
+          
+          this.setVerificationLoadingState(true);
+          
+          var self = this;
+          this.checkUserAndSendCode(email, nickname, function(result) {
+            self.setVerificationLoadingState(false);
+            
+            if (result.success) {
+              self.enableVerificationInputs();
+              self.startTimer();
+              self.updateStepIndicator(1); // 1단계 완료
+              self.showSuccessMessage('회원 정보가 확인되었습니다.\n인증코드가 ' + email + '로 발송되었습니다.');
+              self.disableUserInputs();
+            } else {
+              self.showErrorMessage(result.message);
+            }
+          });
+        },
+        
+        handleVerifyCode: function() {
+          var code = this.verificationCodeInput.value.trim();
+          
+          if (!code) {
+            this.showFieldError('verificationCode', 'verificationError', '인증코드를 입력해주세요.');
+            return;
+          }
+          
+          if (code.length !== 6) {
+            this.showFieldError('verificationCode', 'verificationError', '인증코드 6자리를 입력해주세요.');
+            return;
+          }
+          
+          this.setVerifyLoadingState(true);
+          
+          var self = this;
+          this.verifyCode(code, function(result) {
+            self.setVerifyLoadingState(false);
+            
+            if (result.success) {
+              self.isEmailVerified = true;
+              self.stopTimer();
+              self.showVerificationSuccess();
+              self.updateStepIndicator(2); // 2단계 완료
+              self.disableAllInputs();
+              
+              // 자동으로 임시 비밀번호 발송
+              setTimeout(function() {
+                self.sendTempPassword();
+              }, 1000);
+            } else {
+              self.showFieldError('verificationCode', 'verificationError', result.message);
+            }
+          });
+        },
+        
+        checkUserAndSendCode: function(email, nickname, callback) {
+          setTimeout(function() {
+            console.log('👤 회원 정보 확인 및 인증코드 발송:', { email: email, nickname: nickname });
+            
+            // 모의 사용자 데이터
+            var users = [
+              { email: 'test@example.com', nickname: '테스트유저' },
+              { email: 'politician@example.com', nickname: '정치인' },
+              { email: 'hong@example.com', nickname: '홍길동' },
+              { email: 'user@naver.com', nickname: '네이버유저' },
+              { email: 'admin@gmail.com', nickname: '관리자' }
+            ];
+            
+            var foundUser = users.find(function(user) {
+              return user.email === email && user.nickname === nickname;
+            });
+            
+            if (foundUser) {
+              callback({
+                success: true,
+                message: '회원 정보가 확인되었습니다. 인증코드를 발송했습니다.'
+              });
+            } else {
+              callback({
+                success: false,
+                message: '입력하신 이메일과 닉네임 정보가 일치하지 않습니다.\n회원가입 시 사용한 정보를 정확히 입력해주세요.'
+              });
+            }
+          }, 1000);
+        },
+        
+        verifyCode: function(code, callback) {
+          setTimeout(function() {
+            console.log('🔐 인증코드 확인:', code);
+            
+            // 임시 인증코드: 123456
+            if (code === '123456') {
+              callback({
+                success: true,
+                message: '인증이 완료되었습니다.'
+              });
+            } else {
+              callback({
+                success: false,
+                message: '인증코드가 올바르지 않습니다.'
+              });
+            }
+          }, 500);
+        },
+        
+        sendTempPassword: function() {
+          var email = this.emailInput.value.trim();
+          
+          this.updateStepIndicator(3); // 3단계 시작
+          
+          var self = this;
+          setTimeout(function() {
+            console.log('🔑 임시 비밀번호 발송:', email);
+            
+            var tempPassword = 'temp' + Math.random().toString(36).substr(2, 8);
+            
+            self.showSuccessMessage(
+              '✅ 인증이 완료되었습니다!\n\n' +
+              '새로운 임시 비밀번호를 ' + email + '로 발송했습니다.\n' +
+              '이메일을 확인하신 후 로그인해주세요.\n\n' +
+              '⚠️ 로그인 후 반드시 비밀번호를 변경해주세요.'
+            );
+            
+            console.log('🔐 임시 비밀번호 생성:', tempPassword);
+            
+            // 3초 후 로그인 페이지로 이동
+            setTimeout(function() {
+              window.location.href = 'login.html';
+            }, 3000);
+          }, 1500);
+        },
+        
+        validateUserInfo: function(email, nickname) {
+          this.clearAllErrors();
+          var isValid = true;
+          
+          if (!email) {
+            this.showFieldError('findPwEmail', 'emailError', '이메일을 입력해주세요.');
+            isValid = false;
+          } else if (!this.isValidEmail(email)) {
+            this.showFieldError('findPwEmail', 'emailError', '올바른 이메일 형식을 입력해주세요.');
+            isValid = false;
+          }
+          
+          if (!nickname) {
+            this.showFieldError('findPwNickname', 'nicknameError', '닉네임을 입력해주세요.');
+            isValid = false;
+          } else if (nickname.length < 2) {
+            this.showFieldError('findPwNickname', 'nicknameError', '닉네임을 2자 이상 입력해주세요.');
+            isValid = false;
+          }
+          
+          return isValid;
+        },
+
+        isValidEmail: function(email) {
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        },
+        
+        enableVerificationInputs: function() {
+          this.verificationCodeInput.disabled = false;
+          this.verifyCodeBtn.disabled = false;
+        },
+        
+        showVerificationSuccess: function() {
+          this.verificationSuccess.classList.add('show');
+          this.clearFieldError(this.verificationCodeInput);
+        },
+        
+        disableUserInputs: function() {
+          this.emailInput.disabled = true;
+          this.nicknameInput.disabled = true;
+          this.sendVerificationBtn.disabled = true;
+        },
+        
+        disableAllInputs: function() {
+          this.emailInput.disabled = true;
+          this.nicknameInput.disabled = true;
+          this.sendVerificationBtn.disabled = true;
+          this.verificationCodeInput.disabled = true;
+          this.verifyCodeBtn.disabled = true;
+        },
+        
+        startTimer: function() {
+          this.timeLeft = 300; // 5분 리셋
+          this.timer.classList.add('show');
+          this.updateTimerDisplay();
+          
+          var self = this;
+          this.verificationTimer = setInterval(function() {
+            self.timeLeft--;
+            
+            if (self.timeLeft <= 0) {
+              self.stopTimer();
+              self.showFieldError('verificationCode', 'verificationError', '인증시간이 만료되었습니다. 다시 발송해주세요.');
+              self.resetVerification();
+            } else {
+              self.updateTimerDisplay();
+            }
+          }, 1000);
+        },
+        
+        stopTimer: function() {
+          if (this.verificationTimer) {
+            clearInterval(this.verificationTimer);
+            this.verificationTimer = null;
+          }
+          this.timer.classList.remove('show');
+        },
+        
+        updateTimerDisplay: function() {
+          var minutes = Math.floor(this.timeLeft / 60);
+          var seconds = this.timeLeft % 60;
+          this.timer.textContent = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+        },
+        
+        resetVerification: function() {
+          this.isEmailVerified = false;
+          this.emailInput.disabled = false;
+          this.nicknameInput.disabled = false;
+          this.sendVerificationBtn.disabled = false;
+          this.verificationCodeInput.disabled = true;
+          this.verifyCodeBtn.disabled = true;
+          this.verificationSuccess.classList.remove('show');
+          this.updateStepIndicator(0);
+        },
+        
+        updateStepIndicator: function(completedSteps) {
+          var steps = [this.step1, this.step2, this.step3];
+          
+          steps.forEach(function(step, index) {
+            step.classList.remove('active', 'completed');
+            
+            if (index < completedSteps) {
+              step.classList.add('completed');
+            } else if (index === completedSteps) {
+              step.classList.add('active');
+            }
+          });
+        },
+        
+        setVerificationLoadingState: function(loading) {
+          var spinner = this.sendVerificationBtn.querySelector('.loading-spinner');
+          var buttonText = this.sendVerificationBtn.querySelector('.button-text');
+          
+          if (loading) {
+            this.sendVerificationBtn.disabled = true;
+            if (spinner) spinner.style.display = 'inline-block';
+            if (buttonText) buttonText.textContent = '확인중...';
+          } else {
+            if (spinner) spinner.style.display = 'none';
+            if (buttonText) buttonText.textContent = '재발송';
+          }
+        },
+        
+        setVerifyLoadingState: function(loading) {
+          var spinner = this.verifyCodeBtn.querySelector('.loading-spinner');
+          var buttonText = this.verifyCodeBtn.querySelector('.button-text');
+          
+          if (loading) {
+            this.verifyCodeBtn.disabled = true;
+            if (spinner) spinner.style.display = 'inline-block';
+            if (buttonText) buttonText.textContent = '확인중...';
+          } else {
+            this.verifyCodeBtn.disabled = false;
+            if (spinner) spinner.style.display = 'none';
+            if (buttonText) buttonText.textContent = '확인';
+          }
+        },
+        
+        showFieldError: function(fieldId, errorId, message) {
+          var field = document.getElementById(fieldId);
+          var error = document.getElementById(errorId);
+          
+          if (field) field.classList.add('error');
+          if (error) {
+            if (message) error.textContent = message;
+            error.style.display = 'block';
+          }
+        },
+        
+        clearFieldError: function(field) {
+          field.classList.remove('error');
+          var formGroup = field.closest('.form-group');
+          if (formGroup) {
+            var error = formGroup.querySelector('.error-msg');
+            if (error) {
+              error.style.display = 'none';
+            }
+          }
+        },
+        
+        clearAllErrors: function() {
+          var errorMsgs = document.querySelectorAll('.error-msg');
+          errorMsgs.forEach(function(error) {
+            error.style.display = 'none';
+          });
+          
+          var inputs = document.querySelectorAll('input');
+          inputs.forEach(function(input) {
+            input.classList.remove('error');
+          });
+          
+          var existingErrors = document.querySelectorAll('.error-message');
+          existingErrors.forEach(function(error) {
+            error.remove();
+          });
+        },
+        
+        showSuccessMessage: function(message) {
+          if (this.pwSuccess) {
+            this.pwSuccess.innerHTML = message.replace(/\n/g, '<br>');
+            this.pwSuccess.style.display = 'block';
+            
+            // 8초 후 자동 숨김
+            setTimeout(function() {
+              if (this.pwSuccess) {
+                this.pwSuccess.style.display = 'none';
+              }
+            }.bind(this), 8000);
+          }
+        },
+        
+        showErrorMessage: function(message) {
+          var errorDiv = document.createElement('div');
+          errorDiv.className = 'error-message';
+          errorDiv.innerHTML = message.replace(/\n/g, '<br>');
+          
+          var existingError = this.pwForm.querySelector('.error-message');
+          if (existingError) {
+            existingError.remove();
+          }
+          
+          this.pwForm.appendChild(errorDiv);
+          
+          setTimeout(function() {
+            if (errorDiv.parentNode) {
+              errorDiv.remove();
+            }
+          }, 5000);
+        },
+        
+        resetForm: function() {
+          this.emailInput.value = '';
+          this.verificationCodeInput.value = '';
+          this.nicknameInput.value = '';
+          this.clearAllErrors();
+          
+          this.isEmailVerified = false;
+          this.stopTimer();
+          this.verificationSuccess.classList.remove('show');
+          
+          this.emailInput.disabled = false;
+          this.nicknameInput.disabled = false;
+          this.sendVerificationBtn.disabled = false;
+          this.verificationCodeInput.disabled = true;
+          this.verifyCodeBtn.disabled = true;
+          
+          this.updateStepIndicator(0);
+          
+          if (this.pwSuccess) {
+            this.pwSuccess.style.display = 'none';
+          }
+        }
+      };
+      
+      // DOM 로드 후 초기화
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎯 DOM 로드 완료 - 비밀번호 찾기 시스템 초기화');
+        PasswordResetManager.init();
+        console.log('✅ 비밀번호 찾기 시스템 준비 완료');
+      });
+      
+      // 전역 노출
+      window.PasswordResetManager = PasswordResetManager;
+      
+      console.log('🎉 비밀번호 찾기 시스템 준비 완료');
+      
+    })();
+  </script>
+
+  <!-- JavaScript 인클루드 코드 -->
+  <script>
+    function includeHTML(id, file) {
+      fetch(file)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById(id).innerHTML = data;
+          console.log('✅ ' + file + ' 포함 및 스크립트 실행 완료');
+        })
+        .catch(error => {
+          console.error('파일 로딩 실패:', error);
+        });
+    }
+
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+  
+  <!-- 페이지 관리자 스크립트 추가 -->
+  <script src="page-manager.js"></script>
+
+</body>
+</html>

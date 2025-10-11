@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="index, follow" name="robots"/>
+<meta content="정치방망이" name="author"/>
+<meta content="무인도에 한 사람과 남아야 한다면? 한 표가 세상을 바꿉니다." name="description"/>
+<meta content="정치, 투표, 인기투표, 무인도, 이재명, 한동훈, 정치방망이, polibat" name="keywords"/>
+<!-- 폰트 불러오기 -->
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<!-- Facebook and Twitter integration -->
+<meta content="" property="og:title">
+<meta content="" property="og:image">
+<meta content="" property="og:url">
+<meta content="" property="og:site_name">
+<meta content="" property="og:description">
+<meta content="" name="twitter:title">
+<meta content="" name="twitter:image"/>
+<meta content="" name="twitter:url"/>
+<meta content="" name="twitter:card"/>
+<!-- Animate.css -->
+<link href="css/animate.css" rel="stylesheet"/>
+<!-- Icomoon Icon Fonts-->
+<link href="css/icomoon.css" rel="stylesheet"/>
+<!-- Bootstrap  -->
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<!-- Magnific Popup -->
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<!-- Owl Carousel  -->
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<!-- Flexslider  -->
+<link href="css/flexslider.css" rel="stylesheet"/>
+<!-- Pricing -->
+<link href="css/pricing.css" rel="stylesheet"/>
+<!-- Theme style  -->
+<link href="css/style.css" rel="stylesheet"/>
+<!-- Modernizr JS -->
+<script src="js/modernizr-2.6.2.min.js"></script>
+<title>무인도 투표 - 정치방망이</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    /* ==========================================================================
+       통일된 디자인 시스템 - 정치방망이 투표 상세 페이지
+       ========================================================================== */
+    
+    /* 기본 리셋 및 전역 스타일 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        background: #f8f9fa;
+    }
+    
+    /* 컬러 시스템 */
+    :root {
+        --primary-color: #000;
+        --primary-hover: #333;
+        --secondary-color: #666;
+        --accent-color: #2196f3;
+        --danger-color: #e53935;
+        --success-color: #2e7d32;
+        --warning-color: #ff6b35;
+        --border-color: #e0e0e0;
+        --bg-white: #ffffff;
+        --bg-light: #f8f9fa;
+        --bg-card: #ffffff;
+        --shadow-light: 0 2px 8px rgba(0,0,0,0.08);
+        --shadow-medium: 0 4px 16px rgba(0,0,0,0.12);
+        --border-radius: 12px;
+        --border-radius-sm: 8px;
+    }
+    
+    #wrap {
+        max-width: 1200px;
+        padding: 40px 20px;
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .main-box {
+        background: var(--bg-card);
+        padding: 32px;
+        border-radius: var(--border-radius);
+        margin-bottom: 32px;
+        border: 1px solid var(--border-color);
+    }
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-align: center;
+        color: var(--primary-color);
+        line-height: 1.3;
+    }
+    
+    .subtitle {
+        text-align: center;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    #deadline {
+        text-align: center;
+        font-weight: 600;
+        color: var(--danger-color);
+        margin-bottom: 28px;
+        padding: 12px 20px;
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: var(--border-radius-sm);
+        font-size: 15px;
+    }
+    
+    .vote-options {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+    
+    .vote-option {
+        display: flex;
+        align-items: center;
+        background: var(--bg-card);
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .vote-option:hover {
+        background: #f8f9fa;
+        /*
+        border-color: var(--accent-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);*/
+    }
+    
+    .vote-option.selected {
+        background: #f3f8ff;
+        border-color: var(--accent-color);
+    }
+    
+    .vote-option input {
+        display: none;
+    }
+    
+    .candidate-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 16px;
+        border: 2px solid var(--border-color);
+        flex-shrink: 0;
+    }
+    
+    .candidate-info {
+        flex: 1;
+    }
+    
+    .candidate-name {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: var(--primary-color);
+    }
+    
+    .candidate-party {
+        font-size: 14px;
+        color: var(--secondary-color);
+        margin-bottom: 12px;
+    }
+    
+    .vote-bar {
+        background: #e9ecef;
+        height: 24px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 8px;
+    }
+    
+    .vote-bar-fill {
+        height: 100%;
+        border-radius: 12px;
+        transition: width 0.5s ease;
+    }
+    
+    .vote-stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .vote-count {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+    
+    .vote-percent {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+    
+    .check-icon {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        color: var(--accent-color);
+        font-size: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .vote-option.selected .check-icon {
+        opacity: 1;
+    }
+    
+    .vote-button {
+        margin-top: 28px;
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 18px;
+        font-weight: 600;
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+    
+    .vote-button:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
+    }
+    
+    .vote-button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+    
+    #result {
+        text-align: center;
+        margin-top: 20px;
+        font-weight: 600;
+        padding: 16px 20px;
+        border-radius: var(--border-radius-sm);
+        background: #d1eddb;
+        color: var(--success-color);
+        display: none;
+        border: 1px solid #badbcc;
+        font-size: 16px;
+    }
+    
+    .stats {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        font-size: 14px;
+        color: var(--secondary-color);
+        margin-top: 28px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .stat-item i {
+        color: var(--secondary-color);
+    }
+
+    /* ============================================
+       Board_01.html과 동일한 댓글 시스템 스타일
+       ============================================ */
+    
+    /* 댓글 섹션 스타일 */
+    .comments-container {
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+    }
+
+    .comments-title {
+        font-size: 1.2em;
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .comments-title::before {
+        content: "💬";
+        font-size: 1.1em;
+    }
+
+    .comment-item {
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        position: relative;
+        animation: fadeIn 0.5s ease;
+        border: none;
+    }
+
+    .comment-item.reply {
+        margin-left: 20px;
+        background-color: #e8e8e8;
+        position: relative;
+    }
+
+    .comment-item.reply::before {
+        content: "↳";
+        position: absolute;
+        left: -15px;
+        top: 12px;
+        color: #666;
+        font-weight: bold;
+    }
+
+    .comment-meta {
+        font-size: 0.85em;
+        color: #666;
+        margin-bottom: 6px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .comment-text {
+        font-size: 0.95em;
+        color: #333;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .comment-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 6px;
+        justify-content: flex-end;
+    }
+
+    .comment-actions button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #888;
+        padding: 2px 6px;
+        border-radius: 3px;
+        transition: color 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .comment-actions button:hover {
+        color: #555;
+    }
+
+    .comment-actions span {
+        font-size: 16px;
+        color: #999;
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        left: auto;
+    }
+
+    .dropdown button {
+        background: none;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+        color: #999;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+
+    .dropdown button:hover {
+        color: #666;
+        background-color: rgba(0,0,0,0.05);
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background-color: #fff;
+        min-width: 100px;
+        box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+        border-radius: 4px;
+        z-index: 10;
+        overflow: hidden;
+        border: 1px solid #ddd;
+    }
+
+    .dropdown-content button {
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 8px 12px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 12px;
+        color: #333;
+    }
+
+    .dropdown-content button:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* ========================================
+       작성자 배지 시스템 (board_01.html과 동일)
+    ======================================== */
+    
+    /* 작성자 정보 컨테이너 */
+    .author-info {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    /* 작성자명 */
+    .author-name {
+        font-weight: 600;
+        color: #666;
+        font-size: 0.85em;
+    }
+
+    /* 기본 작성자 배지 스타일 */
+    .author-badge {
+        display: inline-block;
+        padding: 1px 4px;
+        font-size: 13px;
+        border-radius: 5px;
+        margin-left: 3px;
+        vertical-align: middle;
+        border: 1px solid;
+        white-space: nowrap;
+        line-height: 1.2;
+    }
+
+    /* 운영자 배지 */
+    .admin-badge {
+        background: #ff6b6b;
+        color: white;
+        border-color: #ff5252;
+    }
+
+    /* 정치인 배지 */
+    .politician-author-badge {
+        background: linear-gradient(135deg, #4a90e2, #005bea);
+        color: white;
+        border: 1px solid #005bea;
+        box-shadow: 0 1px 2px rgba(74, 144, 226, 0.3);
+    }
+
+    /* 일반 회원 배지 (선택적 표시) */
+    .user-badge {
+        background: #f8f9fa;
+        color: #6c757d;
+        border: 1px solid #dee2e6;
+        display: none; /* 기본적으로 숨김 */
+    }
+
+    .reply-box {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: #f8f8f8;
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .reply-text {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 13px;
+        resize: none;
+        height: 36px;
+        box-sizing: border-box;
+        outline: none;
+        line-height: 1.4;
+        overflow: hidden; /* 스크롤 제거 */
+        display: flex;
+        align-items: center;  /* 텍스트 수직 정렬 */
+    }
+
+    .reply-text::placeholder {
+        color: #999;
+        line-height: 1.4;
+    }
+
+    .reply-text:focus {
+        border-color: #007bff;
+    }
+
+    .reply-box button {
+        padding: 9px 16px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        height: 36px;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .reply-box button:hover {
+        background-color: #555;
+    }
+
+    .comment-form {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .comment-form textarea {
+        flex: 1;
+        height: 40px;
+        padding: 10px 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        line-height: 1.4;
+        resize: none;
+        overflow: hidden;
+        outline: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .comment-form textarea::placeholder {
+        color: #999;
+    }
+
+    .comment-form button {
+        height: 40px;
+        padding: 0 20px;
+        border: none;
+        border-radius: 6px;
+        background-color: #333;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .comment-form button:hover {
+        background-color: #555;
+    }
+
+    /* 페이드 인 애니메이션 */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 공유하기 버튼 */
+    #share-buttons {
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+    }
+    
+    #share-buttons button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: var(--border-radius-sm);
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+        font-family: inherit;
+        font-size: 15px;
+    }
+    
+    #share-buttons button:hover {
+        transform: translateY(-2px);
+    }
+
+    /* 다른 투표 리스트 */
+    .votecard-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 40px;
+    }
+    
+    .votecard-list h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+    }
+    
+    .votecard {
+        background: var(--bg-card);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+    
+    .votecard:hover {
+        background: #f8f9fa;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
+        border-color: var(--accent-color);
+    }
+    
+    .votecard-title {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 6px;
+        color: var(--primary-color);
+    }
+    
+    .votecard-footer {
+        display: flex;
+        gap: 16px;
+        font-size: 13px;
+        color: var(--secondary-color);
+    }
+    
+    .votecard-footer span i {
+        margin-right: 4px;
+        color: var(--secondary-color);
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+        #wrap {
+            padding: 20px 16px;
+            margin-top: 20px;
+        }
+        
+        .main-box {
+            padding: 24px;
+        }
+        
+        h1 {
+            font-size: 24px;
+        }
+        
+        .vote-option {
+            padding: 12px;
+            gap: 12px;
+        }
+        
+        .candidate-photo {
+            width: 60px;
+            height: 60px;
+            margin-right: 12px;
+        }
+        
+        .candidate-name {
+            font-size: 16px;
+        }
+        
+        .vote-button {
+            font-size: 16px;
+            padding: 14px 20px;
+        }
+        
+        .stats {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+
+        #share-buttons {
+            flex-direction: column;
+        }
+        
+        .votecard {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .comments-title {
+            font-size: 18px;
+        }
+
+        .comment-item.reply {
+            margin-left: 15px;
+        }
+
+        /* 작성자 배지 모바일 조정 */
+        .author-badge {
+            font-size: 8px;
+            padding: 1px 4px;
+        }
+
+        .reply-box {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .reply-text {
+            width: 100%;
+            height: 40px;
+            font-size: 14px;
+            padding: 10px 12px;
+        }
+
+        .reply-box button {
+            width: 100%;
+            height: 40px;
+            font-size: 14px;
+            padding: 10px 0;
+            margin-top: 8px;
+        }
+
+        .comment-form {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            height: 40px;
+            font-size: 14px;
+            padding: 10px 14px;
+        }
+
+        .comment-form button {
+            width: 100%;
+            margin-top: 8px;
+            height: 40px;
+            font-size: 14px;
+        }
+    }
+</style>
+</head>
+<body>
+<!-- 헤더 로딩 -->
+<div id="header-include"></div>
+<div id="wrap">
+<div class="container">  
+<div class="main-box">
+<h1>🏝️ 무인도에 한 사람과 남아야 한다면?</h1>
+<div class="subtitle">여러 명을 선택할 수 있습니다. 지금 투표해보세요!</div>
+<div id="deadline">투표 기간: 25.06.01. ~ 25.06.15.</div>
+<div class="vote-options" id="voteOptions"></div>
+<button class="vote-button" id="voteButton" onclick="submitVote()">선택한 후보들에게 투표하기</button>
+<div id="result"></div>
+<div class="stats">
+<div class="stat-item">
+<i class="fa-solid fa-eye"></i>
+<span><span id="viewCount">1,247</span>회 조회</span>
+</div>
+<div class="stat-item">
+<i class="fa-solid fa-user-check"></i>
+<span><span id="voteCount">0</span>명 투표</span>
+</div>
+<div class="stat-item">
+<i class="fa-solid fa-comment-dots"></i>
+<span><span id="commentCount">0</span>개 댓글</span>
+</div>
+</div>
+
+<!-- board_01.html과 동일한 실시간 댓글 시스템 -->
+<section aria-label="댓글 섹션" class="comments-container">
+<div class="comments-title">실시간 댓글 <span id="commentCount">0</span></div>
+<div id="commentList">
+<!-- 댓글 리스트가 여기에 렌더링됩니다 -->
+</div>
+<!-- 댓글 작성 폼 -->
+<div class="comment-form">
+<textarea aria-label="댓글 입력" id="commentInput" placeholder="댓글을 입력하세요..."></textarea>
+<button aria-label="댓글 등록" id="commentSubmit">등록</button>
+</div>
+</section>
+
+<!-- 공유하기 버튼 -->
+<div id="share-buttons">
+<button onclick="shareKakao()" style="background:#fee500; color:#000;">
+<i class="fa-solid fa-comment"></i> 카카오톡
+        </button>
+<button onclick="shareFacebook()" style="background:#3b5998; color:#fff;">
+<i class="fa-brands fa-facebook"></i> Facebook
+        </button>
+<button onclick="shareTwitter()" style="background:#1da1f2; color:#fff;">
+<i class="fa-brands fa-twitter"></i> Twitter
+        </button>
+<button onclick="copyLink()" style="background:#e0e0e0; color:#333;">
+<i class="fa-solid fa-link"></i> 링크 복사
+        </button>
+</div>
+</div>
+<!-- 다른 투표 리스트 -->
+<div class="votecard-list">
+<h3>📊 다른 투표 리스트</h3>
+<div class="votecard" onclick="alert('해당 투표 상세 페이지로 이동합니다')">
+<div style="display: flex; flex-direction: column; align-items: flex-start;">
+<div class="votecard-title">고3 수험생인데 과외 선생님 누구?</div>
+<div style="font-size:13px; color:#888; margin-top:4px; text-align:left;">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+</div>
+<div class="votecard-footer">
+<span><i class="fa-solid fa-eye"></i> 512회</span>
+<span><i class="fa-solid fa-user-check"></i> 132명</span>
+<span><i class="fa-solid fa-comment-dots"></i> 8개</span>
+</div>
+</div>
+<div class="votecard" onclick="alert('해당 투표 상세 페이지로 이동합니다')">
+<div style="display: flex; flex-direction: column; align-items: flex-start;">
+<div class="votecard-title">여야 대표 중 누가 더 잘했나?</div>
+<div style="font-size:13px; color:#888; margin-top:4px; text-align:left;">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+</div>
+<div class="votecard-footer">
+<span><i class="fa-solid fa-eye"></i> 512회</span>
+<span><i class="fa-solid fa-user-check"></i> 89명</span>
+<span><i class="fa-solid fa-comment-dots"></i> 5개</span>
+</div>
+</div>
+<div class="votecard" onclick="alert('해당 투표 상세 페이지로 이동합니다')">
+<div style="display: flex; flex-direction: column; align-items: flex-start;">
+<div class="votecard-title">가장 신뢰하는 대선 후보는?</div>
+<div style="font-size:13px; color:#888; margin-top:4px; text-align:left;">이재명 / 김문수 / 이준석 / 한동훈 / 한덕수 / 조국 / 이낙연</div>
+</div>
+<div class="votecard-footer">
+<span><i class="fa-solid fa-eye"></i> 512회</span>
+<span><i class="fa-solid fa-user-check"></i> 210명</span>
+<span><i class="fa-solid fa-comment-dots"></i> 14개</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 푸터 로딩 -->
+<div id="footer-include"></div>
+
+<script>
+    const candidates = [
+      {
+        name: "이재명", 
+        party: "더불어민주당", 
+        color: "#007acc", 
+        image: "https://theminjoo.kr/people/connect/people/185/profile.jpg"
+      },
+      {
+        name: "이준석", 
+        party: "국민의힘", 
+        color: "#e74c3c", 
+        image: "https://www.assembly.go.kr/static/portal/img/openassm/new/f150e375dc4a4a05b0c99ae1a313b432.jpg"
+      },
+      {
+        name: "심상정", 
+        party: "정의당", 
+        color: "#f1c40f", 
+        image: "https://theminjoo.kr/people/connect/people/20/profile.jpg"
+      },
+      {
+        name: "박주민", 
+        party: "더불어민주당", 
+        color: "#f39c12", 
+        image: "https://theminjoo.kr/people/connect/people/1/profile.jpg"
+      },
+      {
+        name: "정청래", 
+        party: "더불어민주당", 
+        color: "#00b3b3", 
+        image: "https://www.assembly.go.kr/static/portal/img/openassm/new/9f6decd03010411db7bf51e526fbf348.jpg"
+      }
+    ];
+
+    let voteResults = {};
+    let totalVotes = 0;
+    let hasVoted = false;
+
+    // 초기 투표 결과 설정 (데모용)
+    candidates.forEach(c => {
+      voteResults[c.name] = Math.floor(Math.random() * 50);
+      totalVotes += voteResults[c.name];
+    });
+
+    function renderVoteOptions() {
+      const container = document.getElementById("voteOptions");
+      container.innerHTML = '';
+      
+      candidates.forEach((candidate, index) => {
+        const votes = voteResults[candidate.name] || 0;
+        const percentage = totalVotes > 0 ? ((votes / totalVotes) * 100).toFixed(1) : 0;
+        
+        const option = document.createElement('label');
+        option.className = 'vote-option';
+        option.innerHTML = `
+          <input type="checkbox" name="candidate" value="${candidate.name}">
+          <img src="${candidate.image}" alt="${candidate.name}" class="candidate-photo">
+          <div class="candidate-info">
+            <div class="candidate-name">${candidate.name}</div>
+            <div class="candidate-party">${candidate.party}</div>
+            <div class="vote-bar">
+              <div class="vote-bar-fill" style="width: ${percentage}%; background: ${candidate.color};"></div>
+            </div>
+            <div class="vote-stats">
+              <span class="vote-count">${votes}표</span>
+              <span class="vote-percent">${percentage}%</span>
+            </div>
+          </div>
+          <div class="check-icon">
+            <i class="fa-solid fa-check-circle"></i>
+          </div>
+        `;
+        
+        // 클릭 이벤트 추가
+        option.addEventListener('click', function(e) {
+          // 이미 투표했다면 클릭 무시
+          if (hasVoted) return;
+          
+          const checkbox = this.querySelector('input');
+          
+          // 체크박스 토글
+          checkbox.checked = !checkbox.checked;
+          
+          // selected 클래스 토글
+          if (checkbox.checked) {
+            this.classList.add('selected');
+          } else {
+            this.classList.remove('selected');
+          }
+          
+          // 선택된 후보 수에 따라 버튼 텍스트 변경
+          updateVoteButtonText();
+        });
+        
+        container.appendChild(option);
+      });
+    }
+
+    function updateVoteButtonText() {
+      const selectedCount = document.querySelectorAll('input[name="candidate"]:checked').length;
+      const button = document.getElementById('voteButton');
+      
+      if (selectedCount === 0) {
+        button.textContent = '후보를 선택해주세요';
+        button.style.background = '#ccc';
+      } else if (selectedCount === 1) {
+        button.textContent = '선택한 후보에게 투표하기';
+        button.style.background = 'var(--primary-color)';
+      } else {
+        button.textContent = `${selectedCount}명의 후보에게 투표하기`;
+        button.style.background = 'var(--primary-color)';
+      }
+    }
+
+    function submitVote() {
+      if (hasVoted) {
+        showResult("이미 투표하셨습니다!");
+        return;
+      }
+
+      const selectedCandidates = document.querySelectorAll('input[name="candidate"]:checked');
+      if (selectedCandidates.length === 0) {
+        showResult("최소 한 명의 후보를 선택해주세요!", "error");
+        return;
+      }
+
+      const selectedNames = Array.from(selectedCandidates).map(input => input.value);
+      
+      // 선택된 모든 후보에게 투표
+      selectedNames.forEach(name => {
+        voteResults[name]++;
+        totalVotes++;
+      });
+      
+      hasVoted = true;
+
+      // UI 업데이트
+      renderVoteOptions();
+      updateVoteCount();
+      
+      if (selectedNames.length === 1) {
+        showResult(`"${selectedNames[0]}" 후보에게 투표해주셔서 감사합니다! 🎉`);
+      } else {
+        showResult(`${selectedNames.length}명의 후보에게 투표해주셔서 감사합니다! 🎉\n(${selectedNames.join(', ')})`);
+      }
+      
+      // 투표 버튼 비활성화
+      const voteButton = document.getElementById('voteButton');
+      voteButton.disabled = true;
+      voteButton.textContent = '투표 완료';
+      
+      // 모든 옵션 비활성화
+      document.querySelectorAll('.vote-option').forEach(option => {
+        option.style.opacity = '0.6';
+        option.style.cursor = 'not-allowed';
+        option.style.pointerEvents = 'none';
+      });
+    }
+
+    function showResult(message, type = "success") {
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = message;
+      resultDiv.style.display = 'block';
+      
+      if (type === "error") {
+        resultDiv.style.background = '#ffebee';
+        resultDiv.style.color = '#c62828';
+        resultDiv.style.borderColor = '#f5c6cb';
+      } else {
+        resultDiv.style.background = '#d1eddb';
+        resultDiv.style.color = 'var(--success-color)';
+        resultDiv.style.borderColor = '#badbcc';
+      }
+      
+      // 3초 후 메시지 숨기기 (에러가 아닌 경우)
+      if (type !== "error") {
+        setTimeout(() => {
+          resultDiv.style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    function updateVoteCount() {
+      // 실제 투표한 사람 수 계산 (중복 투표 고려)
+      const actualVoters = hasVoted ? Math.ceil(totalVotes / 2.5) : Math.floor(totalVotes / 2.5); // 평균적으로 2.5명 정도 선택한다고 가정
+      document.getElementById('voteCount').textContent = actualVoters;
+    }
+
+    // ============================================
+    // board_01.html과 동일한 댓글 시스템 JavaScript
+    // ============================================
+
+    /**
+     * 작성자 배지 생성 함수
+     * @param {string} userType - 'admin', 'politician', 'user'
+     * @returns {string} HTML 문자열
+     */
+    function createAuthorBadge(userType) {
+      switch(userType) {
+        case 'admin':
+          return '<span class="author-badge admin-badge">운영자</span>';
+        case 'politician':
+          return '<span class="author-badge politician-author-badge">정치인</span>';
+        default:
+          return '';
+      }
+    }
+
+    /**
+     * 작성자 정보 HTML 생성 함수
+     * @param {string} authorName - 작성자명
+     * @param {string} userType - 사용자 타입
+     * @returns {string} HTML 문자열
+     */
+    function createAuthorInfo(authorName, userType) {
+      const badge = createAuthorBadge(userType);
+      return `
+        <div class="author-info">
+          <span class="author-name">${authorName}</span>
+          ${badge}
+        </div>
+      `;
+    }
+
+    let comments = [
+      {
+        author: '테스트 사용자',
+        userType: 'user',
+        date: '25.05.26.',
+        text: '이것은 테스트 댓글입니다.'
+      },
+      {
+        author: '운영진',
+        userType: 'admin',
+        date: '25.07.04.',
+        text: '두 번째 테스트 댓글입니다. 잘 작동하는지 확인해보세요!'
+      },
+      {
+        author: '정청래',
+        userType: 'politician',
+        date: '25.07.04.',
+        text: '정치인이 작성한 댓글입니다.'
+      }
+    ];
+
+    function renderComments() {
+      const commentList = document.getElementById('commentList');
+      commentList.innerHTML = '';
+      comments.forEach((comment, index) => {
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.innerHTML = `
+          <div class="comment-meta">
+            ${createAuthorInfo(comment.author, comment.userType)}
+            <span>⋅ ${comment.date}</span>
+          </div>
+          <div class="comment-text">${comment.text}</div>
+          <div class="dropdown">
+            <button>⋮</button>
+            <div class="dropdown-content">
+              <button onclick="reportComment()">🚩 신고하기</button>
+            </div>
+          </div>
+          <div class="comment-actions">
+            <button onclick="likeComment(this)">
+              <i class="fa-regular fa-thumbs-up"></i> <span>0</span>
+            </button>
+            <button onclick="dislikeComment(this)">
+              <i class="fa-regular fa-thumbs-down"></i> <span>0</span>
+            </button>
+            <button onclick="toggleReply(this)">
+              <i class="fa-regular fa-comment-dots"></i> 답글
+            </button>
+          </div>
+          <div class="reply-box" style="display: none;">
+            <textarea class="reply-text" placeholder="답글을 입력하세요"></textarea>
+            <button onclick="submitReply(this)">답글</button>
+          </div>
+          <div class="replies"></div>
+        `;
+
+        commentList.appendChild(item);
+      });
+      document.getElementById('commentCount').textContent = comments.length;
+    }
+
+    function addComment() {
+      const input = document.getElementById('commentInput');
+      const text = input.value.trim();
+      if (!text) return alert('댓글을 입력하세요.');
+
+      const date = new Date();
+      const formattedDate = `${String(date.getFullYear()).slice(2)}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}.`;
+
+      // 랜덤으로 사용자 타입 결정 (테스트용)
+      const userTypes = ['user', 'admin', 'politician'];
+      const randomUserType = userTypes[Math.floor(Math.random() * userTypes.length)];
+      
+      let authorName = '익명';
+      if (randomUserType === 'admin') authorName = '관리자';
+      else if (randomUserType === 'politician') authorName = '정치인';
+
+      comments.push({
+        author: authorName,
+        userType: randomUserType,
+        date: formattedDate,
+        text
+      });
+
+      input.value = '';
+      renderComments();
+    }
+
+    function likeComment(btn) {
+      const span = btn.querySelector('span');
+      span.textContent = parseInt(span.textContent) + 1;
+    }
+
+    function dislikeComment(btn) {
+      const span = btn.querySelector('span');
+      span.textContent = parseInt(span.textContent) + 1;
+    }
+
+    function reportComment() {
+      alert("신고가 접수되었습니다.");
+    }
+
+    function toggleReply(btn) {
+      const box = btn.closest('.comment-item').querySelector('.reply-box');
+      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function submitReply(btn) {
+      const replyBox = btn.closest('.reply-box');
+      const textarea = replyBox.querySelector('.reply-text');
+      const text = textarea.value.trim();
+      if (!text) return alert('답글을 입력하세요.');
+
+      // 랜덤으로 사용자 타입 결정 (테스트용)
+      const userTypes = ['user', 'admin', 'politician'];
+      const randomUserType = userTypes[Math.floor(Math.random() * userTypes.length)];
+      
+      let authorName = '익명';
+      if (randomUserType === 'admin') authorName = '관리자';
+      else if (randomUserType === 'politician') authorName = '정치인';
+
+      const replyDiv = document.createElement('div');
+      replyDiv.className = 'comment-item reply';
+      replyDiv.innerHTML = `
+        <div class="comment-meta">
+          ${createAuthorInfo(authorName, randomUserType)}
+          <span>⋅ ${
+            (() => {
+              const date = new Date();
+              const year = String(date.getFullYear()).slice(2); // '25'
+              const month = String(date.getMonth() + 1).padStart(2, '0'); // '06'
+              const day = String(date.getDate()).padStart(2, '0'); // '06'
+              return `${year}.${month}.${day}.`;
+            })()
+          }</span>
+        </div>
+
+        <div class="comment-text">${text}</div>
+        <div class="dropdown">
+          <button>⋮</button>
+          <div class="dropdown-content">
+            <button onclick="reportComment()">🚩신고하기</button>
+          </div>
+        </div>
+        <div class="comment-actions">
+          <button onclick="likeComment(this)">
+            <i class="fa-regular fa-thumbs-up"></i> <span>0</span>
+          </button>
+          <button onclick="dislikeComment(this)">
+            <i class="fa-regular fa-thumbs-down"></i> <span>0</span>
+          </button>
+          <button onclick="toggleReply(this)">
+            <i class="fa-regular fa-comment-dots"></i> 답글
+          </button>
+        </div>
+        <div class="reply-box" style="display: none;">
+          <textarea class="reply-text" placeholder="답글을 입력하세요"></textarea>
+          <button onclick="submitReply(this)">답글</button>
+        </div>
+        <div class="replies"></div>
+      `;
+
+      const commentItem = btn.closest('.comment-item');
+      const repliesContainer = commentItem.querySelector('.replies');
+      repliesContainer.appendChild(replyDiv);
+
+      textarea.value = '';
+      replyBox.style.display = 'none';
+    }
+
+    // 댓글 이벤트 리스너
+    document.getElementById('commentSubmit').addEventListener('click', addComment);
+    document.getElementById('commentInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        addComment();
+      }
+    });
+
+    // 드롭다운 메뉴 이벤트 처리
+    document.addEventListener("click", function (event) {
+      document.querySelectorAll(".dropdown-content").forEach(menu => {
+        menu.style.display = "none";
+      });
+
+      if (event.target.closest(".dropdown")) {
+        const dropdown = event.target.closest(".dropdown");
+        const content = dropdown.querySelector(".dropdown-content");
+        if (content) {
+          content.style.display = "block";
+          event.stopPropagation();
+        }
+      }
+    });
+
+    // 공유하기 함수들
+    function shareKakao() {
+      alert('카카오톡 공유 기능입니다.');
+    }
+
+    function shareFacebook() {
+      const url = window.location.href;
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+      window.open(facebookUrl, '_blank', 'width=600,height=400');
+    }
+
+    function shareTwitter() {
+      const text = '무인도에 한 사람과 남아야 한다면? 투표해보세요!';
+      const url = window.location.href;
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+      window.open(twitterUrl, '_blank', 'width=600,height=400');
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('링크가 복사되었습니다!');
+      }).catch(() => {
+        alert('링크 복사에 실패했습니다.');
+      });
+    }
+
+    // 초기화
+    document.addEventListener("DOMContentLoaded", function() {
+      renderVoteOptions();
+      updateVoteCount();
+      updateVoteButtonText(); // 초기 버튼 상태 설정
+      renderComments(); // 댓글 렌더링
+    });
+  </script>
+
+<!-- 헤더/푸터 로딩 스크립트 -->
+<script>
+    function includeHTML(id, file) {
+      fetch(file)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+      })
+      .catch(error => {
+        console.log('파일 로딩 실패:', error);
+        // 헤더/푸터 파일이 없어도 페이지가 정상 작동하도록
+      });
+    }
+
+    // 헤더와 푸터 로딩
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+
+  <!-- 🆕 새로운 로그인 시스템 - 페이지 관리자 -->
+<script src="page-manager.js"></script>
+</body>
+</html>

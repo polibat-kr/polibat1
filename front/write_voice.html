@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="polibat Website Template by freehtml5.co" />
+  <meta name="keywords" content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+  <meta name="author" content="freehtml5.co" />
+
+  <!-- Facebook and Twitter integration -->
+  <meta property="og:title" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content=""/>
+  <meta property="og:description" content=""/>
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:url" content="" />
+  <meta name="twitter:card" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.css">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href="css/icomoon.css">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <!-- Owl Carousel  -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <!-- Flexslider  -->
+  <link rel="stylesheet" href="css/flexslider.css">
+
+  <!-- Pricing -->
+  <link rel="stylesheet" href="css/pricing.css">
+
+  <!-- Theme style  -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Modernizr JS -->
+  <script src="js/modernizr-2.6.2.min.js"></script>
+
+  <!-- Toast UI Editor 스타일 및 스크립트 추가 -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script src="https://uicdn.toast.com/editor/latest/i18n/ko.js"></script>
+
+  <!-- FOR IE9 below -->
+  <!--[if lt IE 9]>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <title>정치인게시판 - 글쓰기</title>
+  <style>
+    .board-container {
+      max-width: 1200px;
+      margin: auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
+       margin: 40px auto 30px;
+    }
+    
+    .login-required-message {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+      background: #f8f9fa;
+      border-radius: 12px;
+      margin: 40px auto;
+    }
+    
+    .login-required-message h3 {
+      color: #333;
+      margin-bottom: 16px;
+    }
+    
+    .login-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #000;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 16px;
+      transition: background-color 0.3s;
+    }
+    
+    .login-button:hover {
+      background-color: #333;
+      text-decoration: none;
+      color: white;
+    }
+    
+    h2 {
+      margin-top: 0;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+    
+    p.description {
+      color: #666;
+      font-size: 0.95em;
+      margin-bottom: 24px;
+    }
+    
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 180px;
+    }
+    
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    
+    .write-button {
+      padding: 10px 20px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .write-button:hover {
+      background-color: #333;
+    }
+    
+    .cancel-button {
+      background-color: #6c757d;
+      color: white;
+    }
+    
+    .cancel-button:hover {
+      background-color: #5a6268;
+    }
+
+    /* 정치인 선택 섹션 */
+    .politician-section {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .politician-section label {
+      color: #333;
+      font-size: 14px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .politician-search-wrapper {
+      position: relative;
+      margin-bottom: 7px;
+    }
+
+    .politician-search {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+      color: #333;
+      box-sizing: border-box;
+    }
+
+    .politician-search:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+
+    .politician-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 10;
+      margin-top: 4px;
+    }
+
+    .politician-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s;
+    }
+
+    .politician-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .politician-item:last-child {
+      border-bottom: none;
+    }
+
+    /* ==================== 정치인 명함 카드 폼 스타일 ==================== */
+    
+    .politician-card-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border: 1px solid #dee2e6;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .politician-card-section::before {
+      content: "🏛️";
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 24px;
+      opacity: 0.1;
+    }
+
+    .politician-card-section h3 {
+      color: #1a1a1a;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-description {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .politician-card-form {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid #e9ecef;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #495057;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 10px 12px;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #4a90e2;
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    }
+
+    .form-group small {
+      color: #6c757d;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    /* 모바일 반응형 */
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .politician-card-section {
+        padding: 20px;
+        margin: 16px 0;
+      }
+
+      .politician-card-form {
+        padding: 16px;
+      }
+    }
+
+    .politician-photo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+      border: 2px solid #e9ecef;
+      flex-shrink: 0;
+    }
+
+    .politician-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .politician-name {
+      font-weight: bold;
+      color: #333;
+      font-size: 13px;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .politician-party {
+      color: #666;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .politician-position {
+      color: #888;
+      font-size: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .selected-politician {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .selected-politician-photo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 16px;
+      border: 2px solid #e9ecef;
+    }
+
+    .selected-politician-info {
+      flex: 1;
+    }
+
+    .selected-politician-name {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    .selected-politician-details {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .change-politician-btn {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .change-politician-btn:hover {
+      background: #5a6268;
+    }
+
+    .politician-notice {
+      font-size: 12px;
+    }
+    
+    /* 정치인 회원용 비활성화 스타일 */
+    .politician-disabled {
+      opacity: 0.6;
+      background: #f8f9fa !important;
+      border: 1px solid #dee2e6 !important;
+      cursor: not-allowed;
+    }
+    
+    .disabled-indicator {
+      background: #6c757d;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-left: 12px;
+    }
+    
+    .politician-disabled-notice {
+      color: #6c757d;
+      background: #f8f9fa;
+      padding: 8px 0px;
+      border-radius: 6px;
+    }
+
+    .no-politician-option {
+      padding: 12px 16px;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .no-politician-option:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .district-section {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    
+    .district-visibility-section {
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+    
+    .visibility-options {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      margin-top: 6px;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: white;
+      margin: 0 !important;
+      font-weight: normal !important;
+      flex: 1;
+      justify-content: center;
+    }
+    
+    .radio-option:hover {
+      border-color: #007bff;
+      background: #f8f9ff;
+    }
+    
+    .radio-option input[type="radio"] {
+      display: none;
+    }
+    
+    .radio-custom {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #dee2e6;
+      border-radius: 50%;
+      background: white;
+      position: relative;
+      flex-shrink: 0;
+    }
+    
+    .radio-option input[type="radio"]:checked + .radio-custom {
+      border-color: #007bff;
+      background: #007bff;
+    }
+    
+    .radio-option input[type="radio"]:checked + .radio-custom::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .radio-option input[type="radio"]:checked ~ .option-text strong {
+      color: #007bff;
+    }
+    
+    .option-text strong {
+      font-size: 13px;
+      color: #333;
+      transition: color 0.2s ease;
+    }
+    
+    .visibility-help {
+      display: block;
+      margin-top: 8px;
+      color: #666;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    
+    .autocomplete-wrapper {
+      position: relative;
+    }
+
+    .autocomplete-items {
+      position: absolute;
+      background: white;
+      max-height: 200px;
+      overflow-y: auto;
+      border-radius: 6px;
+      z-index: 10;
+      width: 100%;
+      margin-top: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .autocomplete-item {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+
+    .autocomplete-item:hover {
+      background-color: #f1f1f1;
+    }
+    
+    .autocomplete-item:last-child {
+      border-bottom: none;
+    }
+    
+    @media (max-width: 768px) {
+      .board-container {
+        margin: 20px 16px 15px 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .write-button {
+        width: 100%;
+      }
+      
+      .selected-politician {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .selected-politician-photo {
+        margin-right: 0;
+        margin-bottom: 12px;
+      }
+    }
+    
+    .toastui-editor-defaultUI {
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    
+    /* 하단 사진 첨부 숨김 */
+    #drop-area,
+    #imagePreview,
+    label[for="imageInput"] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 로딩 -->
+  <div id="header-include"></div>
+  
+  <div id="wrap"> 
+    <div class="board-container">
+      <!-- 글쓰기 폼 -->
+      <div id="writeFormContainer">
+          <h2>정치인게시판 글쓰기</h2>
+          <p class="description">소통하고 싶은 내용을 자유롭게 작성해보세요. 게시글은 등록 후 정치인게시판에 표시됩니다.</p>
+          
+          <form id="writeForm">
+            <!-- 소통대상 정치인 선택 -->
+            <div class="politician-section">
+              <label for="politicianSearch">소통대상 정치인 선택 <span style="font-weight: normal; color: #999;">(선택사항)</span></label>
+              
+              <!-- 일반회원/보좌진회원용 선택 인터페이스 -->
+              <div id="normalUserInterface">
+                <div id="politicianSearchContainer">
+                  <div class="politician-search-wrapper">
+                    <input type="text" id="politicianSearch" class="politician-search" 
+                           placeholder="정치인 이름을 입력하거나 검색하세요 (클릭하면 목록이 나타납니다)" autocomplete="off">
+                    <div id="politicianDropdown" class="politician-dropdown" style="display: none;"></div>
+                  </div>
+                </div>
+                
+                <div id="selectedPoliticianContainer" style="display: none;">
+                  <div class="selected-politician">
+                    <img id="selectedPoliticianPhoto" class="selected-politician-photo" src="" alt="">
+                    <div class="selected-politician-info">
+                      <div id="selectedPoliticianName" class="selected-politician-name"></div>
+                      <div id="selectedPoliticianDetails" class="selectedPolitician-details"></div>
+                    </div>
+                    <button type="button" class="change-politician-btn" onclick="changePolitician()">변경</button>
+                  </div>
+                </div>
+                
+                <div class="politician-notice">
+                  ※ 소통대상 정치인 사진이 게시글에 함께 표시됩니다.
+                </div>
+              </div>
+              
+              <!-- 정치인회원용 자동선택 인터페이스 -->
+              <div id="politicianUserInterface" style="display: none;">
+                <div class="selected-politician politician-disabled">
+                  <img id="autoSelectedPoliticianPhoto" class="selected-politician-photo" src="" alt="">
+                  <div class="selected-politician-info">
+                    <div id="autoSelectedPoliticianName" class="selected-politician-name"></div>
+                    <div id="autoSelectedPoliticianDetails" class="selected-politician-details"></div>
+                  </div>
+                  <div class="disabled-indicator">자동 설정</div>
+                </div>
+                
+                <div class="politician-notice politician-disabled-notice">
+                  ※ 정치인 계정은 소통대상을 선택할 수 없습니다. (본인으로 자동 설정됩니다)
+                </div>
+              </div>
+              
+              <input type="hidden" id="selectedPoliticianId" name="politicianId">
+            </div>
+
+            <!-- 지역구 선택 및 공개/비공개 설정 -->
+            <div class="district-section d0">
+              <label for="district">지역구 선택</label>
+              <div class="autocomplete-wrapper" style="position: relative; margin-bottom: 12px;">
+                <input type="text" id="district" placeholder="지역구를 검색하세요" autocomplete="off" required>
+                <div id="autocomplete-list" class="autocomplete-items"></div>
+              </div>
+              <div class="district-visibility-section">
+                <label style="margin: 8px 0 6px; font-weight: bold;">지역구 공개 설정</label>
+                <div class="visibility-options">
+                  <label class="radio-option">
+                    <input type="radio" name="districtVisibility" value="public" checked>
+                    <span class="radio-custom"></span>
+                    <span class="option-text">
+                      <strong>공개</strong>
+                    </span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="districtVisibility" value="private">
+                    <span class="radio-custom"></span>
+                    <span class="option-text">
+                      <strong>비공개</strong>
+                    </span>
+                  </label>
+                </div>
+                <small class="visibility-help">공개: 다른 사용자들이 내 지역구를 볼 수 있습니다 | 비공개: 지역구 정보가 표시되지 않습니다</small>
+              </div>
+            </div>
+            
+            <label for="title">제목</label>
+            <input type="text" id="title" placeholder="제목을 입력하세요" required>
+
+            <label for="editor">내용</label>
+            <div id="editor"></div>
+            <input type="hidden" id="hiddenContent" name="content">
+
+            <!-- 숨겨진 이미지 업로드 영역 -->
+            <div id="drop-area" class="drop-area" style="display:none;">
+              <p>이곳에 이미지를 드래그하거나 클릭하여 업로드하세요 (최대 5장)</p>
+              <input type="file" id="imageInput" multiple accept="image/*" hidden>
+            </div>
+            <div id="imagePreview" class="image-preview"></div>
+
+            <div class="form-actions">
+              <button type="submit" class="write-button">등록하기</button>
+              <button type="button" class="write-button cancel-button" onclick="history.back()">취소</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+  
+  <!-- 푸터 로딩 -->
+  <div id="footer-include"></div>
+
+  <script>
+    // 지역구 목록 데이터
+    const districts = [
+      "서울특별시 종로구", "서울특별시 중구", "서울특별시 용산구", "서울특별시 성동구", "서울특별시 광진구",
+      "서울특별시 동대문구", "서울특별시 중랑구", "서울특별시 성북구", "서울특별시 강북구", "서울특별시 도봉구",
+      "서울특별시 노원구", "서울특별시 은평구", "서울특별시 서대문구", "서울특별시 마포구", "서울특별시 양천구",
+      "서울특별시 강서구", "서울특별시 구로구", "서울특별시 금천구", "서울특별시 영등포구", "서울특별시 동작구",
+      "서울특별시 관악구", "서울특별시 서초구", "서울특별시 강남구", "서울특별시 송파구", "서울특별시 강동구",
+      "부산광역시 중구", "부산광역시 서구", "부산광역시 동구", "부산광역시 영도구", "부산광역시 부산진구",
+      "부산광역시 동래구", "부산광역시 남구", "부산광역시 북구", "부산광역시 해운대구", "부산광역시 사하구",
+      "부산광역시 금정구", "부산광역시 강서구", "부산광역시 연제구", "부산광역시 수영구", "부산광역시 사상구", "부산광역시 기장군"
+    ];
+
+    // 정치인 데이터 (가나다순으로 정렬된 실제 데이터)
+    const politicians = [
+      {
+        id: 1,
+        name: "강기정",
+        party: "더불어민주당",
+        position: "광주광역시장",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=강기정"
+      },
+      {
+        id: 2,
+        name: "김건희",
+        party: "무소속",
+        position: "영부인",
+        photo: "https://via.placeholder.com/100x100/9B59B6/FFFFFF?text=김건희"
+      },
+      {
+        id: 3,
+        name: "김기현",
+        party: "국민의힘",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=김기현"
+      },
+      {
+        id: 4,
+        name: "김동연",
+        party: "더불어민주당",
+        position: "경기도지사",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=김동연"
+      },
+      {
+        id: 5,
+        name: "김민석",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=김민석"
+      },
+      {
+        id: 6,
+        name: "김영환",
+        party: "국민의힘",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=김영환"
+      },
+      {
+        id: 7,
+        name: "김태년",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=김태년"
+      },
+      {
+        id: 8,
+        name: "박민식",
+        party: "국민의힘",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=박민식"
+      },
+      {
+        id: 9,
+        name: "박성준",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=박성준"
+      },
+      {
+        id: 10,
+        name: "박지원",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=박지원"
+      },
+      {
+        id: 11,
+        name: "서범수",
+        party: "국민의힘",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=서범수"
+      },
+      {
+        id: 12,
+        name: "심상정",
+        party: "정의당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/1ABC9C/FFFFFF?text=심상정"
+      },
+      {
+        id: 13,
+        name: "안철수",
+        party: "국민의당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/F39C12/FFFFFF?text=안철수"
+      },
+      {
+        id: 14,
+        name: "오세훈",
+        party: "국민의힘",
+        position: "서울특별시장",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=오세훈"
+      },
+      {
+        id: 15,
+        name: "윤석열",
+        party: "국민의힘",
+        position: "대통령",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=윤석열"
+      },
+      {
+        id: 16,
+        name: "이낙연",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=이낙연"
+      },
+      {
+        id: 17,
+        name: "이재명",
+        party: "더불어민주당",
+        position: "대표",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=이재명"
+      },
+      {
+        id: 18,
+        name: "이준석",
+        party: "무소속",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/95A5A6/FFFFFF?text=이준석"
+      },
+      {
+        id: 19,
+        name: "이철규",
+        party: "국민의힘",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=이철규"
+      },
+      {
+        id: 20,
+        name: "임종성",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=임종성"
+      },
+      {
+        id: 21,
+        name: "장경태",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=장경태"
+      },
+      {
+        id: 22,
+        name: "정청래",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=정청래"
+      },
+      {
+        id: 23,
+        name: "조국",
+        party: "조국혁신당",
+        position: "대표",
+        photo: "https://via.placeholder.com/100x100/8E44AD/FFFFFF?text=조국"
+      },
+      {
+        id: 24,
+        name: "진영",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=진영"
+      },
+      {
+        id: 25,
+        name: "최민희",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=최민희"
+      },
+      {
+        id: 26,
+        name: "추경호",
+        party: "국민의힘",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=추경호"
+      },
+      {
+        id: 27,
+        name: "한동훈",
+        party: "국민의힘",
+        position: "대표",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=한동훈"
+      },
+      {
+        id: 28,
+        name: "허은아",
+        party: "국민의힘",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=허은아"
+      },
+      {
+        id: 29,
+        name: "홍준표",
+        party: "국민의힘",
+        position: "대구광역시장",
+        photo: "https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=홍준표"
+      },
+      {
+        id: 30,
+        name: "황희",
+        party: "더불어민주당",
+        position: "국회의원",
+        photo: "https://via.placeholder.com/100x100/E74C3C/FFFFFF?text=황희"
+      }
+    ];
+
+    let selectedPolitician = null;
+
+    // 초기화 함수
+    function initializePage() {
+      console.log('✅ 정치인 소통 글쓰기 페이지 초기화');
+      
+      // 지역구 입력 필드에 기본값 설정
+      const defaultDistrict = '서울특별시 강남구';
+      document.getElementById('district').value = defaultDistrict;
+      
+      initializeEditor();
+      initializeDistrictAutocomplete();
+      initializePoliticianSearch();
+      
+      // 로그인 타입에 따른 정치인 선택 인터페이스 설정
+      setupPoliticianInterface();
+      
+      // 명함 카드 폼 초기화
+      togglePoliticianCardForm();
+    }
+    
+    // 로그인 타입에 따른 정치인 선택 인터페이스 설정
+    function setupPoliticianInterface() {
+      // 로그인 정보 가져오기 (실제로는 서버에서 가져와야 함)
+      const userInfo = getUserInfo();
+      
+      if (userInfo && userInfo.userType === 'politician') {
+        // 정치인 회원인 경우
+        showPoliticianUserInterface(userInfo);
+      } else {
+        // 일반회원 또는 보좌진회원인 경우
+        showNormalUserInterface();
+      }
+    }
+    
+    // 사용자 정보 가져오기
+    function getUserInfo() {
+      // localStorage나 sessionStorage에서 사용자 정보 가져오기
+      const userInfo = localStorage.getItem('userInfo') || sessionStorage.getItem('userInfo');
+      if (userInfo) {
+        try {
+          return JSON.parse(userInfo);
+        } catch (e) {
+          console.error('사용자 정보 파싱 오류:', e);
+        }
+      }
+      
+      // 로그인된 사용자 이메일 확인
+      const userEmail = localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail');
+      
+      if (userEmail === 'politician@example.com') {
+        // 정치인 회원 정보
+        return {
+          userType: 'politician',
+          email: 'politician@example.com',
+          politicianId: 15, // 윤석열 대통령
+          name: '윤석열',
+          party: '국민의힘',
+          position: '대통령',
+          photo: 'https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=윤석열'
+        };
+      } else if (userEmail === 'test@example.com') {
+        // 일반회원 정보
+        return {
+          userType: 'normal',
+          email: 'test@example.com'
+        };
+      }
+      
+      // 로그인되지 않은 경우 또는 다른 이메일
+      return null;
+    }
+    
+    // 정치인 회원용 인터페이스 표시
+    function showPoliticianUserInterface(userInfo) {
+      document.getElementById('normalUserInterface').style.display = 'none';
+      document.getElementById('politicianUserInterface').style.display = 'block';
+      
+      // 정치인 정보 설정
+      document.getElementById('autoSelectedPoliticianPhoto').src = userInfo.photo;
+      document.getElementById('autoSelectedPoliticianPhoto').alt = userInfo.name;
+      document.getElementById('autoSelectedPoliticianName').textContent = userInfo.name;
+      document.getElementById('autoSelectedPoliticianDetails').textContent = `${userInfo.party} · ${userInfo.position}`;
+      document.getElementById('selectedPoliticianId').value = userInfo.politicianId;
+      
+      // 자동으로 정치인 선택
+      selectedPolitician = {
+        id: userInfo.politicianId,
+        name: userInfo.name,
+        party: userInfo.party,
+        position: userInfo.position,
+        photo: userInfo.photo
+      };
+      
+      console.log('🔒 정치인 회원 인터페이스 활성화:', userInfo.name);
+    }
+    
+    // 일반회원/보좌진회원용 인터페이스 표시
+    function showNormalUserInterface() {
+      document.getElementById('normalUserInterface').style.display = 'block';
+      document.getElementById('politicianUserInterface').style.display = 'none';
+      
+      console.log('👤 일반회원/보좌진회원 인터페이스 활성화');
+    }
+
+    // 정치인 검색 초기화
+    function initializePoliticianSearch() {
+      const searchInput = document.getElementById('politicianSearch');
+      const dropdown = document.getElementById('politicianDropdown');
+      let selectedIndex = -1; // 키보드 네비게이션용 인덱스
+      
+      // 정치인 회원인 경우 검색 기능 비활성화
+      const userInfo = getUserInfo();
+      if (userInfo && userInfo.userType === 'politician') {
+        return; // 정치인 회원은 검색 기능을 사용하지 않음
+      }
+
+      // 클릭 시 전체 목록 표시
+      searchInput.addEventListener('click', function() {
+        displayAllPoliticians();
+        dropdown.style.display = 'block';
+        selectedIndex = -1;
+      });
+
+      searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        selectedIndex = -1; // 입력 시 선택 인덱스 초기화
+        
+        if (query.length === 0) {
+          displayAllPoliticians();
+          dropdown.style.display = 'block';
+          return;
+        }
+
+        const filtered = politicians.filter(p => 
+          p.name.toLowerCase().includes(query) || 
+          p.party.toLowerCase().includes(query)
+        );
+
+        if (filtered.length > 0) {
+          displayPoliticians(filtered, query);
+        } else {
+          // 데이터에 없는 정치인 입력 시 커스텀 옵션 표시
+          displayCustomPolitician(query);
+        }
+        dropdown.style.display = 'block';
+      });
+
+      // 키보드 이벤트 처리
+      searchInput.addEventListener('keydown', function(e) {
+        const items = dropdown.querySelectorAll('.politician-item, .no-politician-option');
+        
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+          updateSelection(items);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          selectedIndex = Math.max(selectedIndex - 1, -1);
+          updateSelection(items);
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          
+          if (selectedIndex >= 0 && items[selectedIndex]) {
+            // 키보드로 선택된 항목 클릭
+            items[selectedIndex].click();
+          } else {
+            // 선택된 항목이 없으면 첫 번째 항목 선택
+            const query = this.value.trim();
+            if (query && items.length > 0) {
+              // "선택 안함" 옵션이 아닌 첫 번째 정치인 선택
+              const firstPoliticianItem = dropdown.querySelector('.politician-item');
+              if (firstPoliticianItem) {
+                firstPoliticianItem.click();
+              }
+            }
+          }
+        } else if (e.key === 'Escape') {
+          dropdown.style.display = 'none';
+          selectedIndex = -1;
+        }
+      });
+
+      searchInput.addEventListener('focus', function() {
+        if (!this.value.trim()) {
+          displayAllPoliticians();
+          dropdown.style.display = 'block';
+        }
+        selectedIndex = -1;
+      });
+
+      // 외부 클릭 시 드롭다운 닫기
+      document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.style.display = 'none';
+          selectedIndex = -1;
+        }
+      });
+    }
+
+    // 키보드 선택 표시 업데이트
+    function updateSelection(items) {
+      items.forEach((item, index) => {
+        if (index === selectedIndex) {
+          item.style.backgroundColor = '#007bff';
+          item.style.color = 'white';
+        } else {
+          item.style.backgroundColor = '';
+          item.style.color = '';
+        }
+      });
+    }
+
+    function displayAllPoliticians() {
+      displayPoliticians(politicians);
+    }
+
+    function displayPoliticians(politicianList, query = '') {
+      const dropdown = document.getElementById('politicianDropdown');
+      dropdown.innerHTML = '';
+
+      // "선택 안함" 옵션 추가
+      const noneOption = document.createElement('div');
+      noneOption.className = 'no-politician-option';
+      noneOption.textContent = '정치인을 선택하지 않음';
+      noneOption.addEventListener('click', () => clearPolitician());
+      dropdown.appendChild(noneOption);
+
+      politicianList.forEach(politician => {
+        const item = document.createElement('div');
+        item.className = 'politician-item';
+        item.innerHTML = `
+          <img src="${politician.photo}" alt="${politician.name}" class="politician-photo">
+          <div class="politician-info">
+            <div class="politician-name">${politician.name}</div>
+            <div class="politician-party">${politician.party}</div>
+            <div class="politician-position">${politician.position}</div>
+          </div>
+        `;
+
+        item.addEventListener('click', () => selectPolitician(politician));
+        dropdown.appendChild(item);
+      });
+    }
+
+    function displayCustomPolitician(query) {
+      const dropdown = document.getElementById('politicianDropdown');
+      dropdown.innerHTML = '';
+
+      // "선택 안함" 옵션 추가
+      const noneOption = document.createElement('div');
+      noneOption.className = 'no-politician-option';
+      noneOption.textContent = '정치인을 선택하지 않음';
+      noneOption.addEventListener('click', () => clearPolitician());
+      dropdown.appendChild(noneOption);
+
+      // 커스텀 정치인 생성
+      const customPolitician = {
+        id: 'custom_' + Date.now(),
+        name: query,
+        party: '정당 미상',
+        position: '정치인',
+        photo: 'https://via.placeholder.com/100x100/6c757d/FFFFFF?text=' + encodeURIComponent(query.charAt(0))
+      };
+
+      const item = document.createElement('div');
+      item.className = 'politician-item';
+      item.innerHTML = `
+        <img src="${customPolitician.photo}" alt="${customPolitician.name}" class="politician-photo">
+        <div class="politician-info">
+          <div class="politician-name">${customPolitician.name}</div>
+          <div class="politician-party">${customPolitician.party}</div>
+          <div class="politician-position">${customPolitician.position}</div>
+        </div>
+      `;
+
+      item.addEventListener('click', () => selectPolitician(customPolitician));
+      dropdown.appendChild(item);
+    }
+
+    function clearPolitician() {
+      selectedPolitician = null;
+      document.getElementById('politicianSearch').value = '';
+      document.getElementById('selectedPoliticianId').value = '';
+      
+      // UI 전환
+      document.getElementById('politicianSearchContainer').style.display = 'block';
+      document.getElementById('selectedPoliticianContainer').style.display = 'none';
+      document.getElementById('politicianDropdown').style.display = 'none';
+    }
+
+    function selectPolitician(politician) {
+      selectedPolitician = politician;
+      
+      // 선택된 정치인 표시
+      document.getElementById('selectedPoliticianPhoto').src = politician.photo;
+      document.getElementById('selectedPoliticianPhoto').alt = politician.name;
+      document.getElementById('selectedPoliticianName').textContent = politician.name;
+      document.getElementById('selectedPoliticianDetails').textContent = `${politician.party} · ${politician.position}`;
+      document.getElementById('selectedPoliticianId').value = politician.id;
+      
+      // UI 전환
+      document.getElementById('politicianSearchContainer').style.display = 'none';
+      document.getElementById('selectedPoliticianContainer').style.display = 'block';
+      document.getElementById('politicianDropdown').style.display = 'none';
+    }
+
+    function changePolitician() {
+      selectedPolitician = null;
+      document.getElementById('politicianSearch').value = '';
+      document.getElementById('selectedPoliticianId').value = '';
+      
+      // UI 전환
+      document.getElementById('politicianSearchContainer').style.display = 'block';
+      document.getElementById('selectedPoliticianContainer').style.display = 'none';
+      document.getElementById('politicianSearch').focus();
+    }
+    
+    // ==================== 정치인 명함 카드 폼 제어 ====================
+    
+    /**
+     * 정치인 계정 여부 확인 및 명함 카드 폼 표시/숨김
+     */
+    function togglePoliticianCardForm() {
+      const politicianCardSection = document.getElementById('politicianCardSection');
+      const userType = localStorage.getItem('userType') || sessionStorage.getItem('userType');
+      
+      // 정치인, 국회의원, 보좌관인 경우에만 명함 카드 폼 표시
+      if (['politician', 'mp', 'staff'].includes(userType)) {
+        politicianCardSection.style.display = 'block';
+        
+        // 기존 사용자 정보로 폼 미리 채우기
+        populatePoliticianCardForm();
+      } else {
+        politicianCardSection.style.display = 'none';
+      }
+    }
+    
+    /**
+     * 기존 사용자 정보로 명함 카드 폼 미리 채우기
+     */
+    function populatePoliticianCardForm() {
+      // 로컬 스토리지에서 기존 정보 가져오기
+      const storedData = JSON.parse(localStorage.getItem('politicianCardData') || '{}');
+      
+      if (storedData.name) {
+        document.getElementById('politicianName').value = storedData.name;
+      }
+      if (storedData.title) {
+        document.getElementById('politicianTitle').value = storedData.title;
+      }
+      if (storedData.party) {
+        document.getElementById('politicianParty').value = storedData.party;
+      }
+      if (storedData.email) {
+        document.getElementById('politicianEmail').value = storedData.email;
+      }
+      if (storedData.website) {
+        document.getElementById('politicianWebsite').value = storedData.website;
+      }
+      if (storedData.youtube) {
+        document.getElementById('politicianYoutube').value = storedData.youtube;
+      }
+      if (storedData.youtubeName) {
+        document.getElementById('politicianYoutubeName').value = storedData.youtubeName;
+      }
+      if (storedData.bankAccount) {
+        document.getElementById('politicianBankAccount').value = storedData.bankAccount;
+      }
+      if (storedData.motto) {
+        document.getElementById('politicianMotto').value = storedData.motto;
+      }
+    }
+    
+    /**
+     * 명함 카드 폼 데이터 저장
+     */
+    function savePoliticianCardData() {
+      const formData = {
+        name: document.getElementById('politicianName').value,
+        title: document.getElementById('politicianTitle').value,
+        party: document.getElementById('politicianParty').value,
+        email: document.getElementById('politicianEmail').value,
+        website: document.getElementById('politicianWebsite').value,
+        youtube: document.getElementById('politicianYoutube').value,
+        youtubeName: document.getElementById('politicianYoutubeName').value,
+        bankAccount: document.getElementById('politicianBankAccount').value,
+        motto: document.getElementById('politicianMotto').value
+      };
+      
+      // 로컬 스토리지에 저장
+      localStorage.setItem('politicianCardData', JSON.stringify(formData));
+      
+      return formData;
+    }
+    
+    // 지역구 자동완성 초기화
+    function initializeDistrictAutocomplete() {
+      const districtInput = document.getElementById("district");
+      const autocompleteList = document.getElementById("autocomplete-list");
+
+      // 지역구 공개/비공개 라디오 버튼 이벤트 추가
+      const visibilityRadios = document.querySelectorAll('input[name="districtVisibility"]');
+      visibilityRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.value === 'private') {
+            districtInput.value = '비공개';
+            districtInput.readOnly = true;
+            districtInput.style.background = '#f8f9fa';
+            districtInput.style.color = '#666';
+            autocompleteList.innerHTML = "";
+          } else {
+            const defaultDistrict = localStorage.getItem('userDistrict') || sessionStorage.getItem('userDistrict') || '서울특별시 강남구';
+            districtInput.value = defaultDistrict;
+            districtInput.readOnly = false;
+            districtInput.style.background = 'white';
+            districtInput.style.color = '#333';
+          }
+        });
+      });
+
+      // 자동완성 필터링
+      districtInput.addEventListener("input", function () {
+        // 비공개 모드에서는 입력 무시
+        if (document.querySelector('input[name="districtVisibility"]:checked').value === 'private') {
+          return;
+        }
+        
+        const value = this.value.toLowerCase();
+        autocompleteList.innerHTML = "";
+
+        if (!value) return;
+
+        const filtered = districts.filter(d => d.toLowerCase().includes(value)).slice(0, 10);
+
+        filtered.forEach(item => {
+          const div = document.createElement("div");
+          div.classList.add("autocomplete-item");
+          div.textContent = item;
+          div.addEventListener("click", () => {
+            districtInput.value = item;
+            autocompleteList.innerHTML = "";
+          });
+          autocompleteList.appendChild(div);
+        });
+      });
+
+      // 입력 필드 포커스 시 전체 목록 표시
+      districtInput.addEventListener("focus", function () {
+        // 비공개 모드에서는 자동완성 표시 안함
+        if (document.querySelector('input[name="districtVisibility"]:checked').value === 'private') {
+          return;
+        }
+        
+        const defaultDistrict = localStorage.getItem('userDistrict') || sessionStorage.getItem('userDistrict') || '서울특별시 강남구';
+        if (!this.value || this.value === defaultDistrict) {
+          showAutocompleteList("");
+        }
+      });
+
+      // 외부 클릭 시 자동완성 닫기
+      document.addEventListener("click", function (e) {
+        if (!autocompleteList.contains(e.target) && e.target !== districtInput) {
+          autocompleteList.innerHTML = "";
+        }
+      });
+    }
+
+    function showAutocompleteList(value) {
+      const autocompleteList = document.getElementById("autocomplete-list");
+      
+      // 비공개 모드에서는 자동완성 표시 안함
+      if (document.querySelector('input[name="districtVisibility"]:checked').value === 'private') {
+        return;
+      }
+      
+      autocompleteList.innerHTML = "";
+      
+      const filtered = value
+        ? districts.filter(d => d.toLowerCase().includes(value.toLowerCase()))
+        : districts;
+
+      filtered.slice(0, 15).forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("autocomplete-item");
+        div.textContent = item;
+        div.addEventListener("click", () => {
+          document.getElementById("district").value = item;
+          autocompleteList.innerHTML = "";
+        });
+        autocompleteList.appendChild(div);
+      });
+    }
+    
+    // Toast UI Editor 초기화
+    let editor;
+    function initializeEditor() {
+      editor = new toastui.Editor({
+        el: document.querySelector('#editor'),
+        height: '500px',
+        initialEditType: 'wysiwyg',
+        previewStyle: 'vertical',
+        language: 'ko'
+      });
+    }
+    
+    // 폼 제출 처리
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🎯 DOM 로드 완료 - 정치인 소통 글쓰기 페이지 초기화');
+      initializePage();
+      
+      const form = document.getElementById('writeForm');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // 정치인 선택 여부 확인 (선택사항이므로 체크하지 않음)
+          
+          // 정치인 회원인 경우 자동 선택된 정치인 정보 확인
+          const userInfo = getUserInfo();
+          if (userInfo && userInfo.userType === 'politician' && !selectedPolitician) {
+            // 정치인 회원이지만 selectedPolitician이 없는 경우 자동 설정
+            selectedPolitician = {
+              id: userInfo.politicianId,
+              name: userInfo.name,
+              party: userInfo.party,
+              position: userInfo.position,
+              photo: userInfo.photo
+            };
+          }
+          
+          // 에디터 내용 가져오기
+          const htmlContent = editor.getHTML();
+          document.getElementById('hiddenContent').value = htmlContent;
+          
+          const submitBtn = form.querySelector('.write-button');
+          submitBtn.disabled = true;
+          submitBtn.textContent = '등록 중...';
+          
+          // 게시글 데이터 수집
+          const isDistrictPublic = document.querySelector('input[name="districtVisibility"]:checked').value === 'public';
+          const districtValue = isDistrictPublic ? document.getElementById('district').value : '';
+          
+          // 사용자 정보 (익명으로 설정)
+          const userNickname = '익명';
+          const userEmail = '';
+          
+          // 명함 카드 데이터 수집 (정치인 계정인 경우)
+          let politicianCardData = null;
+          const userType = localStorage.getItem('userType') || sessionStorage.getItem('userType');
+          if (['politician', 'mp', 'staff'].includes(userType)) {
+            politicianCardData = savePoliticianCardData();
+            console.log('📋 명함 카드 데이터:', politicianCardData);
+          }
+          
+          const postData = {
+            title: document.getElementById('title').value,
+            content: htmlContent,
+            district: districtValue,
+            showDistrict: isDistrictPublic,
+            politician: selectedPolitician || null, // 선택하지 않으면 null
+            author: userNickname,
+            email: userEmail,
+            timestamp: new Date().toISOString(),
+            politicianCard: politicianCardData // 명함 카드 데이터 추가
+          };
+          
+          console.log('📝 정치인 소통 게시글 데이터:', postData);
+          
+          // 실제로는 서버로 데이터 전송
+          setTimeout(() => {
+            alert('정치인 소통 게시글이 성공적으로 등록되었습니다!');
+            submitBtn.disabled = false;
+            submitBtn.textContent = '등록하기';
+            
+            // 게시판 목록으로 이동
+            window.location.href = 'voice.html';
+          }, 1500);
+        });
+      }
+    });
+    
+
+  </script>
+  
+  <!-- JavaScript 인클루드 코드 -->
+  <script>
+    function includeHTML(id, file) {
+      fetch(file)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        console.log('✅ ' + file + ' 포함 완료');
+      })
+      .catch(error => {
+        console.error('❌ 파일 로딩 실패:', error);
+      });
+    }
+
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+<!-- 🆕 새로운 로그인 시스템 - 페이지 관리자 -->
+<script src="page-manager.js"></script>
+</body>
+</html>

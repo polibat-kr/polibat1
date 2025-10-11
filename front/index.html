@@ -1,0 +1,2776 @@
+<!DOCTYPE HTML>
+
+<html lang="ko">
+<head>
+<!-- ========================================
+       기본 문서 설정
+  ======================================== -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정치방망이 - 쉽고 빠르게, 정치와 소통하다!</title>
+<meta name="description" content="정치인과 국민이 쉽고 빠르게 소통하는 커뮤니티, 실시간 댓글, 인기글, 투표 등 다양한 정치 참여 서비스 제공.">
+<meta name="keywords" content="정치, 커뮤니티, 투표, 자유게시판, 정치인, 실시간 댓글, 정치방망이">
+<!-- 네이버 소유확인 메타태그 예시 (실제 발급값으로 교체 필요) -->
+<meta content="5fa68c229b6a80fe78209f803f0a0ba9d7bbc4b5" name="naver-site-verification">
+<!-- Open Graph 태그 -->
+<meta property="og:title" content="정치방망이 - 쉽고 빠르게, 정치와 소통하다!">
+<meta property="og:description" content="정치인과 국민이 쉽고 빠르게 소통하는 커뮤니티, 실시간 댓글, 인기글, 투표 등 다양한 정치 참여 서비스 제공.">
+<meta property="og:image" content="https://www.polibat.com/images/og_image.png">
+<meta property="og:url" content="https://www.polibat.com/">
+<meta property="og:type" content="website">
+<!-- robots.txt, sitemap.xml은 사이트 루트에 별도 파일로 추가 필요 -->
+<!-- ICO 포맷 -->
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<!-- PNG 포맷 -->
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/favicon.png" rel="icon" type="image/png">
+<!-- iOS 및 고해상도 대응 -->
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<!-- ========================================
+       SEO 및 메타데이터 설정
+  ======================================== -->
+<meta content="index, follow" name="robots"/>
+<meta content="정치방망이" name="author"/>
+<!-- ========================================
+       외부 폰트 및 CSS 라이브러리
+  ======================================== -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<!-- 테마 CSS 파일들 -->
+<link href="css/animate.css" rel="stylesheet"/>
+<link href="css/icomoon.css" rel="stylesheet"/>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<link href="css/flexslider.css" rel="stylesheet"/>
+<link href="css/pricing.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<!-- Modernizr JS -->
+<script src="js/modernizr-2.6.2.min.js"></script>
+<!-- IE9 이하 지원 -->
+<!--[if lt IE 9]>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+<style>
+    /* ========================================
+         CSS 변수 및 기본 설정
+    ======================================== */
+    :root {
+      /* 간격 변수 */
+      --gap-sm: 12px;
+      --gap-md: 20px;
+      --gap-lg: 32px;
+      
+      /* 폰트 크기 변수 */
+      --font-title: 20px;
+      --font-body: 14px;
+      --font-small: 12px;
+      
+      /* 디자인 변수 */
+      --border-radius: 12px;
+      --color-bg: #f9f9f9;
+      --color-border: #ddd;
+      --color-text: #333;
+    }
+
+    /* 전체 박스 사이징 통일 */
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* ========================================
+         기본 레이아웃 및 타이포그래피
+    ======================================== */
+    body {
+      font-family: 'Nanum Gothic', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+
+    /* 메인 컨테이너 */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* 제목 스타일 통일 */
+    h1, h2, h3, h4, h5, h6, figure {
+      color: var(--color-text);
+      font-family: "Pretendard", serif;
+      font-weight: 600;
+      margin: 0 0 16px 0;
+      padding-top: 0;
+      text-align: initial;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: var(--font-title);
+      margin-bottom: var(--gap-md);
+    }
+
+    p {
+      margin: 0 0 var(--gap-sm) 0;
+      line-height: 1.6;
+    }
+
+    /* 섹션 간격 통일 */
+    section {
+      margin-bottom: 24px;
+    }
+
+    /* 수평선 스타일 */
+    hr {
+      margin: var(--gap-lg) 0;
+      border: 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ========================================
+         메인 비주얼 영역
+    ======================================== */
+    .section.visual {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .section.visual h1 {
+      font-size: 28px;
+      margin-bottom: var(--gap-md);
+    }
+
+    .img-button {
+      margin-top: -40px;
+    }
+
+    .img-button img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ========================================
+         배너 영역
+    ======================================== */
+    .box_g.box_bnr {
+      background: rgb(221, 220, 254);
+      user-select: auto !important;
+      width: 100%;
+      position: relative;
+      border-radius: var(--border-radius);
+      margin: 24px auto;
+      box-sizing: border-box;
+    }
+
+    .box_g.box_bnr .link_img {
+      user-select: auto !important;
+      width: 100%;
+      display: block;
+    }
+
+    .box_g.box_bnr .img_g {
+      user-select: auto !important;
+      width: 100%;
+      position: relative;
+      border-radius: var(--border-radius);
+      max-width: 100%;
+    }
+
+    /* ========================================
+         실시간 댓글 롤링 섹션
+    ======================================== */
+    .rolling-comment-wrapper {
+      width: 100%;
+      box-sizing: border-box;
+      margin: 24px auto;
+      max-width: 1200px;
+    }
+
+    .rolling-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 0 var(--gap-sm);
+      height: 44px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .rolling-comment-label {
+      font-weight: 600;
+      font-size: var(--font-body);
+      color: var(--color-text);
+      margin-right: var(--gap-sm);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .rolling-comment-container {
+      flex-grow: 1;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .rolling-comment-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .rolling-comment-list li {
+      height: 40px;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .rolling-comment-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding: 0 8px;
+      width: 100%;
+      font-size: var(--font-body);
+      font-weight: 500;
+      color: var(--color-text);
+      text-decoration: none;
+      box-sizing: border-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+    }
+
+    .rolling-comment-link:hover {
+      color: #000;
+    }
+
+    .rolling-comment-link i {
+      margin-left: 8px;
+      font-size: var(--font-small);
+      color: #999;
+    }
+
+    /* ========================================
+         인기글 섹션 (자유게시판)
+    ======================================== */
+    #popular-posts {
+      margin: 24px auto;
+      max-width: 1200px;
+    }
+
+    #popular-posts > h2 {
+      font-size: var(--font-title);
+      font-weight: 600;
+      color: #111;
+      margin-bottom: var(--gap-md);
+    }
+
+    .popular-posts-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .popular-post-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .popular-post-card:hover {
+      /*transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border-color: #bbb;*/
+    }
+
+    .popular-post-card .title {
+      font-weight: 700;
+      font-size: 15px;
+      color: #000;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+
+    .popular-post-card .content {
+      font-size: 13px;
+      color: #555;
+      flex-grow: 1;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      letter-spacing: -0.4px;
+      word-break: break-word;
+    }
+
+    .popular-post-card .meta {
+      font-size: var(--font-small);
+      color: #888;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+     /*margin-top: 10px;*/
+    }
+
+    /* ========================================
+         정치방망이 인기글 섹션 (voice.html 스타일 + 썸네일 추가)
+    ======================================== */
+    #popular-posts-home {
+      margin: 24px auto;
+      max-width: 1200px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    #popular-posts-home h2 {
+      font-size: var(--font-title);
+      font-weight: 600;
+      color: #111;
+      margin-bottom: var(--gap-md);
+    }
+
+    .popular-posts-home-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* ==================== 인기글 카드 스타일 (가로형 + 썸네일) ==================== */
+    .popular-post-card-home {
+      display: flex;
+      flex-direction: row;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    .popular-post-card-home:hover {
+      /*transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border-color: #bbb;*/
+    }
+
+    /* 썸네일 영역 */
+    .popular-thumb-box {
+      width: 100px;
+      height: 100px;
+        margin-right: var(--gap-sm);
+        margin-bottom: 0;
+        border-radius: 8px;
+        flex-shrink: 0; /* 썸네일 크기 고정 */
+    }
+
+    .popular-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* 텍스트 영역 
+    .popular-text-box {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    /*
+    .popular-text-box .title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #000;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+    */
+    /* 정치인 정보 상단 영역 */
+    .politician-info-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .popular-text-box .content {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: auto;
+      line-height: 1.5;
+      letter-spacing: -0.4px;
+    }
+
+    .popular-text-box .meta {
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ==================== 배지 및 아이콘 스타일 ==================== */
+    /* 직접답변 아이콘 */
+    .direct-reply-icon {
+      display: inline-block;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #fff;
+      background: linear-gradient(135deg, #4a90e2, #005bea);
+      border-radius: 12px;
+      line-height: 1;
+      white-space: nowrap;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      margin-top: -8px;
+    }
+    .direct-reply-icon::before {
+      content: "💬";
+      margin-right: 2px;
+    }
+
+    /* 의원 직접답변 배지 */
+    .mp-direct-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #4a90e2, #005bea);
+      color: #fff;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      vertical-align: middle;
+      line-height: 1.4;
+      white-space: nowrap;
+      margin-bottom: 8px;
+    }
+
+    /* 댓글 수 배지 */
+    .comment-badge {
+      color: #e74c3c;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    /* 정치인 선택 배지 */
+    .politician-badge {
+      display: inline-block;
+      background: #e8f4fd;
+      color: #1976d2;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      vertical-align: middle;
+      line-height: 1.2;
+      white-space: nowrap;
+      font-weight: 600;
+      border: 1px solid #bbdefb;
+      margin-bottom: 8px;
+    }
+
+    .politician-badge::before {
+      content: "📢";
+      margin-right: 3px;
+    }
+
+    /* ========================================
+         투표 랜딩 섹션
+    ======================================== */
+    .vote-landing-section {
+      margin: 24px auto;
+      max-width: 1200px;
+    }
+
+    /* 투표와 배너를 담는 컨테이너 */
+    .vote-and-banner-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gap-md);
+      width: 100%;
+    }
+
+    /* 투표 메인 컨테이너 */
+    .vote-landing-container {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      /* 캐릭터 이미지 위치 조절 변수 */
+      --character-right: 547px;
+      --character-top: 76%;
+      --character-size: 228px;
+      background-repeat: no-repeat;
+      background-size: 120px 120px;
+      background-position: calc(100% - var(--character-right)) var(--character-top);
+      background-size: var(--character-size) var(--character-size);
+    }
+
+    .vote-landing-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .vote-landing-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    /* 투표 텍스트 영역 */
+    .vote-landing-text h2 {
+      font-size: var(--font-title);
+      font-weight: 600;
+      color: #111;
+      margin: 0 0 8px 0;
+    }
+
+    .vote-landing-text h3 {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--color-text);
+      margin: 0 0 var(--gap-sm) 0;
+      line-height: 1.4;
+    }
+
+    .vote-landing-text p {
+      font-size: 16px;
+      color: #666;
+      margin: 0 0 var(--gap-md) 0;
+      line-height: 1.5;
+    }
+
+    /* 투표 통계 미리보기 */
+    .vote-stats-preview {
+      display: flex;
+      gap: var(--gap-sm);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: #f0f0f0;
+      color: #666;
+      padding: 6px var(--gap-sm);
+      border-radius: 20px;
+      font-size: var(--font-body);
+      font-weight: 500;
+    }
+
+    /* 투표 참여 버튼 */
+    .vote-cta-button {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: var(--border-radius);
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .vote-cta-button:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .vote-cta-button i {
+      font-size: 20px;
+    }
+
+    /* 투표 미리보기 카드들 */
+    .vote-preview-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .vote-preview-card {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-sm);
+      padding: var(--gap-sm);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vote-preview-card img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .candidate-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .candidate-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--color-text);
+    }
+
+    .vote-detail {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .preview-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--color-text);
+      transition: width 0.8s ease;
+    }
+
+    .vote-preview-more {
+      text-align: center;
+      padding: 16px;
+      background: #f0f0f0;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: #666;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .vote-preview-more:hover {
+      background: #e0e0e0;
+    }
+
+    /* ========================================
+         롤링 배너 영역 (수정됨)
+    ======================================== */
+    .side-banner-container {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      overflow: hidden; /* 중요: 컨테이너에서 넘치는 부분 숨김 */
+      height: 334px;
+      width: 100%; /* 명시적 너비 설정 */
+    }
+
+    .rolling-banner-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden; /* 중요: 래퍼에서도 넘치는 부분 숨김 */
+    }
+
+    .rolling-banner-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+      /* 중요: flex-shrink 방지 */
+      flex-shrink: 0;
+    }
+
+    .rolling-banner-slide {
+      height: 100%;
+      flex-shrink: 0; /* 중요: 슬라이드 압축 방지 */
+      position: relative;
+      box-sizing: border-box; /* 패딩/보더 포함한 너비 계산 */
+    }
+
+    .rolling-banner-slide a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden; /* 링크 내부 컨텐츠 넘침 방지 */
+    }
+
+    .rolling-banner-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      /* 이미지가 컨테이너를 벗어나지 않도록 */
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .banner-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: white;
+      padding: 24px 20px 20px;
+      text-align: center;
+    }
+
+    .banner-overlay h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0 0 8px 0;
+      color: white;
+    }
+
+    .banner-overlay p {
+      font-size: var(--font-body);
+      margin: 0;
+      opacity: 0.9;
+      color: white;
+    }
+
+    /* 배너 컨트롤 버튼들 */
+    .banner-controls {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .banner-control-btn {
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 12px;
+      color: #333;
+    }
+
+    .banner-control-btn:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+    }
+
+    .banner-control-btn.play-pause {
+      background: rgba(74, 144, 226, 0.9);
+      color: white;
+    }
+
+    .banner-control-btn.play-pause:hover {
+      background: rgba(74, 144, 226, 1);
+    }
+
+    /* 배너 인디케이터 */
+    .banner-indicators {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+
+    .banner-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .banner-indicator.active {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.2);
+    }
+
+    /* 호버 시 컨트롤 표시 */
+    .side-banner-container:hover .banner-controls,
+    .side-banner-container:hover .banner-indicators {
+      opacity: 1;
+    }
+
+    /* ========================================
+         팝업 스타일
+    ======================================== */
+    .popup-wrapper {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      max-width: 350px;
+      width: 90%;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+      font-family: 'Nanum Gothic', sans-serif;
+      z-index: 9999;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    .popup-inner {
+      padding: 20px;
+      position: relative;
+      text-align: center;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 22px;
+      background: transparent;
+      border: none;
+      color: #bbb;
+      cursor: pointer;
+    }
+
+    .popup-close:hover {
+      color: #000;
+    }
+
+    .popup-illustration img {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 16px;
+    }
+
+    .popup-body h2 {
+      font-size: 19px;
+      font-weight: bold;
+      margin-bottom: var(--gap-sm);
+      color: #111;
+    }
+
+    .popup-body p {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .popup-footer {
+      margin-top: 20px;
+    }
+
+    .popup-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .popup-button {
+      background: linear-gradient(135deg, #4a90e2, #005bea);
+      color: white;
+      padding: 7px 14px;
+      font-size: 13px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .popup-button:hover {
+      background: linear-gradient(135deg, #005bea, #003e9f);
+    }
+
+    .popup-button-outline {
+      background: transparent;
+      border: 1px solid #ccc;
+      color: var(--color-text);
+      padding: 7px 14px;
+      font-size: 13px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .popup-button-outline:hover {
+      background-color: #f2f2f2;
+    }
+
+    /* ========================================
+         모바일 반응형 스타일
+    ======================================== */
+    @media (max-width: 768px) {
+      /* 기본 컨테이너 조정 */
+      .container {
+        padding: 0 var(--gap-sm);
+      }
+
+      /* 섹션 간격 조정 */
+      section {
+        margin-bottom: var(--gap-md);
+      }
+
+      /* 제목 크기 조정 */
+      h1 {
+        font-size: 24px;
+        margin-bottom: var(--gap-md);
+      }
+
+      h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      /* 비주얼 섹션 조정 */
+      .section.visual {
+        padding: 32px 0;
+        margin-bottom: var(--gap-md);
+      }
+
+      .section.visual h1 {
+        font-size: 24px;
+      }
+
+      /* 배너 조정 */
+      .box_g.box_bnr {
+        margin: var(--gap-md) auto;
+      }
+
+      /* 실시간 댓글 조정 */
+      .rolling-comment-wrapper {
+        margin: var(--gap-md) auto;
+      }
+
+      .rolling-inner {
+        height: 40px;
+        padding: 0 10px;
+      }
+
+      .rolling-comment-label {
+        font-size: 13px;
+        margin-right: 6px;
+      }
+
+      .rolling-comment-link {
+        font-size: 13px;
+      }
+
+      .rolling-comment-list li {
+        height: 40px;
+      }
+
+      /* 인기글 섹션 조정 */
+      #popular-posts {
+        margin: var(--gap-md) auto;
+      }
+
+      .popular-posts-wrapper {
+        gap: var(--gap-sm);
+      }
+
+      .popular-post-card {
+        padding: var(--gap-sm);
+      }
+
+      /* 정치방망이 인기글 조정 */
+      #popular-posts-home {
+        margin: var(--gap-md) auto;
+      }
+
+      .popular-posts-home-wrapper {
+        gap: var(--gap-sm);
+      }
+
+      .popular-post-card-home {
+        padding: var(--gap-sm);
+        /* flex-direction은 기본값 row를 유지하므로 삭제 */
+      }
+
+      .popular-thumb-box {
+        width: 80px;
+        height: 80px;
+        margin-right: 14px;
+       /*margin-bottom: var(--gap-sm);*/
+        border-radius: 8px;
+      }
+
+      /* 모바일에서 메타 정보 세로 정렬 */
+      .popular-text-box .meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      
+      .meta-right {
+        gap: 12px;
+      }
+
+      /* 투표 섹션 조정 */
+      .vote-landing-section {
+        margin: var(--gap-md) auto;
+      }
+
+      .vote-and-banner-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .vote-landing-container {
+        padding: 24px 20px;
+      }
+      
+      .vote-landing-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+      
+      .vote-landing-text h3 {
+        font-size: 20px;
+      }
+      
+      .vote-cta-button {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .vote-stats-preview {
+        justify-content: center;
+      }
+
+      /* 롤링 배너 모바일 조정 */
+      .side-banner-container {
+        height: 334px;
+      }
+
+      .banner-overlay {
+        padding: 16px 16px 12px;
+      }
+
+      .banner-overlay h3 {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+
+      .banner-overlay p {
+        font-size: 13px;
+      }
+
+      .banner-control-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 10px;
+      }
+
+      .banner-indicators {
+        top: 8px;
+        right: 8px;
+      }
+
+      .banner-controls {
+        bottom: 8px;
+        gap: 6px;
+      }
+
+      /* 팝업 조정 */
+      .popup-wrapper {
+        bottom: var(--gap-sm);
+        right: var(--gap-sm);
+      }
+
+      .popup-body h2 {
+        font-size: 17px;
+      }
+      
+      .popup-body p {
+        font-size: var(--font-body);
+      }
+    }
+
+    /* 더 작은 모바일 화면 (480px 이하) */
+    @media (max-width: 480px) {
+      .rolling-comment-wrapper {
+        max-width: 100% !important;
+      }
+
+      .vote-landing-text h2 {
+        font-size: 18px;
+      }
+      
+      .vote-landing-text h3 {
+        font-size: 18px;
+      }
+      
+      .stat-badge {
+        font-size: var(--font-small);
+        padding: 4px 8px;
+      }
+    }
+
+    /* ========================================
+         태블릿 이상 반응형 스타일
+    ======================================== */
+    @media (min-width: 769px) {
+      /* 인기글 그리드 레이아웃 */
+      .popular-posts-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      .popular-posts-home-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+
+      /* 투표와 배너 레이아웃 */
+      .vote-and-banner-container {
+        grid-template-columns: minmax(300px, 1.99fr) minmax(250px, 0.98fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .vote-landing-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        text-align: left;
+      }
+
+      .vote-cta-button {
+        width: auto;
+      }
+
+      .vote-stats-preview {
+        justify-content: flex-start;
+      }
+
+      .side-banner-container {
+        height: 334px;
+      }
+    }
+
+    /* 대형 화면 (1200px 이상) */
+    @media (min-width: 1200px) {
+      .popular-posts-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .popular-posts-home-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ========================================
+         유틸리티 클래스
+    ======================================== */
+    .hidden {
+      display: none !important;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-0 {
+      margin-bottom: 0 !important;
+    }
+  </style>
+</meta></link></head>
+<body>
+<!-- ========================================
+       로딩 스피너
+  ======================================== -->
+<div class="fh5co-loader"></div>
+<!-- ========================================
+       메인 페이지 래퍼
+  ======================================== -->
+<div id="page">
+<!-- 헤더 영역 (동적 로딩) -->
+<div id="header-include"></div>
+<!-- ========================================
+         메인 비주얼 섹션
+    ======================================== -->
+<section class="section visual" style="margin-bottom: -24px;">
+<div class="cnt">
+<h1>쉽고 빠르게, 정치와 소통하다!</h1>
+<div class="img-button">
+<img alt="메인 버튼 이미지" src="images/19.png"/>
+</div>
+</div>
+<div class="b_line"></div>
+</section>
+<!-- 투표 섹션 플레이스홀더 -->
+<section class="vote-section"></section>
+<!-- ========================================
+         메인 콘텐츠 컨테이너
+    ======================================== -->
+<div class="container">
+<!-- 상단 광고 배너 -->
+<div class="box_g box_bnr d0" data-tiara-action-kind="ClickContent" data-tiara-action-name="banner" data-tiara-custom="box_ordnum=3&amp;slot_code=258" data-tiara-layer="banner">
+<a aria-describedby="openWindow" class="link_img" href="https://issue.daum.net/election/2025" target="_blank">
+<img alt="제21대 대한민국 대통령 이재명 당선" class="img_g" src="https://t1.daumcdn.net/top/daum/op/smartfarm/20250603091813635.png"/>
+</a>
+</div>
+<!-- ========================================
+           실시간 댓글 롤링 영역
+      ======================================== -->
+<div class="rolling-comment-wrapper">
+<div class="rolling-inner">
+<div class="rolling-comment-label">
+            💬 실시간 댓글 |
+          </div>
+<div class="rolling-comment-container">
+<ul class="rolling-comment-list" id="rollingCommentList">
+<!-- 댓글이 JavaScript로 동적 삽입됩니다 -->
+</ul>
+</div>
+</div>
+</div>
+<!-- ========================================
+           자유게시판 인기글 섹션
+      ======================================== -->
+<section id="popular-posts">
+<h2>🔥 자유게시판 인기글</h2>
+<div class="popular-posts-wrapper">
+<!-- JavaScript가 인기글 카드를 동적으로 삽입합니다 -->
+<div class="popular-post-card" onclick="window.location.href='/board_01.html'">
+<div class="title">총선 이후 정치 지형 변화</div>
+<div class="content">새로운 정치 환경에서 나타나는 변화와 전망을 분석해봅니다.</div>
+<div class="meta">
+              정치분석가 · 25.05.10. · 추천 89 · 조회수 2341
+            </div>
+</div><div class="popular-post-card" onclick="window.location.href='/board_01.html'">
+<div class="title">국정 지지율 급변 원인</div>
+<div class="content">최근 여론조사 결과에 나타난 변화의 배경을 살펴봅니다.</div>
+<div class="meta">
+              여론전문가 · 25.05.09. · 추천 67 · 조회수 1876
+            </div>
+</div><div class="popular-post-card" onclick="window.location.href='/board_01.html'">
+<div class="title">청년 정책 토론회 후기</div>
+<div class="content">젊은 세대가 바라는 정책 방향에 대한 토론회 내용을 정리했습니다.</div>
+<div class="meta">
+              청년리더 · 25.05.08. · 추천 45 · 조회수 1234
+            </div>
+</div></div>
+</section>
+<!-- ========================================
+           정치방망이 인기글 섹션
+      ======================================== -->
+<section id="popular-posts-home">
+<h2>🔥 정치인게시판 인기글</h2>
+<div class="popular-posts-home-wrapper">
+<!-- JavaScript가 카드를 동적으로 삽입합니다 -->
+</div>
+</section>
+<!-- ========================================
+           투표 랜딩 섹션
+      ======================================== -->
+<section class="vote-landing-section">
+<div class="vote-and-banner-container">
+<!-- 투표 메인 영역 -->
+<div class="vote-landing-container">
+<div class="vote-landing-content">
+<div class="vote-landing-text">
+<h2>🗳️ 지금 뜨거운 투표</h2>
+<h3>무인도에 한 사람과 남아야 한다면?</h3>
+<p>여러 후보 중에서 선택하고 실시간 결과를 확인해보세요!</p>
+<!-- 투표 통계 미리보기 -->
+<div class="vote-stats-preview">
+<span class="stat-badge">👥 1,247명 참여</span>
+<span class="stat-badge">💬 3개 댓글</span>
+<span class="stat-badge">⏰ 6일 남음</span>
+</div>
+<!-- 투표 참여 버튼 -->
+<button class="vote-cta-button" onclick="window.location.href='vote.html'">
+<i class="fa-solid fa-check-to-slot"></i>
+                  지금 투표하기
+                </button>
+</div>
+<!-- 투표 미리보기 영역 -->
+<div class="vote-landing-visual">
+<div class="vote-preview-cards">
+<!-- 후보 1 -->
+<div class="vote-preview-card">
+<img alt="후보1" src="https://theminjoo.kr/people/connect/people/185/profile.jpg"/>
+<div class="candidate-info">
+<span class="candidate-name">이재명</span>
+<span class="vote-detail">43표, 35.0%</span>
+</div>
+<div class="preview-bar" style="width: 35%"></div>
+</div>
+<!-- 후보 2 -->
+<div class="vote-preview-card">
+<img alt="후보2" src="https://theminjoo.kr/people/connect/people/1/profile.jpg"/>
+<div class="candidate-info">
+<span class="candidate-name">박주민</span>
+<span class="vote-detail">34표, 28.0%</span>
+</div>
+<div class="preview-bar" style="width: 28%"></div>
+</div>
+<!-- 후보 3 -->
+<div class="vote-preview-card">
+<img alt="후보3" src="https://theminjoo.kr/people/connect/people/20/profile.jpg"/>
+<div class="candidate-info">
+<span class="candidate-name">심상정</span>
+<span class="vote-detail">25표, 20.0%</span>
+</div>
+<div class="preview-bar" style="width: 20%"></div>
+</div>
+<!-- 더보기 -->
+<div class="vote-preview-more">
+<span>+ 더 많은 후보 보기</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================
+               롤링 배너 영역 (수정된 부분)
+          ======================================== -->
+<div class="side-banner-container">
+<div class="rolling-banner-wrapper">
+<div class="rolling-banner-track" id="bannerTrack">
+<!-- 배너 슬라이드들 -->
+<div class="rolling-banner-slide">
+<a href="https://modu.pcpp.go.kr/suggest" target="_blank">
+<img alt="정치 참여 캠페인" src="images/a1.jpg"/>
+<!--<div class="banner-overlay">
+                      <h3>🎯 정치 참여 캠페인</h3>
+                      <p>더 나은 사회를 위한 첫걸음</p>
+                    </div>-->
+</a>
+</div>
+<div class="rolling-banner-slide">
+<a href="https://www.president.go.kr/president/speeches/L9kEEzwb" target="_blank">
+<img alt="커뮤니티" src="images/a2.jpg"/>
+<!--<div class="banner-overlay">
+                      <h3>🤝 커뮤니티</h3>
+                      <p>함께 만드는 건강한 정치문화</p>
+                    </div>-->
+</a>
+</div>
+</div>
+<!-- 배너 인디케이터 -->
+<div class="banner-indicators" id="bannerIndicators">
+<!-- JavaScript로 동적 생성 -->
+</div>
+<!-- 배너 컨트롤 버튼들 -->
+<div class="banner-controls">
+<button class="banner-control-btn" id="prevBtn" title="이전 배너">
+<i class="fa-solid fa-chevron-left"></i>
+</button>
+<button class="banner-control-btn play-pause" id="playPauseBtn" title="정지/재생">
+<i class="fa-solid fa-pause"></i>
+</button>
+<button class="banner-control-btn" id="nextBtn" title="다음 배너">
+<i class="fa-solid fa-chevron-right"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- ========================================
+       팝업 알림
+  ======================================== -->
+<div class="popup-wrapper" id="main-popup" onclick="handleOverlayClick(event)" style="display: none;">
+<div class="popup-inner">
+<!-- 닫기 버튼 -->
+<button class="popup-close" onclick="closePopup(false)">×</button>
+<!-- 팝업 일러스트 이미지 -->
+<div class="popup-illustration">
+<img alt="Notice Illustration" src="images/cdfda.png"/>
+</div>
+<!-- 팝업 본문 -->
+<div class="popup-body">
+<h2 style="text-align: center;">📢 정치방망이! 오픈안내</h2>
+<p>
+          정치인과 함께하는 새로운 정치 커뮤니티<br/>
+<strong>2025년 9월, Grand OPEN!</strong><br/>
+</p>
+</div>
+<!-- 팝업 버튼 -->
+<div class="popup-footer popup-buttons">
+<button class="popup-button-outline" onclick="closePopup(false)">
+          닫기
+        </button>
+<button class="popup-button" onclick="closePopup(true)">
+          24시간 동안 다시 보지 않기
+        </button>
+</div>
+</div>
+</div>
+<!-- 푸터 영역 (동적 로딩) -->
+<div id="footer-include"></div>
+<!-- 맨 위로 이동 버튼 -->
+<div class="gototop js-top">
+<a class="js-gotop" href="#">
+<i class="icon-arrow-up"></i>
+</a>
+</div>
+<!-- ========================================
+       JavaScript 라이브러리들
+  ======================================== -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+<!-- ========================================
+       헤더 관리 시스템
+  ======================================== -->
+<script>
+    /**
+     * 헤더 관리용 전역 변수 선언
+     * 모바일 메뉴와 로그인 상태를 관리하는 인스턴스들을 저장
+     */
+    window.headerManagers = {
+      mobileMenuManager: null,
+      loginStatusManager: null
+    };
+
+    /**
+     * HTML 파일을 동적으로 로드하는 함수
+     * @param {string} id - 삽입할 요소의 ID
+     * @param {string} file - 로드할 파일 경로
+     * @returns {Promise} 로딩 완료 Promise
+     */
+    function includeHTML(id, file) {
+      return fetch(file)
+        .then(response => response.text())
+        .then(data => {
+          const container = document.getElementById(id);
+          container.innerHTML = data;
+
+          // script 태그 수동 실행 처리
+          const scripts = container.querySelectorAll('script');
+          scripts.forEach(oldScript => {
+            const newScript = document.createElement('script');
+            if (oldScript.src) {
+              newScript.src = oldScript.src;
+            } else {
+              newScript.textContent = oldScript.textContent;
+            }
+            document.body.appendChild(newScript);
+          });
+
+          // 헤더가 로드된 후 초기화
+          if (id === 'header-include') {
+            setTimeout(() => {
+              initializeHeaderAfterLoad();
+            }, 100);
+          }
+        })
+        .catch(error => {
+          console.error('파일 로드 실패:', file, error);
+        });
+    }
+
+    /**
+     * 헤더 로드 후 초기화 함수
+     * 기존 이벤트 리스너를 정리하고 새로운 관리자 인스턴스를 생성
+     */
+    function initializeHeaderAfterLoad() {
+      console.log('헤더 로드 후 초기화 시작');
+
+      // 기존 이벤트 리스너 정리
+      if (window.globalClickHandler) {
+        document.removeEventListener('click', window.globalClickHandler);
+      }
+
+      // 기존 관리자 인스턴스 정리
+      if (window.headerManagers.mobileMenuManager) {
+        window.headerManagers.mobileMenuManager = null;
+      }
+      if (window.headerManagers.loginStatusManager) {
+        window.headerManagers.loginStatusManager = null;
+      }
+
+      // 새로운 관리자 인스턴스 생성
+      window.headerManagers.mobileMenuManager = new window.MobileMenuManager();
+      window.headerManagers.loginStatusManager = new window.LoginStatusManager();
+
+      // 전역 테스트 함수 등록
+      window.testLogin = function(username = '테스트사용자', userType = 'user') {
+        if (window.headerManagers.loginStatusManager) {
+          window.headerManagers.loginStatusManager.testLogin(username, userType);
+        }
+      };
+
+      console.log('헤더 초기화 완료');
+      console.log('테스트: testLogin() 또는 testLogin("사용자명", "politician") 실행 가능');
+    }
+
+    /**
+     * 모바일 메뉴 관리 클래스
+     * 모바일 환경에서의 드롭다운 메뉴와 사용자 인터랙션을 처리
+     */
+    if (!window.MobileMenuManager) {
+      window.MobileMenuManager = class MobileMenuManager {
+        constructor() {
+          this.activeDropdown = null;
+          this.init();
+        }
+
+        /**
+         * 이벤트 리스너 초기화
+         * 클릭 이벤트와 키보드 이벤트 처리
+         */
+        init() {
+          // 전역 클릭 핸들러 정의
+          window.globalClickHandler = (e) => {
+            console.log('클릭 이벤트 발생:', e.target);
+            console.log('클릭된 요소의 클래스:', e.target.className);
+            console.log('현재 화면 크기:', window.innerWidth);
+
+            // 모바일 메뉴 버튼 클릭 처리
+            if (e.target.closest('.mobile-menu-button')) {
+              console.log('모바일 메뉴 버튼 클릭됨');
+              e.preventDefault();
+              e.stopPropagation();
+              const button = e.target.closest('.mobile-menu-button');
+              const menuType = button.getAttribute('data-menu-type');
+              this.toggleMobileMenu(menuType);
+              return;
+            }
+
+            // user-menu 영역 클릭 감지 (모바일에서만)
+            const userMenuElement = e.target.closest('.user-menu');
+            if (userMenuElement && window.innerWidth <= 768) {
+              console.log('user-menu 영역 클릭됨');
+              
+              // 특정 버튼 클릭은 제외
+              if (e.target.closest('.login-btn, .logout-btn, .mypage-icon, .mobile-dropdown')) {
+                console.log('버튼 직접 클릭이므로 드롭다운 처리 안함');
+                return;
+              }
+
+              e.preventDefault();
+              e.stopPropagation();
+              
+              // 로그인 상태에 따른 메뉴 타입 결정
+              const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+              const menuType = isLoggedIn ? 'user' : 'login';
+              console.log('감지된 메뉴 타입:', menuType);
+              this.toggleMobileMenu(menuType);
+              return;
+            }
+
+            // 로그아웃 버튼 클릭 처리
+            if (e.target.classList.contains('logout-btn') || e.target.classList.contains('logout-dropdown-btn')) {
+              e.preventDefault();
+              this.handleLogout();
+              return;
+            }
+
+            // 외부 클릭으로 드롭다운 닫기
+            if (!e.target.closest('.user-menu')) {
+              this.closeAllDropdowns();
+            }
+          };
+
+          // 이벤트 리스너 등록
+          document.addEventListener('click', window.globalClickHandler);
+
+          // ESC 키로 드롭다운 닫기
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              this.closeAllDropdowns();
+            }
+          });
+        }
+
+        /**
+         * 모바일 메뉴 토글 함수
+         * @param {string} type - 메뉴 타입 ('login' 또는 'user')
+         */
+        toggleMobileMenu(type) {
+          console.log('모바일 메뉴 토글:', type);
+          
+          const dropdownId = type === 'login' ? 'loginDropdown' : 'userDropdown';
+          const dropdown = document.getElementById(dropdownId);
+          
+          if (!dropdown) {
+            console.error('드롭다운 요소를 찾을 수 없음:', dropdownId);
+            return;
+          }
+          
+          // 현재 활성화된 드롭다운이 같은 것이면 닫기
+          if (this.activeDropdown === dropdown) {
+            this.closeAllDropdowns();
+            return;
+          }
+          
+          // 모든 드롭다운 닫고 현재 드롭다운 열기
+          this.closeAllDropdowns();
+          dropdown.classList.add('active');
+          this.activeDropdown = dropdown;
+          console.log('드롭다운 열림:', dropdownId);
+        }
+
+        /**
+         * 모든 드롭다운 메뉴 닫기
+         */
+        closeAllDropdowns() {
+          document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+          });
+          this.activeDropdown = null;
+        }
+
+        /**
+         * 로그아웃 처리 함수
+         * 확인 후 로컬 스토리지 정리 및 페이지 새로고침
+         */
+        handleLogout() {
+          console.log('로그아웃 처리');
+          if (confirm('정말 로그아웃 하시겠습니까?')) {
+            localStorage.removeItem('userLoggedIn');
+            localStorage.removeItem('username');
+            localStorage.removeItem('userType');
+            this.closeAllDropdowns();
+            location.reload();
+          }
+        }
+      }
+    }
+
+    /**
+     * 로그인 상태 관리 클래스
+     * 사용자 로그인 상태와 UI 업데이트를 처리
+     */
+    if (!window.LoginStatusManager) {
+      window.LoginStatusManager = class LoginStatusManager {
+        constructor() {
+          this.init();
+        }
+
+        /**
+         * 초기화 함수
+         */
+        init() {
+          this.updateLoginStatus();
+        }
+
+        /**
+         * 로그인 상태에 따른 UI 업데이트
+         */
+        updateLoginStatus() {
+          const loginMenu = document.getElementById('loginMenu');
+          const loggedInMenu = document.getElementById('loggedInMenu');
+          const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+          
+          console.log('로그인 상태 확인:', isLoggedIn);
+          
+          if (isLoggedIn) {
+            // 로그인된 상태
+            if (loginMenu) loginMenu.classList.add('hidden');
+            if (loggedInMenu) loggedInMenu.classList.remove('hidden');
+            
+            // 사용자 정보 업데이트
+            const username = localStorage.getItem('username') || '사용자';
+            const userType = localStorage.getItem('userType') || 'user';
+            const userTypeText = userType === 'politician' ? '정치인' : '일반회원';
+            
+            this.updateUserInfo(username, userTypeText);
+          } else {
+            // 로그아웃된 상태
+            if (loginMenu) loginMenu.classList.remove('hidden');
+            if (loggedInMenu) loggedInMenu.classList.add('hidden');
+          }
+        }
+
+        /**
+         * 사용자 정보 UI 업데이트
+         * @param {string} username - 사용자명
+         * @param {string} userTypeText - 사용자 타입 텍스트
+         */
+        updateUserInfo(username, userTypeText) {
+          // PC 메뉴 업데이트
+          const usernameDisplay = document.getElementById('usernameDisplay');
+          const userTypeDisplay = document.getElementById('userTypeText');
+          if (usernameDisplay) usernameDisplay.textContent = username;
+          if (userTypeDisplay) userTypeDisplay.textContent = userTypeText;
+          
+          // 드롭다운 메뉴 업데이트
+          const dropdownUsername = document.getElementById('dropdownUsername');
+          const dropdownUsertype = document.getElementById('dropdownUsertype');
+          if (dropdownUsername) dropdownUsername.textContent = username;
+          if (dropdownUsertype) dropdownUsertype.textContent = userTypeText;
+        }
+
+        /**
+         * 테스트용 로그인 함수
+         * @param {string} username - 테스트 사용자명
+         * @param {string} userType - 사용자 타입 ('user' 또는 'politician')
+         */
+        testLogin(username = '테스트사용자', userType = 'user') {
+          localStorage.setItem('userLoggedIn', 'true');
+          localStorage.setItem('username', username);
+          localStorage.setItem('userType', userType);
+          this.updateLoginStatus();
+          console.log('테스트 로그인 완료:', { username, userType });
+        }
+      }
+    }
+
+    // 헤더, 푸터 로드 실행
+    Promise.all([
+      includeHTML("header-include", "header.html"),
+      includeHTML("footer-include", "footer.html")
+    ]).then(() => {
+      console.log('모든 인클루드 완료');
+    });
+  </script>
+<!-- ========================================
+       롤링 배너 관리 JavaScript (수정됨)
+  ======================================== -->
+<script>
+    /**
+     * 롤링 배너 관리 클래스
+     * 자동 롤링, 수동 제어, 일시정지/재생 기능을 제공
+     */
+    class RollingBannerManager {
+      constructor() {
+        this.currentSlide = 0;
+        this.totalSlides = 0;
+        this.isPlaying = true;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 4000; // 4초마다 자동 전환
+        
+        this.init();
+      }
+
+      /**
+       * 초기화 함수
+       * DOM 요소들을 찾고 이벤트 리스너를 설정
+       */
+      init() {
+        // DOM 요소 참조
+        this.bannerTrack = document.getElementById('bannerTrack');
+        this.bannerIndicators = document.getElementById('bannerIndicators');
+        this.prevBtn = document.getElementById('prevBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+        this.playPauseBtn = document.getElementById('playPauseBtn');
+
+        if (!this.bannerTrack) {
+          console.error('배너 트랙을 찾을 수 없습니다.');
+          return;
+        }
+
+        // 슬라이드 개수 계산
+        this.slides = this.bannerTrack.querySelectorAll('.rolling-banner-slide');
+        this.totalSlides = this.slides.length;
+
+        if (this.totalSlides === 0) {
+          console.error('배너 슬라이드가 없습니다.');
+          return;
+        }
+
+        // 중요: 각 슬라이드의 너비를 정확히 설정
+        this.slides.forEach(slide => {
+          slide.style.width = `${100 / this.totalSlides}%`;
+        });
+
+        // 트랙의 전체 너비 설정
+        this.bannerTrack.style.width = `${this.totalSlides * 100}%`;
+
+        // 인디케이터 생성
+        this.createIndicators();
+
+        // 이벤트 리스너 설정
+        this.setupEventListeners();
+
+        // 초기 상태 설정
+        this.updateSlide(0);
+        this.startAutoPlay();
+
+        console.log('롤링 배너 초기화 완료:', this.totalSlides + '개 슬라이드');
+      }
+
+      /**
+       * 인디케이터 점들을 생성하는 함수
+       */
+      createIndicators() {
+        if (!this.bannerIndicators) return;
+
+        this.bannerIndicators.innerHTML = '';
+        
+        for (let i = 0; i < this.totalSlides; i++) {
+          const indicator = document.createElement('div');
+          indicator.className = 'banner-indicator';
+          indicator.addEventListener('click', () => this.goToSlide(i));
+          this.bannerIndicators.appendChild(indicator);
+        }
+      }
+
+      /**
+       * 이벤트 리스너 설정
+       */
+      setupEventListeners() {
+        // 이전/다음 버튼
+        if (this.prevBtn) {
+          this.prevBtn.addEventListener('click', () => this.previousSlide());
+        }
+        if (this.nextBtn) {
+          this.nextBtn.addEventListener('click', () => this.nextSlide());
+        }
+
+        // 재생/일시정지 버튼
+        if (this.playPauseBtn) {
+          this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+        }
+
+        // 마우스 호버 시 자동 재생 일시정지
+        const container = document.querySelector('.side-banner-container');
+        if (container) {
+          container.addEventListener('mouseenter', () => {
+            if (this.isPlaying) {
+              this.pauseAutoPlay();
+            }
+          });
+
+          container.addEventListener('mouseleave', () => {
+            if (this.isPlaying) {
+              this.startAutoPlay();
+            }
+          });
+        }
+
+        // 키보드 네비게이션 (접근성)
+        document.addEventListener('keydown', (e) => {
+          // 포커스가 배너 영역에 있을 때만 작동
+          if (document.activeElement.closest('.side-banner-container')) {
+            if (e.key === 'ArrowLeft') {
+              e.preventDefault();
+              this.previousSlide();
+            } else if (e.key === 'ArrowRight') {
+              e.preventDefault();
+              this.nextSlide();
+            } else if (e.key === ' ') {
+              e.preventDefault();
+              this.togglePlayPause();
+            }
+          }
+        });
+      }
+
+      /**
+       * 특정 슬라이드로 이동
+       * @param {number} slideIndex - 이동할 슬라이드 인덱스
+       */
+      goToSlide(slideIndex) {
+        if (slideIndex < 0 || slideIndex >= this.totalSlides) return;
+        
+        this.currentSlide = slideIndex;
+        this.updateSlide(slideIndex);
+      }
+
+      /**
+       * 다음 슬라이드로 이동
+       */
+      nextSlide() {
+        const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+        this.goToSlide(nextIndex);
+      }
+
+      /**
+       * 이전 슬라이드로 이동
+       */
+      previousSlide() {
+        const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.goToSlide(prevIndex);
+      }
+
+      /**
+       * 슬라이드 UI 업데이트
+       * @param {number} slideIndex - 현재 슬라이드 인덱스
+       */
+      updateSlide(slideIndex) {
+        // 정확한 퍼센티지 계산으로 이동
+        const translateX = -(slideIndex * (100 / this.totalSlides));
+        this.bannerTrack.style.transform = `translateX(${translateX}%)`;
+
+        // 인디케이터 업데이트
+        const indicators = this.bannerIndicators.querySelectorAll('.banner-indicator');
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle('active', index === slideIndex);
+        });
+
+        this.currentSlide = slideIndex;
+      }
+
+      /**
+       * 자동 재생 시작
+       */
+      startAutoPlay() {
+        if (this.autoPlayInterval) {
+          clearInterval(this.autoPlayInterval);
+        }
+
+        this.autoPlayInterval = setInterval(() => {
+          this.nextSlide();
+        }, this.autoPlayDelay);
+      }
+
+      /**
+       * 자동 재생 일시정지
+       */
+      pauseAutoPlay() {
+        if (this.autoPlayInterval) {
+          clearInterval(this.autoPlayInterval);
+          this.autoPlayInterval = null;
+        }
+      }
+
+      /**
+       * 재생/일시정지 토글
+       */
+      togglePlayPause() {
+        this.isPlaying = !this.isPlaying;
+
+        if (this.isPlaying) {
+          this.startAutoPlay();
+          if (this.playPauseBtn) {
+            this.playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            this.playPauseBtn.title = '일시정지';
+          }
+        } else {
+          this.pauseAutoPlay();
+          if (this.playPauseBtn) {
+            this.playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            this.playPauseBtn.title = '재생';
+          }
+        }
+      }
+
+      /**
+       * 배너 매니저 정리 함수
+       * 메모리 누수 방지를 위한 정리 작업
+       */
+      destroy() {
+        this.pauseAutoPlay();
+        
+        // 이벤트 리스너 제거는 브라우저가 자동으로 처리하므로
+        // 여기서는 interval만 정리
+        if (this.autoPlayInterval) {
+          clearInterval(this.autoPlayInterval);
+          this.autoPlayInterval = null;
+        }
+      }
+    }
+
+    // 전역 배너 매니저 인스턴스
+    let bannerManager = null;
+
+    // DOM 로드 완료 시 배너 매니저 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+      // 배너 요소가 존재하는지 확인 후 초기화
+      const bannerContainer = document.querySelector('.side-banner-container');
+      if (bannerContainer) {
+        bannerManager = new RollingBannerManager();
+      }
+    });
+
+    // 페이지 언로드 시 정리
+    window.addEventListener('beforeunload', function() {
+      if (bannerManager) {
+        bannerManager.destroy();
+      }
+    });
+  </script>
+<!-- ========================================
+       콘텐츠 관리 JavaScript
+  ======================================== -->
+<script>
+    /**
+     * 자유게시판 인기글 초기화 함수
+     * 정적 데이터를 사용해 인기글 카드를 생성
+     */
+    function initPopularPosts() {
+      const container = document.querySelector('#popular-posts .popular-posts-wrapper');
+      if (!container) return;
+
+      // 샘플 게시글 데이터
+      const posts = [
+        {
+          title: "총선 이후 정치 지형 변화",
+          content: "새로운 정치 환경에서 나타나는 변화와 전망을 분석해봅니다.",
+          author: "정치분석가",
+          date: "25.05.10.",
+          likes: 89,
+          views: 2341
+        },
+        {
+          title: "국정 지지율 급변 원인",
+          content: "최근 여론조사 결과에 나타난 변화의 배경을 살펴봅니다.",
+          author: "여론전문가",
+          date: "25.05.09.",
+          likes: 67,
+          views: 1876
+        },
+        {
+          title: "청년 정책 토론회 후기",
+          content: "젊은 세대가 바라는 정책 방향에 대한 토론회 내용을 정리했습니다.",
+          author: "청년리더",
+          date: "25.05.08.",
+          likes: 45,
+          views: 1234
+        }
+      ];
+
+      // 게시글 카드 생성
+      posts.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'popular-post-card';
+        card.onclick = () => window.location.href = '/board_01.html';
+        card.innerHTML = `
+          <div class="title">${post.title}</div>
+          <div class="content">${post.content}</div>
+          <div class="meta">
+            ${post.author} · ${post.date} · 추천 ${post.likes} · 조회수 ${post.views}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /**
+ * 정치방망이 인기글 초기화 함수 (voice.html 스타일 + 썸네일 포함)
+ * 가로형 카드에 voice.html의 배지 시스템을 적용
+ */
+    function initPopularPostsHome() {
+      const container = document.querySelector('#popular-posts-home .popular-posts-home-wrapper');
+      if (!container) return;
+
+  // 정치방망이 게시글 데이터
+      const boardPosts = [
+        {
+          title: "서울시장 선거, 당신의 선택은?",
+          content: "오늘 열린 후보 간 토론회에서 주요 쟁점들을 정리했습니다.",
+          author: "정청래",
+          date: "25.04.15.",
+          likes: "추천 156",
+          views: "조회수 2890",
+          selectedPolitician: "정청래 국회의원",
+          comments: 12,
+          thumbnail: "https://www.assembly.go.kr/static/portal/img/openassm/new/9f6decd03010411db7bf51e526fbf348.jpg",
+          isMpPost: true // 국회의원 직접등록
+        },
+        {
+          title: "최저임금 법안에 대한 의견 공유",
+          content: "최저임금 인상에 대한 찬반 의견을 자유롭게 남겨주세요.",
+          author: "이준석",
+          date: "25.04.18.",
+          likes: "추천 89",
+          views: "조회수 1150",
+          selectedPolitician: "이준석 국회의원",
+          comments: 8,
+          thumbnail: "https://www.assembly.go.kr/static/portal/img/openassm/new/f150e375dc4a4a05b0c99ae1a313b432.jpg",
+          isMpPost: true // 국회의원 직접등록
+        },
+        {
+          title: "부동산 정책 어떻게 생각하세요?",
+          content: "정부에서 발표한 새로운 부동산 대책, 여러분의 생각은 어떠신가요?",
+          author: "바다의소리",
+          date: "25.04.20.",
+          likes: "추천 56",
+          views: "조회수 890",
+          selectedPolitician: "여진수 국회의원",
+          comments: 15,
+          thumbnail: "images/Group_10.png", // 기본 이미지
+          isMpPost: false
+        }
+      ];
+
+  // 게시글 카드 생성
+  boardPosts.forEach(post => {
+    // 배지 타입 결정 (정치인 직접등록 30%, 직접답변 20%, 없음 50%)
+    //const badgeRandom = Math.random();
+    //let isMpPost = false;
+    //let hasDirectReply = false;
+    //
+    //if (badgeRandom < 0.3) {
+    //  isMpPost = true; // 정치인 직접등록
+    //} else if (badgeRandom < 0.5) {
+    //  hasDirectReply = true; // 직접답변
+    //}
+    // 나머지 50%는 둘 다 false (배지 없음)
+
+    const card = document.createElement('div');
+    card.className = 'popular-post-card-home';
+    card.onclick = () => window.location.href = '/voice_01.html';
+    card.innerHTML = `
+      <div class="popular-thumb-box">
+        <img src="${post.thumbnail}" alt="썸네일" class="popular-thumbnail" 
+             onerror="this.onerror=null; this.src='images/Group_10.png';">
+      </div>
+      <div class="popular-text-box">
+        <div class="politician-info-top">
+          <div class="politician-badge">${post.selectedPolitician}</div>
+          ${post.isMpPost ? '<span class="mp-direct-badge">✔️ 직접등록</span>' : ''}
+        </div>
+        <div class="title">
+          ${post.title}
+      ${post.comments > 0 ? ` <span class="comment-badge">[${post.comments}]</span>` : ''}
+        </div>
+        <div class="content">${post.content}</div>
+        <div class="meta">
+          <div class="meta-left">
+            <span>${post.author}</span>
+            <span class="meta-separator">·</span>
+            <span>${post.date}</span>
+            <span class="meta-separator">·</span>
+            <span class="likes-info">${post.likes}</span>
+            <span class="meta-separator">·</span>
+            <span class="views-info">${post.views}</span>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+    // DOM 로드 완료 시 초기화 함수들 실행
+    window.addEventListener('DOMContentLoaded', initPopularPosts);
+    window.addEventListener('DOMContentLoaded', initPopularPostsHome);
+  </script>
+<!-- ========================================
+       실시간 댓글 롤링 시스템
+  ======================================== -->
+<script>
+    /**
+     * 실시간 댓글 데이터
+     * 실제 환경에서는 서버에서 받아온 데이터를 사용
+     */
+    const commentData = [
+      "익명1: 저는 이재명을 응원합니다!",
+      "익명2: 한동훈 후보가 더 신뢰가 가요.",
+      "익명3: 모두 응원하지만 저는 중립입니다.",
+      "익명4: 새로운 인물도 보고 싶어요.",
+      "익명5: 정치가 변화하길 바랍니다."
+    ];
+
+    /**
+     * 실시간 댓글 롤링 초기화 함수
+     * 댓글 목록을 생성하고 무한 롤링 애니메이션 시작
+     */
+    function initRollingComments() {
+      const list = document.getElementById('rollingCommentList');
+      if (!list) return;
+
+      // 초기 댓글 삽입
+      commentData.forEach((text, idx) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <a href="https://www.polibat.com/comment/${idx + 1}" class="rolling-comment-link">
+            ${text}
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        `;
+        list.appendChild(li);
+      });
+
+      // 무한 롤링 애니메이션 설정
+      let currentIndex = 0;
+      const rowHeight = 40; // 각 댓글 행의 높이
+
+      setInterval(() => {
+        currentIndex++;
+        list.style.transition = 'transform 0.5s ease';
+        list.style.transform = `translateY(-${currentIndex * rowHeight}px)`;
+
+        // 마지막 댓글까지 롤링했으면 처음으로 돌아가기
+        if (currentIndex >= commentData.length) {
+          setTimeout(() => {
+            list.style.transition = 'none';
+            list.style.transform = 'translateY(0)';
+            currentIndex = 0;
+          }, 500);
+        }
+      }, 2500); // 2.5초마다 다음 댓글로 이동
+    }
+
+    // DOM 로드 완료 시 실시간 댓글 초기화
+    window.addEventListener('DOMContentLoaded', initRollingComments);
+  </script>
+<!-- ========================================
+       팝업 관리 시스템
+  ======================================== -->
+<script>
+    /**
+     * 팝업 닫기 함수
+     * @param {boolean} hideForDay - 24시간 동안 숨김 여부
+     */
+    function closePopup(hideForDay) {
+      if (hideForDay) {
+        // 24시간 후 만료 시간 설정
+        const expireTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+        localStorage.setItem("popup_hide_until", expireTime);
+      }
+      document.getElementById("main-popup").style.display = "none";
+    }
+
+    /**
+     * 팝업 오버레이 클릭 처리 함수
+     * 팝업 내부가 아닌 배경 클릭 시 팝업 닫기
+     * @param {Event} event - 클릭 이벤트
+     */
+    function handleOverlayClick(event) {
+      if (!event.target.closest(".popup-inner")) {
+        closePopup(false);
+      }
+    }
+
+    /**
+     * 팝업 표시 여부 확인 및 표시
+     * 페이지 로드 시 실행되어 팝업 숨김 설정을 확인
+     */
+    window.addEventListener("DOMContentLoaded", () => {
+      const hideUntil = localStorage.getItem("popup_hide_until");
+      const now = new Date().getTime();
+      
+      // 숨김 설정이 없거나 만료되었으면 팝업 표시
+      if (!hideUntil || now > parseInt(hideUntil)) {
+        document.getElementById("main-popup").style.display = "block";
+      }
+    });
+  </script>
+<!-- ========================================
+       추가 기능 및 유틸리티
+  ======================================== -->
+<script>
+    /**
+     * 페이지 로드 완료 후 실행되는 추가 초기화 함수들
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('정치방망이 메인 페이지 로드 완료');
+      
+      // 스크롤 이벤트 최적화를 위한 쓰로틀링
+      let scrollTimeout;
+      window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(function() {
+          // 스크롤 관련 추가 기능이 필요한 경우 여기에 추가
+        }, 100);
+      });
+
+      // 반응형 이미지 지연 로딩 (Intersection Observer 사용)
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.classList.remove('lazy');
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+
+        // lazy 클래스를 가진 이미지들에 대해 지연 로딩 적용
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          imageObserver.observe(img);
+        });
+      }
+
+      // 접근성 개선: 키보드 네비게이션 지원
+      document.addEventListener('keydown', function(e) {
+        // Tab 키 네비게이션 개선
+        if (e.key === 'Tab') {
+          document.body.classList.add('keyboard-navigation');
+        }
+      });
+
+      document.addEventListener('mousedown', function() {
+        document.body.classList.remove('keyboard-navigation');
+      });
+    });
+
+    /**
+     * 에러 처리 및 로깅
+     * 전역 에러 핸들러로 사용자 경험 개선
+     */
+    window.addEventListener('error', function(e) {
+      console.error('페이지 에러 발생:', e.error);
+      // 실제 운영환경에서는 에러 로깅 서비스로 전송
+    });
+
+    /**
+     * 성능 모니터링
+     * 페이지 로드 성능 측정 (개발 환경용)
+     */
+    if (performance && performance.measure) {
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          console.log('페이지 로드 시간:', perfData.loadEventEnd - perfData.navigationStart, 'ms');
+        }, 0);
+      });
+    }
+  </script>
+
+<!-- ===================== index.html용 ===================== -->
+<script>
+// 현재 페이지 식별 (각 페이지마다 이 값만 변경)
+var CURRENT_PAGE = 'index';
+
+// 통합 페이지 관리 시스템
+(function() {
+    'use strict';
+    
+    console.log('🌐 통합 페이지 관리 시스템 로드 - 페이지:', CURRENT_PAGE);
+    
+    // 전역 헤더 관리자
+    window.GlobalHeaderManager = {
+        initialized: false,
+        retryCount: 0,
+        maxRetries: 10,
+        currentPage: CURRENT_PAGE,
+        
+        // 헤더 상태 초기화
+        init: function() {
+            var self = this;
+            console.log('🚀 전역 헤더 관리자 초기화 시도');
+            
+            this.waitForHeader(function() {
+                self.setupHeaderManager();
+                self.updateHeaderState();
+                self.highlightCurrentMenu(); // 현재 페이지 메뉴 하이라이트
+                self.initialized = true;
+                console.log('✅ 전역 헤더 관리자 초기화 완료');
+            });
+        },
+        
+        // 헤더 로드 대기
+        waitForHeader: function(callback) {
+            var self = this;
+            var loginMenu = document.getElementById('loginMenu');
+            var loggedInMenu = document.getElementById('loggedInMenu');
+            
+            if (loginMenu && loggedInMenu) {
+                console.log('📍 헤더 요소 발견, 초기화 진행');
+                callback();
+            } else if (this.retryCount < this.maxRetries) {
+                this.retryCount++;
+                console.log('⏳ 헤더 로딩 대기 중... (' + this.retryCount + '/' + this.maxRetries + ')');
+                setTimeout(function() {
+                    self.waitForHeader(callback);
+                }, 200);
+            } else {
+                console.error('❌ 헤더 로딩 실패 - 최대 재시도 횟수 초과');
+            }
+        },
+        
+        // 현재 페이지 메뉴 하이라이트
+        highlightCurrentMenu: function() {
+            var menuItems = document.querySelectorAll('.menu a');
+            var currentPageMap = {
+                'index': ['index.html', '/'],
+                'board': ['board.html'],
+                'voice': ['voice.html'],
+                'vote_board': ['vote_board.html'],
+                'member_info': ['member_info.html']
+            };
+            
+            for (var i = 0; i < menuItems.length; i++) {
+                var item = menuItems[i];
+                var href = item.getAttribute('href');
+                
+                // 현재 페이지와 일치하는 메뉴 찾기
+                var pagesToCheck = currentPageMap[this.currentPage] || [];
+                var isActive = false;
+                
+                for (var j = 0; j < pagesToCheck.length; j++) {
+                    if (href && href.includes(pagesToCheck[j])) {
+                        isActive = true;
+                        break;
+                    }
+                }
+                
+                if (isActive) {
+                    item.classList.add('active');
+                    console.log('🎯 현재 페이지 메뉴 하이라이트:', href);
+                } else {
+                    item.classList.remove('active');
+                }
+            }
+        },
+        
+        // 헤더 관리자 설정
+        setupHeaderManager: function() {
+            console.log('🔧 헤더 이벤트 리스너 설정');
+            var self = this;
+            
+            // 로그아웃 버튼 이벤트
+            document.addEventListener('click', function(e) {
+                if (e.target.matches('.logout-btn, .logout-dropdown-btn')) {
+                    e.preventDefault();
+                    console.log('🚪 로그아웃 버튼 클릭');
+                    self.handleLogout();
+                }
+            });
+            
+            // 모바일 메뉴 버튼 이벤트
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.mobile-menu-button')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var button = e.target.closest('.mobile-menu-button');
+                    var menuType = button.getAttribute('data-menu-type');
+                    self.toggleMobileMenu(menuType);
+                }
+            });
+            
+            // 외부 클릭으로 드롭다운 닫기
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.user-menu')) {
+                    self.closeAllDropdowns();
+                }
+            });
+            
+            // 로그인 성공 이벤트 리스너
+            window.addEventListener('userLoginSuccess', function(e) {
+                console.log('📡 로그인 성공 이벤트 수신:', e.detail);
+                self.updateHeaderState();
+            });
+            
+            // 저장소 변경 감지
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'userLoggedIn' || e.key === 'userNickname' || e.key === 'userType') {
+                    console.log('📦 저장소 변경 감지:', e.key);
+                    self.updateHeaderState();
+                }
+            });
+        },
+        
+        // 헤더 상태 업데이트
+        updateHeaderState: function() {
+            console.log('🔄 헤더 상태 업데이트 시작');
+            
+            var loginMenu = document.getElementById('loginMenu');
+            var loggedInMenu = document.getElementById('loggedInMenu');
+            
+            if (!loginMenu || !loggedInMenu) {
+                console.warn('⚠️ 헤더 메뉴 요소를 찾을 수 없음');
+                return;
+            }
+            
+            var isLoggedIn = localStorage.getItem('userLoggedIn') === 'true' || 
+                            sessionStorage.getItem('userLoggedIn') === 'true';
+            
+            console.log('🔍 로그인 상태 확인:', isLoggedIn);
+            
+            if (isLoggedIn) {
+                this.showLoggedInState(loginMenu, loggedInMenu);
+            } else {
+                this.showLoggedOutState(loginMenu, loggedInMenu);
+            }
+        },
+        
+        // 로그인 상태 표시
+        showLoggedInState: function(loginMenu, loggedInMenu) {
+            console.log('👤 로그인 상태 UI 표시');
+            
+            if (loginMenu) {
+                loginMenu.style.display = 'none';
+                loginMenu.classList.add('hidden');
+            }
+            if (loggedInMenu) {
+                loggedInMenu.style.display = 'flex';
+                loggedInMenu.classList.remove('hidden');
+            }
+            
+            var userNickname = localStorage.getItem('userNickname') || 
+                             sessionStorage.getItem('userNickname') || '사용자';
+            var userType = localStorage.getItem('userType') || 
+                          sessionStorage.getItem('userType') || 'user';
+            
+            var userTypeText = userType === 'politician' ? '정치인' : '일반회원';
+            this.updateUserInfo(userNickname, userTypeText, userType);
+            
+            console.log('✅ 로그인 상태 표시 완료:', { userNickname, userType });
+        },
+        
+        // 로그아웃 상태 표시
+        showLoggedOutState: function(loginMenu, loggedInMenu) {
+            console.log('🔓 로그아웃 상태 UI 표시');
+            
+            if (loginMenu) {
+                loginMenu.style.display = 'flex';
+                loginMenu.classList.remove('hidden');
+            }
+            if (loggedInMenu) {
+                loggedInMenu.style.display = 'none';
+                loggedInMenu.classList.add('hidden');
+            }
+            
+            console.log('✅ 로그아웃 상태 표시 완료');
+        },
+        
+        // 사용자 정보 업데이트
+        updateUserInfo: function(nickname, userTypeText, userType) {
+            console.log('📝 사용자 정보 업데이트:', { nickname, userTypeText, userType });
+            
+            var usernameDisplay = document.getElementById('usernameDisplay');
+            var userTypeDisplay = document.getElementById('userTypeText');
+            var userIndicator = document.getElementById('userIndicator');
+            
+            if (usernameDisplay) {
+                usernameDisplay.textContent = nickname;
+                console.log('📝 사용자명 업데이트:', nickname);
+            }
+            if (userTypeDisplay) {
+                userTypeDisplay.textContent = userTypeText;
+                console.log('📝 사용자 타입 업데이트:', userTypeText);
+            }
+            
+            if (userIndicator) {
+                userIndicator.classList.remove('politician', 'user');
+                userIndicator.classList.add(userType);
+                console.log('🎨 사용자 타입 스타일 적용:', userType);
+            }
+            
+            var dropdownUsername = document.getElementById('dropdownUsername');
+            var dropdownUsertype = document.getElementById('dropdownUsertype');
+            if (dropdownUsername) dropdownUsername.textContent = nickname;
+            if (dropdownUsertype) dropdownUsertype.textContent = userTypeText;
+        },
+        
+        // 로그아웃 처리
+        handleLogout: function() {
+            console.log('🚪 로그아웃 처리 시작');
+            
+            var keysToRemove = ['userLoggedIn', 'userType', 'userEmail', 'userNickname'];
+            keysToRemove.forEach(function(key) {
+                localStorage.removeItem(key);
+                sessionStorage.removeItem(key);
+            });
+            
+            console.log('🗑️ 로그인 정보 삭제 완료');
+            this.updateHeaderState();
+            window.dispatchEvent(new CustomEvent('userLogout'));
+            
+            setTimeout(function() {
+                console.log('🏠 메인 페이지로 리디렉션');
+                window.location.href = 'index.html';
+            }, 500);
+        },
+        
+        // 모바일 메뉴 토글
+        toggleMobileMenu: function(type) {
+            console.log('📱 모바일 메뉴 토글:', type);
+            
+            var dropdownId = type === 'login' ? 'loginDropdown' : 'userDropdown';
+            var dropdown = document.getElementById(dropdownId);
+            
+            if (!dropdown) {
+                console.error('❌ 드롭다운 요소를 찾을 수 없음:', dropdownId);
+                return;
+            }
+            
+            if (this.activeDropdown === dropdown) {
+                this.closeAllDropdowns();
+                return;
+            }
+            
+            this.closeAllDropdowns();
+            dropdown.classList.add('active');
+            this.activeDropdown = dropdown;
+        },
+        
+        // 모든 드롭다운 닫기
+        closeAllDropdowns: function() {
+            var dropdowns = document.querySelectorAll('.mobile-dropdown');
+            for (var i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].classList.remove('active');
+            }
+            this.activeDropdown = null;
+        }
+    };
+    
+    // 이전 페이지 추적 (로그인 페이지 제외)
+    if (CURRENT_PAGE !== 'login') {
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentPage = window.location.href;
+            sessionStorage.setItem('previousPage', currentPage);
+            console.log('📍 현재 페이지 저장:', currentPage);
+            
+            // 로그인 링크에 redirect 파라미터 추가
+            setTimeout(function() {
+                var loginLinks = document.querySelectorAll('a[href*="login.html"], .login-btn');
+                
+                for (var i = 0; i < loginLinks.length; i++) {
+                    loginLinks[i].addEventListener('click', function(e) {
+                        var currentUrl = window.location.href;
+                        var loginUrl = this.getAttribute('href') || 'login.html';
+                        var separator = loginUrl.includes('?') ? '&' : '?';
+                        var newUrl = loginUrl + separator + 'redirect=' + encodeURIComponent(currentUrl);
+                        
+                        console.log('🔗 로그인 링크 클릭, 리디렉션 URL 설정:', newUrl);
+                        this.href = newUrl;
+                    });
+                }
+            }, 1000);
+        });
+    }
+    
+    // 헤더/푸터 포함 함수
+    window.includeHTML = function(id, file) {
+        console.log('📁 파일 포함 시작:', file);
+        
+        fetch(file)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('파일 로딩 실패: ' + response.status);
+            }
+            return response.text();
+        })
+        .then(function(data) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.innerHTML = data;
+                
+                if (id === 'header-include') {
+                    console.log('🔧 헤더 로드 완료, 상태 관리 시스템 초기화');
+                    setTimeout(function() {
+                        window.GlobalHeaderManager.init();
+                    }, 100);
+                }
+                
+                console.log('✅ ' + file + ' 포함 완료');
+            } else {
+                console.error('❌ 요소를 찾을 수 없음:', id);
+            }
+        })
+        .catch(function(error) {
+            console.error('❌ 파일 로딩 실패:', error);
+        });
+    };
+    
+    // DOM 로드 시 헤더/푸터 포함
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🎯 페이지 로드 완료, 헤더/푸터 포함 시작');
+        
+        if (document.getElementById('header-include')) {
+            window.includeHTML("header-include", "header.html");
+        }
+        
+        if (document.getElementById('footer-include')) {
+            window.includeHTML("footer-include", "footer.html");
+        }
+    });
+    
+    // 디버깅용 전역 함수들
+    window.testLogin = function(userType, nickname) {
+        userType = userType || 'user';
+        nickname = nickname || '테스트사용자';
+        
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userType', userType);
+        localStorage.setItem('userEmail', 'test@example.com');
+        localStorage.setItem('userNickname', nickname);
+        
+        if (window.GlobalHeaderManager && window.GlobalHeaderManager.initialized) {
+            window.GlobalHeaderManager.updateHeaderState();
+        }
+        
+        console.log('🧪 테스트 로그인 완료:', { userType, nickname });
+    };
+    
+    window.testLogout = function() {
+        ['userLoggedIn', 'userType', 'userEmail', 'userNickname'].forEach(function(key) {
+            localStorage.removeItem(key);
+            sessionStorage.removeItem(key);
+        });
+        
+        if (window.GlobalHeaderManager && window.GlobalHeaderManager.initialized) {
+            window.GlobalHeaderManager.updateHeaderState();
+        }
+        
+        console.log('🧪 테스트 로그아웃 완료');
+    };
+    
+    console.log('🎉 통합 페이지 관리 시스템 로드 완료 - 페이지:', CURRENT_PAGE);
+    
+})();
+</script>
+<!-- 
+=================================================
+📋 페이지별 CURRENT_PAGE 값 변경 가이드
+=================================================
+
+각 페이지에서 맨 위의 CURRENT_PAGE 값만 변경하세요:
+
+• index.html:      var CURRENT_PAGE = 'index';
+• board.html:      var CURRENT_PAGE = 'board';
+• voice.html:      var CURRENT_PAGE = 'voice';
+• vote_board.html: var CURRENT_PAGE = 'vote_board';
+• member_info.html: var CURRENT_PAGE = 'member_info';
+• login.html:      var CURRENT_PAGE = 'login';
+
+나머지 코드는 모든 페이지에서 동일합니다!
+-->
+</body>
+</html>

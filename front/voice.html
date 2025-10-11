@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="polibat Website Template by freehtml5.co" name="description">
+<meta content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" name="keywords">
+<meta content="freehtml5.co" name="author">
+
+<!-- Facebook and Twitter integration -->
+<meta content="정치방망이!" property="og:title"/>
+<meta content="" property="og:image"/>
+<meta content="" property="og:url"/>
+<meta content="" property="og:site_name"/>
+<meta content="" property="og:description"/>
+<meta content="" name="twitter:title"/>
+<meta content="" name="twitter:image"/>
+<meta content="" name="twitter:url"/>
+<meta content="" name="twitter:card"/>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"/>
+<!-- Animate.css -->
+<link href="css/animate.css" rel="stylesheet"/>
+<!-- Icomoon Icon Fonts-->
+<link href="css/icomoon.css" rel="stylesheet"/>
+<!-- Bootstrap  -->
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<!-- Magnific Popup -->
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<!-- Owl Carousel  -->
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<!-- Flexslider  -->
+<link href="css/flexslider.css" rel="stylesheet"/>
+<!-- Pricing -->
+<link href="css/pricing.css" rel="stylesheet"/>
+<!-- Theme style  -->
+<link href="css/style.css" rel="stylesheet"/>
+<!-- Modernizr JS -->
+<script src="js/modernizr-2.6.2.min.js"></script>
+<!-- jQuery 추가 (main.js보다 먼저 로드되어야 함) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 1. jQuery (head에서 로드) -->
+<!-- 2. main.js -->
+<script src="js/main.js"></script>
+<title>정치 방망이!</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary-color: #222;
+  --secondary-color: #555;
+  --accent-color: #1976d2;
+  --bg-white: #fff;
+  --border-radius: 12px;
+  --shadow-light: 0 2px 8px rgba(0,0,0,0.08);
+  --font-main: 'Pretendard', 'Nanum Gothic', Arial, sans-serif;
+}
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+    color: #828282;
+}
+body {
+  font-family: var(--font-main);
+  color: var(--primary-color);
+  background: var(--bg-white);
+  font-size: 15px;
+  line-height: 1.7;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.post-title {
+  font-family: var(--font-main);
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.post-content {
+  font-family: var(--font-main);
+  color: var(--secondary-color);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.board-header h2 {
+  color: var(--primary-color);
+  font-size: 20px;
+  font-weight: 700;
+}
+.write-button {
+  background: var(--primary-color);
+  color: #fff;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 15px;
+}
+.write-button:hover {
+  background: var(--accent-color);
+}
+.search-wrapper input {
+  font-family: var(--font-main);
+  color: var(--primary-color);
+  font-size: 15px;
+}
+.search-option {
+  font-family: var(--font-main);
+  color: var(--primary-color);
+  font-size: 15px;
+}
+.search-option.selected {
+  background: #e3f2fd;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+.pagination button {
+  font-family: var(--font-main);
+  color: var(--primary-color);
+  font-size: 15px;
+}
+.pagination button.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+.free-board-container {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  padding: 20px;
+}
+.board-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-top: 20px;
+}
+.board-header h2 {
+  margin: 0;
+  flex: 1 1 100%;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+.board-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+.search-wrapper {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 180px;
+  max-width: 300px;
+  width: 100%;
+}
+.search-wrapper input {
+  width: 100%;
+  padding: 8px 30px 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+  autocomplete: off;
+  autocapitalize: off;
+  autocorrect: off;
+  spellcheck: false;
+}
+.search-wrapper input:focus {
+  border-color: #1976d2;
+}
+.search-wrapper::after {
+  content: '\1F50D';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #888;
+  pointer-events: none;
+}
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10000;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 2px;
+}
+.search-dropdown.show {
+  display: block;
+}
+.search-option {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+.search-option:last-child {
+  border-bottom: none;
+}
+.search-option:hover {
+  background-color: #f8f9fa;
+}
+.search-option.selected {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  font-weight: 500;
+}
+.search-condition-display {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: none;
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+  border: 1px solid #bbdefb;
+}
+.search-condition-display.show {
+  display: block;
+}
+.search-wrapper input.with-condition {
+  padding-left: 85px;
+}
+.write-button {
+  padding: 8px 14px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.write-button:hover {
+  background-color: #333;
+}
+@media (max-width: 768px) {
+  .board-header {
+    gap: 8px;
+    padding-top: 10px;
+  }
+  .search-wrapper, .write-button {
+    width: 100%;
+    max-width: 100%;
+  }
+  .search-condition-display {
+    font-size: 10px;
+    max-width: 60px;
+    padding: 1px 4px;
+  }
+  .search-wrapper input.with-condition {
+    padding-left: 70px;
+  }
+  .search-wrapper input {
+    padding: 10px 30px 10px 10px;
+  }
+  .search-option {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+/* ==================== 게시판 컨테이너 ==================== */
+/* 게시판 전체 영역 박스 */
+.free-board-container {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* 데스크톱 환경에서 행 hover 효과 */
+@media (min-width: 769px) {
+  .free-board-container tbody tr:hover {
+    background: #f4f4f4;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+}
+
+/* 모바일 환경에서 행 hover 효과 */
+@media (max-width: 768px) {
+  .free-board-container tr:hover {
+    background-color: #f9f9f9 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+  }
+}
+
+/* ==================== 게시판 헤더 영역 ==================== */
+/* 게시판 상단 영역 (제목 + 검색 + 버튼) */
+.board-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-top: 20px;
+}
+
+.board-header h2 {
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+/* 검색창 + 글쓰기 버튼 정렬 영역 */
+.board-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+/* ==================== 검색 기능 스타일 ==================== */
+/* 검색 입력창 래퍼 */
+.search-wrapper {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 180px;
+  max-width: 300px;
+  width: 100%;
+}
+
+/* 검색 입력창 */
+.search-wrapper input {
+  width: 100%;
+  padding: 8px 30px 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+  /* 자동완성 기능 비활성화 */
+  autocomplete: off;
+  autocapitalize: off;
+  autocorrect: off;
+  spellcheck: false;
+}
+
+.search-wrapper input:focus {
+  border-color: #1976d2;
+}
+
+/* 검색 아이콘 */
+.search-wrapper::after {
+  content: '\1F50D';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #888;
+  pointer-events: none;
+}
+
+/* 검색 조건 드롭다운 */
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10000;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 2px;
+}
+
+.search-dropdown.show {
+  display: block;
+}
+
+.search-option {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.search-option:last-child {
+  border-bottom: none;
+}
+
+.search-option:hover {
+  background-color: #f8f9fa;
+}
+
+.search-option.selected {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+/* 검색 조건 표시 태그 */
+.search-condition-display {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: none;
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+  border: 1px solid #bbdefb;
+}
+
+.search-condition-display.show {
+  display: block;
+}
+
+.search-wrapper input.with-condition {
+  padding-left: 85px;
+}
+
+/* 글쓰기 버튼 */
+.write-button {
+  padding: 8px 14px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.write-button:hover {
+  background-color: #333;
+}
+
+/* 모바일에서 검색 조건 표시 태그 크기 조정 */
+@media (max-width: 768px) {
+  .search-condition-display {
+    font-size: 10px;
+    max-width: 60px;
+    padding: 1px 4px;
+  }
+
+  .search-wrapper input.with-condition {
+    padding-left: 70px;
+  }
+
+  .search-wrapper input {
+    padding: 10px 30px 10px 10px;
+  }
+
+  .search-option {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .write-button,
+  .search-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ==================== 게시판 테이블 스타일 ==================== */
+/* 게시판 행 hover 효과 */
+#boardBody tr {
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+#boardBody tr:hover {
+  background: #f4f4f4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* ==================== 인기글 섹션 ==================== */
+/* 인기글 전체 섹션 */
+#popular-posts {
+  margin: 40px auto 30px;
+  max-width: 1200px;
+}
+
+/* 인기글 섹션 제목 */
+#popular-posts > h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+/* 인기글 그리드 레이아웃 */
+.popular-posts-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ==================== 인기글 카드 스타일 ==================== */
+/* 인기글 카드 기본 스타일 */
+.popular-post-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  min-height: 160px;
+  align-items: flex-start;
+}
+
+.popular-post-card:hover {
+  /*transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-color: #bbb;*/
+}
+
+/* 제목 영역 - 상단 고정 */
+.popular-post-card .title {
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  word-break: keep-all;
+  width: 100%;
+}
+
+/* 정치인 배지 - 독립적으로 상단에 */
+.popular-post-card .politician-badge {
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* 제목과 배지들을 한 줄에 */
+.popular-post-card .title-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.4;
+}
+
+.popular-post-card .title-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 내용 - 상단에 위치 */
+.popular-post-card .content {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: auto;
+  letter-spacing: -0.4px;
+  word-break: break-word;
+  margin-top: 0;
+}
+
+/* ==================== 인기글 메타 정보 (개선된 부분) ==================== */
+/* 메타 정보 - 하단에 고정 */
+.popular-post-card .meta {
+  font-size: 12px;
+  color: #888;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 메타 정보 왼쪽 (작성자, 날짜) */
+.meta-left {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 메타 정보 오른쪽 (추천, 조회수) */
+.meta-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* 추천 수 표시 스타일 */
+.likes-info {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  /*color: #e74c3c;*/
+  font-weight: 500;
+}
+
+.likes-info::before {
+  content: "";
+  font-size: 11px;
+}
+
+/* 조회수 표시 스타일 */
+.views-info {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #666;
+}
+
+.views-info::before {
+  content: "";
+  font-size: 11px;
+}
+
+/* 구분자 스타일 */
+.meta-separator {
+  color: #ccc;
+  font-weight: normal;
+}
+
+/* ==================== 반응형 인기글 레이아웃 ==================== */
+/* 모바일: 1줄 */
+@media (max-width: 768px) {
+  .popular-posts-wrapper {
+    display: flex !important;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f2f2f2;
+  }
+  .popular-post-card,
+  .popular-post-card.horizontal {
+    min-width: 260px;
+    max-width: 80vw;
+    flex: 0 0 auto;
+  }
+}
+
+/* 태블릿: 2줄 */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .popular-posts-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* PC: 3줄 */
+@media (min-width: 1200px) {
+  .popular-posts-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==================== 인기글 가로형 카드 (미사용) ==================== */
+.popular-post-card.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px;
+  height: auto;
+}
+
+.popular-thumb-box {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  margin-right: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .popular-thumb-box {
+        width: 80px;
+        height: 80px;
+        justify-content: flex-start;
+        margin-bottom: 8px;
+        border-radius: 12px;
+    }
+}
+
+.popular-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.popular-text-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 정치인 정보 상단 영역 */
+.politician-info-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.popular-text-box .title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #222;
+  line-height: 1.4;
+}
+
+.popular-text-box .content {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.popular-text-box .meta {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ==================== 게시판 테이블 스타일 ==================== */
+/* ==================== board.html 스타일 완전 통일 ==================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 24px;
+}
+th:nth-child(1), td:nth-child(1) { width: 8%; }
+th:nth-child(2), td:nth-child(2) { width: 50%; }
+th:nth-child(3), td:nth-child(3) { width: 15%; }
+th:nth-child(4), td:nth-child(4) { width: 12%; }
+th:nth-child(5), td:nth-child(5) { width: 8%; }
+th:nth-child(6), td:nth-child(6) { width: 7%; }
+th, td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+th {
+  background-color: #f2f2f2;
+  text-align: center;
+  color: #828282;
+}
+td {
+  text-align: center;
+}
+th:nth-child(2), td:nth-child(2) {
+  /*text-align: left;*/
+}
+.post-title, .post-content {
+  text-align: left;
+}
+.post-title {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+.post-title:hover {
+  text-decoration: underline;
+}
+.post-content {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+}
+.post-meta {
+  font-size: 0.8em;
+  color: #888;
+  margin-top: 4px;
+  display: none;
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+}
+@media (max-width: 768px) {
+  table thead {
+    display: none;
+  }
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  tr {
+    background: #fff;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    padding: 5px;
+  }
+  td {
+    padding: 6px 0;
+    border-bottom: none !important;
+  }
+  td:nth-child(1), td:nth-child(3), td:nth-child(4), 
+  td:nth-child(5), td:nth-child(6), td:nth-child(7) {
+    display: none;
+  }
+  td:nth-child(2) {
+    font-size: 1em;
+    /*font-weight: bold;*/
+  }
+  .post-title {
+    font-size: 1.1em;
+    color: #000;
+    margin-bottom: -6px;
+  }
+  .post-content {
+    font-size: 0.95em;
+    color: #444;
+    margin-bottom: 6px;
+  }
+  .post-meta {
+    display: block;
+    font-size: 0.95em;
+    color: #666;
+    margin-top: 6px;
+  }
+}
+
+/* ==================== 게시글 제목 스타일 ==================== */
+.post-title {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.post-title:hover {
+  text-decoration: underline;
+}
+
+/* ==================== 배지 및 아이콘 스타일 ==================== */
+/* 직접답변 아이콘 */
+.direct-reply-icon {
+  display: inline-block;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(135deg, #4a90e2, #005bea);
+  border-radius: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-top: -3px;
+}
+.direct-reply-icon::before {
+  content: "💬";
+  margin-right: 2px;
+}
+
+/* 의원 직접답변 배지 */
+.mp-direct-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #4a90e2, #005bea);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
+  margin-bottom: 2px;
+}
+
+/* 댓글 수 배지 */
+.comment-badge {
+  color: #e74c3c;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* 정치인 선택 배지 */
+.politician-badge {
+  display: inline-block;
+  background: #e8f4fd;
+  color: #1976d2;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  vertical-align: middle;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-weight: 600;
+  border: 1px solid #bbdefb;
+  margin-bottom: 2px;
+}
+
+.politician-badge::before {
+  content: "📢";
+  margin-right: 3px;
+}
+
+/* 정치인 유형별 배지 스타일 */
+.politician-badge.national {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.politician-badge.local {
+  background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+.politician-badge.mayor {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+/* ==================== 페이지네이션 ==================== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.pagination button {
+  background-color: #f0f2f5;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-family: 'Nanum Gothic', sans-serif;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination button:hover {
+  background-color: #e0e0e0;
+}
+
+.pagination button.active {
+  background-color: #000;
+  color: white;
+  font-weight: bold;
+}
+
+/* ==================== 모바일 반응형 테이블 ==================== */
+@media (max-width: 768px) {
+  table thead {
+    display: none;
+  }
+
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  tr {
+    background: #fff;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    padding: 0px;
+  }
+
+  td {
+    padding: 6px 0;
+    border-bottom: none !important;
+  }
+
+  td:nth-child(1) {
+    margin-bottom: 8px;
+  }
+
+  td:nth-child(3),
+  td:nth-child(4),
+  td:nth-child(5),
+  td:nth-child(6) {
+    display: none;
+  }
+
+  .post-title {
+    font-size: 1.1em;
+    color: #000;
+    margin-bottom: -6px;
+  }
+
+  table th:first-child,
+  table td:first-child {
+    display: block;
+  }
+
+  .pagination {
+    padding: 0 10px;
+  }
+}
+
+/* ==================== 모바일 최적화 스타일 ==================== */
+@media screen and (max-width: 768px) {
+  h1, h2, h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    line-height: 1.4;
+  }
+
+  p, ul, li, button {
+    margin-bottom: 1em;
+  }
+
+  .container, .content, .section {
+    /* padding-left: 1rem;*/
+    padding-right: 1rem;
+  }
+
+  table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .btn, button {
+    padding: 10px 14px;
+    font-size: 1rem;
+  }
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.free-board-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  /* board.html과 동일하게 */
+}
+#popular-posts, #latest-posts {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  max-width: 1200px;
+}
+@media (max-width: 768px) {
+  .free-board-container {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+  #popular-posts, #latest-posts {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+}
+@media (max-width: 768px) {
+  .container,
+  .free-board-container,
+  .popular-post-card,
+  .latest-post-item {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .thumbnail-row {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    gap: 8px !important;
+  }
+  .thumbnail-text {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    overflow-x: hidden !important;
+  }
+  .popular-post-card, .free-board-container {
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+  }
+}
+@media (max-width: 768px) {
+  .thumbnail-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-break: break-all !important;
+    overflow-wrap: break-word !important;
+    overflow-x: hidden !important;
+    white-space: normal !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .popular-post-card .meta,
+  .popular-post-card .meta-left,
+  .meta,
+  .meta-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    white-space: normal;
+    word-break: keep-all;
+    line-height: 1.5;
+    gap: 0 4px;
+  }
+  .popular-post-card .meta span,
+  .popular-post-card .meta-left span,
+  .meta span,
+  .meta-left span {
+    margin-right: 0;
+    margin-bottom: 0;
+    display: inline;
+  }
+}
+</style>
+<style>
+/* 모바일 좌우 여백 통일 (16px) */
+@media (max-width: 768px) {
+	.container,
+	.free-board-container,
+	.free-notice-container,
+	.board-container {
+		margin: 20px 16px 15px 16px;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}
+/* 모바일 테이블 반응형 (카드형) */
+@media (max-width: 768px) {
+	table thead { display: none; }
+	table, tbody, tr, td { display: block; width: 100%; box-sizing: border-box; }
+	tr {
+		background: #fff;
+		margin-bottom: 16px;
+		border-radius: 10px;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+		border: 1px solid #e0e0e0;
+		padding: 12px;
+	}
+	td { padding: 6px 0; border-bottom: none !important; }
+}
+</style>
+</head>
+<body>
+<!-- 헤더 로딩 -->
+<div id="header-include"></div>
+<div id="wrap">
+<div class="container">
+
+<!-- ==================== 인기글 섹션 ==================== -->
+<section id="popular-posts">
+<h2>🔥 지금 뜨는 인기글</h2>
+<div class="popular-posts-wrapper">
+<!-- JS가 여기 인기글 카드 자동 삽입 -->
+</div>
+</section>
+<script>
+// 페이지 로드 시 main.js의 renderPopularPosts만 호출
+if (typeof renderPopularPosts === 'function') {
+  renderPopularPosts();
+}
+</script>
+
+<!-- ==================== 정치인게시판 ==================== -->
+<section class="free-board-container">
+<div class="board-header">
+<h2>정치인과 국민의 빠른 소통, 정치방망이!</h2>
+<div class="board-controls">
+<div class="search-wrapper">
+<div class="search-condition-display" id="searchConditionDisplay">통합검색</div>
+<input id="searchInput" placeholder="검색..." type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+<div class="search-dropdown" id="searchDropdown">
+<div class="search-option selected" data-value="all">통합검색</div>
+<div class="search-option" data-value="title-content">제목+내용</div>
+<div class="search-option" data-value="title">제목</div>
+<div class="search-option" data-value="author">작성자</div>
+<div class="search-option" data-value="date">작성일</div>
+</div>
+</div>
+<button class="write-button" onclick="location.href='write_voice.html';">글쓰기</button>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+        <th>번호</th>
+<th>제목</th>
+<th>작성자</th>
+<th>작성일</th>
+<th>추천</th>
+<th>조회수</th>
+</tr>
+</thead>
+    <tbody id="boardBody"></tbody>
+</table>
+<div class="pagination" id="pagination"></div>
+</section>
+</div>
+</div>
+
+<!-- 푸터 로딩 -->
+<div id="footer-include"></div>
+
+<!-- ==================== 외부 라이브러리 로딩 ==================== -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="js/jquery.stellar.min.js"></script>
+<!-- Carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Flexslider -->
+<script src="js/jquery.flexslider-min.js"></script>
+<!-- countTo -->
+<script src="js/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/magnific-popup-options.js"></script>
+<!-- Count Down -->
+<script src="js/simplyCountdown.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+
+<!-- ==================== 카운트다운 초기화 ==================== -->
+<script>
+    var d = new Date(new Date().getTime() + 1000 * 120 * 120 * 2000);
+
+    // default example
+    simplyCountdown('.simply-countdown-one', {
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate()
+    });
+
+    //jQuery example
+    $('#simply-countdown-losange').simplyCountdown({
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate(),
+        enableUtc: false
+    });
+</script>
+
+<!-- ==================== HTML 인클루드 ==================== -->
+<script>
+   /**
+    * header.html, footer.html 포함 함수
+    * @param {string} id - 포함할 요소의 ID
+    * @param {string} file - 포함할 파일 경로
+    */
+    function includeHTML(id, file) {
+      fetch(file)
+        .then(r => r.text())
+        .then(html => (document.getElementById(id).innerHTML = html));
+    }
+    
+    // 헤더와 푸터 로딩
+    includeHTML('header-include', 'header.html');
+    includeHTML('footer-include', 'footer.html');
+</script>
+
+<!-- ==================== 메인 스크립트 ==================== -->
+<script>
+// main.js에서 이미 선언된 변수 및 함수(예: sampleTitles, posts, renderTable, renderPopularPosts 등)와 관련된 중복 선언 및 함수 정의를 모두 삭제했습니다.
+// 검색/필터/드롭다운 등은 main.js의 전역 함수를 그대로 사용합니다.
+// 페이지별로만 필요한 추가 스크립트가 있다면 여기에 작성하세요.
+</script>
+<!-- 🆕 새로운 로그인 시스템 - 페이지 관리자 -->
+<script src="page-manager.js"></script>
+<!-- ==================== 검색 드롭다운/조건/필터링 UI 이벤트 (board.html과 동일) ==================== -->
+<script>
+(function() {
+  const searchInput = document.getElementById('searchInput');
+  const searchDropdown = document.getElementById('searchDropdown');
+  const searchConditionDisplay = document.getElementById('searchConditionDisplay');
+  let currentSearchCondition = 'all';
+
+  if (!searchInput || !searchDropdown || !searchConditionDisplay) return;
+  
+  searchInput.addEventListener('click', function(e) {
+    e.stopPropagation();
+    searchInput.setAttribute('autocomplete', 'new-password');
+    searchDropdown.classList.add('show');
+    updateSearchInputStyle();
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrapper')) {
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+    }
+  });
+  searchInput.addEventListener('blur', function(e) {
+    setTimeout(() => {
+      if (!searchDropdown.matches(':hover')) {
+        searchDropdown.classList.remove('show');
+        updateSearchInputStyle();
+      }
+    }, 150);
+  });
+  searchDropdown.addEventListener('click', function(e) {
+    if (e.target.classList.contains('search-option')) {
+      document.querySelectorAll('.search-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      e.target.classList.add('selected');
+      currentSearchCondition = e.target.dataset.value;
+      searchConditionDisplay.textContent = e.target.textContent;
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      performSearch();
+    }
+  });
+  searchInput.addEventListener('input', function(e) {
+    searchDropdown.classList.remove('show');
+    updateSearchInputStyle();
+    performSearch();
+  });
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      performSearch();
+      searchInput.blur();
+    } else if (e.key === 'ArrowDown' && searchDropdown.classList.contains('show')) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      searchInput.blur();
+    }
+  });
+  function updateSearchInputStyle() {
+    if (searchDropdown.classList.contains('show') || currentSearchCondition !== 'all') {
+      searchConditionDisplay.classList.add('show');
+      searchInput.classList.add('with-condition');
+    } else {
+      searchConditionDisplay.classList.remove('show');
+      searchInput.classList.remove('with-condition');
+    }
+  }
+  function performSearch() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    if (!keyword) {
+      filteredPosts = [...posts];
+    } else {
+      filteredPosts = posts.filter(post => {
+        switch (currentSearchCondition) {
+          case 'all':
+            return post.title.toLowerCase().includes(keyword) ||
+                   post.content.toLowerCase().includes(keyword) ||
+                   post.author.toLowerCase().includes(keyword) ||
+                   (post.district ? post.district.toLowerCase().includes(keyword) : false);
+          case 'title-content':
+            return post.title.toLowerCase().includes(keyword) ||
+                   post.content.toLowerCase().includes(keyword);
+          case 'author':
+            return post.author.toLowerCase().includes(keyword);
+          case 'date':
+            return post.date.includes(keyword);
+          default:
+            return true;
+        }
+      });
+    }
+    currentPage = 1;
+    renderTable(filteredPosts);
+  }
+})();
+</script>
+</body>
+</html>

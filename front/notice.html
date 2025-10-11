@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="polibat Website Template by freehtml5.co" name="description">
+<meta content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" name="keywords">
+<meta content="freehtml5.co" name="author">
+
+<!-- Facebook and Twitter integration -->
+<meta content="" property="og:title"/>
+<meta content="" property="og:image"/>
+<meta content="" property="og:url"/>
+<meta content="" property="og:site_name"/>
+<meta content="" property="og:description"/>
+<meta content="" name="twitter:title"/>
+<meta content="" name="twitter:image"/>
+<meta content="" name="twitter:url"/>
+<meta content="" name="twitter:card"/>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"/>
+<!-- Animate.css -->
+<link href="css/animate.css" rel="stylesheet"/>
+<!-- Icomoon Icon Fonts-->
+<link href="css/icomoon.css" rel="stylesheet"/>
+<!-- Bootstrap  -->
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<!-- Magnific Popup -->
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<!-- Owl Carousel  -->
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<!-- Flexslider  -->
+<link href="css/flexslider.css" rel="stylesheet"/>
+<!-- Pricing -->
+<link href="css/pricing.css" rel="stylesheet"/>
+<!-- Theme style  -->
+<link href="css/style.css" rel="stylesheet"/>
+<!-- Modernizr JS -->
+<script src="js/modernizr-2.6.2.min.js"></script>
+<title>공지사항 - 정치방망이</title>
+
+<style>
+    /* 레이아웃의 최대 너비를 설정하고 중앙 정렬 */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+    @media screen and (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+}
+
+    /* 제목 및 기본 텍스트 스타일 */
+    h1, h2, h3, h4, h5, h6, figure {
+      color: #000;
+      font-family: "Pretendard", serif;
+      font-weight: 400;
+      margin: 0 0 20px 0;
+      padding-top: 0px;
+      text-align: initial;
+    }
+
+    /* 공지사항 전체 영역 박스 */
+    .free-notice-container {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+          margin: 40px auto 30px;
+    }
+
+    /* 카테고리 아이콘 스타일 */
+    .category-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      padding: 4px 12px;
+      border-radius: 999px; /* pill shape */
+      font-size: 13px;
+      font-weight: 600;
+      background: #f4f6fa;
+      color: #2563eb;
+      border: 1px solid #e3e8f0;
+      margin-right: 8px;
+      margin-bottom: 2px;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .category-icon.notice {
+      background: #e8f0fe;
+      color: #2563eb;
+      border-color: #b6ccfa;
+    }
+    .category-icon.important {
+      background: #fff4e6;
+      color: #e65100;
+      border-color: #ffd6a0;
+    }
+    .category-icon.update {
+      background: #f3e8ff;
+      color: #7c3aed;
+      border-color: #d1b3ff;
+    }
+    .category-icon.guide {
+      background: #e6f9f0;
+      color: #059669;
+      border-color: #a7f3d0;
+    }
+    .category-icon.new-feature {
+      background: #fef9e7;
+      color: #b7791f;
+      border-color: #fbe7a2;
+    }
+    .category-icon.event {
+      background: #fce7f3;
+      color: #be185d;
+      border-color: #fbcfe8;
+    }
+    .category-icon.pinned {
+      background: linear-gradient(90deg, #111 60%, #333 100%);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+    }
+
+    /* 모바일에서 아이콘 크기 조정 */
+    @media (max-width: 768px) {
+      .category-icon {
+        min-width: 36px;
+        height: 18px;
+        font-size: 9px;
+        margin-right: 6px;
+        padding: 0 5px;
+      }
+    }
+
+    /* 고정 공지사항 스타일 */
+    .pinned-notice {
+      background-color: #fff5e6 !important;
+      border-left: 4px solid #ff9800 !important;
+      position: relative;
+    }
+
+    .pinned-notice td:first-child {
+      position: relative;
+    }
+    /*
+    .pinned-notice td:first-child::before {
+      content: "📌";
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      background: white;
+      padding: 2px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    */
+    .pinned-notice .post-title {
+      font-weight: 700 !important;
+      color: #e65100 !important;
+    }
+
+    .pinned-notice .category-icon-row {
+      margin-bottom: 0;
+      margin-top: 0;
+      text-align: left;
+    }
+    .pinned-notice .category-icon.pinned {
+      display: inline-block;
+      background: linear-gradient(45deg, #000, #000);
+      color: #fff;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+    .pinned-notice .post-title {
+      color: #e65100 !important;
+      font-weight: 700 !important;
+      font-size: 18px;
+      margin-bottom: 2px;
+      text-align: left;
+    }
+    .pinned-notice .post-content {
+      color: #555;
+      font-size: 14px;
+      margin-top: 2px;
+      text-align: left;
+    }
+    .pinned-notice .comment-badge {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-left: 6px;
+      font-weight: 700;
+    }
+
+    /* 데스크톱 환경에서 행 hover 시 배경색 변경 */
+    @media (min-width: 769px) {
+      .free-notice-container tbody tr:hover {
+        background: #f4f4f4;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      
+      .free-notice-container tbody tr.pinned-notice:hover {
+        background: #fff3e0 !important;
+      }
+    }
+
+    /* 모바일 환경에서 행 hover 시 그림자 효과 */
+    @media (max-width: 768px) {
+      .free-notice-container tr:hover {
+        background-color: #f9f9f9 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+      }
+      
+      .free-notice-container tr.pinned-notice:hover {
+        background-color: #fff3e0 !important;
+      }
+    }
+
+    /* 공지사항 상단 영역 (제목 + 검색 + 버튼) */
+    .notice-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-top: 20px;
+    }
+
+    .notice-header h2 {
+      margin: 0;
+      flex: 1 1 100%;
+    font-size: 20px;
+    font-weight: 700;
+    }
+
+    /* 검색창 + 글쓰기 버튼 정렬 영역 */
+    .notice-controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+    }
+
+    /* 검색 입력창 스타일 */
+    .search-wrapper {
+      position: relative;
+      flex: 0 1 auto;
+      min-width: 180px;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .search-wrapper input {
+      width: 100%;
+      padding: 8px 30px 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+      autocomplete: off;
+      autocapitalize: off;
+      autocorrect: off;
+      spellcheck: false;
+    }
+
+    .search-wrapper input:focus {
+      border-color: #1976d2;
+    }
+
+    /* 검색 아이콘 위치 */
+    .search-wrapper::after {
+      content: '\1F50D';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #888;
+      pointer-events: none;
+    }
+
+    /* 검색 조건 드롭다운 스타일 */
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      width: 100%;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 2px;
+    }
+
+    .search-dropdown.show {
+      display: block;
+    }
+
+    .search-option {
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #333;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s;
+    }
+
+    .search-option:last-child {
+      border-bottom: none;
+    }
+
+    .search-option:hover {
+      background-color: #f8f9fa;
+    }
+
+    .search-option.selected {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      font-weight: 500;
+    }
+
+    /* 검색 조건 표시 태그 */
+    .search-condition-display {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: #1976d2;
+      background: #e3f2fd;
+      padding: 2px 6px;
+      border-radius: 3px;
+      display: none;
+      max-width: 70px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      border: 1px solid #bbdefb;
+    }
+
+    .search-condition-display.show {
+      display: block;
+    }
+
+    .search-wrapper input.with-condition {
+      padding-left: 85px;
+    }
+
+    /* 글쓰기 버튼 스타일 */
+    .write-button {
+      padding: 8px 14px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .write-button:hover {
+      background-color: #333;
+    }
+
+    /* 테이블 전체 구조 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+      margin-bottom: 24px;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee;
+      word-break: break-word;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      text-align: left;
+    }
+
+    /* 게시글 제목 링크 스타일 */
+    .post-title {
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .post-title:hover {
+      text-decoration: underline;
+    }
+
+    /* 게시글 간략 내용 */
+    .post-content {
+      font-size: 13px;
+      color: #555;
+      margin-top: 4px;
+      font-weight: 400;
+      letter-spacing: -0.4px;
+    }
+
+    /* 게시글 메타 정보 (작성자, 날짜 등) */
+    .post-meta {
+      font-size: 0.8em;
+      color: #888;
+      margin-top: 4px;
+      display: none;
+    }
+
+    /* 페이지네이션 버튼 정렬 */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+
+    .pagination button {
+      background-color: #f0f2f5;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-family: 'Nanum Gothic', sans-serif;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .pagination button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .pagination button.active {
+      background-color: #000;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* 모바일 반응형 테이블 스타일 */
+    @media (max-width: 768px) {
+      table thead {
+        display: none;
+      }
+
+      table, tbody, tr, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      tr {
+        background: #fff;
+        margin-bottom: 16px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        border: 1px solid #e0e0e0;
+        padding: 12px;
+      }
+
+      /* 모바일에서 고정 공지사항 스타일 */
+      tr.pinned-notice {
+        background: #fff5e6 !important;
+        border-left: 4px solid #ff9800 !important;
+        position: relative;
+        padding-left: 16px;
+      }
+
+      tr.pinned-notice::before {
+        content: "📌";
+        position: absolute;
+        left: -2px;
+        top: 8px;
+        font-size: 12px;
+        background: white;
+        padding: 1px;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+
+      td {
+        padding: 6px 0;
+        border-bottom: none !important;
+      }
+
+      td:nth-child(1),
+      td:nth-child(3),
+      td:nth-child(4),
+      td:nth-child(5),
+      td:nth-child(6) {
+        display: none;
+      }
+
+      td:nth-child(2) {
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      .post-title {
+        font-size: 1.1em;
+        color: #000;
+        margin-bottom: -6px;
+      }
+
+      .post-content {
+        font-size: 0.95em;
+        color: #444;
+        margin-bottom: 6px;
+      }
+
+      .post-meta {
+        display: block;
+        font-size: 0.95em;
+        color: #666;
+        margin-top: 6px;
+      }
+
+      .write-button,
+      .search-wrapper {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .pagination {
+        padding: 0 10px;
+      }
+
+      table th:first-child,
+      table td:first-child {
+        display: none;
+      }
+
+      .search-condition-display {
+        font-size: 10px;
+        max-width: 60px;
+        padding: 1px 4px;
+      }
+
+      .search-wrapper input.with-condition {
+        padding-left: 70px;
+      }
+
+      .search-wrapper input {
+        padding: 10px 30px 10px 10px;
+      }
+
+      .search-option {
+        padding: 12px;
+        font-size: 15px;
+      }
+    }
+
+    /* 지역구 레이블: PC와 모바일 구분 표시 */
+    .district-label-pc,
+    .district-label-mobile {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      .district-label-pc {
+        display: inline-block;
+        padding: 2px 6px;
+        background: #e0e0e5;
+        color: #555;
+        border-radius: 6px;
+        vertical-align: middle;
+        line-height: 1.4;
+        margin-bottom: 2px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .district-label-mobile {
+        display: inline-block;
+        padding: 1px 6px;
+        background: #eaeaea;
+        color: #666;
+        border-radius: 4px;
+        font-size: 0.95em;
+        font-weight: 500;
+        vertical-align: middle;
+        line-height: 1.4;
+        margin-right: 6px;
+      }
+    }
+
+    /* 게시글 이미지 아이콘 */
+    .image-icon {
+      margin-left: 6px;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .image-icon:hover {
+      color: #000;
+    }
+
+    /* 댓글 수 배지 */
+    .comment-badge {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+
+    /* 인기글 */
+    #popular-posts {
+      margin: 40px auto 60px;
+      max-width: 1200px;
+    }
+
+    #popular-posts > h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 20px;
+    }
+
+    .popular-posts-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .popular-post-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 16px 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .popular-post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border-color: #bbb;
+    }
+
+    .popular-post-card .title {
+      font-weight: 700;
+      font-size: 15px;
+      color: #000;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      word-break: keep-all;
+      display: flex;
+      align-items: center;
+    }
+
+    .popular-post-card .content {
+      font-size: 13px;
+      color: #555;
+      flex-grow: 1;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      letter-spacing: -0.4px;
+      word-break: break-word;
+    }
+
+    .popular-post-card .meta {
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 반응형: 모바일에서 그리드 1줄 */
+    @media (max-width: 768px) {
+      .popular-posts-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 태블릿: 2줄 */
+    @media (min-width: 769px) and (max-width: 1199px) {
+      .popular-posts-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* PC: 3줄 */
+    @media (min-width: 1200px) {
+      .popular-posts-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .category-icon-row {
+      margin: 0 0 2px 0;
+      padding: 0;
+      text-align: left;
+      line-height: 1.1;
+    }
+</style>
+</head>
+<body>
+<!-- 헤더 로딩 -->
+<div id="header-include"></div>
+<div id="wrap">
+<div class="container">
+<!-- 자유공지사항 섹션 
+<h1>공지방</h1>-->
+<!-- 인기글 섹션 -->
+<section id="popular-posts" class="d0">
+<div class="popular-posts-wrapper">
+<div class="popular-post-card" onclick="window.location.href='notice_01.html'">
+<div class="category-icon important" title="중요">중요</div>
+<div class="title">
+  선거 시즌 투표 기능 운영 정책
+</div>
+<div class="content">선거 기간 중 허위사실 유포 및 투표 조작 방지를 위한 운영 정책 안내입니다.</div>
+<div class="meta">운영자 · 2025-05-20 · 조회수 310</div>
+</div>
+
+<div class="popular-post-card" onclick="window.location.href='notice_01.html'">
+<div class="category-icon update" title="업데이트">업데이트</div>
+<div class="title">
+  댓글 신고 기능 개선 안내
+</div>
+<div class="content">댓글 신고 시 처리 절차 및 기준이 명확히 개선되었습니다. 자세한 내용을 확인해 주세요.</div>
+<div class="meta">운영자 · 2025-05-22 · 조회수 278</div>
+</div>
+<div class="popular-post-card" onclick="window.location.href='notice_01.html'">
+<div class="category-icon guide" title="안내">안내</div>
+<div class="title">
+  공지사항 알림 설정 방법
+</div>
+<div class="content">중요 공지를 푸시 알림으로 받을 수 있도록 설정 방법을 안내드립니다.</div>
+<div class="meta">운영자 · 2025-05-18 · 조회수 245</div>
+</div>
+</div>
+</section>
+<!-- 최신글 섹션 -->
+<section class="free-notice-container">
+<div class="notice-header">
+<h2>📢 정치방망이 공지사항</h2>
+<div class="notice-controls">
+<div class="search-wrapper">
+<div class="search-condition-display" id="searchConditionDisplay">통합검색</div>
+<input id="searchInput" placeholder="공지 검색..." type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+<div class="search-dropdown" id="searchDropdown">
+<div class="search-option selected" data-value="all">통합검색</div>
+<div class="search-option" data-value="title-content">제목+내용</div>
+<div class="search-option" data-value="title">제목</div>
+<div class="search-option" data-value="author">작성자</div>
+<div class="search-option" data-value="date">작성일</div>
+<div class="search-option" data-value="district">지역구</div>
+</div>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>제목</th>
+<th>작성자</th>
+<th>작성일</th>
+<th>추천</th>
+<th>조회</th>
+</tr>
+</thead>
+<tbody id="noticeBody">
+<!-- 게시글이 동적으로 생성됩니다 -->
+</tbody>
+</table>
+<div class="pagination" id="pagination"></div>
+</section>
+</div>
+</div>
+<!-- 푸터 로딩 -->
+<div id="footer-include"></div>
+<script>
+  // 카테고리 아이콘 생성 함수
+  function getCategoryIcon(title) {
+    if (title.includes('[고정]')) {
+      return '<span class="category-icon pinned" title="고정">고정</span>';
+    } else if (title.includes('[중요]')) {
+      return '<span class="category-icon important" title="중요">중요</span>';
+    } else if (title.includes('[신규기능]')) {
+      return '<span class="category-icon new-feature" title="신규기능">신규</span>';
+    } else if (title.includes('[업데이트]')) {
+      return '<span class="category-icon update" title="업데이트">업데이트</span>';
+    } else if (title.includes('[안내]')) {
+      return '<span class="category-icon guide" title="안내">안내</span>';
+    } else if (title.includes('[이벤트]')) {
+      return '<span class="category-icon event" title="이벤트">이벤트</span>';
+    } else if (title.includes('[공지]')) {
+      return '<span class="category-icon notice" title="공지">공지</span>';
+    }
+    return '';
+  }
+
+  // 제목에서 태그 제거 함수
+  function removeCategoryTags(title) {
+    return title.replace(/\[(고정|중요|신규기능|업데이트|안내|이벤트|공지)\]\s*/g, '');
+  }
+
+  // 게시글 샘플 데이터 정의
+  const sampleTitles = [
+    "[안내] 정치방망이 서비스 점검 안내",
+    "[신규기능] 투표 통계 시각화 기능 오픈",
+    "[안내] 정치방망이 오픈 안내",
+    "[업데이트] 댓글 신고 기능 개선 안내",
+    "[공지] 공공의료 확충 찬반 투표",
+    "[중요] 선거 시즌 투표 기능 운영 정책",
+    "[공지] 이용약관 개정 안내",
+    "[이벤트] 정치방망이 1주년 기념 이벤트",
+    "[안내] 개인정보처리방침 변경 안내",
+    "[업데이트] 모바일 앱 새 기능 추가"
+  ];
+
+  const sampleContents = [
+    "6월 1일 00:00~06:00까지 시스템 점검이 예정되어 있습니다.",
+    "투표 결과를 그래프로 확인할 수 있는 기능이 추가되었습니다.",
+    "정치방망이 서비스가 정식으로 오픈되었습니다.",
+    "댓글 신고 시 처리 절차 및 기준이 명확히 개선되었습니다.",
+    "공공의료 확대에 대한 여러분의 입장을 알려주세요.",
+    "선거 기간 중 허위사실 유포 및 투표 조작 방지를 위한 운영 정책 안내입니다.",
+    "서비스 이용 조건 및 회원 권리·의무 관련 약관이 개정되었습니다.",
+    "정치방망이 1주년을 기념하여 특별 이벤트를 진행합니다.",
+    "개인정보 처리 방침이 일부 변경되었으니 확인해 주세요.",
+    "모바일 앱에 새로운 편의 기능들이 추가되었습니다."
+  ];
+
+  const sampleAuthors = [
+    "운영자",
+    "관리자",
+    "시스템",
+    "운영팀"
+  ];
+
+  const sampleDistricts = [
+    "",
+    "서울특별시 강남구",
+    "인천광역시 계양구",
+    "대구광역시 수성구",
+    "경기도 고양시",
+    "부산광역시 해운대구",
+    "경기도 성남시",
+    "서울특별시 마포구"
+  ];
+
+  // 게시글 객체 배열 생성
+  const posts = Array.from({ length: 50 }, (_, i) => ({
+    id: i + 1,
+    title: sampleTitles[i % sampleTitles.length],
+    content: sampleContents[i % sampleContents.length],
+    author: sampleAuthors[i % sampleAuthors.length],
+    district: sampleDistricts[i % sampleDistricts.length],
+    date: `25.${(i % 12 + 1).toString().padStart(2, '0')}.${(i % 28 + 1).toString().padStart(2, '0')}.`,
+    views: Math.floor(Math.random() * 1000) + 50,
+    likes: Math.floor(Math.random() * 500) + 10,
+    commentCount: Math.floor(Math.random() * 20),
+    hasImage: Math.random() < 0.3
+  }));
+
+  const postsPerPage = 10; // 페이지당 게시글 수
+  let currentPage = 1; // 현재 페이지
+  let filteredPosts = [...posts]; // 필터링된 게시글 배열
+  let currentSearchCondition = 'all'; // 현재 선택된 검색 조건
+
+  // 검색 조건 관련 변수
+  const searchInput = document.getElementById('searchInput');
+  const searchDropdown = document.getElementById('searchDropdown');
+  const searchConditionDisplay = document.getElementById('searchConditionDisplay');
+
+  // 초기 렌더링을 위한 즉시 실행 함수
+  (function initializeApp() {
+    // DOM이 준비되면 즉시 실행
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        renderTable(filteredPosts);
+        updateSearchInputStyle();
+        console.log('✅ 공지사항 초기 렌더링 완료');
+      });
+    } else {
+      // DOM이 이미 준비된 경우 즉시 실행
+      renderTable(filteredPosts);
+      updateSearchInputStyle();
+      console.log('✅ 공지사항 즉시 렌더링 완료');
+    }
+  })();
+
+  // 검색창 클릭 시에만 드롭다운 표시
+  searchInput.addEventListener('click', function(e) {
+    e.stopPropagation();
+    searchInput.setAttribute('autocomplete', 'new-password');
+    searchDropdown.classList.add('show');
+    updateSearchInputStyle();
+  });
+
+  // 문서 클릭 시 드롭다운 숨김
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrapper')) {
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+    }
+  });
+
+  // 검색창에서 포커스가 벗어날 때 드롭다운 숨김
+  searchInput.addEventListener('blur', function(e) {
+    setTimeout(() => {
+      if (!searchDropdown.matches(':hover')) {
+        searchDropdown.classList.remove('show');
+        updateSearchInputStyle();
+      }
+    }, 150);
+  });
+
+  // 검색 조건 선택 이벤트
+  searchDropdown.addEventListener('click', function(e) {
+    if (e.target.classList.contains('search-option')) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      document.querySelectorAll('.search-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      
+      e.target.classList.add('selected');
+      currentSearchCondition = e.target.dataset.value;
+      searchConditionDisplay.textContent = e.target.textContent;
+      
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      performSearch();
+    }
+  });
+
+  // 검색 입력 이벤트
+  searchInput.addEventListener('input', function(e) {
+    searchDropdown.classList.remove('show');
+    updateSearchInputStyle();
+    performSearch();
+  });
+
+  // 엔터 키 검색 기능
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      performSearch();
+      searchInput.blur();
+    } else if (e.key === 'ArrowDown' && searchDropdown.classList.contains('show')) {
+      e.preventDefault();
+    }
+  });
+
+  // 검색 수행 함수
+  function performSearch() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    
+    if (!keyword) {
+      filteredPosts = [...posts];
+    } else {
+      filteredPosts = posts.filter(post => {
+        switch (currentSearchCondition) {
+          case 'all':
+            return post.title.toLowerCase().includes(keyword) ||
+                   post.content.toLowerCase().includes(keyword) ||
+                   post.author.toLowerCase().includes(keyword) ||
+                   post.district.toLowerCase().includes(keyword);
+          case 'title-content':
+            return post.title.toLowerCase().includes(keyword) ||
+                   post.content.toLowerCase().includes(keyword);
+          case 'title':
+            return post.title.toLowerCase().includes(keyword);
+          case 'author':
+            return post.author.toLowerCase().includes(keyword);
+          case 'date':
+            return post.date.includes(keyword);
+          case 'district':
+            return post.district.toLowerCase().includes(keyword);
+          default:
+            return true;
+        }
+      });
+    }
+    
+    currentPage = 1;
+    renderTable(filteredPosts);
+  }
+
+  // 검색 입력 필드 스타일 업데이트
+  function updateSearchInputStyle() {
+    if (searchDropdown.classList.contains('show') || currentSearchCondition !== 'all') {
+      searchConditionDisplay.classList.add('show');
+      searchInput.classList.add('with-condition');
+    } else {
+      searchConditionDisplay.classList.remove('show');
+      searchInput.classList.remove('with-condition');
+    }
+  }
+
+  // 게시글 테이블 렌더링 함수
+  function renderTable(filteredPosts) {
+    const start = (currentPage - 1) * postsPerPage;
+    const end = start + postsPerPage;
+    const visiblePosts = filteredPosts.slice(start, end);
+
+    // 게시글 HTML을 tbody에 렌더링
+    const noticeBody = document.getElementById('noticeBody');
+    if (noticeBody) {
+      // 고정 공지사항 HTML 생성
+      // 잘못된 부분:
+      // 1. HTML 템플릿 문자열 내에 <div class="category-icon pinned">정치방망이</span>와 <div class="category-icon-row"><span class="category-icon pinned">정치방망이</span></div>가 중복됨
+      // 2. <span> 태그가 <div> 안에 중첩되어 의미가 불분명함
+      // 3. <span class="category-icon pinned">정치방망이</span>는 아이콘 역할인데 텍스트가 들어가 있음 (아이콘만 있어야 함)
+      // 4. <div class="category-icon-row">가 <div class="post-title"> 안에 들어가 있는데, 일반 게시글과 구조가 다름
+      // 5. HTML 주석(<!-- ... -->)이 JS 코드 내에 들어가 있음 (JS에서는 주석이 아님, 오류는 아니지만 혼동의 여지 있음)
+
+      // 올바른 예시 (일반 게시글과 구조 통일, 불필요한 중복 제거):
+      const pinnedNoticeHTML = `
+        <tr class="pinned-notice" onclick="window.location.href='notice_01.html'" style="cursor:pointer;">
+          <td>고정</td>
+          <td>
+            <div class="post-title">
+              정치방망이 서비스 이용약관 및 정책 안내
+              <span class="comment-badge">[3]</span>
+            </div>
+            <!-- <div class="category-icon-row"><span class="category-icon pinned" title="고정">고정</span></div> -->
+            <div class="post-content">정치방망이 서비스 이용 시 반드시 숙지해야 할 약관과 정책을 안내드립니다.</div>
+            <div class="post-meta">
+              운영자 | 25.01.15. | 추천 89 | 조회 1250
+            </div>
+          </td>
+          <td>운영자</td>
+          <td>25.01.15.</td>
+          <td>89</td>
+          <td>1250</td>
+        </tr>
+      `;
+
+      // 일반 게시글 HTML 생성
+      const regularPostsHTML = visiblePosts.map((post, idx) => {
+        const categoryIcon = getCategoryIcon(post.title);
+        const cleanTitle = removeCategoryTags(post.title);
+        
+        return `
+        <tr onclick="window.location.href='notice_01.html'" style="cursor:pointer;">
+          <td>${start + idx + 1}</td>
+          <td>
+            ${post.district ? `
+              <span class="district-label-mobile">${post.district}</span>
+            ` : ''}
+            <div class="category-icon-row">${categoryIcon}</div>
+            <div class="post-title">
+              ${cleanTitle}
+              ${post.hasImage ? '<span style="margin-left: 6px; color: #888; font-size: 12px;">📷</span>' : ''}
+              ${post.commentCount > 0 ? `<span class="comment-badge">[${post.commentCount}]</span>` : ''}
+            </div>
+            <div class="post-content">${post.content}</div>
+            <div class="post-meta">
+              ${post.author} | ${post.date} | 추천 ${post.likes} | 조회 ${post.views}
+            </div>
+          </td>
+          <td>${post.author}</td>
+          <td>${post.date}</td>
+          <td>${post.likes}</td>
+          <td>${post.views}</td>
+        </tr>
+      `;
+      }).join('');
+
+      // 고정 공지사항 + 일반 게시글 순서로 렌더링
+      noticeBody.innerHTML = pinnedNoticeHTML + regularPostsHTML;
+    }
+
+    // 페이지 버튼 렌더링
+    renderPagination(filteredPosts.length);
+  }
+
+  // 페이지네이션 버튼 생성 함수
+  function renderPagination(total) {
+    const pageCount = Math.ceil(total / postsPerPage);
+    const pagination = document.getElementById('pagination');
+    
+    if (pagination) {
+      pagination.innerHTML = '';
+
+      if (pageCount <= 1) return;
+
+      for (let i = 1; i <= pageCount; i++) {
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        btn.className = currentPage === i ? 'active' : '';
+        btn.addEventListener('click', () => {
+          currentPage = i;
+          renderTable(filteredPosts);
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+        pagination.appendChild(btn);
+      }
+    }
+  }
+
+  // ESC 키로 드롭다운 닫기
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      searchInput.blur();
+    }
+  });
+
+  // 추가 안전장치: 윈도우 로드 시에도 렌더링 시도
+  window.addEventListener('load', function() {
+    if (document.getElementById('noticeBody').innerHTML.trim() === '') {
+      console.log('⚠️ 윈도우 로드 시 재렌더링 시도');
+      renderTable(filteredPosts);
+      updateSearchInputStyle();
+    }
+  });
+</script>
+
+<!-- 공통 헤더/푸터 삽입용 함수 -->
+<script>
+  function includeHTML(id, file) {
+    fetch(file)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+      })
+      .catch(error => {
+        console.log('파일을 불러올 수 없습니다:', error);
+      });
+  }
+
+  // 헤더와 푸터 로딩 실행
+  includeHTML("header-include", "header.html");
+  includeHTML("footer-include", "footer.html");
+</script>
+<!-- 🆕 새로운 로그인 시스템 - 페이지 관리자 -->
+<script src="page-manager.js"></script>
+</body>
+</html>

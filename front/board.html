@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="polibat Website Template by freehtml5.co" name="description">
+<meta content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" name="keywords">
+<meta content="freehtml5.co" name="author">
+
+<!-- Facebook and Twitter integration -->
+<meta content="자유게시판" property="og:title"/>
+<meta content="" property="og:image"/>
+<meta content="" property="og:url"/>
+<meta content="" property="og:site_name"/>
+<meta content="" property="og:description"/>
+<meta content="" name="twitter:title"/>
+<meta content="" name="twitter:image"/>
+<meta content="" name="twitter:url"/>
+<meta content="" name="twitter:card"/>
+
+<!-- 폰트 및 라이브러리 -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"/>
+<link href="css/animate.css" rel="stylesheet"/>
+<link href="css/icomoon.css" rel="stylesheet"/>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<link href="css/flexslider.css" rel="stylesheet"/>
+<link href="css/pricing.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<script src="js/modernizr-2.6.2.min.js"></script>
+
+<title>자유게시판</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+/* 자유게시판 전용 메뉴 스타일 - 최종 */
+body .menu a[href="board.html"] {
+    color: #000 !important;
+    font-weight: 700 !important;
+}
+
+body .menu a[href="board.html"]::after {
+    width: 100% !important;
+    background-color: #000 !important;
+    height: 3px !important;
+}
+
+/* hover 효과는 모든 메뉴에서 정상 작동 */
+body .menu a:hover::after {
+    width: 100% !important;
+    background-color: #000 !important;
+}
+
+/* 다른 메뉴들의 active 상태만 제거 (hover는 유지) */
+body .menu a:not([href="board.html"]).active {
+  color: #333 !important;
+  font-weight: 600 !important;
+}
+
+body .menu a:not([href="board.html"]).active::after {
+  width: 0 !important;
+}
+
+/* hover 효과는 모든 메뉴에서 정상 작동하도록 유지 */
+body .menu a:hover::after {
+  width: 100% !important;
+  background-color: #000 !important;
+}
+
+/* 자유게시판은 hover든 active든 항상 밑줄 */
+body .menu a[href="board.html"]:hover::after,
+body .menu a[href="board.html"].active::after {
+  width: 100% !important;
+  background-color: #000 !important;
+}
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px; /* 모든 페이지와 통일된 좌우 여백 */
+    }
+    @media screen and (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+}
+    h1, h2, h3, h4, h5, h6, figure {
+      color: #000;
+      font-family: "Pretendard", serif;
+      font-weight: 400;
+      margin: 0 0 20px 0;
+      padding-top: 0px;
+      text-align: initial;
+    }
+    .board-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    }
+
+    .free-board-container {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    @media (min-width: 769px) {
+      .free-board-container tbody tr:hover {
+        background: #f4f4f4;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .free-board-container tr:hover {
+        background-color: #f9f9f9 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+      }
+    }
+
+    .board-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-top: 20px;
+    }
+
+    .board-header h2 {
+      margin: 0;
+      flex: 1 1 100%;
+    }
+
+    .board-controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 0 1 auto;
+      min-width: 180px;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .search-wrapper input {
+      width: 100%;
+      padding: 8px 30px 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+      autocomplete: off;
+      autocapitalize: off;
+      autocorrect: off;
+      spellcheck: false;
+    }
+
+    .search-wrapper input:focus {
+      border-color: #1976d2;
+    }
+
+    .search-wrapper::after {
+      content: '\1F50D';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #888;
+      pointer-events: none;
+    }
+
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      width: 100%;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 2px;
+    }
+
+    .search-dropdown.show {
+      display: block;
+    }
+
+    .search-option {
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #333;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s;
+    }
+
+    .search-option:last-child {
+      border-bottom: none;
+    }
+
+    .search-option:hover {
+      background-color: #f8f9fa;
+    }
+
+    .search-option.selected {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      font-weight: 500;
+    }
+
+    .search-condition-display {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: #1976d2;
+      background: #e3f2fd;
+      padding: 2px 6px;
+      border-radius: 3px;
+      display: none;
+      max-width: 70px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      border: 1px solid #bbdefb;
+    }
+
+    .search-condition-display.show {
+      display: block;
+    }
+
+    .search-wrapper input.with-condition {
+      padding-left: 85px;
+    }
+
+    .write-button {
+      padding: 8px 14px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .write-button:hover {
+      background-color: #333;
+    }
+
+    /* TABLE STYLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-bottom: 24px;
+    }
+
+    th:nth-child(1), td:nth-child(1) { width: 8%; }
+    th:nth-child(2), td:nth-child(2) { width: 50%; }
+    th:nth-child(3), td:nth-child(3) { width: 15%; }
+    th:nth-child(4), td:nth-child(4) { width: 12%; }
+    th:nth-child(5), td:nth-child(5) { width: 8%; }
+    th:nth-child(6), td:nth-child(6) { width: 7%; }
+
+    th, td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #eee;
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    th:nth-child(2), td:nth-child(2) {
+      text-align: left;
+    }
+
+    td:nth-child(3) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* POST CONTENT STYLES */
+    .post-title {
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .post-title:hover {
+      text-decoration: underline;
+    }
+
+    .post-content {
+      font-size: 13px;
+      color: #555;
+      margin-top: 4px;
+      font-weight: 400;
+      letter-spacing: -0.4px;
+    }
+
+    .post-meta {
+      font-size: 0.8em;
+      color: #888;
+      margin-top: 4px;
+      display: none;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+    }
+
+    .comment-badge {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+
+    .image-icon {
+      margin-left: 6px;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .image-icon:hover {
+      color: #000;
+    }
+
+    /* AUTHOR TYPE BADGE STYLES - 고유한 클래스명 사용 */
+    .author-type-badge {
+          display: inline-block;
+    padding: 1px 4px;
+    font-size: 13px;
+    /* font-weight: bold; */
+    border-radius: 5px;
+    margin-left: 3px;
+    vertical-align: middle;
+    border: 1px solid;
+    white-space: nowrap;
+    line-height: 1.2;
+    }
+
+    .author-type-badge.admin-role {
+      display: none; /* 운영자, 관리자 배지 숨김 */
+      background: #ff6b6b;
+      color: white;
+      border-color: #ff5252;
+    }
+
+    .author-type-badge.admin-role::before {
+      /*content: '👑';*/
+      margin-right: 1px;
+      font-size: 7px;
+    }
+
+    .author-type-badge.politician-role {
+      background: #4834d4;
+      color: white;
+      border-color: #5742d4;
+    }
+
+    .author-type-badge.politician-role::before {
+      /*content: '🏛️';*/
+      margin-right: 1px;
+      font-size: 7px;
+    }
+
+    /* PAGINATION STYLES */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+
+    .pagination button {
+      background-color: #f0f2f5;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-family: 'Nanum Gothic', sans-serif;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .pagination button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .pagination button.active {
+      background-color: #000;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* POPULAR POSTS SECTION */
+    #popular-posts {
+      margin: 40px auto 30px;
+      max-width: 1200px;
+    }
+
+    #popular-posts > h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 20px;
+    }
+
+    .popular-posts-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .popular-post-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 16px 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .popular-post-card:hover {
+      /*transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border-color: #bbb;*/
+    }
+
+    .popular-post-card .title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #000;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+
+    .popular-post-card .content {
+      font-size: 13px;
+      color: #555;
+      flex-grow: 1;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      letter-spacing: -0.4px;
+      word-break: break-word;
+    }
+
+    .popular-post-card .meta {
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+      display: flex;
+      /*justify-content: space-between;*/
+      align-items: center;
+    }
+
+    /* LATEST POSTS SECTION */
+    #latest-posts {
+      margin: 40px auto 30px;
+      max-width: 1200px;
+    }
+
+    #latest-posts > h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 20px;
+    }
+
+    .latest-posts-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .latest-post-item {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 14px 18px;
+      background: #fff;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .latest-post-item:hover {
+      background-color: #f9f9f9;
+    }
+
+    .latest-post-item .post-title {
+      font-weight: bold;
+      font-size: 17px;
+      color: #222;
+      margin-bottom: 6px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .latest-post-item .post-content {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 8px;
+      letter-spacing: -0.4px;
+    }
+
+    .latest-post-item .post-meta {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      flex-direction: row;
+    }
+
+    .post-meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #888;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .meta-left, .meta-right {
+      flex-shrink: 0;
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 768px) {
+      table thead {
+        display: none;
+      }
+
+      table, tbody, tr, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      tr {
+        background: #fff;
+        margin-bottom: 16px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        border: 1px solid #e0e0e0;
+        padding: 5px;
+      }
+
+      td {
+        padding: 6px 0;
+        border-bottom: none !important;
+      }
+
+      td:nth-child(1), td:nth-child(3), td:nth-child(4), 
+      td:nth-child(5), td:nth-child(6), td:nth-child(7) {
+        display: none;
+      }
+
+      td:nth-child(2) {
+        font-size: 1em;
+        /*font-weight: bold;*/
+      }
+
+      .post-title {
+        font-size: 1.1em;
+        color: #000;
+        margin-bottom: -6px;
+      }
+
+      .post-content {
+        font-size: 0.95em;
+        color: #444;
+        margin-bottom: 6px;
+      }
+
+      .post-meta {
+        display: block;
+        font-size: 0.95em;
+        color: #666;
+        margin-top: 6px;
+      }
+
+      .write-button, .search-wrapper {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .pagination {
+        padding: 0 10px;
+      }
+
+      table th:first-child, table td:first-child {
+        display: none;
+      }
+
+      .search-condition-display {
+        font-size: 10px;
+        max-width: 60px;
+        padding: 1px 4px;
+      }
+
+      .search-wrapper input.with-condition {
+        padding-left: 70px;
+      }
+
+      .search-wrapper input {
+        padding: 10px 30px 10px 10px;
+      }
+
+      .search-option {
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .meta-right {
+        margin-top: 4px;
+      }
+
+      .latest-post-item {
+        padding: 12px 14px;
+      }
+
+      .latest-post-item .post-title {
+        font-size: 1em;
+      }
+
+      .latest-post-item .post-content {
+        font-size: 0.95em;
+      }
+
+      .latest-post-item .post-meta {
+        font-size: 0.85em;
+      }
+
+      .popular-posts-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1199px) {
+      .popular-posts-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .popular-posts-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      h1, h2, h3 {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        line-height: 1.4;
+      }
+
+      p, ul, li, button {
+        margin-bottom: 1em;
+      }
+
+      .container, .content, .section {
+        /* padding-left: 1rem;*/
+        padding-right: 1rem;
+      }
+
+      table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+      }
+
+      .btn, button {
+        padding: 10px 14px;
+        font-size: 1rem;
+      }
+    }
+    /* 자유게시판 메뉴 활성화 강화 */
+.menu a:not(.active)::after {
+    width: 0 !important;
+    background-color: transparent !important;
+}
+
+.menu a.active::after {
+    width: 100% !important;
+    background-color: #000 !important;
+    height: 3px !important;
+}
+
+/* 자유게시판 메뉴 강제 활성화 */
+.menu a[href*="board.html"].active {
+    color: #000 !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 768px) {
+  .popular-posts-wrapper {
+    display: flex !important;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f2f2f2;
+  }
+  .popular-post-card {
+    min-width: 260px;
+    max-width: 80vw;
+    flex: 0 0 auto;
+    height: 152px;
+  }
+  .pagination {
+    margin-top: 20px !important;
+  }
+  #popular-posts, #latest-posts {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+}
+</style>
+<style>
+/* 모바일 좌우 여백 통일 (16px) */
+@media (max-width: 768px) {
+	.container,
+	.free-board-container,
+	.free-notice-container,
+	.board-container {
+		margin: 20px 16px 15px 16px;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}
+/* 모바일 테이블 반응형 (카드형) */
+@media (max-width: 768px) {
+	table thead { display: none; }
+	table, tbody, tr, td { display: block; width: 100%; box-sizing: border-box; }
+	tr {
+		background: #fff;
+		margin-bottom: 16px;
+		border-radius: 10px;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+		border: 1px solid #e0e0e0;
+		padding: 12px;
+	}
+	td { padding: 6px 0; border-bottom: none !important; }
+}
+</style>
+</head>
+
+<body>
+<!-- 헤더 로딩 -->
+<div id="header-include"></div>
+
+<div id="wrap">
+<div class="container">
+
+<!-- 인기글 섹션 -->
+<section id="popular-posts">
+<h2>🔥 지금 뜨는 인기글</h2>
+<div class="popular-posts-wrapper">
+<!-- JavaScript에서 인기글 카드 자동 삽입 -->
+</div>
+</section>
+
+<!-- 최신글 섹션 -->
+<section class="d0" id="latest-posts">
+<h2>🆕 최신 글</h2>
+<div class="latest-posts-wrapper">
+<!-- JavaScript에서 최신 3개 글 자동 삽입 -->
+</div>
+</section>
+
+<!-- 자유게시판 메인 섹션 -->
+<section class="free-board-container">
+<div class="board-header">
+<h2>진지해도 웃겨도 괜찮아요, 여긴 자유게시판</h2>
+<div class="board-controls">
+<div class="search-wrapper">
+<div class="search-condition-display" id="searchConditionDisplay">통합검색</div>
+<input id="searchInput" placeholder="검색..." type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+<div class="search-dropdown" id="searchDropdown">
+<div class="search-option selected" data-value="all">통합검색</div>
+<div class="search-option" data-value="title-content">제목+내용</div>
+<div class="search-option" data-value="title">제목</div>
+<div class="search-option" data-value="author">작성자</div>
+<div class="search-option" data-value="date">작성일</div>
+<div class="search-option" data-value="district">지역구</div>
+</div>
+</div>
+<button class="write-button" onclick="location.href='write.html';">글쓰기</button>
+</div>
+</div>
+
+<!-- 게시글 테이블 -->
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>제목</th>
+<th>작성자</th>
+<th>작성일</th>
+<th>추천</th>
+<th>조회수</th>
+</tr>
+</thead>
+<tbody id="boardBody">
+<!-- 게시글이 JavaScript로 동적 생성됩니다 -->
+</tbody>
+</table>
+
+<!-- 페이지네이션 -->
+<div class="pagination" id="pagination"></div>
+</section>
+
+</div>
+</div>
+
+<!-- 푸터 로딩 -->
+<div id="footer-include"></div>
+
+<script>
+  // 게시글 샘플 데이터
+  const sampleTitles = [
+    "서울시장 선거, 당신의 선택은?",
+    "국회의원 지역구 토론회 후기",
+    "최저임금 법안에 대한 의견 공유",
+    "부동산 정책 어떻게 생각하세요?",
+    "공공의료 확충 찬반 투표",
+    "지방선거 후보자 공약 분석",
+    "교육정책 개혁안에 대한 토론",
+    "환경정책 새로운 제안",
+    "청년 정책 어떻게 개선할까요?",
+    "노인복지 확대 방안 논의"
+  ];
+
+  const sampleContents = [
+    "오늘 열린 후보 간 토론회에서 주요 쟁점들을 정리했습니다.",
+    "어제 국회에서 발의된 법안 내용과 쟁점을 분석했어요.",
+    "최저임금 인상에 대한 찬반 의견을 자유롭게 남겨주세요.",
+    "정부에서 발표한 새로운 부동산 대책, 여러분의 생각은 어떠신가요?",
+    "공공의료 확대에 대한 여러분의 입장을 알려주세요.",
+    "각 후보자들의 공약을 비교 분석해봤습니다.",
+    "교육 현장의 문제점과 개선 방안을 논의해봅시다.",
+    "환경 보호를 위한 새로운 정책 제안을 공유합니다.",
+    "청년층을 위한 정책이 어떻게 개선되어야 할까요?",
+    "고령화 사회에 대비한 노인복지 정책을 토론해봅시다."
+  ];
+
+  const sampleAuthors = [
+    "정치왕김",
+    "정청래",
+    "정책분석가",
+    "국민의소리",
+    "박주민",
+    "시민의견",
+    "정치관찰자",
+    "토론왕",
+    "정책전문가",
+    "시민참여"
+  ];
+
+  const sampleDistricts = [
+    "",
+    "서울특별시 강남구",
+    "인천광역시 계양구",
+    "대구광역시 수성구",
+    "경기도 고양시",
+    "부산광역시 해운대구",
+    "경기도 성남시",
+    "서울특별시 마포구"
+  ];
+
+  // 게시글 데이터 생성
+  const posts = Array.from({ length: 50 }, (_, i) => {
+    let userType = 'normal';
+    if (i === 0) userType = 'admin';
+    else if (i === 1) userType = 'politician';
+    else if (i === 2) userType = 'admin';
+    else if (i === 4) userType = 'politician';
+    else if (i % 8 === 0) userType = 'admin';
+    else if (i % 12 === 0) userType = 'politician';
+    
+    let author = sampleAuthors[i % sampleAuthors.length];
+    if (userType === 'admin') author = '운영자';
+    // i === 3일 때만 author를 '관리자'로 지정 (1개만 노출)
+    if (i === 3) author = '관리자';
+    
+    return {
+      id: i + 1,
+      title: sampleTitles[i % sampleTitles.length],
+      content: sampleContents[i % sampleContents.length],
+      author: author,
+      district: sampleDistricts[i % sampleDistricts.length],
+      date: `25.${(i % 12 + 1).toString().padStart(2, '0')}.${(i % 28 + 1).toString().padStart(2, '0')}.`,
+      views: Math.floor(Math.random() * 1000) + 50,
+      likes: Math.floor(Math.random() * 500) + 10,
+      commentCount: Math.floor(Math.random() * 20),
+      hasImage: Math.random() < 0.3,
+      userType: userType
+    };
+  });
+
+  // 게시판 상태 변수
+  const postsPerPage = 10;
+  let currentPage = 1;
+  let filteredPosts = [...posts];
+  let currentSearchCondition = 'all';
+
+  // DOM 요소 참조
+  const searchInput = document.getElementById('searchInput');
+  const searchDropdown = document.getElementById('searchDropdown');
+  const searchConditionDisplay = document.getElementById('searchConditionDisplay');
+
+  // 검색 이벤트 리스너
+  searchInput.addEventListener('click', function(e) {
+    e.stopPropagation();
+    searchInput.setAttribute('autocomplete', 'new-password');
+    searchDropdown.classList.add('show');
+    updateSearchInputStyle();
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-wrapper')) {
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+    }
+  });
+
+  searchInput.addEventListener('blur', function(e) {
+    setTimeout(() => {
+      if (!searchDropdown.matches(':hover')) {
+        searchDropdown.classList.remove('show');
+        updateSearchInputStyle();
+      }
+    }, 150);
+  });
+
+  searchDropdown.addEventListener('click', function(e) {
+    if (e.target.classList.contains('search-option')) {
+      document.querySelectorAll('.search-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      
+      e.target.classList.add('selected');
+      currentSearchCondition = e.target.dataset.value;
+      searchConditionDisplay.textContent = e.target.textContent;
+      
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      performSearch();
+    }
+  });
+
+  searchInput.addEventListener('input', function(e) {
+    searchDropdown.classList.remove('show');
+    updateSearchInputStyle();
+    performSearch();
+  });
+
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      performSearch();
+      searchInput.blur();
+    } else if (e.key === 'ArrowDown' && searchDropdown.classList.contains('show')) {
+      e.preventDefault();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      searchDropdown.classList.remove('show');
+      updateSearchInputStyle();
+      searchInput.blur();
+    }
+  });
+
+  // 검색 함수
+  function performSearch() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    
+    if (!keyword) {
+      filteredPosts = [...posts];
+    } else {
+      filteredPosts = posts.filter(post => {
+        switch (currentSearchCondition) {
+          case 'all':
+            return post.title.toLowerCase().includes(keyword) ||
+                   post.content.toLowerCase().includes(keyword) ||
+                   post.author.toLowerCase().includes(keyword) ||
+                   post.district.toLowerCase().includes(keyword);
+          case 'title-content':
+            return post.title.toLowerCase().includes(keyword) ||
+                   post.content.toLowerCase().includes(keyword);
+          case 'author':
+            return post.author.toLowerCase().includes(keyword);
+          case 'date':
+            return post.date.includes(keyword);
+          case 'district':
+            return post.district.toLowerCase().includes(keyword);
+          default:
+            return true;
+        }
+      });
+    }
+    
+    currentPage = 1;
+    renderTable(filteredPosts);
+  }
+
+  function updateSearchInputStyle() {
+    if (searchDropdown.classList.contains('show') || currentSearchCondition !== 'all') {
+      searchConditionDisplay.classList.add('show');
+      searchInput.classList.add('with-condition');
+    } else {
+      searchConditionDisplay.classList.remove('show');
+      searchInput.classList.remove('with-condition');
+    }
+  }
+
+  // 작성자 타입 배지 생성 함수
+  function getAuthorTypeBadge(userType, author) {
+    // 운영자: userType === 'admin' 또는 author === '운영자' 또는 author === '관리자'
+    // 중복 방지: 둘 중 하나만 있을 때만 라벨 노출
+    if (userType === 'admin' || author === '운영자' || author === '관리자') {
+      // author가 '운영자'와 '관리자' 모두인 경우도 1개만 노출
+      return '<span class="author-type-badge admin-role">운영자</span>';
+    }
+    // 정치인: author가 지정된 정치인 아이디일 때
+    const politicians = ['정청래', '박주민', '심상정', '이준석'];
+    if (politicians.includes(author)) {
+      return '<span class="author-type-badge politician-role">정치인</span>';
+    }
+    return '';
+  }
+  
+  // 작성자 표시용 함수 (운영자/관리자면 다른 닉네임으로)
+  function getDisplayAuthor(author, postId) {
+    if (author === '운영자' || author === '관리자') {
+      const names = ['정치왕김', '정책분석가', '시민의견', '토론왕', '정책전문가'];
+      return names[postId % names.length];
+    }
+    return author;
+  }
+  
+  // 테이블 렌더링 함수 - 안전성 강화
+  function renderTable(filteredPosts) {
+    console.log('renderTable 호출됨, 게시글 수:', filteredPosts.length);
+    
+    const boardBody = document.getElementById('boardBody');
+    if (!boardBody) {
+      console.error('boardBody 요소를 찾을 수 없습니다');
+      return;
+    }
+
+    const start = (currentPage - 1) * postsPerPage;
+    const end = start + postsPerPage;
+    const visiblePosts = filteredPosts.slice(start, end);
+
+    console.log('표시할 게시글:', visiblePosts.length);
+
+    boardBody.innerHTML = visiblePosts.map((post, idx) => `
+      <tr onclick="window.location.href='/board_01.html'" style="cursor:pointer;">
+        <td>${start + idx + 1}</td>
+        <td>
+          <div class="post-title">
+            ${post.title}
+            ${post.hasImage ? '<i class="fa-solid fa-image image-icon" title="이미지 첨부됨"></i>' : ''}
+            ${post.commentCount > 0 ? `<span class="comment-badge">[${post.commentCount}]</span>` : ''}
+          </div>
+          <div class="post-content">${post.content}</div>
+          <div class="post-meta">
+            ${getDisplayAuthor(post.author, post.id)}${getAuthorTypeBadge(post.userType, post.author)} · ${post.date} · 조회 ${post.views} · 추천 ${post.likes}
+          </div>
+        </td>
+        <td>${getDisplayAuthor(post.author, post.id)}${getAuthorTypeBadge(post.userType, post.author)}</td>
+        <td>${post.date}</td>
+        <td>${post.likes}</td>
+        <td>${post.views}</td>
+      </tr>
+    `).join('');
+
+    console.log('테이블 렌더링 완료');
+    renderPagination(filteredPosts.length);
+  }
+
+  // 페이지네이션 함수
+  function renderPagination(total) {
+    const pageCount = Math.ceil(total / postsPerPage);
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+
+    if (pageCount <= 1) return;
+
+    for (let i = 1; i <= pageCount; i++) {
+      const btn = document.createElement('button');
+      btn.innerText = i;
+      btn.className = currentPage === i ? 'active' : '';
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        renderTable(filteredPosts);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+      pagination.appendChild(btn);
+    }
+  }
+
+  // 인기글 렌더링 함수 - 안전성 강화
+  function renderPopularPosts() {
+    console.log('renderPopularPosts 호출됨');
+    
+    const container = document.querySelector('.popular-posts-wrapper');
+    if (!container) {
+      console.error('popular-posts-wrapper 요소를 찾을 수 없습니다');
+      return;
+    }
+
+    const sorted = [...posts].sort((a, b) => b.views - a.views);
+    const top3 = sorted.slice(0, 3);
+    
+    container.innerHTML = top3.map(post => `
+      <div class="popular-post-card" onclick="window.location.href='/board_01.html'">
+        <div class="title">
+          ${post.title}
+          ${post.hasImage ? '<i class="fa-solid fa-image image-icon" title="이미지 첨부됨"></i>' : ''}
+          ${post.commentCount > 0 ? `<span class="comment-badge">[${post.commentCount}]</span>` : ''}
+        </div>
+        <div class="content">${post.content}</div>
+        <div class="meta">
+          ${getDisplayAuthor(post.author, post.id)}${getAuthorTypeBadge(post.userType, post.author)} · ${post.date} · 추천 ${post.likes} · 조회수 ${post.views}
+        </div>
+      </div>
+    `).join('');
+    
+    console.log('인기글 렌더링 완료');
+  }
+
+  // 최신글 렌더링 함수 - 안전성 강화
+  function renderLatestPosts() {
+    console.log('renderLatestPosts 호출됨');
+    
+    const container = document.querySelector('.latest-posts-wrapper');
+    if (!container) {
+      console.error('latest-posts-wrapper 요소를 찾을 수 없습니다');
+      return;
+    }
+
+    const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const latest3 = sorted.slice(0, 3);
+    
+    container.innerHTML = latest3.map(post => `
+      <div class="latest-post-item" onclick="window.location.href='/board_01.html'">
+        <div class="post-title">
+          ${post.title}
+          ${post.hasImage ? '<i class="fa-solid fa-image image-icon" title="이미지 첨부됨"></i>' : ''}
+          ${post.commentCount > 0 ? `<span class="comment-badge">[${post.commentCount}]</span>` : ''}
+        </div>
+        <div class="post-content">${post.content}</div>
+        <div class="post-meta-row">
+          <div class="meta-left">작성자: ${getDisplayAuthor(post.author, post.id)}${getAuthorTypeBadge(post.userType, post.author)} · 작성일: ${post.date}</div>
+          <div class="meta-right">추천: ${post.likes} · 조회수: ${post.views}</div>
+        </div>
+      </div>
+    `).join('');
+    
+    console.log('최신글 렌더링 완료');
+  }
+
+  // 페이지 초기화
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('=== 게시글 배지 확인 ===');
+    posts.slice(0, 10).forEach((post, index) => {
+      console.log(`${index + 1}번 게시글: ${post.author} - ${post.userType}`);
+    });
+    console.log('========================');
+    
+    // 렌더링 함수들 호출
+    renderPopularPosts();
+    renderLatestPosts();
+    renderTable(filteredPosts);
+    updateSearchInputStyle();
+    
+    console.log('페이지 초기화 완료');
+  });
+
+  // DOM이 준비되지 않았을 경우를 대비한 추가 초기화
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    initialize();
+  }
+
+  function initialize() {
+    setTimeout(() => {
+      renderPopularPosts();
+      renderLatestPosts();
+      renderTable(filteredPosts);
+      updateSearchInputStyle();
+      console.log('추가 초기화 완료');
+    }, 100);
+  }
+ // 자유게시판 메뉴 활성화 - 깜빡임 완전 제거
+(function() {
+    'use strict';
+    
+    console.log('🚀 자유게시판 메뉴 즉시 보정 시작');
+    
+    // 즉시 실행되는 스타일 주입 (깜빡임 완전 방지)
+    const immediateStyle = document.createElement('style');
+    immediateStyle.id = 'board-menu-fix';
+    immediateStyle.innerHTML = `
+        /* 모든 메뉴 초기화 */
+        .menu a {
+            color: #333 !important;
+            font-weight: 600 !important;
+        }
+        .menu a::after {
+            width: 0 !important;
+            background-color: #000 !important;
+            transition: width 0.3s ease !important;
+        }
+        /* 자유게시판만 즉시 활성화 */
+        .menu a[href="board.html"] {
+            color: #000 !important;
+            font-weight: 700 !important;
+        }
+        .menu a[href="board.html"]::after {
+        width: 100% !important;
+        }
+        /* hover 효과 유지 */
+        .menu a:hover::after {
+        width: 100% !important;
+        }
+    `;
+    
+    // 즉시 DOM에 추가
+    if (document.head) {
+        document.head.appendChild(immediateStyle);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.head.appendChild(immediateStyle);
+        });
+    }
+    
+    // 헤더 로드 후 정리
+    const cleanupAfterHeader = () => {
+        setTimeout(() => {
+            const allMenus = document.querySelectorAll('.menu a');
+            
+            if (allMenus.length > 0) {
+                console.log('🔧 헤더 로드 후 메뉴 정리');
+                
+                // 모든 메뉴 클래스 정리
+                allMenus.forEach(menu => {
+                    menu.classList.remove('active');
+                });
+                
+                // 자유게시판만 활성화
+                const boardMenu = document.querySelector('.menu a[href="board.html"]');
+                if (boardMenu) {
+                    boardMenu.classList.add('active');
+                    console.log('✅ 자유게시판 메뉴 최종 활성화');
+                }
+                
+                // 임시 스타일 제거 (1초 후)
+                setTimeout(() => {
+                    const tempStyle = document.getElementById('board-menu-fix');
+                    if (tempStyle && tempStyle.parentNode) {
+                        tempStyle.parentNode.removeChild(tempStyle);
+                        console.log('🧹 임시 스타일 정리 완료');
+                    }
+                }, 1000);
+            }
+        }, 300);
+    };
+    
+    // 헤더 로드 감지
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cleanupAfterHeader);
+    } else {
+        cleanupAfterHeader();
+    }
+    
+    // MutationObserver로 헤더 삽입 감지
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                const headerInclude = document.getElementById('header-include');
+                if (headerInclude && headerInclude.innerHTML.trim()) {
+                    observer.disconnect();
+                    cleanupAfterHeader();
+                }
+            }
+        });
+    });
+    
+    if (document.body) {
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+    
+})();
+</script>
+
+<script>
+  function includeHTML(id, file) {
+    fetch(file)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        
+        if (id === 'header-include') {
+          console.log('🔧 헤더 로드 완료');
+          
+          setTimeout(() => {
+            if (window.headerManager) {
+              console.log('✅ 헤더 관리자가 이미 초기화됨');
+            } else {
+              console.log('⚠️ 헤더 관리자 초기화 대기 중...');
+            }
+          }, 100);
+        }
+      })
+      .catch(error => {
+        console.log('파일을 불러올 수 없습니다:', error);
+      });
+  }
+
+  includeHTML("header-include", "header.html");
+  includeHTML("footer-include", "footer.html");
+</script>
+<script src="page-manager.js"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="polibat Website Template by freehtml5.co" />
+  <meta name="keywords" content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+  <meta name="author" content="freehtml5.co" />
+
+  <!-- 
+  //////////////////////////////////////////////////////
+
+  FREE HTML5 TEMPLATE 
+  DESIGNED & DEVELOPED by FreeHTML5.co
+    
+  Website:    http://freehtml5.co/
+  Email:      info@freehtml5.co
+  Twitter:    http://twitter.com/fh5co
+  Facebook:     https://www.facebook.com/fh5co
+
+  //////////////////////////////////////////////////////
+   -->
+
+  <!-- Facebook and Twitter integration -->
+  <meta property="og:title" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:site_name" content=""/>
+  <meta property="og:description" content=""/>
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:image" content="" />
+  <meta name="twitter:url" content="" />
+  <meta name="twitter:card" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.css">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href="css/icomoon.css">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <!-- Owl Carousel  -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <!-- Flexslider  -->
+  <link rel="stylesheet" href="css/flexslider.css">
+  <!-- Pricing -->
+  <link rel="stylesheet" href="css/pricing.css">
+  <!-- Theme style  -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Modernizr JS -->
+  <script src="js/modernizr-2.6.2.min.js"></script>
+  <!-- FOR IE9 below -->
+  <!--[if lt IE 9]>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+
+  <title>이용약관</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+    
+    #wrap {
+      max-width: 1200px;
+      margin: 100px auto;
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      display: grid;
+      align-items: self-start;
+    }
+    
+    /* 제·개정 이력 조회 스타일 */
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 15px 0;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .history-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .history-controls label {
+      font-weight: 600;
+      color: #333;
+      white-space: nowrap;
+    }
+    
+    .date-select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      background: white;
+      min-width: 140px;
+    }
+    
+    .search-btn {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    
+    .search-btn:hover {
+      background: #555;
+    }
+    
+    .content-section {
+      display: none;
+    }
+    
+    .content-section.active {
+      display: block;
+    }
+    
+    .version-info {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      border-left: 4px solid #28a745;
+    }
+    
+    .version-date {
+      font-weight: 600;
+      color: #28a745;
+      margin-bottom: 5px;
+    }
+    
+    .version-description {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 1.8em;
+      color: #000;
+      margin-bottom: 0px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-size: 1.2em;
+      border-left: 4px solid #000;
+      padding-left: 10px;
+      color: #000;
+    }
+
+    p, ul {
+      margin-top: 10px;
+      line-height: 1.7;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      #wrap {
+        padding: 20px;
+        margin: 20px;
+      }
+      
+      .history-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+      }
+      
+      .history-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .date-select {
+        min-width: 120px;
+      }
+    }
+    @media (max-width: 768px) {
+    #wrap {
+        margin-left: 16px !important;
+        margin-right: 16px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+  </style>
+</head>
+<body>
+  <!-- 헤더 로딩 -->
+  <div id="header-include"></div>
+  
+  <div id="wrap">
+    <div class="container">
+    <!-- 제·개정 이력 조회 섹션 -->
+    <div class="history-header">
+      <h1>이용약관</h1>
+      <div class="history-controls">
+        <label>제·개정일</label>
+        <select class="date-select" id="dateRange" onchange="changeContent()">
+          <option value="2025-04-15~2025-05-11">없음</option>
+          <!--
+          <option value="2025-04-01~2025-04-14">20250401 ~ 20250414</option>
+          <option value="2023-03-23~2023-04-20">20230323 ~ 20230420</option>
+          -->
+        </select>
+      </div>
+    </div>
+
+    <!-- 2023-03-23~2023-04-20 버전 -->
+    <div id="content-2023-03-23~2023-04-20" class="content-section active">서비스 오픈 준비중<!--
+      <div class="version-info">
+        <div class="version-date">2023년 4월 10일 시행</div>
+        <div class="version-description">이용약관 전면 개정 - 서비스 이용 조건 명확화 및 회원 권리·의무 강화</div>
+      </div>
+      
+      <p>본 약관은 ㈜폴리밧(이하 '회사')이 제공하는 서비스 이용에 관한 조건 및 절차, 회원과 회사의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+
+      <h2>1. 서비스 이용 계약</h2>
+      <p>회원 가입은 이용자가 약관에 동의하고 회원가입 신청을 하며, 회사가 이를 승인함으로써 성립합니다.</p>
+
+      <h2>2. 회원의 의무</h2>
+      <ul>
+        <li>실명 및 정확한 정보 제공</li>
+        <li>계정 및 비밀번호 관리 책임</li>
+        <li>타인의 권리 침해 금지</li>
+      </ul>
+
+      <h2>3. 회사의 의무</h2>
+      <ul>
+        <li>서비스 제공 및 안정성 유지</li>
+        <li>개인정보 보호를 위한 보안 노력</li>
+      </ul>
+
+      <h2>4. 서비스 이용 제한</h2>
+      <p>회사는 회원이 약관을 위반하거나 공공질서 및 미풍양속에 반하는 경우 서비스 이용을 제한할 수 있습니다.</p>
+
+      <h2>5. 지적재산권</h2>
+      <p>서비스 내 모든 콘텐츠의 저작권은 회사 또는 정당한 권리를 가진 자에게 있으며, 무단 복제/배포를 금지합니다.</p>
+
+      <h2>6. 약관의 변경</h2>
+      <p>회사는 필요한 경우 약관을 변경할 수 있으며, 변경된 약관은 공지 후 효력이 발생합니다.</p>
+
+      <p>본 약관은 2023년 4월 10일부터 적용됩니다.</p>-->
+    </div>
+
+    <!-- 2025-04-01~2025-04-14 버전 -->
+    <div id="content-2025-04-01~2025-04-14" class="content-section">
+      <div class="version-info">
+        <div class="version-date">2025년 4월 10일 시행</div>
+        <div class="version-description">이용약관 시행 - 서비스 이용 조건 및 회원 권리·의무 규정</div>
+      </div>
+      
+      <p>본 약관은 ㈜폴리밧(이하 '회사')이 제공하는 서비스 이용에 관한 조건 및 절차, 회원과 회사의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+
+      <h2>1. 서비스 이용 계약</h2>
+      <p>회원 가입은 이용자가 약관에 동의하고 회원가입 신청을 하며, 회사가 이를 승인함으로써 성립합니다.</p>
+
+      <h2>2. 회원의 의무</h2>
+      <ul>
+        <li>실명 및 정확한 정보 제공</li>
+        <li>계정 및 비밀번호 관리 책임</li>
+        <li>타인의 권리 침해 금지</li>
+        <li>서비스 이용 시 관련 법령 준수</li>
+      </ul>
+
+      <h2>3. 회사의 의무</h2>
+      <ul>
+        <li>서비스 제공 및 안정성 유지</li>
+        <li>개인정보 보호를 위한 보안 노력</li>
+        <li>회원의 개인정보 보호</li>
+      </ul>
+
+      <h2>4. 서비스 이용 제한</h2>
+      <p>회사는 회원이 약관을 위반하거나 공공질서 및 미풍양속에 반하는 경우 서비스 이용을 제한할 수 있습니다.</p>
+
+      <h2>5. 지적재산권</h2>
+      <p>서비스 내 모든 콘텐츠의 저작권은 회사 또는 정당한 권리를 가진 자에게 있으며, 무단 복제/배포를 금지합니다.</p>
+
+      <h2>6. 약관의 변경</h2>
+      <p>회사는 필요한 경우 약관을 변경할 수 있으며, 변경된 약관은 공지 후 효력이 발생합니다.</p>
+
+      <p>본 약관은 2025년 4월 10일부터 적용됩니다.</p>
+    </div>
+
+    <!-- 2025-04-15~2025-05-11 버전 -->
+    <div id="content-2025-04-15~2025-05-11" class="content-section">
+      <div class="version-info">
+        <div class="version-date">2025년 5월 1일 시행</div>
+        <div class="version-description">지적재산권 조항 개정 - 콘텐츠 이용 권한 및 제한사항 상세화</div>
+      </div>
+      
+      <p>본 약관은 ㈜폴리밧(이하 '회사')이 제공하는 서비스 이용에 관한 조건 및 절차, 회원과 회사의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+
+      <h2>1. 서비스 이용 계약</h2>
+      <p>회원 가입은 이용자가 약관에 동의하고 회원가입 신청을 하며, 회사가 이를 승인함으로써 성립합니다.</p>
+
+      <h2>2. 회원의 의무</h2>
+      <ul>
+        <li>실명 및 정확한 정보 제공</li>
+        <li>계정 및 비밀번호 관리 책임</li>
+        <li>타인의 권리 침해 금지</li>
+        <li>서비스 이용 시 관련 법령 준수</li>
+        <li>회사의 지적재산권 보호</li>
+      </ul>
+
+      <h2>3. 회사의 의무</h2>
+      <ul>
+        <li>서비스 제공 및 안정성 유지</li>
+        <li>개인정보 보호를 위한 보안 노력</li>
+        <li>회원의 개인정보 보호</li>
+        <li>서비스 품질 향상을 위한 지속적 개선</li>
+      </ul>
+
+      <h2>4. 서비스 이용 제한</h2>
+      <p>회사는 회원이 약관을 위반하거나 공공질서 및 미풍양속에 반하는 경우 서비스 이용을 제한할 수 있습니다.</p>
+
+      <h2>5. 지적재산권</h2>
+      <p>서비스 내 모든 콘텐츠의 저작권은 회사 또는 정당한 권리를 가진 자에게 있으며, 무단 복제/배포를 금지합니다. 회원이 작성한 콘텐츠에 대한 저작권은 해당 회원에게 있으며, 회사는 서비스 제공을 위해 필요한 범위 내에서 이용할 수 있습니다.</p>
+
+      <h2>6. 약관의 변경</h2>
+      <p>회사는 필요한 경우 약관을 변경할 수 있으며, 변경된 약관은 공지 후 효력이 발생합니다.</p>
+
+      <h2>7. 회원 탈퇴</h2>
+      <p>회원은 언제든지 서비스 이용을 중단하고 회원 탈퇴를 요청할 수 있으며, 회사는 즉시 탈퇴 처리를 진행합니다.</p>
+
+      <p>본 약관은 2025년 5월 1일부터 적용됩니다.</p>
+    </div>
+  </div>
+  </div>
+
+  <!-- 푸터 로딩 -->
+  <div id="footer-include"></div>
+
+  <!-- JavaScript -->
+  <script>
+    function changeContent() {
+      const selectedRange = document.getElementById('dateRange').value;
+      
+      // 모든 콘텐츠 섹션 숨기기
+      const allSections = document.querySelectorAll('.content-section');
+      allSections.forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // 선택된 콘텐츠 섹션 보이기
+      const selectedSection = document.getElementById(`content-${selectedRange}`);
+      if (selectedSection) {
+        selectedSection.classList.add('active');
+      }
+    }
+
+    // 기존 헤더/푸터 로딩 코드
+    function includeHTML(id, file) {
+      fetch(file)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById(id).innerHTML = data;
+        })
+        .catch(error => {
+          console.log('파일을 불러올 수 없습니다:', error);
+        });
+    }
+
+    includeHTML("header-include", "header.html");
+    includeHTML("footer-include", "footer.html");
+  </script>
+  <!-- 🆕 새로운 로그인 시스템 - 페이지 관리자 -->
+<script src="page-manager.js"></script>
+</body>
+</html>

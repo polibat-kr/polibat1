@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="polibat Website Template by freehtml5.co" name="description"/>
+<meta content="free website templates, polibat, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" name="keywords"/>
+<meta content="freehtml5.co" name="author"/>
+
+<!-- Facebook and Twitter integration -->
+<meta content="" property="og:title"/>
+<meta content="" property="og:image"/>
+<meta content="" property="og:url"/>
+<meta content="" property="og:site_name"/>
+<meta content="" property="og:description"/>
+<meta content="" name="twitter:title"/>
+<meta content="" name="twitter:image"/>
+<meta content="" name="twitter:url"/>
+<meta content="" name="twitter:card"/>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"/>
+<!-- Animate.css -->
+<link href="css/animate.css" rel="stylesheet"/>
+<!-- Icomoon Icon Fonts-->
+<link href="css/icomoon.css" rel="stylesheet"/>
+<!-- Bootstrap  -->
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<!-- Magnific Popup -->
+<link href="css/magnific-popup.css" rel="stylesheet"/>
+<!-- Owl Carousel  -->
+<link href="css/owl.carousel.min.css" rel="stylesheet"/>
+<link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+<!-- Flexslider  -->
+<link href="css/flexslider.css" rel="stylesheet"/>
+<!-- Pricing -->
+<link href="css/pricing.css" rel="stylesheet"/>
+<!-- Theme style  -->
+<link href="css/style.css" rel="stylesheet"/>
+<!-- Modernizr JS -->
+<script src="js/modernizr-2.6.2.min.js"></script>
+
+<title>게시글 상세보기 - 정치방망이</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+/* 기본 스타일 */
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* 게시글 상세 컨테이너 */
+.post-detail-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* 게시글 제목 영역 */
+.post-title-section {
+  padding: 25px 30px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.post-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 15px 0;
+  line-height: 1.4;
+}
+
+/* 게시글 메타 정보 */
+.post-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  color: #666;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-category {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.post-category.기능제안 {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.post-category.불편사항 {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.post-category.투표제안 {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.post-status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.post-status.처리완료 {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.post-status.검토중 {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.post-status.접수대기 {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+/* 게시글 내용 */
+.post-content {
+  padding: 25px 30px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #333;
+  min-height: 150px;
+}
+
+.post-content p {
+  margin-bottom: 15px;
+}
+
+/* 액션 버튼 영역 - polibat 스타일과 유사하게 */
+.post-actions {
+  padding: 20px 30px;
+  /*border-top: 1px solid #eee;
+  background: #fafafa;*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+      margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.action-buttons-left {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-buttons-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn {
+padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: inherit;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background: #f8f9fa;
+  border-color: #bbb;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+  border-color: #c82333;
+}
+
+/* 좋아요/싫어요 영역 */
+.vote-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vote-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  color: #666;
+}
+
+.vote-btn:hover {
+  background: #f8f9fa;
+}
+
+.vote-btn.active.like {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+.vote-btn.active.dislike {
+  background: #6c757d;
+  color: white;
+  border-color: #6c757d;
+}
+
+.vote-btn i {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.vote-count {
+  font-weight: 600;
+  font-size: 11px;
+}
+
+/* 댓글 섹션 */
+.comments-section {
+  border-top: 1px solid #eee;
+  padding: 25px 30px;
+}
+
+.comments-header {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.comments-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.comment-form {
+  margin-bottom: 25px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.comment-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.comment-list {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+.comment-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.comment-author {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.comment-date {
+  font-size: 11px;
+  color: #999;
+}
+
+.comment-content {
+  color: #555;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+/* 안내 메시지 */
+.info-notice {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  color: #1565c0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.info-notice .icon {
+  color: #1976d2;
+  margin-right: 6px;
+}
+
+/* 비공개 게시글 스타일 */
+.private-post {
+  text-align: center;
+  padding: 50px 30px;
+  color: #666;
+}
+
+.private-post i {
+  font-size: 40px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.private-post h3 {
+  margin: 0 0 8px 0;
+  color: #666;
+  font-size: 18px;
+}
+
+.private-post p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .container {
+    margin: 15px auto;
+    padding: 0 15px;
+  }
+
+  .post-title-section,
+  .post-content,
+  .post-actions,
+  .comments-section {
+    padding: 20px;
+  }
+
+  .post-title {
+    font-size: 18px;
+  }
+
+  .post-meta-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .post-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .action-buttons-left,
+  .action-buttons-right {
+    justify-content: center;
+  }
+
+  .vote-section {
+    justify-content: center;
+  }
+
+  .btn {
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  .comment-form-actions {
+    flex-direction: column;
+  }
+
+  .comment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+}
+</style>
+</head>
+<body>
+<!-- 헤더 로딩 -->
+<div id="header-include"></div>
+
+<div id="wrap">
+<div class="container">
+  <!-- 안내 메시지 -->
+  <div class="info-notice" id="infoNotice" style="display: none;">
+    <i class="fas fa-info-circle icon"></i>
+    <span id="noticeText"></span>
+  </div>
+
+  <!-- 게시글 상세 컨테이너 -->
+  <div class="post-detail-container" id="postDetailContainer">
+    <!-- 게시글 내용이 동적으로 생성됩니다 -->
+  </div>
+</div>
+</div>
+
+<!-- 푸터 로딩 -->
+<div id="footer-include"></div>
+
+<script>
+// 샘플 데이터 (목록 페이지와 동일)
+const feedbackData = [
+  {
+    id: 1,
+    category: '기능제안',
+    title: '게시판 검색 기능 개선 요청',
+    content: '현재 검색 기능이 제한적입니다. 고급 검색 옵션 추가를 제안합니다.\n\n구체적으로 다음과 같은 기능들이 필요합니다:\n\n1. 카테고리별 필터링\n2. 날짜 범위 검색\n3. 작성자 검색\n4. 태그 기반 검색\n\n이러한 기능들이 추가되면 사용자들이 원하는 정보를 더 쉽게 찾을 수 있을 것입니다.',
+    date: '25.06.08',
+    status: '처리완료',
+    likes: 15,
+    dislikes: 2,
+    views: 128,
+    isPrivate: false,
+    author: '사용자1'
+  },
+  {
+    id: 2,
+    category: '불편사항',
+    title: '모바일 화면 레이아웃 문제',
+    content: '모바일에서 일부 버튼이 제대로 표시되지 않는 문제가 있습니다.',
+    date: '25.06.07',
+    status: '검토중',
+    likes: 8,
+    dislikes: 1,
+    views: 95,
+    isPrivate: true,
+    author: '사용자2'
+  },
+  {
+    id: 3,
+    category: '투표제안',
+    title: '2025년 정치 이슈 우선순위 투표',
+    content: '새로운 정치 이슈들에 대한 국민 여론조사 투표를 제안합니다.\n\n최근 정치 환경이 급변하고 있어, 국민들이 어떤 이슈를 가장 중요하게 생각하는지 알아보는 것이 필요합니다.\n\n제안하는 투표 주제들:\n\n• 경제 정책 우선순위\n• 사회 복지 개선 방안\n• 환경 정책 방향성\n• 교육 제도 개혁\n• 국방 및 외교 정책\n\n이러한 투표를 통해 정책 결정에 국민 의견을 더 적극적으로 반영할 수 있을 것입니다.',
+    date: '25.06.06',
+    status: '검토중',
+    likes: 23,
+    dislikes: 3,
+    views: 187,
+    isPrivate: false,
+    author: '정치관심자'
+  },
+  {
+    id: 4,
+    category: '기능제안',
+    title: '다크모드 지원 요청',
+    content: '야간 사용을 위한 다크모드 테마 지원을 요청합니다.',
+    date: '25.06.05',
+    status: '검토중',
+    likes: 31,
+    dislikes: 4,
+    views: 243,
+    isPrivate: true,
+    author: '사용자4'
+  },
+  {
+    id: 5,
+    category: '불편사항',
+    title: '로그인 속도 개선 요청',
+    content: '로그인 처리 시간이 오래 걸리는 문제를 개선해주세요.\n\n현재 로그인 시 평균 5-10초 정도 소요되고 있어 불편함을 느끼고 있습니다.\n\n특히 다음과 같한 상황에서 문제가 심각합니다:\n\n• 모바일 환경에서의 로그인\n• 네트워크 상태가 불안정할 때\n• 피크 시간대 접속 시\n\n빠른 개선을 부탁드립니다.',
+    date: '25.06.04',
+    status: '처리완료',
+    likes: 12,
+    dislikes: 1,
+    views: 156,
+    isPrivate: false,
+    author: '일반사용자'
+  }
+];
+
+// 댓글 데이터
+let commentsData = {
+  1: [
+    {
+      id: 1,
+      author: '관리자',
+      content: '소중한 제안 감사합니다. 검토 후 다음 업데이트에 반영하도록 하겠습니다.',
+      date: '25.06.09 14:30'
+    },
+    {
+      id: 2,
+      author: '사용자A',
+      content: '저도 이런 기능이 필요하다고 생각했습니다. 빠른 구현 부탁드려요!',
+      date: '25.06.09 16:45'
+    }
+  ],
+  3: [
+    {
+      id: 1,
+      author: '정책연구원',
+      content: '좋은 제안입니다. 투표 설계 시 표본의 대표성도 고려해주세요.',
+      date: '25.06.07 10:15'
+    }
+  ],
+  5: [
+    {
+      id: 1,
+      author: '개발팀',
+      content: '로그인 속도 개선 작업이 완료되었습니다. 이용에 불편을 드려 죄송했습니다.',
+      date: '25.06.05 09:20'
+    }
+  ]
+};
+
+let currentPost = null;
+let userVote = null; // 'like', 'dislike', null
+
+// URL에서 게시글 ID 가져오기
+function getPostIdFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return parseInt(urlParams.get('id')) || 1;
+}
+
+// 페이지 초기화
+function initializePage() {
+  const postId = getPostIdFromUrl();
+  currentPost = feedbackData.find(post => post.id === postId);
+  
+  if (!currentPost) {
+    showError('게시글을 찾을 수 없습니다.');
+    return;
+  }
+
+  // 조회수 증가
+  currentPost.views++;
+  
+  renderPost();
+}
+
+// 게시글 렌더링
+function renderPost() {
+  const container = document.getElementById('postDetailContainer');
+  
+  if (currentPost.isPrivate) {
+    container.innerHTML = `
+      <div class="private-post">
+        <i class="fa-solid fa-lock"></i>
+        <h3>비공개 게시글</h3>
+        <p>이 게시글은 관리자만 확인할 수 있습니다.</p>
+      </div>
+      <div class="post-actions">
+        <div class="action-buttons-left">
+          <button class="btn" onclick="goBack()">
+            <i class="fa-solid fa-arrow-left"></i> 목록으로
+          </button>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('infoNotice').style.display = 'block';
+    document.getElementById('noticeText').textContent = '비공개 게시글입니다. 관리자만 열람할 수 있습니다.';
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="post-title-section">
+      <h1 class="post-title">${currentPost.title}</h1>
+      <div class="post-meta-line">
+        <span class="post-category ${currentPost.category}">${currentPost.category}</span>
+        <span class="post-status ${currentPost.status}">${currentPost.status}</span>
+        <div class="meta-item">
+          <strong>작성자:</strong> ${currentPost.author}
+        </div>
+        <div class="meta-item">
+          <strong>작성일:</strong> ${currentPost.date}
+        </div>
+        <div class="meta-item">
+          <strong>조회수:</strong> <span id="viewsDisplay">${currentPost.views}</span>
+        </div>
+        <div class="meta-item">
+          <strong>좋아요:</strong> <span id="likesDisplay">${currentPost.likes}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="post-content">
+      ${formatContent(currentPost.content)}
+    </div>
+    
+    <div class="post-actions">
+      <div class="action-buttons-left">
+        <button class="btn btn-primary" onclick="goToWrite()">
+          <i class="fa-solid fa-pencil"></i> 글쓰기
+        </button>
+        <button class="btn" onclick="reportPost()">
+          <i class="fa-solid fa-flag"></i> 신고하기
+        </button>
+        <button class="btn" onclick="goBack()">
+          <i class="fa-solid fa-list"></i> 목록으로
+        </button>
+        <button class="btn" onclick="editPost()">
+          <i class="fa-solid fa-edit"></i> 수정하기
+        </button>
+        <button class="btn btn-danger" onclick="deletePost()">
+          <i class="fa-solid fa-trash"></i> 삭제하기
+        </button>
+        <button class="btn" onclick="sharePost()">
+          <i class="fa-solid fa-share"></i> 공유하기
+        </button>
+      </div>
+      <div class="action-buttons-right">
+        <div class="vote-section">
+          <div class="vote-btn" id="likeBtn" onclick="toggleVote('like')">
+            <i class="fa-solid fa-thumbs-up"></i>
+            <span class="vote-count" id="likeCount">${currentPost.likes}</span>
+          </div>
+          <div class="vote-btn" id="dislikeBtn" onclick="toggleVote('dislike')">
+            <i class="fa-solid fa-thumbs-down"></i>
+            <span class="vote-count" id="dislikeCount">${currentPost.dislikes}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 댓글 섹션 -->
+    <div class="comments-section" id="commentsSection">
+      <div class="comments-header">
+        <h3 class="comments-title">실시간 댓글 <span id="commentCount">0</span></h3>
+      </div>
+
+      <div class="comment-form">
+        <textarea id="commentInput" placeholder="댓글을 입력해주세요..."></textarea>
+        <div class="comment-form-actions">
+          <button type="button" class="btn" onclick="clearComment()">초기화</button>
+          <button type="button" class="btn btn-primary" onclick="addComment()">등록</button>
+        </div>
+      </div>
+
+      <div class="comment-list" id="commentList">
+        <!-- 댓글이 동적으로 생성됩니다 -->
+      </div>
+    </div>
+  `;
+
+  // 댓글 렌더링 (비공개 게시글이 아닌 경우에만)
+  renderComments();
+}
+
+// 내용 포맷팅
+function formatContent(content) {
+  return content.split('\n').map(line => {
+    if (line.trim() === '') return '<br>';
+    if (line.startsWith('•') || line.match(/^\d+\./)) {
+      return `<p style="margin-left: 20px;">${line}</p>`;
+    }
+    return `<p>${line}</p>`;
+  }).join('');
+}
+
+// 댓글 렌더링
+function renderComments() {
+  const postComments = commentsData[currentPost.id] || [];
+  document.getElementById('commentCount').textContent = postComments.length;
+  
+  const commentList = document.getElementById('commentList');
+  if (postComments.length === 0) {
+    commentList.innerHTML = '<p style="text-align: center; color: #888; padding: 15px; font-size: 13px;">첫 번째 댓글을 작성해보세요!</p>';
+    return;
+  }
+  
+  commentList.innerHTML = postComments.map(comment => `
+    <div class="comment-item">
+      <div class="comment-header">
+        <span class="comment-author">${comment.author}</span>
+        <span class="comment-date">${comment.date}</span>
+      </div>
+      <div class="comment-content">${comment.content}</div>
+    </div>
+  `).join('');
+}
+
+// 좋아요/싫어요 토글
+function toggleVote(type) {
+  const likeBtn = document.getElementById('likeBtn');
+  const dislikeBtn = document.getElementById('dislikeBtn');
+  
+  if (userVote === type) {
+    // 같은 버튼을 다시 클릭한 경우 취소
+    if (type === 'like') {
+      currentPost.likes--;
+      likeBtn.classList.remove('active', 'like');
+    } else {
+      currentPost.dislikes--;
+      dislikeBtn.classList.remove('active', 'dislike');
+    }
+    userVote = null;
+  } else {
+    // 이전 투표 취소
+    if (userVote === 'like') {
+      currentPost.likes--;
+      likeBtn.classList.remove('active', 'like');
+    } else if (userVote === 'dislike') {
+      currentPost.dislikes--;
+      dislikeBtn.classList.remove('active', 'dislike');
+    }
+    
+    // 새로운 투표 적용
+    if (type === 'like') {
+      currentPost.likes++;
+      likeBtn.classList.add('active', 'like');
+      userVote = 'like';
+    } else {
+      currentPost.dislikes++;
+      dislikeBtn.classList.add('active', 'dislike');
+      userVote = 'dislike';
+    }
+  }
+  
+  // UI 업데이트
+  document.getElementById('likeCount').textContent = currentPost.likes;
+  document.getElementById('dislikeCount').textContent = currentPost.dislikes;
+  document.getElementById('likesDisplay').textContent = currentPost.likes;
+}
+
+// 댓글 추가
+function addComment() {
+  const input = document.getElementById('commentInput');
+  const content = input.value.trim();
+  
+  if (!content) {
+    alert('댓글 내용을 입력해주세요.');
+    return;
+  }
+  
+  if (!commentsData[currentPost.id]) {
+    commentsData[currentPost.id] = [];
+  }
+  
+  const newComment = {
+    id: Date.now(),
+    author: '익명사용자',
+    content: content,
+    date: new Date().toLocaleDateString('ko-KR').replace(/\./g, '.').slice(0, -1) + ' ' + 
+           new Date().toLocaleTimeString('ko-KR', { hour12: false }).slice(0, 5)
+  };
+  
+  commentsData[currentPost.id].push(newComment);
+  input.value = '';
+  renderComments();
+}
+
+// 댓글 초기화
+function clearComment() {
+  document.getElementById('commentInput').value = '';
+}
+
+// 삭제 기능 추가
+function deletePost() {
+  if (confirm('정말로 이 게시글을 삭제하시겠습니까?')) {
+    alert('게시글이 삭제되었습니다.');
+    // 실제로는 서버에 삭제 요청을 보내고 목록 페이지로 이동
+    goBack();
+  }
+}
+
+// 기능 함수들
+function goBack() {
+  window.location.href = 'feedback.html';
+}
+
+function goToWrite() {
+  window.location.href = 'feedback_01.html';
+}
+
+function reportPost() {
+  alert('신고 기능은 준비 중입니다.');
+}
+
+function editPost() {
+  alert('수정 기능은 준비 중입니다.');
+}
+
+function sharePost() {
+  if (navigator.share) {
+    navigator.share({
+      title: currentPost.title,
+      text: currentPost.content.substring(0, 100) + '...',
+      url: window.location.href
+    });
+  } else {
+    // 공유 API가 지원되지 않는 경우 URL 복사
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert('링크가 클립보드에 복사되었습니다.');
+    }).catch(() => {
+      alert('공유 기능을 사용할 수 없습니다.');
+    });
+  }
+}
+
+// 에러 표시
+function showError(message) {
+  document.getElementById('postDetailContainer').innerHTML = `
+    <div class="private-post">
+      <i class="fa-solid fa-exclamation-triangle"></i>
+      <h3>오류</h3>
+      <p>${message}</p>
+    </div>
+    <div class="post-actions">
+      <div class="action-buttons-left">
+        <button class="btn" onclick="goBack()">
+          <i class="fa-solid fa-arrow-left"></i> 목록으로
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// 페이지 로드 시 초기화
+document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+
+<!-- 공통 헤더/푸터 삽입용 함수 -->
+<script>
+  function includeHTML(id, file) {
+    fetch(file)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+      })
+      .catch(error => {
+        console.log('파일을 불러올 수 없습니다:', error);
+      });
+  }
+
+  // 헤더와 푸터 로딩 실행
+  includeHTML("header-include", "header.html");
+  includeHTML("footer-include", "footer.html");
+</script>
+
+<!-- 페이지 관리자 스크립트 추가 -->
+<script src="page-manager.js"></script>
+
+</body>
+</html>
