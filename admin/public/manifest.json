@@ -1,0 +1,25 @@
+{
+  "short_name": "정치방망이 관리자",
+  "name": "정치방망이 - 관리자",
+  "icons": [
+    {
+      "src": "polibat-favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "polibat-icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "polibat-icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "browser",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
