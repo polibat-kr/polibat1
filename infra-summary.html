@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoliBAT Infrastructure Summary | 정치방망이 인프라 요약서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --info: #16a085;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: var(--gradient-1);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navbar-brand {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .navbar-link {
+            color: var(--secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .navbar-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: var(--secondary);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .header .meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-item {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Section */
+        .section {
+            background: rgba(255, 255, 255, 0.98);
+            margin-bottom: 30px;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .section-icon {
+            font-size: 2.2em;
+        }
+
+        .section h2 {
+            color: var(--secondary);
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .section h3 {
+            color: var(--dark);
+            font-size: 1.5em;
+            margin: 30px 0 20px 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--gradient-2);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight-box h3 {
+            margin: 0 0 15px 0;
+            color: white;
+            font-size: 1.6em;
+            justify-content: center;
+        }
+
+        .highlight-box p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .info-box h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-box p {
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Architecture Diagram */
+        .architecture-diagram {
+            background: #1e1e1e;
+            border: 3px solid #2d2d2d;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .architecture-diagram pre {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #a9b7c6;
+            white-space: pre;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th {
+            background: var(--gradient-1);
+            color: white;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        .comparison-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .comparison-table tr:hover {
+            background: #e3f2fd;
+            transition: background 0.3s ease;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-as-is {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .status-to-be {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+        }
+
+        .status-hybrid {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+        }
+
+        /* Cost Grid */
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .cost-card {
+            background: var(--gradient-1);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .cost-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .cost-card h4 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .cost-card .price {
+            font-size: 2.2em;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cost-card .description {
+            font-size: 0.95em;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: var(--primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 50px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary);
+        }
+
+        .timeline-item h4 {
+            color: var(--secondary);
+            margin-bottom: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .timeline-item p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card h4 {
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-size: 1.15em;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            justify-content: center;
+        }
+
+        .footer p {
+            color: #666;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .footer-meta {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #e9ecef;
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 35px 25px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+
+            .section {
+                padding: 25px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.6em;
+            }
+
+            .section h3 {
+                font-size: 1.3em;
+            }
+
+            .navbar-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-menu {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .architecture-diagram {
+                padding: 15px;
+            }
+
+            .architecture-diagram pre {
+                font-size: 0.7em;
+            }
+
+            .cost-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 35px;
+            }
+
+            .timeline-item::before {
+                left: 7px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .navbar {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand">🏛️ PoliBAT Infrastructure</div>
+            <div class="navbar-menu">
+                <a href="#overview" class="navbar-link">개요</a>
+                <a href="#comparison" class="navbar-link">AS-IS vs TO-BE</a>
+                <a href="#architecture" class="navbar-link">아키텍처</a>
+                <a href="#requirements" class="navbar-link">요구사항</a>
+                <a href="#cost" class="navbar-link">비용</a>
+                <a href="#timeline" class="navbar-link">타임라인</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">🏛️</div>
+            <h1>정치방망이(PoliBAT)</h1>
+            <div class="subtitle">Infrastructure Architecture Summary</div>
+            <div class="meta">
+                <div class="meta-item">📅 2025-10-19</div>
+                <div class="meta-item">👥 Infrastructure Team</div>
+                <div class="meta-item">🎯 TO-BE Architecture v1.0</div>
+            </div>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="section" id="overview">
+            <div class="section-header">
+                <div class="section-icon">📋</div>
+                <h2>프로젝트 개요</h2>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🎯 핵심 목표</h3>
+                <p>정치인과 시민 간 소통 플랫폼 구축 | AI 에이전트 개발 최적화 | 100% 기능 동등성 보장</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📱 Admin Dashboard</h4>
+                    <p>React 19 + TypeScript<br>16개 관리 페이지<br>실시간 통계 및 대시보드</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🌐 Frontend Website</h4>
+                    <p>HTML5 + jQuery<br>22개 사용자 페이지<br>반응형 웹 디자인</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔧 Backend API</h4>
+                    <p>Node.js 20 + Express<br>TypeScript 5.x<br>RESTful API 설계</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🗄️ Database</h4>
+                    <p>PostgreSQL 18<br>Redis 7 (캐시)<br>Prisma ORM</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>🔥 하이브리드 개발 환경</h4>
+                <p><strong>PostgreSQL 18</strong>: Windows 로컬 설치 (안정성, Prisma 호환성)<br>
+                <strong>Redis 7</strong>: Docker 컨테이너 (격리, 이식성)</p>
+            </div>
+        </div>
+
+        <!-- AS-IS vs TO-BE Comparison -->
+        <div class="section" id="comparison">
+            <div class="section-header">
+                <div class="section-icon">🔄</div>
+                <h2>AS-IS vs TO-BE 비교</h2>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>AS-IS (현재)</th>
+                        <th>TO-BE (목표)</th>
+                        <th>개선 효과</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Backend API</strong></td>
+                        <td><span class="status-badge status-as-is">없음 (Frontend Only)</span></td>
+                        <td><span class="status-badge status-to-be">Node.js + Express</span></td>
+                        <td>실제 데이터 처리, RESTful API 제공</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database</strong></td>
+                        <td><span class="status-badge status-as-is">localStorage</span></td>
+                        <td><span class="status-badge status-to-be">PostgreSQL 18 + Redis 7</span></td>
+                        <td>데이터 영속성, 동시성 제어, 캐싱</td>
+                    </tr>
+                    <tr>
+                        <td><strong>개발 환경</strong></td>
+                        <td><span class="status-badge status-as-is">N/A</span></td>
+                        <td><span class="status-badge status-hybrid">하이브리드 환경</span></td>
+                        <td>PostgreSQL: Windows 로컬, Redis: Docker</td>
+                    </tr>
+                    <tr>
+                        <td><strong>인증/인가</strong></td>
+                        <td><span class="status-badge status-as-is">localStorage 기반</span></td>
+                        <td><span class="status-badge status-to-be">JWT + Refresh Token</span></td>
+                        <td>보안 강화, 세션 관리, 토큰 갱신</td>
+                    </tr>
+                    <tr>
+                        <td><strong>상태 관리</strong></td>
+                        <td><span class="status-badge status-as-is">Local useState</span></td>
+                        <td><span class="status-badge status-to-be">Zustand + TanStack Query</span></td>
+                        <td>전역 상태 관리, API 캐싱, 성능 향상</td>
+                    </tr>
+                    <tr>
+                        <td><strong>타입 시스템</strong></td>
+                        <td><span class="status-badge status-as-is">부분 TypeScript</span></td>
+                        <td><span class="status-badge status-to-be">Full TypeScript</span></td>
+                        <td>타입 안정성, AI 개발 효율 극대화</td>
+                    </tr>
+                    <tr>
+                        <td><strong>프로젝트 구조</strong></td>
+                        <td><span class="status-badge status-as-is">분리된 2개 앱</span></td>
+                        <td><span class="status-badge status-to-be">모노레포 (Turborepo)</span></td>
+                        <td>코드 공유, 통합 관리, 일관성</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI 기능</strong></td>
+                        <td><span class="status-badge status-as-is">불가능</span></td>
+                        <td><span class="status-badge status-to-be">MVP + 확장</span></td>
+                        <td>3줄 요약, 감정 온도계, 정치 브리핑</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Target Architecture -->
+        <div class="section" id="architecture">
+            <div class="section-header">
+                <div class="section-icon">🏗️</div>
+                <h2>목표 아키텍처 (TO-BE)</h2>
+            </div>
+
+            <h3>☁️ 운영 환경 (AWS Production)</h3>
+            <div class="architecture-diagram">
+                <pre>
+┌─────────────────────────────────────────────────────────────┐
+│                      CloudFront CDN                          │
+│                  (정적 파일, 이미지 캐싱)                      │
+└─────────────────┬───────────────────────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────────────────────┐
+│              Application Load Balancer                       │
+│                 (HTTPS, 트래픽 분산)                          │
+└─────────────┬───────────────┬───────────────────────────────┘
+              │               │
+    ┌─────────▼─────────┐    │
+    │  Admin Dashboard  │    │
+    │   (React SPA)     │    │
+    │   Port: 3000      │    │
+    └───────────────────┘    │
+                             │
+    ┌────────────────────────▼────────┐
+    │    Frontend Website             │
+    │    (Static HTML + JS)           │
+    │    Port: 8000                   │
+    └─────────────────────────────────┘
+                  │
+    ┌─────────────▼─────────────────────┐
+    │       API Server                  │
+    │   (Node.js + Express)             │
+    │   ECS Fargate                     │
+    │   Port: 4000                      │
+    └─────┬──────────┬─────────┬────────┘
+          │          │         │
+    ┌─────▼───┐  ┌───▼────┐  ┌▼────────┐
+    │   RDS   │  │ElastiCache│   S3    │
+    │Postgres │  │  Redis  │  │  Files  │
+    │  18     │  │   7.x   │  │         │
+    └─────────┘  └────────┘  └─────────┘
+          │
+    ┌─────▼──────────────────────────┐
+    │    AI Service (독립)           │
+    │  - OpenAI API (GPT-4o-mini)   │
+    │  - Claude API (Optional)      │
+    │  - Self-hosted Models (Future)│
+    └────────────────────────────────┘
+                </pre>
+            </div>
+
+            <h3>💻 개발 환경 (Windows Local + Docker)</h3>
+            <div class="info-box">
+                <h4>🔥 하이브리드 환경의 장점</h4>
+                <p><strong>PostgreSQL (Windows 로컬)</strong>: Prisma migrate 호환성, 안정적인 개발 환경<br>
+                <strong>Redis (Docker)</strong>: 격리된 환경, 이식성, 쉬운 버전 관리</p>
+            </div>
+
+            <div class="architecture-diagram">
+                <pre>
+┌────────────────────────────────────┐
+│    Admin Dashboard (React SPA)     │
+│    localhost:3000                  │
+│    npm start                       │
+└──────────────┬─────────────────────┘
+               │
+┌──────────────▼─────────────────────┐
+│    Frontend Website (Static)       │
+│    localhost:8000                  │
+│    python -m http.server 8000      │
+└──────────────┬─────────────────────┘
+               │
+┌──────────────▼─────────────────────┐
+│    API Server (Node.js + Express)  │
+│    localhost:4000                  │
+│    npm run dev                     │
+└─────┬──────────────┬───────────────┘
+      │              │
+┌─────▼───────┐  ┌───▼──────────┐
+│  PostgreSQL │  │  Redis       │
+│  18         │  │  7           │
+│  (Windows)  │  │  (Docker)    │
+│  Port: 5432 │  │  Port: 6379  │
+│  로컬 설치   │  │  컨테이너    │
+└─────────────┘  └──────────────┘
+
+Windows 명령어:
+# PostgreSQL 연결
+psql -U polibat -d polibat_dev
+
+# Redis 시작
+docker compose up -d redis
+                </pre>
+            </div>
+        </div>
+
+        <!-- Infrastructure Requirements -->
+        <div class="section" id="requirements">
+            <div class="section-header">
+                <div class="section-icon">🛠️</div>
+                <h2>인프라 요구사항</h2>
+            </div>
+
+            <h3>🗄️ 데이터베이스</h3>
+            <div class="tech-stack">
+                <div class="tech-item">PostgreSQL 18 (메인 DB)</div>
+                <div class="tech-item">Redis 7 (캐시/세션)</div>
+                <div class="tech-item">Prisma ORM 5.x</div>
+                <div class="tech-item">자동 백업 (7일 보관)</div>
+                <div class="tech-item">Multi-AZ (운영환경)</div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>PostgreSQL 18</h4>
+                    <p><strong>개발</strong>: Windows 로컬 (C:\Program Files\PostgreSQL\18)<br>
+                    <strong>운영</strong>: AWS RDS Multi-AZ<br>
+                    <strong>백업</strong>: 일일 자동, 7일 보관</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Redis 7</h4>
+                    <p><strong>개발</strong>: Docker 컨테이너<br>
+                    <strong>운영</strong>: AWS ElastiCache<br>
+                    <strong>용도</strong>: 세션, 캐싱, Rate Limiting</p>
+                </div>
+            </div>
+
+            <h3>🚀 애플리케이션 서버</h3>
+            <div class="tech-stack">
+                <div class="tech-item">Node.js 20 LTS</div>
+                <div class="tech-item">Express.js 4.x</div>
+                <div class="tech-item">TypeScript 5.x</div>
+                <div class="tech-item">Prisma Client 5.x</div>
+                <div class="tech-item">ECS Fargate (Serverless)</div>
+                <div class="tech-item">Auto Scaling</div>
+            </div>
+
+            <h3>🌐 정적 파일 & CDN</h3>
+            <div class="tech-stack">
+                <div class="tech-item">S3 (Static Hosting)</div>
+                <div class="tech-item">CloudFront (CDN)</div>
+                <div class="tech-item">Route 53 (DNS)</div>
+                <div class="tech-item">ACM (SSL Certificate)</div>
+            </div>
+
+            <h3>🔐 보안 & 인증</h3>
+            <div class="tech-stack">
+                <div class="tech-item">JWT (Access Token 15분)</div>
+                <div class="tech-item">Refresh Token (7일)</div>
+                <div class="tech-item">AES-256 암호화</div>
+                <div class="tech-item">Rate Limiting</div>
+                <div class="tech-item">Helmet.js (보안 헤더)</div>
+                <div class="tech-item">HTTPS 강제</div>
+            </div>
+
+            <h3>🤖 AI 기능 (MVP)</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>AI 3줄 요약</h4>
+                    <p>GPT-4o-mini 활용<br>게시글 핵심 내용 요약<br>24시간 Redis 캐싱</p>
+                </div>
+                <div class="feature-card">
+                    <h4>감정 온도계</h4>
+                    <p>감정 분석 모델<br>긍정/부정/중립 분석<br>온도 시각화 (0-100)</p>
+                </div>
+                <div class="feature-card">
+                    <h4>정치 브리핑 (중기)</h4>
+                    <p>일일 뉴스 크롤링<br>AI 요약 및 분석<br>매일 아침 6시 자동</p>
+                </div>
+                <div class="feature-card">
+                    <h4>글 작성 지원 (중기)</h4>
+                    <p>여론 데이터 분석<br>키워드 추출<br>작성 톤 추천</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cost Estimation -->
+        <div class="section" id="cost">
+            <div class="section-header">
+                <div class="section-icon">💰</div>
+                <h2>월 예상 비용 (AWS)</h2>
+            </div>
+
+            <div class="cost-grid">
+                <div class="cost-card">
+                    <h4>ECS Fargate</h4>
+                    <div class="price">$100-200</div>
+                    <div class="description">2 vCPU, 4GB RAM<br>Auto Scaling</div>
+                </div>
+                <div class="cost-card">
+                    <h4>RDS PostgreSQL</h4>
+                    <div class="price">$50-100</div>
+                    <div class="description">db.t3.micro<br>Multi-AZ</div>
+                </div>
+                <div class="cost-card">
+                    <h4>ElastiCache Redis</h4>
+                    <div class="price">$30-50</div>
+                    <div class="description">cache.t3.micro<br>Single Node</div>
+                </div>
+                <div class="cost-card">
+                    <h4>S3 + CloudFront</h4>
+                    <div class="price">$20-50</div>
+                    <div class="description">10GB 저장<br>100GB 전송</div>
+                </div>
+                <div class="cost-card">
+                    <h4>Load Balancer</h4>
+                    <div class="price">$20-30</div>
+                    <div class="description">Application LB<br>HTTPS 종료</div>
+                </div>
+                <div class="cost-card">
+                    <h4>AI API (OpenAI)</h4>
+                    <div class="price">$50-150</div>
+                    <div class="description">GPT-4o-mini<br>캐싱 최적화</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>💡 총 월 비용: $250-550</h3>
+                <p><strong>비용 최적화 전략</strong>: Windows 로컬 PostgreSQL 개발 환경 | AI API 캐싱 (24시간) | S3 Intelligent Tiering | Fargate Spot 인스턴스 고려</p>
+            </div>
+
+            <div class="info-box">
+                <h4>📊 개발 비용 절감 (AI 에이전트 활용)</h4>
+                <p><strong>Backend 개발</strong>: 4개월 → 2개월 (50% 절감)<br>
+                <strong>Frontend 리팩토링</strong>: 2개월 → 1개월 (50% 절감)<br>
+                <strong>AI 기능 구현</strong>: 2개월 → 1개월 (50% 절감)</p>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="section" id="timeline">
+            <div class="section-header">
+                <div class="section-icon">📅</div>
+                <h2>다음 단계 & 타임라인</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Week 1: AWS 인프라 기본 설정</h4>
+                    <p>AWS 계정 설정, IAM 사용자 생성, 도메인 등록 (polibat.com), SSL 인증서 발급 (ACM)</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Week 2: 개발 환경 구축</h4>
+                    <p>Windows PostgreSQL 18 설치, Docker Desktop 설정, Redis 컨테이너 구성, 개발자 PC 환경 설정</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Week 3: CI/CD 파이프라인</h4>
+                    <p>GitHub Actions 워크플로우 설정, ECR 리포지토리 생성, ECS 클러스터 및 서비스 생성</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Week 4: 모니터링 설정</h4>
+                    <p>CloudWatch 알람, 팀즈 웹훅 통합, 로그 중앙 집중, 메트릭 대시보드 구축</p>
+                </div>
+            </div>
+
+            <h3>🎯 즉시 필요한 작업</h3>
+            <div class="tech-stack">
+                <div class="tech-item">✅ AWS 계정 생성</div>
+                <div class="tech-item">✅ 도메인 등록 (polibat.com)</div>
+                <div class="tech-item">✅ SSL 인증서 발급</div>
+                <div class="tech-item">✅ PostgreSQL 18 설치 (Windows)</div>
+                <div class="tech-item">✅ Docker Desktop 설치</div>
+                <div class="tech-item">✅ GitHub Actions 설정</div>
+                <div class="tech-item">✅ IAM 사용자 및 역할 생성</div>
+                <div class="tech-item">✅ Secrets Manager 설정</div>
+            </div>
+
+            <h3>🤝 협업 포인트</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>환경 변수 관리</h4>
+                    <p>AWS Secrets Manager로 중앙 관리, .env 파일 형식 통일, 개발/운영 분리</p>
+                </div>
+                <div class="feature-card">
+                    <h4>데이터베이스 마이그레이션</h4>
+                    <p>Prisma migrate diff 사용, SQL 직접 생성, GitHub Actions 자동화</p>
+                </div>
+                <div class="feature-card">
+                    <h4>로깅 표준화</h4>
+                    <p>CloudWatch Logs 형식 통일, 구조화된 JSON 로깅, 에러 트래킹</p>
+                </div>
+                <div class="feature-card">
+                    <h4>보안 정책</h4>
+                    <p>네트워크 보안 그룹, IAM 정책 최소 권한, VPC 설정 검토</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>📞 문의사항 & 관련 문서</h3>
+            <p><strong>상세 아키텍처</strong>: <code>TO-BE-ARCHITECTURE.md</code></p>
+            <p><strong>개발 로드맵</strong>: <code>DEV_ROADMAP.md</code> | <code>DEV_ROADMAP_PHASE1.md</code></p>
+            <p><strong>데이터베이스 스키마</strong>: <code>apps/api/prisma/schema.prisma</code></p>
+            <p><strong>코드베이스 현황</strong>: <code>CODEBASE_STATUS.md</code></p>
+
+            <div class="footer-meta">
+                <p><strong>문서 작성</strong>: AI Agent (Claude 4.5 Sonnet) + SuperClaude Framework</p>
+                <p><strong>작성일</strong>: 2025-10-19 | <strong>버전</strong>: 1.0 | <strong>환경</strong>: Windows 10/11 + Docker</p>                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -63,3 +63,33 @@ claudedocs/
 # Prisma
 apps/api/prisma/migrations/
 !apps/api/prisma/migrations/.gitkeep
+
+# =====================================================
+# Security & Secrets (강화된 보안 패턴)
+# =====================================================
+
+# Credentials & API Keys
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+*.csr
+*.srl
+
+# AWS & Cloud Credentials
+.aws/
+credentials
+config
+
+# Application Secrets
+secrets/
+secrets.json
+secrets.*.json
+
+# Test Files (보안 강화 - 하드코딩된 비밀번호 방지)
+test-*.js
+create-*.js
+*-test.js
+*.test.local.js
