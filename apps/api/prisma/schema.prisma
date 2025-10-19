@@ -1,0 +1,600 @@
+// Prisma Schema for PoliBAT (정치방망이)
+// Database: PostgreSQL 18
+// Phase 1: Core Entities
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "windows", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// 회원 (Member) 관련 모델
+// ============================================
+
+enum MemberType {
+  NORMAL // 일반회원
+  POLITICIAN // 정치인
+  ASSISTANT // 보좌진
+  ADMIN // 운영자
+}
+
+enum MemberStatus {
+  APPROVED // 승인
+  PENDING // 승인대기
+  WITHDRAWN // 탈퇴
+  SUSPENDED // 정지
+  BANNED // 강퇴
+}
+
+enum PoliticianType {
+  NATIONAL_ASSEMBLY // 국회의원
+  LOCAL_GOVERNMENT // 지자체
+  PRESIDENTIAL // 대통령실
+}
+
+model Member {
+  id         String       @id @default(uuid())
+  memberId   String       @unique // NM000001, PM000001, PA000001
+  memberType MemberType
+  status     MemberStatus @default(APPROVED)
+
+  // 인증 정보 (암호화 필요)
+  email        String @unique
+  passwordHash String
+
+  // 기본 정보
+  nickname     String  @unique
+  phone        String?
+  profileImage String?
+
+  // 정치인 전용 정보
+  politicianType  PoliticianType?
+  politicianName  String? // 본명
+  party           String? // 소속 정당
+  district        String? // 지역구
+  verificationDoc String? // 인증 서류 URL
+
+  // 알림 설정
+  emailNotification Boolean @default(true)
+  smsNotification   Boolean @default(false)
+  pushNotification  Boolean @default(true)
+
+  // 타임스탬프
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  lastLoginAt DateTime?
+  deletedAt   DateTime? // Soft delete
+
+  // 관계
+  posts         Post[]
+  comments      Comment[]
+  reactions     Reaction[]
+  votes         VoteParticipation[]
+  reports       Report[]              @relation("Reporter")
+  reportedItems Report[]              @relation("Reported")
+  suggestions   Suggestion[]
+  statusHistory MemberStatusHistory[]
+
+  @@index([memberType])
+  @@index([status])
+  @@index([email])
+  @@index([createdAt])
+  @@map("members")
+}
+
+model MemberStatusHistory {
+  id       String @id @default(uuid())
+  memberId String
+  member   Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  fromStatus MemberStatus
+  toStatus   MemberStatus
+  reason     String?
+  changedBy  String? // Admin ID
+
+  createdAt DateTime @default(now())
+
+  @@index([memberId])
+  @@index([createdAt])
+  @@map("member_status_history")
+}
+
+// ============================================
+// 게시글 (Post) 관련 모델
+// ============================================
+
+enum BoardType {
+  FREE // 자유게시판
+  POLITICIAN // 정치인게시판
+  VOTE // 투표
+}
+
+enum PostStatus {
+  PUBLISHED // 게시
+  PINNED // 게시(고정)
+  HIDDEN // 숨김
+  DELETED // 삭제
+}
+
+model Post {
+  id        String     @id @default(uuid())
+  postId    String     @unique // FB000001, PB000001, VP000001
+  boardType BoardType
+  status    PostStatus @default(PUBLISHED)
+
+  // 작성자
+  authorId String
+  author   Member @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  // 콘텐츠
+  title       String
+  content     String   @db.Text
+  images      String[] // 이미지 URL 배열
+  attachments String[] // 첨부파일 URL 배열
+
+  // 통계
+  viewCount    Int @default(0)
+  likeCount    Int @default(0)
+  dislikeCount Int @default(0)
+  commentCount Int @default(0)
+  reportCount  Int @default(0)
+
+  // 타임스탬프
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
+  // 관계
+  comments  Comment[]
+  reactions Reaction[]
+  reports   Report[]
+  voteInfo  Vote? // boardType이 VOTE인 경우만
+
+  @@index([boardType])
+  @@index([status])
+  @@index([authorId])
+  @@index([createdAt])
+  @@map("posts")
+}
+
+// ============================================
+// 댓글 (Comment) 관련 모델
+// ============================================
+
+enum CommentStatus {
+  PUBLISHED // 게시
+  HIDDEN // 숨김
+  DELETED // 삭제
+}
+
+model Comment {
+  id        String @id @default(uuid())
+  commentId String @unique // FB000001-CM0001
+
+  // 소속
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  // 작성자
+  authorId String
+  author   Member @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  // 콘텐츠
+  content String        @db.Text
+  status  CommentStatus @default(PUBLISHED)
+
+  // 통계
+  likeCount    Int @default(0)
+  dislikeCount Int @default(0)
+  reportCount  Int @default(0)
+
+  // 타임스탬프
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
+  // 관계
+  reactions Reaction[]
+  reports   Report[]
+
+  @@index([postId])
+  @@index([authorId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("comments")
+}
+
+// ============================================
+// 투표 (Vote) 관련 모델
+// ============================================
+
+enum VoteStatus {
+  ACTIVE // 진행
+  CLOSED // 마감
+  SCHEDULED // 예정
+}
+
+model Vote {
+  id String @id @default(uuid())
+
+  // 연결된 게시글 (1:1)
+  postId String @unique
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  // 투표 설정
+  status        VoteStatus @default(ACTIVE)
+  startDate     DateTime
+  endDate       DateTime
+  allowMultiple Boolean    @default(false) // 복수 선택 허용
+
+  // 통계
+  totalVoters Int @default(0)
+
+  // 관계
+  options        VoteOption[]
+  participations VoteParticipation[]
+
+  @@index([status])
+  @@index([startDate])
+  @@index([endDate])
+  @@map("votes")
+}
+
+model VoteOption {
+  id       String @id @default(uuid())
+  optionId String // Option 1, Option 2, ...
+
+  // 소속
+  voteId String
+  vote   Vote   @relation(fields: [voteId], references: [id], onDelete: Cascade)
+
+  // 옵션 내용
+  content      String
+  displayOrder Int    @default(0)
+
+  // 통계
+  voteCount Int @default(0)
+
+  // 관계
+  participations VoteParticipation[]
+
+  @@index([voteId])
+  @@map("vote_options")
+}
+
+model VoteParticipation {
+  id String @id @default(uuid())
+
+  // 투표자
+  voterId String
+  voter   Member @relation(fields: [voterId], references: [id], onDelete: Cascade)
+
+  // 투표
+  voteId String
+  vote   Vote   @relation(fields: [voteId], references: [id], onDelete: Cascade)
+
+  // 선택한 옵션
+  optionId String
+  option   VoteOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  // 타임스탬프
+  createdAt DateTime @default(now())
+
+  @@unique([voterId, voteId, optionId]) // 중복 투표 방지
+  @@index([voteId])
+  @@index([voterId])
+  @@map("vote_participations")
+}
+
+// ============================================
+// 반응 (Like/Dislike) 관련 모델
+// ============================================
+
+enum ReactionType {
+  LIKE
+  DISLIKE
+}
+
+enum ReactionTargetType {
+  POST
+  COMMENT
+}
+
+model Reaction {
+  id String @id @default(uuid())
+
+  // 반응자
+  userId String
+  user   Member @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // 대상
+  targetType ReactionTargetType
+  postId     String?
+  post       Post?              @relation(fields: [postId], references: [id], onDelete: Cascade)
+  commentId  String?
+  comment    Comment?           @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  // 반응 유형
+  reactionType ReactionType
+
+  // 타임스탬프
+  createdAt DateTime @default(now())
+
+  @@unique([userId, targetType, postId, commentId]) // 중복 반응 방지
+  @@index([userId])
+  @@index([targetType])
+  @@index([postId])
+  @@index([commentId])
+  @@map("reactions")
+}
+
+// ============================================
+// 신고 (Report) 관련 모델
+// ============================================
+
+enum ReportTargetType {
+  POST
+  COMMENT
+}
+
+enum ReportStatus {
+  PENDING // 접수대기
+  REVIEWING // 검토중
+  RESOLVED // 처리완료
+  REJECTED // 처리불가
+  DEFERRED // 추후검토
+}
+
+enum ActionType {
+  HIDE // 숨김
+  DELETE // 삭제
+  RESTORE // 재게시
+}
+
+model Report {
+  id       String @id @default(uuid())
+  reportId String @unique // FB000001-RP0001
+
+  // 신고자
+  reporterId String
+  reporter   Member @relation("Reporter", fields: [reporterId], references: [id], onDelete: Cascade)
+
+  // 피신고자 및 대상
+  reportedUserId String
+  reportedUser   Member @relation("Reported", fields: [reportedUserId], references: [id])
+
+  targetType ReportTargetType
+  postId     String?
+  post       Post?            @relation(fields: [postId], references: [id], onDelete: Cascade)
+  commentId  String?
+  comment    Comment?         @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  // 신고 내용
+  reason String       @db.Text
+  status ReportStatus @default(PENDING)
+
+  // 처리 정보
+  adminId    String?
+  adminNote  String?     @db.Text
+  actionType ActionType?
+
+  // 타임스탬프
+  createdAt   DateTime  @default(now())
+  processedAt DateTime?
+
+  @@index([reporterId])
+  @@index([reportedUserId])
+  @@index([status])
+  @@index([targetType])
+  @@index([createdAt])
+  @@map("reports")
+}
+
+// ============================================
+// 불편/제안 (Suggestion) 관련 모델
+// ============================================
+
+enum SuggestionType {
+  FEATURE // 기능제안
+  COMPLAINT // 불편사항
+  VOTE_PROPOSAL // 투표제안
+}
+
+enum SuggestionStatus {
+  PENDING // 접수대기
+  REVIEWING // 검토중
+  RESOLVED // 처리완료
+  REJECTED // 처리불가
+  DEFERRED // 추후검토
+}
+
+model Suggestion {
+  id             String           @id @default(uuid())
+  suggestionId   String           @unique // RC000001, RS000001
+  suggestionType SuggestionType
+  status         SuggestionStatus @default(PENDING)
+
+  // 작성자
+  userId String
+  user   Member @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // 내용
+  title   String
+  content String @db.Text
+
+  // 관리자 답변
+  adminReply String? @db.Text
+  adminId    String?
+
+  // 타임스탬프
+  createdAt DateTime  @default(now())
+  repliedAt DateTime?
+
+  @@index([userId])
+  @@index([suggestionType])
+  @@index([status])
+  @@index([createdAt])
+  @@map("suggestions")
+}
+
+// ============================================
+// 공지사항 (Notice) 관련 모델
+// ============================================
+
+enum NoticeCategory {
+  GUIDE // 이용안내
+  UPDATE // 업데이트
+  COMMUNICATION // 소통소식
+  EXTERNAL // 외부활동
+}
+
+model Notice {
+  id       String         @id @default(uuid())
+  noticeId String         @unique // NT000001
+  category NoticeCategory
+
+  // 콘텐츠
+  title    String
+  content  String  @db.Text
+  isPinned Boolean @default(false)
+
+  // 통계
+  viewCount Int @default(0)
+
+  // 타임스탬프
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([isPinned])
+  @@index([createdAt])
+  @@map("notices")
+}
+
+// ============================================
+// 팝업 (Popup) 관련 모델
+// ============================================
+
+enum PopupPosition {
+  CENTER // 중앙
+  TOP_LEFT // 좌상
+  TOP_RIGHT // 우상
+  BOTTOM_LEFT // 좌하
+  BOTTOM_RIGHT // 우하
+}
+
+model Popup {
+  id      String @id @default(uuid())
+  popupId String @unique // PU000001
+
+  // 콘텐츠
+  title    String
+  content  String        @db.Text
+  imageUrl String?
+  linkUrl  String?
+  position PopupPosition @default(CENTER)
+
+  // 노출 설정
+  startDate DateTime
+  endDate   DateTime
+  isActive  Boolean  @default(true)
+
+  // 타임스탬프
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([startDate])
+  @@index([endDate])
+  @@map("popups")
+}
+
+// ============================================
+// 배너 (Banner) 관련 모델
+// ============================================
+
+model Banner {
+  id       String @id @default(uuid())
+  bannerId String @unique // BN000001
+
+  // 콘텐츠
+  title        String
+  imageUrl     String
+  linkUrl      String
+  displayOrder Int    @default(0)
+
+  // 노출 설정
+  startDate DateTime
+  endDate   DateTime
+  isActive  Boolean  @default(true)
+
+  // 타임스탬프
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([displayOrder])
+  @@index([startDate])
+  @@index([endDate])
+  @@map("banners")
+}
+
+// ============================================
+// 정책 (Policy) 관련 모델
+// ============================================
+
+enum PolicyTarget {
+  ALL // 전체
+  ALL_MEMBERS // 회원전체
+  NORMAL_MEMBERS // 일반회원
+  POLITICIAN_MEMBERS // 정치인회원
+}
+
+model PolicyTemplate {
+  id         String @id @default(uuid())
+  templateId String @unique // TP0001
+  versionId  String @unique // TP0001-VN0001
+
+  // 콘텐츠
+  title    String
+  content  String  @db.Text
+  isActive Boolean @default(true)
+
+  // 타임스탬프
+  createdAt DateTime @default(now())
+
+  // 관계
+  policies PolicyContent[]
+
+  @@index([templateId])
+  @@index([isActive])
+  @@map("policy_templates")
+}
+
+model PolicyContent {
+  id String @id @default(uuid())
+
+  // 템플릿 연결
+  templateVersionId String
+  template          PolicyTemplate @relation(fields: [templateVersionId], references: [versionId], onDelete: Cascade)
+
+  // 대상
+  target PolicyTarget
+
+  // 콘텐츠
+  content  String  @db.Text
+  isActive Boolean @default(true)
+
+  // 타임스탬프
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([target])
+  @@index([isActive])
+  @@map("policy_contents")
+}

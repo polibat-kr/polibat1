@@ -20,6 +20,24 @@ grep -r "function" js/         # Search for functions in JS files
 # Test accounts: test@example.com / test123
 ```
 
+## AI-Optimized Development Principle / AI 최적화 개발 원칙
+
+**CRITICAL**: You are encouraged to propose optimized architecture and specifications that best suit AI-driven development. Feel free to suggest improvements to code structure, patterns, and implementation approaches that enhance development efficiency.
+
+**필수**: AI 개발에 가장 적합한 최적화된 아키텍처와 스펙을 제안할 수 있습니다. 개발 효율성을 높이는 코드 구조, 패턴, 구현 방식의 개선을 자유롭게 제안하세요.
+
+### 100% Functional Equivalence Requirement / 100% 기능 동등성 요구사항
+**ABSOLUTE REQUIREMENT**: While architecture and code can be optimized, the final implementation MUST maintain 100% functional equivalence with existing screens and features. Every UI element, user interaction, and business logic must work exactly as specified in the original design.
+
+**절대 요구사항**: 아키텍처와 코드는 최적화할 수 있지만, 최종 구현물은 기존 화면 및 기능과 100% 동일해야 합니다. 모든 UI 요소, 사용자 상호작용, 비즈니스 로직이 원본 설계와 정확히 동일하게 작동해야 합니다.
+
+### Optimization Guidelines / 최적화 지침
+- **Modern JavaScript**: Consider ES6+ patterns where beneficial (while maintaining browser compatibility)
+- **Code Organization**: Propose cleaner module structure and separation of concerns
+- **jQuery Optimization**: Suggest better jQuery patterns or modern alternatives when appropriate
+- **Performance**: Optimize DOM manipulation and event handling
+- **Maintainability**: Structure code for better readability and maintenance
+
 ## Code Style Guidelines
 
 ### JavaScript

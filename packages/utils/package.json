@@ -1,0 +1,25 @@
+{
+  "name": "@polibat/utils",
+  "version": "1.0.0",
+  "description": "정치방망이 공유 유틸리티 함수",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@polibat/constants": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

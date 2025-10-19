@@ -1,342 +1,234 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## 🌐 언어 설정 (Language Preference)
 
-## 📄 File Synchronization / 파일 동기화
+**중요 (IMPORTANT)**: 모든 응답은 **한글로 작성**해주세요. 기술 용어는 영어와 한글을 병기하되, 설명과 대화는 한글을 우선합니다.
 
-**CRITICAL**: When modifying CLAUDE.md, you MUST also update CLAUDE_KO.md to maintain synchronization between both files. Both files should contain the same information in their respective languages.
+**Response Language**: All responses should be in **Korean (한글)**. Technical terms may include English in parentheses, but explanations and conversations must prioritize Korean.
 
-**필수**: CLAUDE.md 파일을 수정할 때는 반드시 CLAUDE_KO.md 파일도 함께 수정하여 두 파일 간의 동기화를 유지해야 합니다. 두 파일은 각각의 언어로 동일한 정보를 포함해야 합니다.
+**예시 (Example)**:
+- ✅ "인증(Authentication) 시스템을 구현했습니다."
+- ✅ "타입스크립트(TypeScript) 컴파일 오류를 수정했습니다."
+- ❌ "Implemented authentication system."
 
-## Project Overview
-정치방망이 (PoliBAT) - A political community platform facilitating communication between politicians and citizens. The project consists of two separate applications:
-- **Admin Dashboard** (/admin) - React TypeScript admin panel for managing platform content
-- **Frontend Website** (/front) - Vanilla HTML/JS/CSS public-facing website
+---
 
-## 📚 Essential Project Documentation / 필수 프로젝트 문서
+## 프로젝트 개요 (Project Overview)
 
-To fully understand the PoliBAT project, thoroughly review the following documents:
+- **Monorepo structure** (Turborepo)
+- **Apps**: admin, web, api
+- **Packages**: types, constants, utils
+- **Legacy**: legacy/admin, legacy/front
 
-### Required Reading / 필수 숙지 문서
-1. **정치방망이(POLIBAT) 지침서.md**
-   - Project mission, vision, and strategy
-   - Branding and character (오구링 mascot)
-   - AI feature roadmap and differentiation points
-   - Business rules and platform structure
+## Essential Documentation
 
-2. **정치방망이(POLIBAT) 개발참고서.md**
-   - ID structure definitions (NM, PM, PA, FB, PB, etc.)
-   - Status value definitions (member, post, vote, action status)
-   - Development requirements (email security, approval process, etc.)
-   - Technical specifications and system constraints
+### 프로젝트 기획 및 명세
+- `정치방망이(POLIBAT) 지침서.md` - Project mission and vision
+- `정치방망이(POLIBAT) 개발참고서.md` - Development guidelines
+- `정치방망이(POLIBAT) 통합 화면명세서.md` - UI/UX specifications
 
-3. **정치방망이(POLIBAT) 통합 화면명세서.md**
-   - Detailed screen specifications for frontend and backoffice
-   - Page-by-page functionality and UI/UX definitions
-   - Common components and business rules
-   - ⚠️ When specifications are unclear, refer to corresponding screens in **정치방망이(POLIBAT) 화면캡쳐.pdf**
-   - The PDF contains actual screen captures with page numbers that match the numbering in the specification document
+### 아키텍처 및 로드맵
+- `TO-BE-ARCHITECTURE.md` - Target architecture and tech stack
+- `DEV_ROADMAP.md` - **마스터 로드맵** (전체 개요, ~5,000토큰)
+- `DEV_ROADMAP_PHASE1.md` - Phase 1 상세 (Week 1-8, Backend 기반 구축)
+- `DEV_ROADMAP_PHASE2.md` - Phase 2 상세 (Week 9-20, 핵심 기능 구현)
+- `DEV_ROADMAP_PHASE3.md` - Phase 3 상세 (Week 21-32, 고도화 기능)
+- `DEV_ROADMAP_PHASE4.md` - Phase 4 상세 (Quarter 5+, 확장 및 장기 계획)
+- `CODEBASE_STATUS.md` - **현재 구현 상태** (기존 코드 분석, ~3,000토큰)
+- `MONOREPO_GUIDE.md` - Monorepo structure and commands
 
-4. **정치방망이(POLIBAT) 화면캡쳐.pdf**
-   - Actual UI/UX screen captures with visual references
-   - ⚠️ Read when needed to minimize context usage
-   - Use this for visual verification when the markdown specification is insufficient
+### 문서 사용 가이드
 
-### Reference Documentation / 참고 문서
-- `C:\polibat\admin\CLAUDE.md` - Admin dashboard specific guidelines (React/TypeScript)
-- `C:\polibat\front\CLAUDE.md` - Frontend website specific guidelines (HTML/JS/jQuery)
+**효율적인 컨텍스트 로딩 전략**:
 
-## 🔧 Development Principles / 개발 원칙
+1. **세션 시작 시**:
+   - `DEV_ROADMAP.md` (마스터)만 먼저 읽어 전체 흐름 파악 (~5,000토큰)
+   - `CODEBASE_STATUS.md`로 현재 구현 상태 확인 (~3,000토큰)
 
-### Documentation-Based Development Priority / 문서 기반 개발 우선순위
+2. **특정 Phase 작업 시**:
+   - 해당 Phase 문서만 선택적으로 로드 (~8,000토큰)
+   - 예: Phase 1 작업 시 → `DEV_ROADMAP_PHASE1.md`만 읽기
 
-1. **Source Code First (소스 코드 우선)**
-   - Implementation should follow actual source code patterns
-   - Documentation serves as reference; actual implemented code is the final standard
-   - Always verify implementation in source before following documentation
+3. **패턴 참조 시**:
+   - `claudedocs/patterns/` 디렉토리의 특정 패턴 문서만 로드
 
-2. **Documentation Reference (필수 숙지 문서 참조)**
-   - Refer to essential documents for business logic, ID schemes, and status values
-   - Use screen specifications as UI/UX implementation reference
-   - Cross-reference documentation when specifications are unclear
+**토큰 절감 효과**:
+- 기존: 26,294토큰 (한 번에 로드 불가능)
+- 최적화: 최대 10,000토큰 이하 (필요한 문서만 선택적 로드)
 
-### Minimum Modification Principle / 기존 소스 최소 수정 원칙
+## Development Principles
 
-**CRITICAL**: Follow the principle of minimum modification to existing source code. Only make necessary changes to achieve the required functionality.
+- **Source code first**: Always examine actual code before making changes
+- **AI-optimized development**: Clear abstractions, type safety, predictable patterns
+- **100% functional equivalence**: Maintain original UI/UX and business logic
+- **Feature-based structure**: Organize code by business features, not technical layers
 
-**필수**: 기존 소스 코드에 대해 최소 수정 원칙을 따르세요. 필요한 기능을 달성하기 위한 필수적인 변경만 수행하세요.
+## Development Environment
 
-#### Existing Source Locations / 기존 소스 위치
-- Admin Dashboard: `C:\polibat\admin\`
-- Frontend Website: `C:\polibat\front\`
-
-#### Guidelines / 지침
-- **Preserve existing patterns**: Match current code style and architecture
-- **Incremental changes**: Make small, targeted modifications
-- **Test thoroughly**: Verify changes don't break existing functionality
+- **OS**: Windows 10/11
+- **Shell**: PowerShell 7 (pwsh.exe)
+- **Node.js**: v18+ (LTS recommended)
+- **Package Manager**: npm
+- **Database**: PostgreSQL 18 (Windows 로컬)
+- **Cache**: Redis 7 (Docker)
+- **Configuration**: `C:\Users\[username]\.cursor\settings.json`
 
 ## Commands
 
+### Database (Windows PostgreSQL 18)
+```powershell
+# PostgreSQL 접속
+& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev
+
+# 테이블 확인
+& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev -c "\dt"
+
+# Prisma Studio
+cd apps/api
+npx prisma studio
+```
+
+### Cache (Redis Docker)
+```powershell
+# Redis 시작
+docker compose up -d redis
+
+# Redis 접속
+docker exec -it polibat-redis redis-cli -a polibat_redis_password
+
+# Redis 상태 확인
+docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
+```
+
 ### Admin Dashboard
-```bash
-cd admin
-npm install              # Install dependencies
-npm start               # Start dev server at http://localhost:3000/backoffice
-npm run build           # Build for production
-npm test                # Run tests
-npm test -- [file] --watch  # Run specific test file
+```powershell
+cd apps/admin
+npm install
+npm start          # Development server (http://localhost:3000)
+npm run build      # Production build
+npm test           # Run tests
 ```
 
 ### Frontend Website
-```bash
-cd front
-python -m http.server 8000    # Start local dev server
-# Test login: test@example.com / test123
+```powershell
+cd apps/web
+python -m http.server 8000  # Development server (http://localhost:8000)
+```
+
+### API Server
+```powershell
+cd apps/api
+npm install
+npm run dev        # Development server (http://localhost:4000)
+npm run build      # Production build
 ```
 
 ## Project Architecture
 
-### Admin Dashboard (/admin)
-**Tech Stack**: React 19, TypeScript, Tailwind CSS v3.4 (DO NOT upgrade to v4), React Router v7
+### Admin Dashboard
+- **Framework**: React 19.1.0 + TypeScript 4.9.5
+- **Router**: React Router v7.7.0
+- **Styling**: Tailwind CSS 3.4.x (DO NOT upgrade to v4)
+- **Charts**: Chart.js 4.5.0 + react-chartjs-2 5.3.0
+- **Icons**: Lucide React 0.525.0
+- **Key Structure**: `features/`, `shared/`, `core/`
 
-**Key Structure**:
-- `src/components/popups/` - Detail popups for all entity types
-- `src/pages/` - Page components for each admin route
-- `src/types/business.types.ts` - Core business type definitions
-- `src/utils/navigation.ts` - Cross-page navigation helpers
+### Frontend Website
+- **Structure**: HTML5, Bootstrap 3, jQuery, Vanilla JS (ES5)
+- **Key Files**: `page-manager.js`, `login.js`
+- **Authentication**: localStorage/sessionStorage based
 
-**Critical Patterns**:
-- Always use optional chaining: `data?.property || defaultValue`
-- Array safety: `Array.isArray(items) && items.length > 0`
-- Object mapping safety: `mapping[key] || defaultValue`
-- Page layout order: Header → Statistics Cards → Filters → Table
+### API Server
+- **Framework**: Node.js + Express.js + TypeScript
+- **Database**: PostgreSQL 18 (Windows 로컬) + Prisma
+- **Cache**: Redis 7 (Docker)
+- **Authentication**: JWT + Redis
+- **Security**: Helmet, CORS, Rate limiting
 
-### Frontend Website (/front)
-**Tech Stack**: HTML5, Bootstrap 3, jQuery, Vanilla JavaScript (ES5 only)
+## Business Logic
 
-**Key Files**:
-- `page-manager.js` - Page state management (must load last)
-- `login.js` - Authentication system with test accounts
-- `header.html` / `footer.html` - Included via div imports
+### Entity ID Format
+| Entity | Format | Example |
+|--------|--------|---------|
+| Member | M + 6 digits | M000001 |
+| Post | P + 6 digits | P000001 |
+| Comment | C + 6 digits | C000001 |
+| Vote | V + 6 digits | V000001 |
+| Notice | N + 6 digits | N000001 |
 
-## Business Logic & ID System
-
-### Entity ID Format / 엔티티 ID 형식
-
-**Note**: This ID structure reflects the actual implementation in source code (`admin/src/types/business.types.ts`).
-
-| Entity | Prefix | Digits | Example | Description |
-|--------|--------|--------|---------|-------------|
-| Normal Member | NM | 6 | NM000001 | 일반회원 |
-| Politician | PM | 6 | PM000001 | 정치인 |
-| Assistant | PA | 6 | PA000001 | 보좌관 |
-| Free Board Post | FB | 6 | FB000001 | 자유게시판 |
-| Polibat Board Post | PB | 6 | PB000001 | 정치인게시판 |
-| Comment | CM | 4 | FB000001-CM0001 | 댓글 (post-based) |
-| Vote | VP | 6 | VP000001 | 투표 |
-| Complaint | RC | 6 | RC000001 | 불편사항 |
-| Suggestion | RS | 6 | RS000001 | 제안사항 |
-| Report | RP | 4 | FB000001-RP0001 | 신고 (post/comment-based) |
-| Notice | NT | 6 | NT000001 | 공지사항 |
-| Popup | PU | 6 | PU000001 | 팝업 |
-| Banner | BN | 6 | BN000001 | 배너 |
-| Template Policy | TP | 4 | TP0001-VN0001 | 정책 템플릿-버전 |
-
-**ID Generation Rules**:
-- Fixed-length numbering with leading zeros (e.g., NM000001 ~ NM999999)
-- Sub-entity IDs use parent ID + delimiter + sub-prefix (e.g., FB000001-CM0001)
-- Template policies include version numbers (TP0001-VN0001)
-
-### Status Values / 상태값
-
-**Note**: Status values are defined in `admin/src/types/business.types.ts`.
-
-#### Member Status (회원 상태)
-- `승인` - Approved (일반회원 auto-approved, 정치인/보좌관 admin-approved)
-- `승인대기` - Pending approval (정치인/보좌관 only)
-- `탈퇴` - Withdrawn (user-initiated)
-- `정지` - Suspended (temporary restriction)
-- `강퇴` - Banned (permanent restriction)
-
-#### Post/Comment Status (게시글/댓글 상태)
-- `게시` - Published (publicly visible)
-- `게시(고정)` - Pinned (top-fixed publication)
-- `숨김` - Hidden (visible to admin/author only)
-- `삭제` - Deleted (soft delete, recoverable)
-
-#### Vote Status (투표 상태)
-- `진행` - In Progress (voting active)
-- `마감` - Closed (voting ended)
-- `예정` - Scheduled (voting not yet started)
-
-#### Action Status (조치 상태)
-- `접수대기` - Received (report/suggestion received)
-- `검토중` - Under Review (admin reviewing)
-- `처리완료` - Completed (action finished)
-- `처리불가` - Unable to Process (action impossible)
-- `추후검토` - Deferred (scheduled for future review)
-
-### Date Period Standards
-- 일간: Today only (startDate = endDate = today)
-- 주간: Last 7 days from today
-- 월간: Last 1 month from today
-- 연간: Last 1 year from today
+### Status Values
+- **Member**: active, inactive, suspended, pending
+- **Post**: published, hidden, deleted
+- **Comment**: active, hidden, deleted
+- **Vote**: active, closed, cancelled
+- **Report**: pending, resolved, dismissed
 
 ## Development Guidelines
 
 ### Admin Dashboard Rules
-1. **Type Safety**: Never use direct property access without optional chaining
-2. **Filter Completeness**: When adding filters, implement all three: state, display, reset
-3. **Card Click Logic**: Politicians/Assistants set `statusFilter('승인')`
-4. **Cross-Page Navigation**: Implement both sending and receiving of URL parameters
-5. **UI Consistency**: Statistics cards always above search filters
+1. **Type Safety**: Use optional chaining (`data?.property || defaultValue`)
+2. **Filter Triple**: Implement state + display + reset for all filters
+3. **Card Click Logic**: Auto-apply filters when clicking statistics cards
+4. **Cross-Page Navigation**: Use URL parameters for filter persistence
 
 ### Frontend Rules
-1. **ES5 Only**: No arrow functions, const/let, or modern syntax
-2. **jQuery Check**: Always verify jQuery loaded before use
-3. **File Loading**: page-manager.js must load last in body
-4. **Login Testing**: Use test@example.com / test123
+1. **ES5 Only**: No modern JavaScript features
+2. **jQuery Check**: Verify jQuery is loaded before use
+3. **File Loading Order**: CSS → JS → Page-specific JS
+4. **Login Testing**: Use test accounts for development
 
-### Common Development Tasks
+## Safety Patterns
 
-**Adding New Admin Page**:
-1. Create component in `admin/src/pages/`
-2. Add route in `admin/src/App.tsx`
-3. Add menu item in `admin/src/components/Layout.tsx`
-
-**Adding New Frontend Page**:
-1. Create HTML with header/footer includes
-2. Add page mapping in `front/page-manager.js`
-3. Test page detection in browser console
-
-**Cross-Page Navigation (Admin)**:
 ```typescript
-// Source page
-import { navigateToPage } from '../utils/navigation';
-navigateToPage('/members', { type: '정치인', status: '승인' });
-
-// Target page - receives and applies parameters
-useEffect(() => {
-  const params = new URLSearchParams(location.search);
-  if (params.get('type')) setTypeFilter(params.get('type'));
-  if (params.get('status')) setStatusFilter(params.get('status'));
-}, [location.search]);
-```
-
-## Safety Guidelines
-
-### Required Validation Patterns
-```typescript
-// ✅ Safe patterns - always use these
-const value = data?.nested?.property || defaultValue;
+// Safe data access
+const value = data?.property || defaultValue;
 const items = Array.isArray(data) ? data : [];
-const color = colorMapping[key as keyof typeof colorMapping] || 'default';
 
-// ❌ Never use unsafe patterns
-const value = data.nested.property;  // Will crash if undefined
+// Safe array operations
+const filteredItems = items?.filter(item => item.status === 'active') || [];
+
+// Safe function calls
+const result = callback?.(data);
 ```
 
-### File Operations
-- Never use shell regex/sed for bulk modifications
-- Use Edit tool for file changes only
-- For files >1000 lines, modify in sections
-- Always verify changes after modification
-
-## Testing Approach
+## Testing
 
 ### Admin Dashboard
-- React Testing Library with Jest
-- Test files: `*.test.tsx` alongside components
-- Run specific: `npm test -- [filename] --watch`
+- **Unit Tests**: React Testing Library + Jest
+- **Test Files**: `*.test.tsx`, `*.test.ts`
+- **Coverage**: Components, utilities, hooks
 
-### Frontend
-- Manual browser testing with DevTools
-- Check console for errors
-- Test login flow with test accounts
-- Verify page-manager.js initialization
+### Frontend Website
+- **Manual Testing**: Browser DevTools
+- **Cross-Browser**: Chrome, Firefox, Safari, Edge
+- **Mobile**: Responsive design testing
 
-## Language Preferences / 언어 설정
+## SuperClaude Commands
 
-### 🇰🇷 Korean First Policy (한국어 우선 정책)
-**IMPORTANT**: Always respond in Korean (한글) when working on this project. All work logs, explanations, progress updates, and interactions should be in Korean unless explicitly requested otherwise.
+- `/sc:help` - Show available commands
+- `/sc:implement [feature]` - Implement specific feature
+- `/sc:analyze [path]` - Analyze code structure
+- `/sc:load` - Load session context (auto-triggered)
+- `/sc:save` - Save session context (auto-triggered at 80% token usage)
 
-**중요**: 이 프로젝트에서 작업할 때는 항상 한글로 응답하세요. 모든 작업 로그, 설명, 진행 상황 업데이트, 상호작용은 별도 요청이 없는 한 한글로 작성되어야 합니다.
+## Session Management
 
-### Work Progress Display (작업 진행 표시)
-- **Tool Usage Logs**: Display in Korean (예: "파일 읽는 중...", "코드 수정 중...")
-- **Progress Updates**: Korean descriptions (예: "회원 관리 페이지 구현 완료")
-- **Error Messages**: Korean explanations (예: "오류: 파일을 찾을 수 없습니다")
-- **Task Descriptions**: Korean task names in TodoWrite tool
-
-### Code and Documentation (코드 및 문서화)
-- **UI Text**: All user-facing text in Korean
-- **Code Comments**: Korean for business logic explanations
-- **Commit Messages**: Korean required (예: "feat: 회원 필터 기능 추가")
-- **Variable Names**: English for code, Korean for comments
-- **Date Format**: YYYY-MM-DD (Korean standard)
-- **Work History**: All work history and logs in Korean
-
-## 🚀 Claude Code Best Practices
-
-### Workflow for Code Tasks
-Follow this structured approach for all coding tasks:
-1. **Explore**: Read and understand relevant files using Read/Glob/Grep tools
-2. **Plan**: Create a detailed implementation plan with TodoWrite tool
-3. **Implement**: Write code following project patterns
-4. **Verify**: Test implementation and check for edge cases
-5. **Commit**: Create meaningful commits with clear messages in Korean
-
-### Effective Tool Usage
-- **Search First**: Always search for existing implementations before creating new code
-- **Batch Operations**: Call multiple tools in parallel when reading related files
-- **Context Management**: Use `/clear` command if context becomes too large
-- **Visual Verification**: Request screenshots for UI changes when needed
-
-### Code Generation Guidelines
-- **Follow Patterns**: Always match existing code style and patterns
-- **Safety First**: Use optional chaining and default values consistently
-- **Test Coverage**: Write tests for new functionality
-- **Incremental Changes**: Make small, focused changes rather than large rewrites
-
-### Performance Tips
-- **Parallel Processing**: Use multiple tool calls in single response for efficiency
-- **Focused Context**: Keep only relevant files in context
-- **Smart Navigation**: Use Grep/Glob for finding files instead of manual exploration
-
-### Testing Best Practices
-- **TDD Approach**: Write tests before implementation when adding new features
-- **Run Tests Frequently**: Execute tests after each significant change
-- **Visual Testing**: Use screenshots to verify UI components
-- **Edge Cases**: Always test boundary conditions and error states
+- **Auto-load**: Context restored on session start
+- **Auto-save**: Context saved at 80% token usage or every 30 minutes
+- **Token Monitoring**: Required for optimal performance
+- **Context Persistence**: Maintains development state across sessions
 
 ## Important Warnings
-1. **Tailwind CSS**: Must use v3.4.x - v4 causes compatibility issues
-2. **Optional Chaining**: Required for all object property access
-3. **Filter Implementation**: All three aspects (state, display, reset) required
-4. **Page Layout Order**: Statistics cards must be above search filters
-5. **ES5 Syntax**: Frontend must maintain ES5 compatibility (no modern JS)
-6. **jQuery Loading**: Must load before dependent scripts
-7. **Cross-Page Navigation**: Both sending and receiving must be implemented
 
-## 🚀 SuperClaude Commands / SuperClaude 커맨드
+1. **Tailwind CSS v3.4 only** - Do not upgrade to v4
+2. **Optional chaining required** - Always use `?.` for data access
+3. **ES5 syntax for frontend** - No modern JavaScript features
+4. **PowerShell commands only** - Use Windows PowerShell syntax
+5. **No API integration** - All data is currently hardcoded samples
 
-This project supports SuperClaude framework for enhanced development workflows. When using SuperClaude commands (`/sc`), help text will be displayed in both English and Korean.
+## Reference
 
-이 프로젝트는 향상된 개발 워크플로우를 위해 SuperClaude 프레임워크를 지원합니다. SuperClaude 커맨드(`/sc`)를 사용할 때 도움말 텍스트가 영어와 한글로 표시됩니다.
-
-### Quick Reference / 빠른 참조
-
-**자주 사용하는 커맨드 (Frequently Used Commands):**
-- `/sc:help` - 전체 커맨드 목록 표시 (Show all available commands)
-- `/sc:implement` - 기능 구현 (Feature implementation)
-- `/sc:analyze` - 코드 분석 (Code analysis)
-- `/sc:test` - 테스트 실행 (Run tests)
-- `/sc:git` - Git 작업 (Git operations)
-
-**세션 관리 (Session Management):**
-- `/sc:load` - 프로젝트 컨텍스트 로드 (Load project context)
-- `/sc:save` - 세션 저장 (Save session)
-
-For detailed information on all available commands and flags, use `/sc:help`.
-
-사용 가능한 모든 커맨드와 플래그에 대한 자세한 정보는 `/sc:help`를 사용하세요.
+- **Detailed Implementation**: `DEV_ROADMAP.md` (Appendix A: Codebase Implementation Status)
+- **Architecture**: `TO-BE-ARCHITECTURE.md`
+- **Monorepo Guide**: `MONOREPO_GUIDE.md`
+- **Project Mission**: `정치방망이(POLIBAT) 지침서.md`
