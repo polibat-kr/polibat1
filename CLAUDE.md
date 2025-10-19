@@ -177,6 +177,37 @@ npm run build      # Production build
 3. **File Loading Order**: CSS → JS → Page-specific JS
 4. **Login Testing**: Use test accounts for development
 
+### WBS 현행화 규칙 (Work Breakdown Structure Updates)
+
+**중요**: 개발 작업 완료 후 반드시 `wbs.html`을 업데이트해야 합니다.
+
+#### 업데이트 시점
+1. **Phase/Week 작업 완료 시**: 해당 작업 항목 상태 변경
+2. **새로운 기능 추가 시**: WBS에 작업 항목 추가
+3. **마일스톤 달성 시**: 전체 진행률 업데이트
+4. **세션 종료 전**: 당일 작업 내역 반영
+
+#### 업데이트 방법
+```bash
+# wbs.html 파일을 직접 수정
+# - 완료된 작업: 상태를 "완료"로 변경
+# - 진행 중인 작업: 상태를 "진행 중"으로 변경
+# - 진행률 업데이트: percentage 값 수정
+```
+
+#### WBS 구조
+- **Phase 1-4**: 주요 개발 단계
+- **Week 1-N**: 세부 작업 주차
+- **Task**: 개별 작업 항목
+- **Status**: 대기/진행 중/완료/보류
+- **Progress**: 진행률 (%)
+
+#### 자동화 명령어 (권장)
+```bash
+# 작업 완료 후 자동으로 WBS 업데이트
+/sc:document wbs.html --type update --phase [N] --week [N] --status [완료/진행중/대기]
+```
+
 ## Safety Patterns
 
 ```typescript

@@ -247,11 +247,16 @@
    └─> 테스트 실행
    └─> 검증 완료
 
-4. 중간 저장 (30분마다 또는 토큰 80%)
+4. WBS 현행화 (작업 완료 시 필수)
+   └─> wbs.html 업데이트 (상태, 진행률)
+   └─> 완료된 작업 항목 체크
+
+5. 중간 저장 (30분마다 또는 토큰 80%)
    └─> /sc:save (진행 상황 저장)
 
-5. 마일스톤 완료
+6. 마일스톤 완료
    └─> 체크포인트 문서 작성
+   └─> WBS 최종 업데이트
    └─> 다음 Week/Phase 이동
 ```
 
@@ -274,6 +279,7 @@
 - [ ] 코드 주석 (복잡한 로직에만)
 - [ ] 세션 문서 (claudedocs/)
 - [ ] API 명세 업데이트
+- [ ] WBS 현행화 (wbs.html)
 
 ---
 
@@ -336,6 +342,75 @@
 4. **패턴 참조 시**: 해당 패턴 문서만 로드 (~2,000토큰)
 
 **총 토큰 사용량**: 최대 10,000토큰 이하 (Claude Code 제한의 40%)
+
+### 5.3 WBS 현행화 프로토콜
+
+#### WBS 업데이트 시점
+
+**필수 업데이트 시점**:
+1. **작업 완료 시**: 개별 작업 항목 완료 직후
+2. **Phase/Week 전환 시**: 해당 단계 완료 시점
+3. **세션 종료 전**: 당일 작업 내역 최종 반영
+4. **마일스톤 달성 시**: 주요 기능 완료 시점
+
+#### WBS 업데이트 절차
+
+```bash
+# 1. wbs.html 파일 열기
+Read wbs.html
+
+# 2. 완료된 작업 항목 찾기
+# - Phase N, Week M 해당 섹션
+
+# 3. 상태 업데이트
+# - 대기 → 진행 중 → 완료
+# - 진행률(%) 업데이트
+
+# 4. 저장 및 커밋
+git add wbs.html
+git commit -m "docs: WBS 업데이트 - [작업명] 완료"
+git push
+```
+
+#### WBS 파일 구조
+
+```html
+<!-- Phase 단위 -->
+<div class="phase" id="phase-1">
+  <h2>Phase 1: Foundation</h2>
+  <div class="progress">35%</div>  <!-- 전체 진행률 -->
+
+  <!-- Week 단위 -->
+  <div class="week" id="week-1">
+    <h3>Week 1: Database Setup</h3>
+    <div class="status">완료</div>
+
+    <!-- Task 단위 -->
+    <div class="task">
+      <span class="task-name">Prisma Schema</span>
+      <span class="task-status">완료</span>
+    </div>
+  </div>
+</div>
+```
+
+#### 자동화 명령어 (권장)
+
+```bash
+# 간편 업데이트 명령어
+/sc:document wbs.html --update --phase 1 --week 2 --status "완료"
+
+# 전체 WBS 재생성 (주의: 기존 데이터 백업 필수)
+/sc:document wbs.html --regenerate --source DEV_ROADMAP.md
+```
+
+#### 체크리스트
+
+작업 완료 후 반드시 확인:
+- [ ] 완료된 작업의 상태가 "완료"로 변경됨
+- [ ] 해당 Week의 진행률이 업데이트됨
+- [ ] 해당 Phase의 전체 진행률이 업데이트됨
+- [ ] Git에 커밋 및 푸시 완료
 
 ---
 
