@@ -69,19 +69,22 @@
 - **Shell**: PowerShell 7 (pwsh.exe)
 - **Node.js**: v18+ (LTS recommended)
 - **Package Manager**: npm
-- **Database**: PostgreSQL 18 (Windows 로컬)
+- **Database**: PostgreSQL 18 (Windows 로컬 직접 설치)
 - **Cache**: Redis 7 (Docker)
 - **Configuration**: `C:\Users\[username]\.cursor\settings.json`
 
 ## Commands
 
-### Database (Windows PostgreSQL 18)
+### Database (Windows 로컬 PostgreSQL 18)
 ```powershell
 # PostgreSQL 접속
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev
+psql -U polibat -d polibat_dev
 
 # 테이블 확인
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev -c "\dt"
+psql -U polibat -d polibat_dev -c "\dt"
+
+# 데이터베이스 목록
+psql -U postgres -c "\l"
 
 # Prisma Studio
 cd apps/api

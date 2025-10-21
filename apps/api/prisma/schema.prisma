@@ -1,5 +1,5 @@
 // Prisma Schema for PoliBAT (정치방망이)
-// Database: PostgreSQL 18
+// Database: PostgreSQL 16
 // Phase 1: Core Entities
 
 generator client {

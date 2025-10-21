@@ -305,13 +305,13 @@ export const useMemberStore = create<MemberStore>((set) => ({
 ### 4.4 Database
 
 #### 핵심 기술
-- **RDBMS**: PostgreSQL 18 (개발: Windows 로컬, 운영: AWS RDS)
+- **RDBMS**: PostgreSQL 16 (개발: AWS 개발 서버, 운영: AWS RDS)
 - **Cache**: Redis 7.x (Docker)
 - **Migration**: Prisma SQL 직접 생성 (migrate diff)
 - **Backup**: AWS RDS 자동 백업 (일일, 7일 보관)
 
 #### 개발 환경 구성
-- **PostgreSQL 18**: Windows 로컬 설치 (`C:\Program Files\PostgreSQL\18`)
+- **PostgreSQL 16**: AWS 개발 서버 (43.201.115.132:5432)
 - **Redis 7**: Docker 컨테이너로 실행
 - **하이브리드 환경**: 안정성과 격리의 균형
 
@@ -2072,8 +2072,8 @@ export class TeamsWebhook {
 | 항목 | AS-IS | TO-BE | 개선 효과 |
 |------|-------|-------|-----------|
 | **Backend** | 없음 (프론트엔드 전용) | Node.js + Express + TypeScript | 실제 데이터 처리, API 제공 |
-| **Database** | localStorage (클라이언트) | PostgreSQL 18 + Redis 7 | 데이터 영속성, 동시성 제어 |
-| **개발 환경** | N/A | 하이브리드 (PostgreSQL: Windows 로컬, Redis: Docker) | 안정성과 격리의 균형 |
+| **Database** | localStorage (클라이언트) | PostgreSQL 16 + Redis 7 | 데이터 영속성, 동시성 제어 |
+| **개발 환경** | N/A | 하이브리드 (PostgreSQL: AWS 개발 서버, Redis: Docker) | 안정성과 격리의 균형 |
 | **인증** | localStorage 기반 | JWT + Refresh Token | 보안 강화, 세션 관리 |
 | **상태 관리** | Local useState | Zustand + TanStack Query | 전역 상태 관리, 캐싱 |
 | **타입 시스템** | 부분 TypeScript | Full TypeScript | 타입 안정성, AI 개발 효율 |

@@ -29,7 +29,7 @@
 
 - **Node.js**: >= 20.0.0
 - **npm**: >= 10.0.0
-- **PostgreSQL**: 18 (Windows 로컬)
+- **PostgreSQL**: 18 (Windows 로컬 직접 설치)
 - **Redis**: 7 (Docker)
 - **Docker Desktop**: Redis용 (선택)
 
@@ -47,16 +47,15 @@ npm install
 # - PostgreSQL: SETUP_WINDOWS_POSTGRESQL.md
 # - Redis: README.docker.md
 
-# 데이터베이스 마이그레이션 (Windows PostgreSQL)
-# 1. PowerShell 자동화 스크립트 실행
-.\scripts\setup-windows-db.ps1
-
-# 2. Prisma 마이그레이션
+# 데이터베이스 마이그레이션 (Windows 로컬 PostgreSQL 18)
 cd apps/api
+
+# Prisma Client 생성
 npx prisma generate
-$env:PGPASSWORD = "polibat_dev_password"
-Get-Content ..\..\migration_windows.sql | & "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev
-Remove-Item Env:\PGPASSWORD
+
+# 마이그레이션 실행 (로컬 DB에 테이블 생성)
+npx prisma migrate dev
+
 cd ../..
 ```
 
