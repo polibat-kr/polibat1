@@ -45,7 +45,7 @@
 - **모노레포**: 전체 프로젝트 통합 관리
 - **타입 안정성**: TypeScript 전체 스택 통일
 - **AI 기능**: 단계적 AI 기능 구현
-- **하이브리드 환경**: PostgreSQL (Windows 로컬) + Redis (Docker)
+- **하이브리드 환경**: PostgreSQL 16 (원격 서버: 43.201.115.132) + Redis (Docker)
 
 ---
 

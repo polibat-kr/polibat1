@@ -55,36 +55,26 @@ npm install
 
 ## 3. 데이터베이스 설정
 
-### Windows PostgreSQL 18 (현재 사용 중)
+### PostgreSQL 16 (원격 서버 - 현재 사용 중)
 
-**전제 조건**: PostgreSQL 18이 Windows에 설치되어 있어야 합니다.
-
-**상세 설정 가이드**: [SETUP_WINDOWS_POSTGRESQL.md](./SETUP_WINDOWS_POSTGRESQL.md)
-
-**빠른 설정**:
-
-```powershell
-# 1. PowerShell 자동화 스크립트 실행
-cd C:\polibat
-.\scripts\setup-windows-db.ps1
-
-# 2. 또는 수동 설정
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres
-
-# PostgreSQL 프롬프트에서:
-CREATE DATABASE polibat_dev;
-CREATE USER polibat WITH PASSWORD 'polibat_dev_password';
-GRANT ALL PRIVILEGES ON DATABASE polibat_dev TO polibat;
-GRANT ALL ON SCHEMA public TO polibat;
-\q
-```
+**전제 조건**: 원격 서버에 대한 네트워크 접근 권한
 
 **접속 정보**:
-- Host: localhost
+- Host: 43.201.115.132
 - Port: 5432
-- Database: polibat_dev
+- Database: polibat
 - Username: polibat
-- Password: polibat_dev_password
+- Password: (별도 관리)
+
+**빠른 연결 테스트**:
+
+```powershell
+# Prisma를 통한 연결 테스트
+cd C:\polibat\apps\api
+npx prisma db execute --schema=./prisma/schema.prisma --stdin <<< "SELECT 1;"
+```
+
+**⚠️ 레거시 Windows 로컬 설정**: [SETUP_WINDOWS_POSTGRESQL.md](./SETUP_WINDOWS_POSTGRESQL.md) (참고용)
 
 ### 3.1 Prisma 마이그레이션
 
@@ -94,13 +84,11 @@ cd apps/api
 # Prisma 클라이언트 생성
 npx prisma generate
 
-# 마이그레이션 SQL 적용 (Windows PostgreSQL)
-$env:PGPASSWORD = "polibat_dev_password"
-Get-Content C:\polibat\migration_windows.sql | & "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev
-Remove-Item Env:\PGPASSWORD
+# 마이그레이션 실행 (원격 PostgreSQL 16)
+npx prisma migrate deploy --schema=./prisma/schema.prisma
 
-# 테이블 생성 확인
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev -c "\dt"
+# 테이블 생성 확인 (Node.js 테스트 스크립트)
+node test-db-connection.js
 
 # Prisma Studio 실행 (선택)
 npx prisma studio
@@ -137,8 +125,8 @@ docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
 `apps/api/.env` 파일이 자동 생성되어 있습니다:
 
 ```env
-# Database
-DATABASE_URL="postgresql://polibat:polibat_dev_password@localhost:5432/polibat_dev"
+# Database (원격 PostgreSQL 16)
+DATABASE_URL="postgresql://polibat:YOUR_PASSWORD@43.201.115.132:5432/polibat"
 
 # Redis
 REDIS_URL="redis://:polibat_redis_password@localhost:6379"

@@ -10,9 +10,9 @@
 ## 📋 Phase 1 개요
 
 ### 환경 구성
-- **PostgreSQL 18**: Windows 로컬 설치 (`C:\Program Files\PostgreSQL\18`)
+- **PostgreSQL 16**: 원격 서버 (43.201.115.132)
 - **Redis 7**: Docker 컨테이너로 실행
-- **데이터베이스**: `polibat_dev` (사용자: `polibat`)
+- **데이터베이스**: `polibat` (사용자: `polibat`)
 - **Node.js**: v18+ LTS
 - **Package Manager**: npm
 
@@ -71,46 +71,40 @@ npx prisma format
 ### Day 4-5: 데이터베이스 마이그레이션 (6시간)
 
 #### 목표
-✅ **완료**: PostgreSQL 18 (Windows 로컬) 데이터베이스 초기 마이그레이션 실행
+✅ **완료**: PostgreSQL 16 (원격 서버) 데이터베이스 초기 마이그레이션 실행
 
 #### 컨텍스트
-- **PostgreSQL 18: Windows 로컬 설치** (Docker 아님)
-- Prisma 스키마를 SQL로 생성하여 직접 마이그레이션
+- **PostgreSQL 16: 원격 서버** (43.201.115.132)
+- Prisma 마이그레이션 시스템으로 관리
 - 테스트 데이터 시드 스크립트 작성
 
 #### 작업
 ```powershell
-# PostgreSQL 연결 확인 (Windows 로컬)
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -lqt | Select-String "polibat_dev"
-
-# 마이그레이션 SQL 생성
-cd apps/api
-npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > migration_windows.sql
-
-# PostgreSQL에 마이그레이션 적용 (Windows 로컬)
-Get-Content migration_windows.sql | & "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev
-
 # Prisma Client 생성
+cd apps/api
 npx prisma generate
 
-# 테이블 확인
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev -c "\dt"
+# 마이그레이션 실행 (원격 PostgreSQL 16)
+npx prisma migrate deploy --schema=./prisma/schema.prisma
+
+# 연결 테스트 및 테이블 확인
+node test-db-connection.js
 
 # (선택) 테스트 데이터 시드
 npx prisma db seed
 ```
 
 #### 산출물
-- [x] `migration_windows.sql` - Windows PostgreSQL 마이그레이션 파일
+- [x] Prisma 마이그레이션 완료 - 원격 PostgreSQL 16
 - [ ] `prisma/seed.ts` - 테스트 데이터 시드 스크립트
-- [x] `.env` - DATABASE_URL 설정 (Windows 로컬 PostgreSQL)
+- [x] `.env` - DATABASE_URL 설정 (원격 PostgreSQL 16)
 
 #### 메모리 저장
 ```markdown
 **Week 1 완료**: Prisma 스키마 완성, 데이터베이스 마이그레이션 성공
 - 15개 모델 정의 완료
-- PostgreSQL 18 (Windows 로컬) 연결 확인
-- 테스트 데이터 시드 완료
+- PostgreSQL 16 (원격 서버: 43.201.115.132) 연결 확인
+- 16개 테이블 생성 확인
 ```
 
 ---
@@ -756,7 +750,7 @@ async replyToSuggestion(suggestionId: string, adminId: string, reply: string)
 
 ### 데이터베이스
 - [x] Prisma 스키마 15개 모델 정의
-- [x] PostgreSQL 18 마이그레이션 (Windows 로컬)
+- [x] PostgreSQL 16 마이그레이션 (원격 서버)
 - [ ] 테스트 데이터 시드 스크립트
 
 ### 인프라

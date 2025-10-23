@@ -95,11 +95,11 @@
     ┌─────▼───┐  ┌───▼────┐  ┌▼────────┐
     │   RDS   │  │ElastiCache│   S3    │
     │Postgres │  │  Redis  │  │ Files  │
-    │  18     │  │   7.x   │  │        │
+    │  16     │  │   7.x   │  │        │
     └─────────┘  └────────┘  └─────────┘
 ```
 
-#### 개발 환경 (Windows 로컬)
+#### 개발 환경 (원격 DB)
 ```
 ┌────────────────────────────────────┐
 │    Admin Dashboard (React SPA)     │
@@ -116,12 +116,12 @@
 │    localhost:4000                  │
 └─────┬──────────────┬───────────────┘
       │              │
-┌─────▼───────┐  ┌───▼──────────┐
-│  PostgreSQL │  │  Redis       │
-│  18         │  │  7           │
-│  (Windows)  │  │  (Docker)    │
-│  Port: 5432 │  │  Port: 6379  │
-└─────────────┘  └──────────────┘
+┌─────▼────────┐  ┌──▼──────────┐
+│  PostgreSQL  │  │  Redis      │
+│  16 (원격)   │  │  7 (Docker) │
+│ 43.201.*.*   │  │  Port: 6379 │
+│  Port: 5432  │  │             │
+└──────────────┘  └─────────────┘
 ```
 
 ---
@@ -130,9 +130,9 @@
 
 ### 🗄️ 데이터베이스
 
-#### PostgreSQL 18
+#### PostgreSQL 16
 - **용도**: 메인 데이터베이스
-- **개발**: Windows 로컬 설치 (`C:\Program Files\PostgreSQL\18`)
+- **개발**: 원격 서버 (43.201.115.132)
 - **운영**: AWS RDS Multi-AZ
 - **백업**: 일일 자동 백업, 7일 보관
 - **스키마**: Prisma ORM으로 관리
@@ -246,7 +246,7 @@ CMD ["node", "dist/main.js"]
 ### 📈 **총 월 비용: $250-550**
 
 ### 💡 비용 최적화 전략
-- **개발 환경**: Windows 로컬 PostgreSQL 사용
+- **개발 환경**: 원격 PostgreSQL 16 서버 사용 (공유)
 - **AI 비용**: 캐싱 및 배치 처리로 최적화
 - **스토리지**: S3 Intelligent Tiering 활용
 - **컴퓨팅**: ECS Fargate Spot 인스턴스 고려
@@ -263,9 +263,9 @@ CMD ["node", "dist/main.js"]
 - [ ] SSL 인증서 발급 (ACM)
 
 #### 2. 개발 환경 구축
-- [ ] Windows에 PostgreSQL 18 설치
-- [ ] Docker Desktop 설치 (Redis용)
-- [ ] 개발자 PC 환경 설정
+- [x] PostgreSQL 16 원격 서버 구축 (43.201.115.132)
+- [x] Docker Desktop 설치 (Redis용)
+- [x] 개발자 PC 환경 설정
 
 #### 3. CI/CD 파이프라인
 - [ ] GitHub Actions 워크플로우 설정

@@ -8,7 +8,7 @@
 - **Framework**: Express.js 4.x
 - **Language**: TypeScript 5.x
 - **ORM**: Prisma 5.x
-- **Database**: PostgreSQL 15
+- **Database**: PostgreSQL 16 (원격 서버)
 - **Cache**: Redis 7.x
 - **Validation**: Zod
 

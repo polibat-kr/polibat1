@@ -69,22 +69,22 @@
 - **Shell**: PowerShell 7 (pwsh.exe)
 - **Node.js**: v18+ (LTS recommended)
 - **Package Manager**: npm
-- **Database**: PostgreSQL 18 (Windows 로컬 직접 설치)
+- **Database**: PostgreSQL 16 (원격 서버: 43.201.115.132)
 - **Cache**: Redis 7 (Docker)
 - **Configuration**: `C:\Users\[username]\.cursor\settings.json`
 
 ## Commands
 
-### Database (Windows 로컬 PostgreSQL 18)
+### Database (원격 PostgreSQL 16)
 ```powershell
 # PostgreSQL 접속
-psql -U polibat -d polibat_dev
+psql -h 43.201.115.132 -U polibat -d polibat
 
 # 테이블 확인
-psql -U polibat -d polibat_dev -c "\dt"
+psql -h 43.201.115.132 -U polibat -d polibat -c "\dt"
 
 # 데이터베이스 목록
-psql -U postgres -c "\l"
+psql -h 43.201.115.132 -U polibat -d polibat -c "\l"
 
 # Prisma Studio
 cd apps/api
@@ -143,7 +143,7 @@ npm run build      # Production build
 
 ### API Server
 - **Framework**: Node.js + Express.js + TypeScript
-- **Database**: PostgreSQL 18 (Windows 로컬) + Prisma
+- **Database**: PostgreSQL 16 (원격 서버: 43.201.115.132) + Prisma
 - **Cache**: Redis 7 (Docker)
 - **Authentication**: JWT + Redis
 - **Security**: Helmet, CORS, Rate limiting

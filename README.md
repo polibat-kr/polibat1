@@ -29,7 +29,7 @@
 
 - **Node.js**: >= 20.0.0
 - **npm**: >= 10.0.0
-- **PostgreSQL**: 18 (Windows 로컬 직접 설치)
+- **PostgreSQL**: 16 (원격 서버: 43.201.115.132)
 - **Redis**: 7 (Docker)
 - **Docker Desktop**: Redis용 (선택)
 
@@ -44,10 +44,10 @@ cd polibat
 npm install
 
 # PostgreSQL 및 Redis 설정 (상세 가이드 참조)
-# - PostgreSQL: SETUP_WINDOWS_POSTGRESQL.md
+# - PostgreSQL: 원격 서버 (43.201.115.132)
 # - Redis: README.docker.md
 
-# 데이터베이스 마이그레이션 (Windows 로컬 PostgreSQL 18)
+# 데이터베이스 마이그레이션 (원격 PostgreSQL 16)
 cd apps/api
 
 # Prisma Client 생성

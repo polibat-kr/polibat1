@@ -4,11 +4,11 @@
 
 정치방망이(PoliBAT) 프로젝트의 Redis 캐시 서버를 Docker Compose로 구성합니다.
 
-**참고**: PostgreSQL은 Windows 로컬 환경을 사용합니다. [Windows PostgreSQL 설정 가이드](./SETUP_WINDOWS_POSTGRESQL.md)를 참조하세요.
+**참고**: PostgreSQL은 원격 서버를 사용합니다 (43.201.115.132). 로컬에 PostgreSQL을 설치할 필요가 없습니다.
 
 ## 서비스 구성
 
-- **PostgreSQL 18**: Windows 로컬 환경 (C:\Program Files\PostgreSQL\18)
+- **PostgreSQL 16**: 원격 서버 (43.201.115.132) - Docker 필요 없음
 - **Redis 7**: Docker 컨테이너 (세션 관리 및 캐싱)
 
 ## 시작하기
@@ -61,9 +61,9 @@ docker-compose down -v
 ### PostgreSQL (Windows 로컬)
 - **Host**: localhost
 - **Port**: 5432
-- **Database**: polibat_dev
+- **Database**: polibat (원격 서버)
 - **Username**: polibat
-- **Password**: polibat_dev_password
+- **Password**: (별도 관리 - 보안상 문서에 기재 안 함)
 - **설정 가이드**: [SETUP_WINDOWS_POSTGRESQL.md](./SETUP_WINDOWS_POSTGRESQL.md)
 
 ### Redis (Docker)
