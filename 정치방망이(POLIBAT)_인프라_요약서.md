@@ -132,10 +132,11 @@
 
 #### PostgreSQL 16
 - **용도**: 메인 데이터베이스
-- **개발**: 원격 서버 (43.201.115.132)
+- **개발**: 원격 서버 (43.201.115.132:5432, DB: polibat)
 - **운영**: AWS RDS Multi-AZ
 - **백업**: 일일 자동 백업, 7일 보관
 - **스키마**: Prisma ORM으로 관리
+- **인증**: 사용자 `polibat`, 비밀번호는 `.env` 파일 참조
 
 #### Redis 7
 - **용도**: 세션 관리, API 캐싱, Rate Limiting
@@ -263,9 +264,11 @@ CMD ["node", "dist/main.js"]
 - [ ] SSL 인증서 발급 (ACM)
 
 #### 2. 개발 환경 구축
-- [x] PostgreSQL 16 원격 서버 구축 (43.201.115.132)
+- [x] PostgreSQL 16 원격 서버 구축 (43.201.115.132:5432, DB: polibat)
 - [x] Docker Desktop 설치 (Redis용)
 - [x] 개발자 PC 환경 설정
+- [x] Prisma 마이그레이션 완료 (15개 테이블)
+- [x] Redis Docker 컨테이너 실행 중
 
 #### 3. CI/CD 파이프라인
 - [ ] GitHub Actions 워크플로우 설정

@@ -633,14 +633,14 @@
                 </div>
                 <div class="feature-card">
                     <h4>🗄️ Database</h4>
-                    <p>PostgreSQL 18<br>Redis 7 (캐시)<br>Prisma ORM</p>
+                    <p>PostgreSQL 16 (원격)<br>Redis 7 (Docker)<br>Prisma ORM</p>
                 </div>
             </div>
 
             <div class="info-box">
                 <h4>🔥 하이브리드 개발 환경</h4>
-                <p><strong>PostgreSQL 18</strong>: Windows 로컬 설치 (안정성, Prisma 호환성)<br>
-                <strong>Redis 7</strong>: Docker 컨테이너 (격리, 이식성)</p>
+                <p><strong>PostgreSQL 16</strong>: 원격 서버 (43.201.115.132:5432, DB: polibat)<br>
+                <strong>Redis 7</strong>: Docker 컨테이너 (localhost:6379, 격리된 캐시 환경)</p>
             </div>
         </div>
 
@@ -670,14 +670,14 @@
                     <tr>
                         <td><strong>Database</strong></td>
                         <td><span class="status-badge status-as-is">localStorage</span></td>
-                        <td><span class="status-badge status-to-be">PostgreSQL 18 + Redis 7</span></td>
+                        <td><span class="status-badge status-to-be">PostgreSQL 16 + Redis 7</span></td>
                         <td>데이터 영속성, 동시성 제어, 캐싱</td>
                     </tr>
                     <tr>
                         <td><strong>개발 환경</strong></td>
                         <td><span class="status-badge status-as-is">N/A</span></td>
                         <td><span class="status-badge status-hybrid">하이브리드 환경</span></td>
-                        <td>PostgreSQL: Windows 로컬, Redis: Docker</td>
+                        <td>PostgreSQL 16: 원격 서버, Redis 7: Docker</td>
                     </tr>
                     <tr>
                         <td><strong>인증/인가</strong></td>
@@ -755,7 +755,7 @@
     ┌─────▼───┐  ┌───▼────┐  ┌▼────────┐
     │   RDS   │  │ElastiCache│   S3    │
     │Postgres │  │  Redis  │  │  Files  │
-    │  18     │  │   7.x   │  │         │
+    │  16     │  │   7.x   │  │         │
     └─────────┘  └────────┘  └─────────┘
           │
     ┌─────▼──────────────────────────┐
@@ -767,11 +767,11 @@
                 </pre>
             </div>
 
-            <h3>💻 개발 환경 (Windows Local + Docker)</h3>
+            <h3>💻 개발 환경 (원격 PostgreSQL + Docker Redis)</h3>
             <div class="info-box">
                 <h4>🔥 하이브리드 환경의 장점</h4>
-                <p><strong>PostgreSQL (Windows 로컬)</strong>: Prisma migrate 호환성, 안정적인 개발 환경<br>
-                <strong>Redis (Docker)</strong>: 격리된 환경, 이식성, 쉬운 버전 관리</p>
+                <p><strong>PostgreSQL 16 (원격 서버)</strong>: 43.201.115.132:5432, DB명: polibat, 팀 공유 개발 환경<br>
+                <strong>Redis 7 (Docker)</strong>: localhost:6379, 격리된 환경, 이식성, 쉬운 버전 관리</p>
             </div>
 
             <div class="architecture-diagram">
@@ -796,15 +796,15 @@
       │              │
 ┌─────▼───────┐  ┌───▼──────────┐
 │  PostgreSQL │  │  Redis       │
-│  18         │  │  7           │
-│  (Windows)  │  │  (Docker)    │
+│  16 (원격)  │  │  7           │
+│ 43.201.*.*  │  │  (Docker)    │
 │  Port: 5432 │  │  Port: 6379  │
-│  로컬 설치   │  │  컨테이너    │
+│  DB: polibat│  │  컨테이너    │
 └─────────────┘  └──────────────┘
 
 Windows 명령어:
-# PostgreSQL 연결
-psql -U polibat -d polibat_dev
+# PostgreSQL 연결 (원격 서버)
+psql -h 43.201.115.132 -U polibat -d polibat
 
 # Redis 시작
 docker compose up -d redis
@@ -821,7 +821,7 @@ docker compose up -d redis
 
             <h3>🗄️ 데이터베이스</h3>
             <div class="tech-stack">
-                <div class="tech-item">PostgreSQL 18 (메인 DB)</div>
+                <div class="tech-item">PostgreSQL 16 (메인 DB)</div>
                 <div class="tech-item">Redis 7 (캐시/세션)</div>
                 <div class="tech-item">Prisma ORM 5.x</div>
                 <div class="tech-item">자동 백업 (7일 보관)</div>
@@ -830,14 +830,14 @@ docker compose up -d redis
 
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>PostgreSQL 18</h4>
-                    <p><strong>개발</strong>: Windows 로컬 (C:\Program Files\PostgreSQL\18)<br>
+                    <h4>PostgreSQL 16</h4>
+                    <p><strong>개발</strong>: 원격 서버 (43.201.115.132:5432, DB: polibat)<br>
                     <strong>운영</strong>: AWS RDS Multi-AZ<br>
                     <strong>백업</strong>: 일일 자동, 7일 보관</p>
                 </div>
                 <div class="feature-card">
                     <h4>Redis 7</h4>
-                    <p><strong>개발</strong>: Docker 컨테이너<br>
+                    <p><strong>개발</strong>: Docker 컨테이너 (localhost:6379)<br>
                     <strong>운영</strong>: AWS ElastiCache<br>
                     <strong>용도</strong>: 세션, 캐싱, Rate Limiting</p>
                 </div>
@@ -959,7 +959,7 @@ docker compose up -d redis
                 </div>
                 <div class="timeline-item">
                     <h4>Week 2: 개발 환경 구축</h4>
-                    <p>Windows PostgreSQL 18 설치, Docker Desktop 설정, Redis 컨테이너 구성, 개발자 PC 환경 설정</p>
+                    <p>PostgreSQL 16 원격 서버 구축 (43.201.115.132), Docker Desktop 설정, Redis 컨테이너 구성, 개발자 PC 환경 설정</p>
                 </div>
                 <div class="timeline-item">
                     <h4>Week 3: CI/CD 파이프라인</h4>
@@ -976,7 +976,7 @@ docker compose up -d redis
                 <div class="tech-item">✅ AWS 계정 생성</div>
                 <div class="tech-item">✅ 도메인 등록 (polibat.com)</div>
                 <div class="tech-item">✅ SSL 인증서 발급</div>
-                <div class="tech-item">✅ PostgreSQL 18 설치 (Windows)</div>
+                <div class="tech-item">✅ PostgreSQL 16 원격 서버 구축 (43.201.115.132)</div>
                 <div class="tech-item">✅ Docker Desktop 설치</div>
                 <div class="tech-item">✅ GitHub Actions 설정</div>
                 <div class="tech-item">✅ IAM 사용자 및 역할 생성</div>

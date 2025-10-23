@@ -188,12 +188,12 @@ Database Layer
 │    localhost:4000                  │
 └─────┬──────────────┬───────────────┘
       │              │
-┌─────▼───────┐  ┌───▼──────────┐
-│  PostgreSQL │  │  Redis       │
-│  18         │  │  7           │
-│  (Windows)  │  │  (Docker)    │
-│  Port: 5432 │  │  Port: 6379  │
-└─────────────┘  └──────────────┘
+┌─────▼────────┐  ┌──▼──────────┐
+│  PostgreSQL  │  │  Redis      │
+│  16 (원격)   │  │  7 (Docker) │
+│ 43.201.*.*   │  │  Port: 6379 │
+│  Port: 5432  │  │             │
+└──────────────┘  └─────────────┘
 ```
 
 ### 3.2 마이크로서비스 아키텍처 (선택적)
@@ -1796,8 +1796,8 @@ volumes:
 
 #### 개발 환경 설정 (Windows)
 ```powershell
-# PostgreSQL 연결 확인 (Windows 로컬)
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U polibat -d polibat_dev -c "\dt"
+# PostgreSQL 연결 확인 (원격 서버)
+psql -h 43.201.115.132 -U polibat -d polibat -c "\dt"
 
 # Redis 시작 (Docker)
 docker compose up -d redis

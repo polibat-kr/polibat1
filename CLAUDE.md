@@ -77,7 +77,7 @@
 
 ### Database (원격 PostgreSQL 16)
 ```powershell
-# PostgreSQL 접속
+# PostgreSQL 접속 (비밀번호: Vhfflqpt183!)
 psql -h 43.201.115.132 -U polibat -d polibat
 
 # 테이블 확인
