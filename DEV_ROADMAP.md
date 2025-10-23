@@ -13,8 +13,9 @@
 
 ### 상세 문서
 - **[Phase 1: Foundation](./DEV_ROADMAP_PHASE1.md)** - Backend 기반 구축 (Week 1-8, ~8,000토큰)
-- **[Phase 2: Core Features](./DEV_ROADMAP_PHASE2.md)** - 핵심 기능 구현 (Week 9-20, ~6,000토큰)
-- **[Phase 3: Enhancement](./DEV_ROADMAP_PHASE3.md)** - 고도화 기능 (Week 21-32, ~4,000토큰)
+- **[Phase 2: Core Features](./DEV_ROADMAP_PHASE2.md)** - Admin 연동 & 핵심 기능 (Week 9-16, ~6,000토큰)
+- **[Phase 2.5: Frontend Migration](./DEV_ROADMAP_PHASE2.5_FRONTEND_MIGRATION.md)** - 사용자 화면 마이그레이션 (Week 17-24, ~4,000토큰)
+- **[Phase 3: Enhancement](./DEV_ROADMAP_PHASE3.md)** - 고도화 기능 (Week 25-36, ~4,000토큰)
 - **[Phase 4: Scale](./DEV_ROADMAP_PHASE4.md)** - 확장 및 장기 계획 (Quarter 5+, ~3,000토큰)
 - **[코드베이스 현황](./CODEBASE_STATUS.md)** - 현재 구현 상태 (~3,000토큰)
 
@@ -143,6 +144,29 @@
 
 ## 3. Phase 개요
 
+### Phase 0: Project Initialization (0.5개월, 완료)
+
+**상태**: ✅ 완료 (2025-10-12)
+
+**목표**: 레거시 코드 재구조화 및 모노레포 기반 구축
+
+**핵심 작업**:
+- 레거시 폴더 재구조화 (`/admin`, `/front` → `/legacy/`)
+- 모노레포 구조 생성 (`/apps/`, `/packages/`)
+- 프로젝트 문서 통합 및 정리
+- 개발 환경 설정 (PostgreSQL 16 원격 + Redis Docker)
+
+**산출물**:
+- ✅ 명확한 프로젝트 구조 (레거시 vs To-Be 분리)
+- ✅ 통합 문서 (`TO-BE-ARCHITECTURE.md`, `DEV_ROADMAP.md` 등)
+- ✅ 하이브리드 개발 환경 구축
+
+**참고 문서**:
+- [세션 기록](claudedocs/sessions/session_2025-10-12_legacy_folder_restructure)
+- [TO-BE 아키텍처](./TO-BE-ARCHITECTURE.md)
+
+---
+
 ### Phase 1: Foundation (1-2개월, Week 1-8)
 
 **목표**: Backend 기반 구축 및 Admin API 연동
@@ -166,31 +190,57 @@
 
 ---
 
-### Phase 2: Core Features (2-3개월, Week 9-20)
+### Phase 2: Core Features (1.5-2개월, Week 9-16)
 
-**목표**: 핵심 기능 완성 및 Frontend Website API 연동
+**목표**: Admin Dashboard 연동 및 핵심 기능 구현
 
 **핵심 작업**:
-- 댓글 시스템 (CRUD, 대댓글, 좋아요/신고)
-- 투표 시스템 (생성, 참여, 결과 집계, 중복 방지)
-- 불편/제안 접수 시스템 (관리자 답변, 상태 관리)
-- 파일 업로드 (S3 연동, 이미지 최적화)
-- 이메일 발송 (SES, 템플릿)
+- Admin Dashboard 16개 페이지 API 완전 연동
+- 파일 업로드 시스템 (S3 연동, 이미지 최적화)
+- 이메일 발송 시스템 (SES, 템플릿)
 - AI MVP 기능 (3줄 요약, 감정 분석 온도계)
-- Frontend Website API 연동 (page-manager.js, login.js)
+- 불편/제안 접수 시스템 (관리자 답변, 상태 관리)
+- 공지사항/팝업/배너 관리 시스템
 
 **산출물**:
-- 댓글 API 5개 엔드포인트
-- 투표 API 6개 엔드포인트
+- Admin Dashboard 실시간 데이터 연동 완료
 - 파일 업로드 API 3개 엔드포인트
+- 이메일 발송 서비스
 - AI 서비스 2개 기능
-- Frontend Website 완전 연동
+- 관리자 시스템 완성
 
 **상세 문서**: [DEV_ROADMAP_PHASE2.md](./DEV_ROADMAP_PHASE2.md)
 
 ---
 
-### Phase 3: Enhancement (2-3개월, Week 21-32)
+### Phase 2.5: Frontend Migration (1.5-2개월, Week 17-24)
+
+**목표**: 사용자 화면(Frontend Website) 마이그레이션
+
+**핵심 작업**:
+- **기술 스택 결정 워크플로우** (Phase 1 완료 시점)
+  - HTML+jQuery 유지 vs React 재작성 vs Hybrid 접근
+  - 의사결정 매트릭스 기반 선택
+- 23개 사용자 화면 마이그레이션
+- API 연동 (인증, 게시판, 투표, 댓글, 회원정보)
+- 반응형 디자인 및 접근성 최적화
+- E2E 테스트 작성
+
+**산출물**:
+- 기술 스택 결정 문서
+- 23개 화면 마이그레이션 완료
+- Frontend-Backend 완전 연동
+- E2E 테스트 스위트
+
+**상세 문서**: [DEV_ROADMAP_PHASE2.5_FRONTEND_MIGRATION.md](./DEV_ROADMAP_PHASE2.5_FRONTEND_MIGRATION.md)
+
+**참고 문서**:
+- [Frontend 마이그레이션 체크리스트](./claudedocs/checklists/FRONTEND_MIGRATION_CHECKLIST.md)
+- [Frontend 아키텍처 결정](./claudedocs/decisions/FRONTEND_ARCHITECTURE_DECISION.md)
+
+---
+
+### Phase 3: Enhancement (2-3개월, Week 25-36)
 
 **목표**: 고도화 기능 및 AI 중기 기능
 
@@ -418,10 +468,11 @@ git push
 
 | Phase | 기간 | 주요 마일스톤 |
 |-------|------|---------------|
-| Phase 1 | 1-2개월 | Backend 기반 구축, Admin API 연동 |
-| Phase 2 | 2-3개월 | 핵심 기능 완성, Frontend API 연동 |
-| Phase 3 | 2-3개월 | 고도화 기능, AI 중기 기능 |
-| Phase 4 | 지속적 | 확장 및 장기 기능 |
+| Phase 1 | 1-2개월 | Backend 기반 구축 (Week 1-8) |
+| Phase 2 | 1.5-2개월 | Admin Dashboard 연동 & 핵심 기능 (Week 9-16) |
+| Phase 2.5 | 1.5-2개월 | Frontend Website 마이그레이션 (Week 17-24) |
+| Phase 3 | 2-3개월 | 고도화 기능, AI 중기 기능 (Week 25-36) |
+| Phase 4 | 지속적 | 확장 및 장기 기능 (Quarter 5+) |
 
 ---
 

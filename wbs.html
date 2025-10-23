@@ -327,7 +327,7 @@
             </div>
             <div class="stat-card">
                 <h3>완료된 주차</h3>
-                <div class="number">7/32</div>
+                <div class="number">7/40</div>
                 <div class="percentage">Week 1-7 완료</div>
             </div>
             <div class="stat-card">
@@ -337,7 +337,7 @@
             </div>
             <div class="stat-card">
                 <h3>현재 Phase</h3>
-                <div class="number">1/4</div>
+                <div class="number">1/5</div>
                 <div class="percentage">Backend 기반 구축 87.5%</div>
             </div>
         </div>
@@ -362,6 +362,152 @@
         </div>
 
         <div class="content">
+            <!-- Phase 0: Project Initialization -->
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase0')">
+                    <div>
+                        <h2>🎬 Phase 0: Project Initialization (Week 0)</h2>
+                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">레거시 코드 재구조화 및 모노레포 기반 구축</p>
+                    </div>
+                    <div class="phase-meta">
+                        <span style="font-size: 14px;">✅ 100% 완료</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="phase-content" id="phase0" style="display: block;">
+                    <!-- Week 0 -->
+                    <div class="week">
+                        <div class="week-header">
+                            <h3>Week 0: 프로젝트 초기화</h3>
+                            <span class="status-badge status-completed">완료</span>
+                        </div>
+                        <div class="week-content">
+                            <div class="task">
+                                <div class="task-header" onclick="toggleTask('task-0-1')">
+                                    <div>
+                                        <strong>1. 레거시 폴더 재구조화</strong>
+                                        <span class="task-meta">(2025-10-12 완료)</span>
+                                    </div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-completed">완료</span>
+                                    </div>
+                                </div>
+                                <div class="task-content" id="task-0-1">
+                                    <div class="subtasks">
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>/admin → /legacy/admin 이동</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>/front → /legacy/front 이동</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>기존 코드와 신규 개발 명확히 분리</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="task">
+                                <div class="task-header" onclick="toggleTask('task-0-2')">
+                                    <div>
+                                        <strong>2. 모노레포 구조 생성</strong>
+                                        <span class="task-meta">(2025-10-12 완료)</span>
+                                    </div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-completed">완료</span>
+                                    </div>
+                                </div>
+                                <div class="task-content" id="task-0-2">
+                                    <div class="subtasks">
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>/apps/ 디렉토리 생성 (admin, web, api)</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>/packages/ 디렉토리 생성 (types, constants, utils)</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>turbo.json 설정</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="task">
+                                <div class="task-header" onclick="toggleTask('task-0-3')">
+                                    <div>
+                                        <strong>3. 레거시 코드 분석 및 TO-BE 매핑</strong>
+                                        <span class="task-meta">(2025-10-12 완료)</span>
+                                    </div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-completed">완료</span>
+                                    </div>
+                                </div>
+                                <div class="task-content" id="task-0-3">
+                                    <div class="subtasks">
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>Admin Dashboard 16개 페이지 분석</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>Frontend Website 22개 페이지 분석</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>공통 타입/상수 추출</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>CODEBASE_STATUS.md 작성</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>TO-BE-ARCHITECTURE.md 작성</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="task">
+                                <div class="task-header" onclick="toggleTask('task-0-4')">
+                                    <div>
+                                        <strong>4. 개발 환경 구축</strong>
+                                        <span class="task-meta">(2025-10-19 완료)</span>
+                                    </div>
+                                    <div class="task-status">
+                                        <span class="status-badge status-completed">완료</span>
+                                    </div>
+                                </div>
+                                <div class="task-content" id="task-0-4">
+                                    <div class="subtasks">
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>PostgreSQL 16 원격 서버 설정</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>Redis 7 Docker 컨테이너 실행</span>
+                                        </div>
+                                        <div class="subtask subtask-completed">
+                                            <span>✅</span>
+                                            <span>하이브리드 개발 환경 검증</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Phase 1: Foundation -->
             <div class="phase">
                 <div class="phase-header" onclick="togglePhase('phase1')">
@@ -725,8 +871,8 @@
             <div class="phase">
                 <div class="phase-header" onclick="togglePhase('phase2')">
                     <div>
-                        <h2>🚀 Phase 2: Core Features (Week 9-20)</h2>
-                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">핵심 기능 완성 및 Frontend Website API 연동</p>
+                        <h2>🚀 Phase 2: Core Features (Week 9-16)</h2>
+                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">Admin Dashboard 연동 및 핵심 기능 구현</p>
                     </div>
                     <div class="phase-meta">
                         <span style="font-size: 14px;">0% 완료</span>
@@ -741,7 +887,7 @@
                         <div class="week-header" onclick="toggleWeek('phase2-summary')">
                             <div class="week-title">
                                 <span class="week-status status-placeholder"></span>
-                                <strong>Phase 2 주요 작업 (상세 계획 필요)</strong>
+                                <strong>Phase 2 주요 작업 (상세 계획 작성 완료)</strong>
                             </div>
                             <span class="toggle-icon" id="phase2-summary-icon">▼</span>
                         </div>
@@ -749,28 +895,160 @@
                             <ul class="task-list">
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">파일 업로드 (S3 연동, 이미지 최적화)</span>
+                                    <span class="task-text">Admin Dashboard 16개 페이지 API 완전 연동</span>
                                 </li>
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">이메일 발송 (SES, 템플릿)</span>
+                                    <span class="task-text">파일 업로드 (S3 + CloudFront 연동, 이미지 최적화)</span>
                                 </li>
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">AI MVP 기능 (3줄 요약, 감정 분석 온도계)</span>
+                                    <span class="task-text">이메일 발송 (SES, 템플릿 6종)</span>
                                 </li>
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">Frontend Website API 연동 (page-manager.js, login.js)</span>
+                                    <span class="task-text">AI MVP 기능 (3줄 요약 + 감정 분석 온도계)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">불편/제안 접수 시스템</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">공지사항/팝업/배너 관리 시스템</span>
                                 </li>
                             </ul>
                             <div class="deliverables">
                                 <h4>예정 산출물</h4>
                                 <ul>
+                                    <li>Admin Dashboard 실시간 데이터 연동 완료</li>
                                     <li>파일 업로드 API 3개 엔드포인트</li>
                                     <li>이메일 발송 서비스</li>
                                     <li>AI 서비스 2개 기능</li>
-                                    <li>Frontend Website 완전 연동</li>
+                                    <li>관리자 시스템 완성</li>
+                                </ul>
+                                <p style="margin-top: 10px;"><strong>상세 문서</strong>: <a href="DEV_ROADMAP_PHASE2.md" style="color: #667eea;">DEV_ROADMAP_PHASE2.md</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2.5: Frontend Migration -->
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase2_5')">
+                    <div>
+                        <h2>🎨 Phase 2.5: Frontend Migration (Week 17-24)</h2>
+                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">사용자 화면(Frontend Website) 마이그레이션</p>
+                    </div>
+                    <div class="phase-meta">
+                        <span style="font-size: 14px;">0% 완료</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <span class="toggle-icon" id="phase2_5-icon">▼</span>
+                    </div>
+                </div>
+                <div class="phase-body" id="phase2_5-body">
+                    <!-- Week 17: 기술 스택 결정 -->
+                    <div class="week">
+                        <div class="week-header" onclick="toggleWeek('week17')">
+                            <div class="week-title">
+                                <span class="week-status status-placeholder"></span>
+                                <strong>Week 17: 기술 스택 결정 워크플로우</strong>
+                            </div>
+                            <span class="toggle-icon" id="week17-icon">▼</span>
+                        </div>
+                        <div class="week-body" id="week17-body">
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">현황 분석 (legacy/front 23개 HTML 파일)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">옵션 비교 (HTML+jQuery vs React vs Hybrid)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">의사결정 매트릭스 평가 (6가지 기준)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">최종 기술 스택 결정 (권장: React)</span>
+                                </li>
+                            </ul>
+                            <div class="deliverables">
+                                <h4>예정 산출물</h4>
+                                <ul>
+                                    <li>기술 스택 결정 문서 (ADR-Frontend-001)</li>
+                                    <li>마이그레이션 전략 수립</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 18-24: 마이그레이션 실행 -->
+                    <div class="week">
+                        <div class="week-header" onclick="toggleWeek('week18-24')">
+                            <div class="week-title">
+                                <span class="week-status status-placeholder"></span>
+                                <strong>Week 18-24: 23개 화면 마이그레이션 실행</strong>
+                            </div>
+                            <span class="toggle-icon" id="week18-24-icon">▼</span>
+                        </div>
+                        <div class="week-body" id="week18-24-body">
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">인증 관련 화면 4개 (login, signup, find_account, member_info)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">게시판 관련 화면 6개 (board, board_01, write, edit, vote, vote_board)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">커뮤니티 화면 2개 (voice, write_voice)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">고객지원 화면 3개 (feedback, feedback_01, feedback_02)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">공지/정책 화면 4개 (notice, notice_01, terms, privacy)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">메인/공통 화면 4개 (index, header, footer)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">API 연동 (인증, 게시판, 투표, 댓글, 회원정보)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">반응형 디자인 및 접근성 최적화</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">E2E 테스트 작성</span>
+                                </li>
+                            </ul>
+                            <div class="deliverables">
+                                <h4>예정 산출물</h4>
+                                <ul>
+                                    <li>23개 화면 마이그레이션 완료</li>
+                                    <li>Frontend-Backend 완전 연동</li>
+                                    <li>E2E 테스트 스위트</li>
+                                    <li>100% 기능 동등성 검증</li>
+                                </ul>
+                                <p style="margin-top: 10px;"><strong>참고 문서</strong>:</p>
+                                <ul style="margin-top: 5px;">
+                                    <li><a href="DEV_ROADMAP_PHASE2.5_FRONTEND_MIGRATION.md" style="color: #667eea;">DEV_ROADMAP_PHASE2.5_FRONTEND_MIGRATION.md</a></li>
+                                    <li><a href="claudedocs/checklists/FRONTEND_MIGRATION_CHECKLIST.md" style="color: #667eea;">Frontend 마이그레이션 체크리스트</a></li>
+                                    <li><a href="claudedocs/decisions/FRONTEND_ARCHITECTURE_DECISION.md" style="color: #667eea;">Frontend 아키텍처 결정 (ADR)</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -782,7 +1060,7 @@
             <div class="phase">
                 <div class="phase-header" onclick="togglePhase('phase3')">
                     <div>
-                        <h2>⚡ Phase 3: Enhancement (Week 21-32)</h2>
+                        <h2>⚡ Phase 3: Enhancement (Week 25-36)</h2>
                         <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">고도화 기능 및 AI 중기 기능</p>
                     </div>
                     <div class="phase-meta">
@@ -898,10 +1176,12 @@
 
         <div class="footer">
             <p><strong>정치방망이(PoliBAT)</strong> - 국민 참여형 정치 플랫폼</p>
-            <p>작성: Claude Code (SuperClaude Framework) | 버전: 2.0 | 작성일: 2025-10-19</p>
+            <p>작성: Claude Code (SuperClaude Framework) | 버전: 2.0 | 작성일: 2025-10-19 | 업데이트: 2025-10-23</p>
             <p style="margin-top: 10px;">
                 <a href="DEV_ROADMAP.md" style="color: #667eea; text-decoration: none;">📋 마스터 로드맵</a> |
                 <a href="DEV_ROADMAP_PHASE1.md" style="color: #667eea; text-decoration: none;">📦 Phase 1 상세</a> |
+                <a href="DEV_ROADMAP_PHASE2.md" style="color: #667eea; text-decoration: none;">🚀 Phase 2 상세</a> |
+                <a href="DEV_ROADMAP_PHASE2.5_FRONTEND_MIGRATION.md" style="color: #667eea; text-decoration: none;">🎨 Phase 2.5 상세</a> |
                 <a href="CODEBASE_STATUS.md" style="color: #667eea; text-decoration: none;">💻 코드베이스 현황</a>
             </p>
         </div>

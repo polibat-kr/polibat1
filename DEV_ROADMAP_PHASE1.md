@@ -32,6 +32,89 @@
 
 ---
 
+## Week 0: Project Initialization & Legacy Analysis (완료)
+
+### Day 1-2: 레거시 코드 재구조화 (4시간)
+
+#### 목표
+✅ **완료 (2025-10-12)**: 레거시 코드 폴더 재구조화 및 모노레포 기반 구축
+
+#### 수행 작업
+1. **레거시 폴더 재구조화**
+   - `/admin` → `/legacy/admin` 이동
+   - `/front` → `/legacy/front` 이동
+   - 목적: 기존 코드와 신규 개발 명확히 분리
+
+2. **모노레포 구조 생성**
+   - `/apps/` 디렉토리 생성 (admin, web, api)
+   - `/packages/` 디렉토리 생성 (types, constants, utils)
+   - `turbo.json` 설정
+
+3. **문서 업데이트**
+   - `CLAUDE.md` 경로 참조 수정 (5곳)
+   - `TO-BE-ARCHITECTURE.md` 참조
+
+#### 산출물
+- ✅ 명확한 프로젝트 구조
+  ```
+  /polibat
+  ├── /apps          # 신규 모노레포 구조
+  ├── /packages      # 공유 패키지
+  ├── /legacy        # 기존 코드 (참조용)
+  │   ├── /admin     # React Admin Dashboard
+  │   └── /front     # HTML/JS Website
+  └── /docs          # 통합 문서
+  ```
+- ✅ 업데이트된 프로젝트 문서
+
+#### 참고
+- [세션 기록](../claudedocs/sessions/session_2025-10-12_legacy_folder_restructure)
+
+### Day 3-5: 레거시 코드 분석 및 매핑 (6시간)
+
+#### 목표
+레거시 코드 구조 이해 및 TO-BE 아키텍처 매핑
+
+#### 분석 대상
+
+**Admin Dashboard** (`/legacy/admin/`)
+- 구조: React 19 + TypeScript 4.9.5
+- 페이지: 16개 관리 화면
+- 상태 관리: Local useState
+- 데이터: 하드코딩된 샘플 데이터
+- API 연동: 미구현 (console.log로 대체)
+
+**Frontend Website** (`/legacy/front/`)
+- 구조: HTML5 + jQuery + Vanilla JS (ES5)
+- 페이지: 22개 HTML 페이지
+- 상태 관리: localStorage/sessionStorage
+- 인증: 로컬 스토리지 기반
+- API 연동: 미구현
+
+#### TO-BE 매핑
+
+| 레거시 컴포넌트 | TO-BE 모듈 | 마이그레이션 방식 |
+|----------------|------------|-------------------|
+| Admin Pages | `apps/admin/src/features/` | Feature-based 리팩토링 |
+| Frontend Pages | `apps/web/src/pages/` | API 연동 우선 |
+| 공통 타입 | `packages/types/` | TypeScript 정의 |
+| 공통 상수 | `packages/constants/` | ID prefix, status 등 |
+| 유틸리티 | `packages/utils/` | ID generator, date utils |
+
+#### 체크리스트
+- [x] Admin Dashboard 16개 페이지 목록 작성
+- [x] Frontend Website 22개 페이지 목록 작성
+- [x] 공통 타입 추출 (Member, Post, Vote 등)
+- [x] ID 생성 규칙 정의 (NM000001 형식)
+- [x] 상태값 표준화 (MemberStatus, PostStatus 등)
+
+#### 산출물
+- ✅ [CODEBASE_STATUS.md](../CODEBASE_STATUS.md) - 레거시 코드 현황 문서
+- ✅ [TO-BE-ARCHITECTURE.md](../TO-BE-ARCHITECTURE.md) - 목표 아키텍처
+- ✅ 타입/상수 정의 (packages/)
+
+---
+
 ## Week 1: Prisma Schema & Database Setup
 
 ### Day 1-3: Prisma 스키마 설계 및 검증 (8시간)
