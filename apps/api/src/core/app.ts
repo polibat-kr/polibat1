@@ -11,6 +11,11 @@ import {
 import { healthRoutes } from '../features/health';
 import { authRoutes } from '../features/auth';
 import { memberRoutes } from '../features/member';
+import postRoutes from '../features/post/post.routes';
+import commentRoutes from '../features/comment/comment.routes';
+import reactionRoutes from '../features/reaction/reaction.routes';
+import reportRoutes from '../features/report/report.routes';
+import voteRoutes from '../features/vote/vote.routes';
 
 /**
  * Express 애플리케이션 생성 및 설정
@@ -64,6 +69,11 @@ export function createApp(): Application {
   app.use('/health', healthRoutes);
   app.use('/api/auth', authRoutes);
   app.use('/api/members', memberRoutes);
+  app.use('/api/posts', postRoutes);
+  app.use('/api', commentRoutes); // Comment routes: /api/posts/:postId/comments, /api/comments/:commentId
+  app.use('/api', reactionRoutes); // Reaction routes: /api/reactions, /api/posts/:postId/reactions, /api/comments/:commentId/reactions
+  app.use('/api', reportRoutes); // Report routes: /api/reports, /api/reports/:reportId, /api/reports/my
+  app.use('/api/votes', voteRoutes); // Vote routes: /api/votes, /api/votes/:voteId, /api/votes/:voteId/participate
 
   // API 버전 확인
   app.get('/api', (_req, res) => {
