@@ -43,3 +43,10 @@ export { AdminSearchService } from './admin-search.service';
 export { AdminSearchRepository } from './admin-search.repository';
 export * from './admin-search.dto';
 export { default as adminSearchRoutes } from './admin-search.routes';
+
+// Admin Notice Management
+export { AdminNoticeController } from './admin-notice.controller';
+export { AdminNoticeService } from './admin-notice.service';
+export { AdminNoticeRepository } from './admin-notice.repository';
+export * from './admin-notice.dto';
+export { default as adminNoticeRoutes } from './admin-notice.routes';
