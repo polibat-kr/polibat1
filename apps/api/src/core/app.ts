@@ -16,7 +16,12 @@ import commentRoutes from '../features/comment/comment.routes';
 import reactionRoutes from '../features/reaction/reaction.routes';
 import reportRoutes from '../features/report/report.routes';
 import voteRoutes from '../features/vote/vote.routes';
-import { adminStatsRoutes, adminMemberRoutes } from '../features/admin';
+import {
+  adminStatsRoutes,
+  adminMemberRoutes,
+  adminPostRoutes,
+  adminCommentRoutes,
+} from '../features/admin';
 
 /**
  * Express 애플리케이션 생성 및 설정
@@ -77,6 +82,8 @@ export function createApp(): Application {
   app.use('/api/votes', voteRoutes); // Vote routes: /api/votes, /api/votes/:voteId, /api/votes/:voteId/participate
   app.use('/api/admin/stats', adminStatsRoutes); // Admin Stats routes: /api/admin/stats/dashboard, /api/admin/stats/members, etc.
   app.use('/api/admin/members', adminMemberRoutes); // Admin Member routes: /api/admin/members, /api/admin/members/:memberId, etc.
+  app.use('/api/admin/posts', adminPostRoutes); // Admin Post routes: /api/admin/posts, /api/admin/posts/:postId, etc.
+  app.use('/api/admin/comments', adminCommentRoutes); // Admin Comment routes: /api/admin/comments, /api/admin/comments/:commentId/status, etc.
 
   // API 버전 확인
   app.get('/api', (_req, res) => {
