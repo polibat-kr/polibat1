@@ -316,29 +316,29 @@
         <div class="header">
             <h1>🎯 정치방망이(PoliBAT) 개발 WBS</h1>
             <p>Work Breakdown Structure - 개발 현황 대시보드</p>
-            <p style="font-size: 12px; margin-top: 10px;">작성일: 2025-10-19 | 버전: 2.0</p>
+            <p style="font-size: 12px; margin-top: 10px;">최종 업데이트: 2025-10-24 | 버전: 2.1 (Phase 1 완료)</p>
         </div>
 
         <div class="stats">
             <div class="stat-card">
                 <h3>전체 진행률</h3>
-                <div class="number">27%</div>
-                <div class="percentage">Phase 1 거의 완료</div>
+                <div class="number">30%</div>
+                <div class="percentage">🎉 Phase 1 완료!</div>
             </div>
             <div class="stat-card">
                 <h3>완료된 주차</h3>
-                <div class="number">7/40</div>
-                <div class="percentage">Week 1-7 완료</div>
+                <div class="number">8/40</div>
+                <div class="percentage">Week 1-8 완료</div>
             </div>
             <div class="stat-card">
                 <h3>구현된 API</h3>
-                <div class="number">31/60+</div>
-                <div class="percentage">7개 모듈 (Vote 제외)</div>
+                <div class="number">42/60+</div>
+                <div class="percentage">8개 모듈 완료</div>
             </div>
             <div class="stat-card">
                 <h3>현재 Phase</h3>
-                <div class="number">1/5</div>
-                <div class="percentage">Backend 기반 구축 87.5%</div>
+                <div class="number">2/5</div>
+                <div class="percentage">Phase 2 시작 준비</div>
             </div>
         </div>
 
@@ -513,12 +513,12 @@
                 <div class="phase-header" onclick="togglePhase('phase1')">
                     <div>
                         <h2>📦 Phase 1: Foundation (Week 1-8)</h2>
-                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">Backend 기반 구축 및 Admin API 연동</p>
+                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">Backend 기반 구축 및 Admin API 연동 - ✅ 완료 (2025-10-24)</p>
                     </div>
                     <div class="phase-meta">
-                        <span style="font-size: 14px;">87.5% 완료</span>
+                        <span style="font-size: 14px;">100% 완료</span>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 87.5%;"></div>
+                            <div class="progress-fill" style="width: 100%;"></div>
                         </div>
                         <span class="toggle-icon" id="phase1-icon">▼</span>
                     </div>
@@ -815,7 +815,7 @@
                     <div class="week">
                         <div class="week-header" onclick="toggleWeek('week8')">
                             <div class="week-title">
-                                <span class="week-status status-pending"></span>
+                                <span class="week-status status-completed"></span>
                                 <strong>Week 8: Vote API (복잡도: 높음)</strong>
                             </div>
                             <span class="toggle-icon" id="week8-icon">▼</span>
@@ -823,43 +823,49 @@
                         <div class="week-body" id="week8-body">
                             <ul class="task-list">
                                 <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">투표 생성 (게시글과 함께, 옵션 관리)</span>
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 생성 (게시글과 함께, 옵션 관리)</span>
                                 </li>
                                 <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">투표 상세 조회 및 수정</span>
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 상세 조회 및 수정</span>
                                 </li>
                                 <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">투표 참여 (복수 선택 지원, 중복 방지)</span>
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 참여 (복수 선택 지원, 중복 방지)</span>
                                 </li>
                                 <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">투표 취소</span>
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 취소</span>
                                 </li>
                                 <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">투표 결과 조회 (실시간 집계)</span>
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 결과 조회 (실시간 집계)</span>
                                 </li>
                                 <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">투표 종료 처리 (관리자, startDate/endDate 관리)</span>
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 종료 처리 (관리자, startDate/endDate 관리)</span>
                                 </li>
                                 <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">투표 삭제</span>
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 삭제</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">투표 통계 조회</span>
                                 </li>
                             </ul>
                             <div class="deliverables">
-                                <h4>예정 산출물</h4>
+                                <h4>산출물 (완료)</h4>
                                 <ul>
-                                    <li>apps/api/src/features/vote/ (8개 API 엔드포인트)</li>
+                                    <li>apps/api/src/features/vote/ (10개 API 엔드포인트 완료)</li>
                                     <li>VoteService, VoteRepository, VoteController</li>
                                     <li>3개 모델 연동: Vote, VoteOption, VoteParticipation</li>
                                     <li>복수 선택 지원 및 중복 방지 로직</li>
+                                    <li>투표 변경 로직 (기존 삭제 후 새로 선택)</li>
+                                    <li>득표율 자동 계산 및 사용자 선택 표시</li>
                                     <li>테스트 스크립트: test-vote-api.ps1</li>
-                                    <li><strong>Phase 1 완료!</strong></li>
+                                    <li><strong>🎉 Phase 1 완료! (2025-10-24)</strong></li>
                                 </ul>
                             </div>
                         </div>
