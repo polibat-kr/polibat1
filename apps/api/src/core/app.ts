@@ -21,6 +21,8 @@ import {
   adminMemberRoutes,
   adminPostRoutes,
   adminCommentRoutes,
+  adminReportRoutes,
+  adminSearchRoutes,
 } from '../features/admin';
 
 /**
@@ -84,6 +86,8 @@ export function createApp(): Application {
   app.use('/api/admin/members', adminMemberRoutes); // Admin Member routes: /api/admin/members, /api/admin/members/:memberId, etc.
   app.use('/api/admin/posts', adminPostRoutes); // Admin Post routes: /api/admin/posts, /api/admin/posts/:postId, etc.
   app.use('/api/admin/comments', adminCommentRoutes); // Admin Comment routes: /api/admin/comments, /api/admin/comments/:commentId/status, etc.
+  app.use('/api/admin/reports', adminReportRoutes); // Admin Report routes: /api/admin/reports, /api/admin/reports/:reportId/process
+  app.use('/api/admin/search', adminSearchRoutes); // Admin Search routes: /api/admin/search
 
   // API 버전 확인
   app.get('/api', (_req, res) => {

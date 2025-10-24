@@ -29,3 +29,17 @@ export { AdminCommentService } from './admin-comment.service';
 export { AdminCommentRepository } from './admin-comment.repository';
 export * from './admin-comment.dto';
 export { default as adminCommentRoutes } from './admin-comment.routes';
+
+// Admin Report Management
+export { AdminReportController } from './admin-report.controller';
+export { AdminReportService } from './admin-report.service';
+export { AdminReportRepository } from './admin-report.repository';
+export * from './admin-report.dto';
+export { default as adminReportRoutes } from './admin-report.routes';
+
+// Admin Search
+export { AdminSearchController } from './admin-search.controller';
+export { AdminSearchService } from './admin-search.service';
+export { AdminSearchRepository } from './admin-search.repository';
+export * from './admin-search.dto';
+export { default as adminSearchRoutes } from './admin-search.routes';
