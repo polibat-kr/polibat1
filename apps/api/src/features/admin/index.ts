@@ -57,3 +57,10 @@ export { AdminPopupService } from './admin-popup.service';
 export { AdminPopupRepository } from './admin-popup.repository';
 export * from './admin-popup.dto';
 export { default as adminPopupRoutes } from './admin-popup.routes';
+
+// Admin Banner Management
+export { AdminBannerController } from './admin-banner.controller';
+export { AdminBannerService } from './admin-banner.service';
+export { AdminBannerRepository } from './admin-banner.repository';
+export * from './admin-banner.dto';
+export { default as adminBannerRoutes } from './admin-banner.routes';
