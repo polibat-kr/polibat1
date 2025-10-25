@@ -22,45 +22,45 @@
 
 ## Essential Documentation
 
-모든 프로젝트 문서는 `doc/` 폴더 하위에 카테고리별로 구분되어 있습니다:
-- `doc/architecture/` - 아키텍처 설계, 기술 스택, 구현 현황
-- `doc/roadmap/` - 개발 로드맵 및 Phase별 상세 계획
-- `doc/specs/` - 프로젝트 명세, 미션, 개발 참고서
-- `doc/guides/` - 개발 환경 설정 가이드
-- `doc/dashboards/` - 프로젝트 현황 대시보드 (HTML)
+모든 프로젝트 문서는 `docs/` 폴더 하위에 카테고리별로 구분되어 있습니다:
+- `docs/architecture/` - 아키텍처 설계, 기술 스택, 구현 현황
+- `docs/roadmap/` - 개발 로드맵 및 Phase별 상세 계획
+- `docs/specs/` - 프로젝트 명세, 미션, 개발 참고서
+- `docs/guides/` - 개발 환경 설정 가이드
+- `docs/dashboards/` - 프로젝트 현황 대시보드 (HTML)
 
 ### 프로젝트 기획 및 명세
-- `doc/specs/정치방망이(POLIBAT) 지침서.md` - Project mission and vision
-- `doc/specs/정치방망이(POLIBAT) 개발참고서.md` - Development guidelines
-- `doc/specs/정치방망이(POLIBAT) 통합 화면명세서.md` - UI/UX specifications
+- `docs/specs/정치방망이(POLIBAT) 지침서.md` - Project mission and vision
+- `docs/specs/정치방망이(POLIBAT) 개발참고서.md` - Development guidelines
+- `docs/specs/정치방망이(POLIBAT) 통합 화면명세서.md` - UI/UX specifications
 
 ### 아키텍처 및 현황
-- `doc/architecture/ARCHITECTURE.md` - 아키텍처 설계 및 기술 스택 (모노레포 사용법 포함)
-- `doc/architecture/INFRASTRUCTURE.md` - 인프라 환경 현황 (EC2, DB, Redis 등)
-- `doc/architecture/IMPLEMENTATION_STATUS.md` - 구현 현황 (화면 + API)
+- `docs/architecture/ARCHITECTURE.md` - 아키텍처 설계 및 기술 스택 (모노레포 사용법 포함)
+- `docs/architecture/INFRASTRUCTURE.md` - 인프라 환경 현황 (EC2, DB, Redis 등)
+- `docs/architecture/IMPLEMENTATION_STATUS.md` - 구현 현황 (화면 + API)
 
 ### 로드맵
-- `doc/roadmap/DEV_ROADMAP.md` - 마스터 로드맵 (전체 개요, ~5,000토큰)
-- `doc/roadmap/DEV_ROADMAP_PHASE1.md` - Phase 1 상세 (Week 1-8)
-- `doc/roadmap/DEV_ROADMAP_PHASE2.md` - Phase 2 상세 (Week 9-20)
-- `doc/roadmap/DEV_ROADMAP_PHASE3.md` - Phase 3 상세 (Week 21-32)
-- `doc/roadmap/DEV_ROADMAP_PHASE4.md` - Phase 4 상세 (Quarter 5+)
+- `docs/roadmap/DEV_ROADMAP.md` - 마스터 로드맵 (전체 개요, ~5,000토큰)
+- `docs/roadmap/DEV_ROADMAP_PHASE1.md` - Phase 1 상세 (Week 1-8)
+- `docs/roadmap/DEV_ROADMAP_PHASE2.md` - Phase 2 상세 (Week 9-20)
+- `docs/roadmap/DEV_ROADMAP_PHASE3.md` - Phase 3 상세 (Week 21-32)
+- `docs/roadmap/DEV_ROADMAP_PHASE4.md` - Phase 4 상세 (Quarter 5+)
 
 ### 시각화 대시보드
-- `doc/dashboards/project-status.html` - 프로젝트 현황 대시보드 (팀원 공유)
-- `doc/dashboards/wbs.html` - WBS 진행률 대시보드
+- `docs/dashboards/project-status.html` - 프로젝트 현황 대시보드 (팀원 공유)
+- `docs/dashboards/wbs.html` - WBS 진행률 대시보드
 
 ### 문서 사용 가이드
 
 **효율적인 컨텍스트 로딩 전략**:
 
 1. **세션 시작 시**:
-   - `doc/roadmap/DEV_ROADMAP.md` (마스터)만 먼저 읽어 전체 흐름 파악 (~5,000토큰)
-   - `doc/architecture/IMPLEMENTATION_STATUS.md`로 현재 구현 상태 확인 (~3,000토큰)
+   - `docs/roadmap/DEV_ROADMAP.md` (마스터)만 먼저 읽어 전체 흐름 파악 (~5,000토큰)
+   - `docs/architecture/IMPLEMENTATION_STATUS.md`로 현재 구현 상태 확인 (~3,000토큰)
 
 2. **특정 Phase 작업 시**:
    - 해당 Phase 문서만 선택적으로 로드 (~8,000토큰)
-   - 예: Phase 1 작업 시 → `doc/roadmap/DEV_ROADMAP_PHASE1.md`만 읽기
+   - 예: Phase 1 작업 시 → `docs/roadmap/DEV_ROADMAP_PHASE1.md`만 읽기
 
 3. **패턴 참조 시**:
    - `claudedocs/patterns/` 디렉토리의 특정 패턴 문서만 로드
@@ -276,6 +276,6 @@ const result = callback?.(data);
 
 ## Reference
 
-- **Detailed Implementation**: `doc/roadmap/DEV_ROADMAP.md` (Appendix A: Codebase Implementation Status)
-- **Architecture**: `doc/architecture/ARCHITECTURE.md`
-- **Project Mission**: `doc/specs/정치방망이(POLIBAT) 지침서.md`
+- **Detailed Implementation**: `docs/roadmap/DEV_ROADMAP.md` (Appendix A: Codebase Implementation Status)
+- **Architecture**: `docs/architecture/ARCHITECTURE.md`
+- **Project Mission**: `docs/specs/정치방망이(POLIBAT) 지침서.md`
