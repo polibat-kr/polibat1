@@ -93,6 +93,14 @@ secrets.*.json
 
 # Test Files (보안 강화 - 하드코딩된 비밀번호 방지)
 test-*.js
+test-*.json
 create-*.js
+create-*.json
 *-test.js
 *.test.local.js
+login.json
+*-credentials.json
+
+# Docker override files (환경별 설정 분리)
+docker-compose.override.yml
+docker-compose.*.yml

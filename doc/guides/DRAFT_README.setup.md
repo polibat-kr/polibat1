@@ -104,15 +104,15 @@ npx prisma studio
 # Docker Compose로 Redis 실행
 docker compose up -d redis
 
-# Redis 상태 확인
-docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
+# Redis 상태 확인 (비밀번호는 apps/api/.env 파일 참조)
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD> PING
 # 응답: PONG
 ```
 
 **접속 정보**:
 - Host: localhost
 - Port: 6379
-- Password: polibat_redis_password
+- Password: `<REDIS_PASSWORD>` (apps/api/.env 파일 참조)
 
 **참고**: [Redis Docker 가이드](./README.docker.md)
 
@@ -126,10 +126,10 @@ docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
 
 ```env
 # Database (원격 PostgreSQL 16)
-DATABASE_URL="postgresql://polibat:YOUR_PASSWORD@43.201.115.132:5432/polibat"
+DATABASE_URL="postgresql://polibat:<DB_PASSWORD>@43.201.115.132:5432/polibat"
 
 # Redis
-REDIS_URL="redis://:polibat_redis_password@localhost:6379"
+REDIS_URL="redis://:<REDIS_PASSWORD>@localhost:6379"
 
 # JWT (개발용)
 JWT_SECRET="dev-secret-key-please-change-in-production-12345678"
@@ -140,7 +140,10 @@ PORT=4000
 NODE_ENV=development
 ```
 
-⚠️ **주의**: 프로덕션 환경에서는 반드시 보안 키를 변경하세요!
+⚠️ **보안 주의사항**:
+- 실제 비밀번호는 `apps/api/.env` 파일에 저장되어 있습니다
+- `.env` 파일은 Git에 커밋되지 않습니다 (`.gitignore`로 보호)
+- 프로덕션 환경에서는 반드시 JWT 시크릿을 변경하세요!
 
 ### 5.2 환경 변수 검증
 
@@ -243,11 +246,11 @@ Invoke-WebRequest -Uri http://localhost:4000/api/auth/logout `
 ### 7.2 Redis 토큰 확인
 
 ```powershell
-# Redis에 저장된 Refresh Token 확인
-docker exec -it polibat-redis redis-cli -a polibat_redis_password KEYS 'refresh:*'
+# Redis에 저장된 Refresh Token 확인 (비밀번호는 apps/api/.env 파일 참조)
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD> KEYS 'refresh:*'
 
 # 특정 사용자의 Refresh Token 조회
-docker exec -it polibat-redis redis-cli -a polibat_redis_password GET 'refresh:<user-id>'
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD> GET 'refresh:<user-id>'
 ```
 
 ---
@@ -284,8 +287,8 @@ docker compose ps
 # Redis 재시작
 docker compose restart redis
 
-# Redis 접속 테스트
-docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
+# Redis 접속 테스트 (비밀번호는 apps/api/.env 파일 참조)
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD> PING
 ```
 
 ### 8.3 Prisma 마이그레이션 오류

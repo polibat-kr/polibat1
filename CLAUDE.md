@@ -90,7 +90,8 @@
 
 ### Database (원격 PostgreSQL 16)
 ```powershell
-# PostgreSQL 접속 (비밀번호: Vhfflqpt183!)
+# PostgreSQL 접속 (비밀번호는 apps/api/.env 파일 참조)
+# 비밀번호 입력 프롬프트가 표시됩니다
 psql -h 43.201.115.132 -U polibat -d polibat
 
 # 테이블 확인
@@ -109,11 +110,11 @@ npx prisma studio
 # Redis 시작
 docker compose up -d redis
 
-# Redis 접속
-docker exec -it polibat-redis redis-cli -a polibat_redis_password
+# Redis 접속 (비밀번호는 apps/api/.env 파일의 REDIS_URL 참조)
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD>
 
 # Redis 상태 확인
-docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD> PING
 ```
 
 ### Admin Dashboard

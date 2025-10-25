@@ -32,7 +32,7 @@
 - **접속 정보**:
   - 데이터베이스: `polibat`
   - 사용자: `polibat`
-  - 비밀번호: `Vhfflqpt183!`
+  - 비밀번호: `<DB_PASSWORD>` (팀 내부 공유 문서 참조)
 
 **2. Nginx**
 - **포트**: 80 (HTTP), 443 (HTTPS)
@@ -71,7 +71,7 @@
 
   # Redis 비밀번호 설정
   sudo nano /etc/redis/redis.conf
-  # requirepass polibat_redis_password 추가
+  # requirepass <REDIS_PASSWORD> 추가
   sudo systemctl restart redis-server
   ```
 
@@ -134,10 +134,10 @@ EC2_KEY_PATH=./keys/polibat-dev.pem
 EC2_OS=Ubuntu 24.04 LTS
 
 # PostgreSQL (EC2 서버)
-DATABASE_URL=postgresql://polibat:Vhfflqpt183!@43.201.115.132:5432/polibat
+DATABASE_URL=postgresql://polibat:<DB_PASSWORD>@43.201.115.132:5432/polibat
 
 # Redis (설치 후)
-REDIS_URL=redis://:polibat_redis_password@43.201.115.132:6379
+REDIS_URL=redis://:<REDIS_PASSWORD>@43.201.115.132:6379
 ```
 
 #### 보안 설정
@@ -186,7 +186,7 @@ REDIS_URL=redis://:polibat_redis_password@43.201.115.132:6379
 #### Redis 7 (로컬 Docker)
 - **호스트**: localhost
 - **포트**: 6379
-- **비밀번호**: `polibat_redis_password`
+- **비밀번호**: `<REDIS_PASSWORD>` (apps/api/.env 파일 참조)
 - **컨테이너명**: `polibat-redis`
 - **이미지**: `redis:7-alpine`
 - **상태**: ✅ 정상 운영 중
@@ -202,7 +202,7 @@ services:
   redis:
     image: redis:7-alpine
     container_name: polibat-redis
-    command: redis-server --requirepass polibat_redis_password
+    command: redis-server --requirepass <REDIS_PASSWORD>
     ports:
       - "6379:6379"
     volumes:
@@ -212,15 +212,17 @@ services:
 #### 환경 변수 (.env)
 ```bash
 # PostgreSQL (원격 서버)
-DATABASE_URL=postgresql://polibat:Vhfflqpt183!@43.201.115.132:5432/polibat
+DATABASE_URL=postgresql://polibat:<DB_PASSWORD>@43.201.115.132:5432/polibat
 
 # Redis (로컬 Docker)
-REDIS_URL=redis://:polibat_redis_password@localhost:6379
+REDIS_URL=redis://:<REDIS_PASSWORD>@localhost:6379
 
 # JWT
 JWT_SECRET=dev-secret-key-change-this-in-production-12345
 JWT_REFRESH_SECRET=dev-refresh-secret-key-change-this-in-production-67890
 ```
+
+**⚠️ 보안**: 실제 비밀번호는 `apps/api/.env` 파일에 저장되어 있으며, Git에 커밋되지 않습니다.
 
 ### 1.2 API 서버
 
@@ -338,11 +340,11 @@ npx prisma studio
 # Docker 컨테이너 시작
 docker compose up -d redis
 
-# Redis CLI 접속
-docker exec -it polibat-redis redis-cli -a polibat_redis_password
+# Redis CLI 접속 (비밀번호는 apps/api/.env 파일 참조)
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD>
 
 # 연결 테스트
-docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
+docker exec -it polibat-redis redis-cli -a <REDIS_PASSWORD> PING
 ```
 
 ---
