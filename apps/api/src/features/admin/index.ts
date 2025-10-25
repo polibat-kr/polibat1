@@ -50,3 +50,10 @@ export { AdminNoticeService } from './admin-notice.service';
 export { AdminNoticeRepository } from './admin-notice.repository';
 export * from './admin-notice.dto';
 export { default as adminNoticeRoutes } from './admin-notice.routes';
+
+// Admin Popup Management
+export { AdminPopupController } from './admin-popup.controller';
+export { AdminPopupService } from './admin-popup.service';
+export { AdminPopupRepository } from './admin-popup.repository';
+export * from './admin-popup.dto';
+export { default as adminPopupRoutes } from './admin-popup.routes';
