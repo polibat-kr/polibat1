@@ -26,6 +26,7 @@ import {
   adminNoticeRoutes,
   adminPopupRoutes,
   adminBannerRoutes,
+  adminSuggestionRoutes,
 } from '../features/admin';
 
 /**
@@ -94,6 +95,7 @@ export function createApp(): Application {
   app.use('/api/admin/notices', adminNoticeRoutes); // Admin Notice routes: /api/admin/notices, /api/admin/notices/:noticeId, etc.
   app.use('/api/admin/popups', adminPopupRoutes); // Admin Popup routes: /api/admin/popups, /api/admin/popups/:popupId, etc.
   app.use('/api/admin/banners', adminBannerRoutes); // Admin Banner routes: /api/admin/banners, /api/admin/banners/:bannerId, /api/admin/banners/:bannerId/order
+  app.use('/api/admin/suggestions', adminSuggestionRoutes); // Admin Suggestion routes: /api/admin/suggestions, /api/admin/suggestions/:suggestionId/reply, etc.
 
   // API 버전 확인
   app.get('/api', (_req, res) => {

@@ -64,3 +64,10 @@ export { AdminBannerService } from './admin-banner.service';
 export { AdminBannerRepository } from './admin-banner.repository';
 export * from './admin-banner.dto';
 export { default as adminBannerRoutes } from './admin-banner.routes';
+
+// Admin Suggestion Management
+export { AdminSuggestionController } from './admin-suggestion.controller';
+export { AdminSuggestionService } from './admin-suggestion.service';
+export { AdminSuggestionRepository } from './admin-suggestion.repository';
+export * from './admin-suggestion.dto';
+export { default as adminSuggestionRoutes } from './admin-suggestion.routes';
