@@ -316,29 +316,29 @@
         <div class="header">
             <h1>🎯 정치방망이(PoliBAT) 개발 WBS</h1>
             <p>Work Breakdown Structure - 개발 현황 대시보드</p>
-            <p style="font-size: 12px; margin-top: 10px;">최종 업데이트: 2025-10-24 | 버전: 2.1 (Phase 1 완료)</p>
+            <p style="font-size: 12px; margin-top: 10px;">최종 업데이트: 2025-10-25 | 버전: 2.5 (Phase 2 Week 4 완료)</p>
         </div>
 
         <div class="stats">
             <div class="stat-card">
                 <h3>전체 진행률</h3>
-                <div class="number">30%</div>
-                <div class="percentage">🎉 Phase 1 완료!</div>
+                <div class="number">40%</div>
+                <div class="percentage">🚀 Phase 2 진행 중!</div>
             </div>
             <div class="stat-card">
                 <h3>완료된 주차</h3>
-                <div class="number">8/40</div>
-                <div class="percentage">Week 1-8 완료</div>
+                <div class="number">12/40</div>
+                <div class="percentage">Week 1-12 완료</div>
             </div>
             <div class="stat-card">
                 <h3>구현된 API</h3>
-                <div class="number">42/60+</div>
-                <div class="percentage">8개 모듈 완료</div>
+                <div class="number">73/100+</div>
+                <div class="percentage">16개 모듈 완료</div>
             </div>
             <div class="stat-card">
                 <h3>현재 Phase</h3>
                 <div class="number">2/5</div>
-                <div class="percentage">Phase 2 시작 준비</div>
+                <div class="percentage">Phase 2 Week 4/8 완료</div>
             </div>
         </div>
 
@@ -878,34 +878,190 @@
                 <div class="phase-header" onclick="togglePhase('phase2')">
                     <div>
                         <h2>🚀 Phase 2: Core Features (Week 9-16)</h2>
-                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">Admin Dashboard 연동 및 핵심 기능 구현</p>
+                        <p style="font-size: 14px; opacity: 0.9; margin-top: 5px;">Admin Dashboard 연동 및 핵심 기능 구현 - 🔄 진행 중 (Week 4/8 완료)</p>
                     </div>
                     <div class="phase-meta">
-                        <span style="font-size: 14px;">0% 완료</span>
+                        <span style="font-size: 14px;">50% 완료</span>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%;"></div>
+                            <div class="progress-fill" style="width: 50%;"></div>
                         </div>
                         <span class="toggle-icon" id="phase2-icon">▼</span>
                     </div>
                 </div>
                 <div class="phase-body" id="phase2-body">
+                    <!-- Week 1: Admin Stats API -->
                     <div class="week">
-                        <div class="week-header" onclick="toggleWeek('phase2-summary')">
+                        <div class="week-header" onclick="toggleWeek('phase2-week1')">
                             <div class="week-title">
-                                <span class="week-status status-placeholder"></span>
-                                <strong>Phase 2 주요 작업 (상세 계획 작성 완료)</strong>
+                                <span class="week-status status-completed"></span>
+                                <strong>Week 1 (Week 9): Admin Statistics API</strong>
                             </div>
-                            <span class="toggle-icon" id="phase2-summary-icon">▼</span>
+                            <span class="toggle-icon" id="phase2-week1-icon">▼</span>
                         </div>
-                        <div class="week-body" id="phase2-summary-body">
+                        <div class="week-body" id="phase2-week1-body">
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">대시보드 통계 API 6개 엔드포인트 구현</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">회원 통계 (일별, 월별, 타입별, 상태별)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">게시물/댓글/투표/신고 통계</span>
+                                </li>
+                            </ul>
+                            <div class="deliverables">
+                                <h4>산출물</h4>
+                                <ul>
+                                    <li>apps/api/src/features/admin/admin-stats.* (완료)</li>
+                                    <li>대시보드 데이터 제공 API 완성</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 2: Admin Member & Post API -->
+                    <div class="week">
+                        <div class="week-header" onclick="toggleWeek('phase2-week2')">
+                            <div class="week-title">
+                                <span class="week-status status-completed"></span>
+                                <strong>Week 2 (Week 10): Admin Member & Post Management</strong>
+                            </div>
+                            <span class="toggle-icon" id="phase2-week2-icon">▼</span>
+                        </div>
+                        <div class="week-body" id="phase2-week2-body">
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Member API 5개 엔드포인트</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Post API 4개 엔드포인트</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">상태 변경, 삭제, 복원 기능</span>
+                                </li>
+                            </ul>
+                            <div class="deliverables">
+                                <h4>산출물</h4>
+                                <ul>
+                                    <li>admin-member.* (5개 API 완료)</li>
+                                    <li>admin-post.* (4개 API 완료)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 3: Admin Comment, Report, Search API -->
+                    <div class="week">
+                        <div class="week-header" onclick="toggleWeek('phase2-week3')">
+                            <div class="week-title">
+                                <span class="week-status status-completed"></span>
+                                <strong>Week 3 (Week 11): Admin Comment, Report & Search</strong>
+                            </div>
+                            <span class="toggle-icon" id="phase2-week3-icon">▼</span>
+                        </div>
+                        <div class="week-body" id="phase2-week3-body">
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Comment API 2개 엔드포인트</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Report API 2개 엔드포인트</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Search API 1개 엔드포인트 (통합 검색)</span>
+                                </li>
+                            </ul>
+                            <div class="deliverables">
+                                <h4>산출물</h4>
+                                <ul>
+                                    <li>admin-comment.* (2개 API 완료)</li>
+                                    <li>admin-report.* (2개 API 완료)</li>
+                                    <li>admin-search.* (1개 API 완료)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Week 4: Admin Notice & Popup API -->
+                    <div class="week">
+                        <div class="week-header" onclick="toggleWeek('phase2-week4')">
+                            <div class="week-title">
+                                <span class="week-status status-completed"></span>
+                                <strong>Week 4 (Week 12): Admin Notice & Popup Management - ✅ 완료 (2025-10-25)</strong>
+                            </div>
+                            <span class="toggle-icon" id="phase2-week4-icon">▼</span>
+                        </div>
+                        <div class="week-body" id="phase2-week4-body">
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Notice API 6개 엔드포인트 (목록, 상세, 생성, 수정, 삭제, 상단고정)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Popup API 5개 엔드포인트 (목록, 상세, 생성, 수정, 삭제)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">NoticeCategory enum 지원 (GUIDE, UPDATE, COMMUNICATION, EXTERNAL)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">PopupPosition enum 지원 (CENTER, TOP_LEFT, TOP_RIGHT, etc.)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">자동 ID 생성 (NT000001, PU000001 형식)</span>
+                                </li>
+                            </ul>
+                            <div class="deliverables">
+                                <h4>산출물 (완료)</h4>
+                                <ul>
+                                    <li>apps/api/src/features/admin/admin-notice.* (6개 API 완료)</li>
+                                    <li>apps/api/src/features/admin/admin-popup.* (5개 API 완료)</li>
+                                    <li>Git 커밋: 63723bb (Notice), 5557ef2 (Popup)</li>
+                                    <li><strong>🎉 Phase 2 Week 1-4 완료! (2025-10-25)</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Remaining Weeks -->
+                    <div class="week">
+                        <div class="week-header" onclick="toggleWeek('phase2-remaining')">
+                            <div class="week-title">
+                                <span class="week-status status-pending"></span>
+                                <strong>Week 5-8 (예정): 남은 작업</strong>
+                            </div>
+                            <span class="toggle-icon" id="phase2-remaining-icon">▼</span>
+                        </div>
+                        <div class="week-body" id="phase2-remaining-body">
                             <ul class="task-list">
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">Admin Dashboard 16개 페이지 API 완전 연동</span>
+                                    <span class="task-text">Admin Banner API (6개)</span>
                                 </li>
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">파일 업로드 (S3 + CloudFront 연동, 이미지 최적화)</span>
+                                    <span class="task-text">Admin Suggestion API (5개)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">Admin Policy API (6개)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" disabled>
+                                    <span class="task-text">File Upload API (S3 + CloudFront 연동, 3개)</span>
                                 </li>
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
@@ -915,23 +1071,14 @@
                                     <input type="checkbox" class="task-checkbox" disabled>
                                     <span class="task-text">AI MVP 기능 (3줄 요약 + 감정 분석 온도계)</span>
                                 </li>
-                                <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">불편/제안 접수 시스템</span>
-                                </li>
-                                <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">공지사항/팝업/배너 관리 시스템</span>
-                                </li>
                             </ul>
                             <div class="deliverables">
                                 <h4>예정 산출물</h4>
                                 <ul>
-                                    <li>Admin Dashboard 실시간 데이터 연동 완료</li>
-                                    <li>파일 업로드 API 3개 엔드포인트</li>
+                                    <li>Admin Dashboard 완전 연동</li>
+                                    <li>파일 업로드 시스템</li>
                                     <li>이메일 발송 서비스</li>
                                     <li>AI 서비스 2개 기능</li>
-                                    <li>관리자 시스템 완성</li>
                                 </ul>
                                 <p style="margin-top: 10px;"><strong>상세 문서</strong>: <a href="DEV_ROADMAP_PHASE2.md" style="color: #667eea;">DEV_ROADMAP_PHASE2.md</a></p>
                             </div>
@@ -1182,7 +1329,10 @@
 
         <div class="footer">
             <p><strong>정치방망이(PoliBAT)</strong> - 국민 참여형 정치 플랫폼</p>
-            <p>작성: Claude Code (SuperClaude Framework) | 버전: 2.0 | 작성일: 2025-10-19 | 업데이트: 2025-10-23</p>
+            <p>작성: Claude Code (SuperClaude Framework) | 버전: 2.5 | 작성일: 2025-10-19 | 업데이트: 2025-10-25</p>
+            <p style="margin-top: 5px; font-size: 11px; color: #888;">
+                Phase 1 완료 (2025-10-24) | Phase 2 Week 4/8 완료 (2025-10-25) | 전체 진행률 40%
+            </p>
             <p style="margin-top: 10px;">
                 <a href="DEV_ROADMAP.md" style="color: #667eea; text-decoration: none;">📋 마스터 로드맵</a> |
                 <a href="DEV_ROADMAP_PHASE1.md" style="color: #667eea; text-decoration: none;">📦 Phase 1 상세</a> |

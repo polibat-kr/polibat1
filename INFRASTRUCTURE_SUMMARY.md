@@ -1,7 +1,7 @@
 # 정치방망이(PoliBAT) 인프라 현황
 
-**최종 업데이트**: 2025-10-23
-**버전**: 1.0
+**최종 업데이트**: 2025-10-25
+**버전**: 1.1
 
 ---
 
@@ -12,6 +12,155 @@
 ---
 
 ## 1. 개발 환경 (Development)
+
+### 1.0 EC2 개발 서버 (Ubuntu 24.04 LTS)
+
+**서버 정보**:
+- **호스트**: 43.201.115.132
+- **OS**: Ubuntu 24.04 LTS
+- **사용자**: ubuntu
+- **접속 방식**: SSH (PEM 키 인증)
+- **PEM 파일 위치**: `./keys/polibat-dev.pem`
+- **상태**: ✅ 운영 중
+
+#### 설치 완료된 소프트웨어
+
+**1. PostgreSQL 16**
+- **포트**: 5432
+- **상태**: ✅ 정상 실행 중
+- **용도**: 개발 환경 메인 데이터베이스
+- **접속 정보**:
+  - 데이터베이스: `polibat`
+  - 사용자: `polibat`
+  - 비밀번호: `Vhfflqpt183!`
+
+**2. Nginx**
+- **포트**: 80 (HTTP), 443 (HTTPS)
+- **상태**: ✅ 정상 실행 중
+- **SSL**: 설정 완료
+- **용도**: 리버스 프록시, 정적 파일 서빙
+
+**3. Node.js**
+- **버전**: 20.19.5 LTS
+- **설치 방식**: NVM (Node Version Manager)
+- **상태**: ✅ 설치 완료
+- **용도**: API 서버 실행 환경
+
+**4. PM2**
+- **버전**: 6.0.8
+- **상태**: ✅ 설치 완료 (현재 프로세스 없음)
+- **용도**: Node.js 프로세스 관리 및 자동 재시작
+
+#### 설치 필요한 소프트웨어
+
+**1. Redis 7**
+- **상태**: ❌ 설치 필요
+- **권장 포트**: 6379
+- **용도**:
+  - JWT Refresh Token 저장
+  - API 캐싱
+  - Rate Limiting
+  - 세션 관리
+- **설치 방법**:
+  ```bash
+  # Ubuntu 24.04에서 Redis 설치
+  sudo apt update
+  sudo apt install redis-server -y
+  sudo systemctl enable redis-server
+  sudo systemctl start redis-server
+
+  # Redis 비밀번호 설정
+  sudo nano /etc/redis/redis.conf
+  # requirepass polibat_redis_password 추가
+  sudo systemctl restart redis-server
+  ```
+
+**2. Certbot (Let's Encrypt SSL)**
+- **상태**: ❌ 설치 필요
+- **용도**: SSL 인증서 자동 갱신
+- **설치 방법**:
+  ```bash
+  sudo apt install certbot python3-certbot-nginx -y
+  sudo certbot --nginx -d yourdomain.com
+  ```
+
+**3. API 서버 배포**
+- **상태**: ❌ 배포 필요
+- **포트**: 4000
+- **실행 방식**: PM2로 관리
+- **배포 방법**:
+  ```bash
+  # 코드 업로드 (Git 또는 SCP)
+  cd /var/www/polibat
+  git clone <repository>
+
+  # 의존성 설치
+  cd apps/api
+  npm install
+  npm run build
+
+  # PM2로 실행
+  pm2 start dist/main.js --name polibat-api
+  pm2 save
+  pm2 startup
+  ```
+
+**4. Admin Dashboard 배포**
+- **상태**: ❌ 배포 필요
+- **포트**: 3000 (개발) / Nginx 프록시 (운영)
+- **실행 방식**: PM2 또는 정적 빌드
+- **배포 방법**:
+  ```bash
+  # 빌드
+  cd apps/admin
+  npm install
+  npm run build
+
+  # PM2로 실행 (개발 서버)
+  pm2 start "npm start" --name polibat-admin
+
+  # 또는 정적 파일로 Nginx에서 서빙
+  sudo cp -r build/* /var/www/html/admin/
+  ```
+
+#### 환경 변수 (.env)
+
+**로컬 개발 환경**:
+```bash
+# EC2 Development Server
+EC2_HOST=43.201.115.132
+EC2_USER=ubuntu
+EC2_KEY_PATH=./keys/polibat-dev.pem
+EC2_OS=Ubuntu 24.04 LTS
+
+# PostgreSQL (EC2 서버)
+DATABASE_URL=postgresql://polibat:Vhfflqpt183!@43.201.115.132:5432/polibat
+
+# Redis (설치 후)
+REDIS_URL=redis://:polibat_redis_password@43.201.115.132:6379
+```
+
+#### 보안 설정
+
+**방화벽 (UFW)**:
+```bash
+# 현재 열려있는 포트 (추정)
+22   - SSH
+80   - HTTP (Nginx)
+443  - HTTPS (Nginx)
+5432 - PostgreSQL
+6379 - Redis (설치 후 개방 필요)
+4000 - API Server (배포 후 개방 필요)
+```
+
+**보안 권장 사항**:
+1. SSH 키 기반 인증만 허용 (비밀번호 인증 비활성화)
+2. PostgreSQL은 특정 IP만 접근 허용
+3. Redis는 비밀번호 설정 및 로컬호스트만 접근
+4. Nginx에서 API 서버로 프록시 (직접 노출 방지)
+5. SSL 인증서 자동 갱신 설정 (Certbot)
+
+---
 
 ### 1.1 하이브리드 환경 구성
 
@@ -200,43 +349,45 @@ docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
 
 ## 4. API 현황
 
-### 4.1 구현 완료 API (총 31개 엔드포인트)
+### 4.1 구현 완료 API (총 73개 엔드포인트)
 
-#### 인증 (5개)
+#### Phase 1 Backend API (42개)
+
+##### 인증 (5개)
 - ✅ POST /api/auth/signup
 - ✅ POST /api/auth/login
 - ✅ GET /api/auth/me
 - ✅ POST /api/auth/logout
 - ✅ POST /api/auth/refresh
 
-#### 회원 관리 (4개)
+##### 회원 관리 (4개)
 - ✅ GET /api/members
 - ✅ GET /api/members/:memberId
 - ✅ PATCH /api/members/:memberId
 - ✅ PATCH /api/members/:memberId/status
 
-#### 게시글 (5개)
+##### 게시글 (5개)
 - ✅ GET /api/posts
 - ✅ GET /api/posts/:postId
 - ✅ POST /api/posts
 - ✅ PATCH /api/posts/:postId
 - ✅ DELETE /api/posts/:postId
 
-#### 댓글 (5개)
+##### 댓글 (5개)
 - ✅ GET /api/posts/:postId/comments
 - ✅ GET /api/comments/:commentId
 - ✅ POST /api/posts/:postId/comments
 - ✅ PATCH /api/comments/:commentId
 - ✅ DELETE /api/comments/:commentId
 
-#### 반응 (5개)
+##### 반응 (5개)
 - ✅ POST /api/reactions
 - ✅ DELETE /api/reactions/:reactionId
 - ✅ GET /api/posts/:postId/reactions
 - ✅ GET /api/comments/:commentId/reactions
 - ✅ GET /api/reactions/stats/:targetType/:targetId
 
-#### 신고 (6개)
+##### 신고 (6개)
 - ✅ POST /api/reports
 - ✅ GET /api/reports/:reportId
 - ✅ GET /api/reports
@@ -244,22 +395,83 @@ docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
 - ✅ PATCH /api/reports/:reportId/process
 - ✅ DELETE /api/reports/:reportId
 
-#### 헬스체크 (1개)
+##### 투표 (11개)
+- ✅ POST /api/votes
+- ✅ GET /api/votes
+- ✅ GET /api/votes/:voteId
+- ✅ PATCH /api/votes/:voteId
+- ✅ DELETE /api/votes/:voteId
+- ✅ POST /api/votes/:voteId/participate
+- ✅ DELETE /api/votes/:voteId/participate/:participationId
+- ✅ GET /api/votes/:voteId/results
+- ✅ PATCH /api/votes/:voteId/close
+- ✅ POST /api/votes/:voteId/options
+- ✅ PATCH /api/votes/:voteId/options/:optionId
+
+##### 헬스체크 (1개)
 - ✅ GET /health
 
-**총 31개 엔드포인트**: 인증(5) + 회원(4) + 게시글(5) + 댓글(5) + 반응(5) + 신고(6) + 헬스체크(1)
+#### Phase 2 Admin Backend API (31개)
+
+##### Admin Stats API (6개)
+- ✅ GET /api/admin/stats/members
+- ✅ GET /api/admin/stats/posts
+- ✅ GET /api/admin/stats/comments
+- ✅ GET /api/admin/stats/votes
+- ✅ GET /api/admin/stats/reports
+- ✅ GET /api/admin/stats/dashboard
+
+##### Admin Member API (5개)
+- ✅ GET /api/admin/members
+- ✅ GET /api/admin/members/:memberId
+- ✅ PATCH /api/admin/members/:memberId
+- ✅ PATCH /api/admin/members/:memberId/status
+- ✅ GET /api/admin/members/:memberId/history
+
+##### Admin Post API (4개)
+- ✅ GET /api/admin/posts
+- ✅ GET /api/admin/posts/:postId
+- ✅ PATCH /api/admin/posts/:postId
+- ✅ PATCH /api/admin/posts/:postId/status
+
+##### Admin Comment API (2개)
+- ✅ GET /api/admin/comments
+- ✅ PATCH /api/admin/comments/:commentId/status
+
+##### Admin Report API (2개)
+- ✅ GET /api/admin/reports
+- ✅ PATCH /api/admin/reports/:reportId/process
+
+##### Admin Search API (1개)
+- ✅ GET /api/admin/search
+
+##### Admin Notice API (6개)
+- ✅ GET /api/admin/notices
+- ✅ GET /api/admin/notices/:noticeId
+- ✅ POST /api/admin/notices
+- ✅ PATCH /api/admin/notices/:noticeId
+- ✅ DELETE /api/admin/notices/:noticeId
+- ✅ PATCH /api/admin/notices/:noticeId/pin
+
+##### Admin Popup API (5개)
+- ✅ GET /api/admin/popups
+- ✅ GET /api/admin/popups/:popupId
+- ✅ POST /api/admin/popups
+- ✅ PATCH /api/admin/popups/:popupId
+- ✅ DELETE /api/admin/popups/:popupId
+
+**총 Phase 1**: 42개 | **총 Phase 2**: 31개 | **전체 합계**: 73개
 
 ### 4.2 구현 예정 API
 
-#### 투표 (8개) - Phase 1 Week 8
-- 🔲 POST /api/votes
-- 🔲 GET /api/votes/:voteId
-- 🔲 PATCH /api/votes/:voteId
-- 🔲 DELETE /api/votes/:voteId
-- 🔲 POST /api/votes/:voteId/participate
-- 🔲 DELETE /api/votes/:voteId/participate
-- 🔲 GET /api/votes/:voteId/results
-- 🔲 PATCH /api/votes/:voteId/close
+#### File Upload API (3개) - Phase 2 Week 7-8
+- 🔲 POST /api/upload/image - 이미지 업로드 + 썸네일
+- 🔲 POST /api/upload/file - 일반 파일 업로드
+- 🔲 DELETE /api/upload/:fileId - 파일 삭제
+
+#### Email Service API (2개) - Phase 2 Week 7-8
+- 🔲 POST /api/email/send - 이메일 발송
+- 🔲 POST /api/email/template - 템플릿 기반 발송
 
 ---
 
@@ -378,8 +590,10 @@ npx prisma migrate deploy
 ## 10. 다음 단계
 
 ### 10.1 즉시 수행
-- ✅ Phase 1 Week 7 완료 (Reaction & Report API)
-- 🔲 Phase 1 Week 8 시작 (Vote API 구현)
+- ✅ Phase 1 완료 (42개 Backend API)
+- ✅ Phase 2 Week 1-4 완료 (31개 Admin API)
+- 🔲 Phase 2 Week 5-6 진행 중 (Banner, Suggestion, Policy API)
+- 🔲 Phase 2 Week 7-8 예정 (File Upload, Email Service)
 
 ### 10.2 단기 (1개월)
 - Phase 1 완료 (Backend 기반 구축)
