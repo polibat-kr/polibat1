@@ -143,9 +143,7 @@ npm run clean
 
 #### 📚 개발 가이드 (`doc/guides/`)
 개발 환경 설정 및 배포 관련 가이드입니다.
-- **[README.setup.md](./doc/guides/README.setup.md)** - 개발 환경 설정 가이드
-- **[README.docker.md](./doc/guides/README.docker.md)** - Docker 환경 구성 가이드
-- **[SETUP_WINDOWS_POSTGRESQL.md](./doc/guides/SETUP_WINDOWS_POSTGRESQL.md)** - Windows PostgreSQL 설치 가이드
+- **[DRAFT_README.setup.md](./doc/guides/DRAFT_README.setup.md)** - ⚠️ 개발 환경 설정 가이드 (구현 완료 후 작성 예정, 현재 참고하지 말 것)
 
 #### 📊 대시보드 (`doc/dashboards/`)
 프로젝트 진행 현황을 시각적으로 확인할 수 있습니다.
@@ -158,7 +156,7 @@ npm run clean
 1. `CLAUDE.md` 먼저 읽기 (프로젝트 전체 개요)
 2. `doc/specs/정치방망이(POLIBAT) 지침서.md` (미션 이해)
 3. `doc/architecture/ARCHITECTURE.md` (기술 스택 이해)
-4. `doc/guides/README.setup.md` (개발 환경 설정)
+4. CLAUDE.md의 Development Environment 섹션 참고 (개발 환경 설정)
 
 **기능 개발 시**:
 1. `doc/roadmap/DEV_ROADMAP_PHASE*.md` (현재 Phase 확인)
