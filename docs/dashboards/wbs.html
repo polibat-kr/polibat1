@@ -281,6 +281,77 @@
             margin-right: 5px;
         }
 
+        .task {
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .task-header {
+            background: #f8f9fa;
+            padding: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .task-header:hover {
+            background: #e9ecef;
+        }
+
+        .task-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task-meta {
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .task-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .task-content.expanded {
+            max-height: 1000px;
+            padding: 15px;
+        }
+
+        .subtasks {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .subtask {
+            display: flex;
+            align-items: start;
+            gap: 8px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .subtask-completed {
+            background: #e8f5e9;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
         .footer {
             background: #f8f9fa;
             padding: 20px;
@@ -380,11 +451,14 @@
                 <div class="phase-body" id="phase0-body">
                     <!-- Week 0 -->
                     <div class="week">
-                        <div class="week-header">
-                            <h3>Week 0: 프로젝트 초기화</h3>
-                            <span class="status-badge status-completed">완료</span>
+                        <div class="week-header" onclick="toggleWeek('phase0-week0')">
+                            <div class="week-title">
+                                <span class="week-status status-completed"></span>
+                                <strong>Week 0: 프로젝트 초기화</strong>
+                            </div>
+                            <span class="toggle-icon" id="phase0-week0-icon">▼</span>
                         </div>
-                        <div class="week-content">
+                        <div class="week-body" id="phase0-week0-body">
                             <div class="task">
                                 <div class="task-header" onclick="toggleTask('task-0-1')">
                                     <div>
@@ -393,6 +467,7 @@
                                     </div>
                                     <div class="task-status">
                                         <span class="status-badge status-completed">완료</span>
+                                        <span class="toggle-icon" id="task-0-1-icon">▼</span>
                                     </div>
                                 </div>
                                 <div class="task-content" id="task-0-1">
@@ -421,6 +496,7 @@
                                     </div>
                                     <div class="task-status">
                                         <span class="status-badge status-completed">완료</span>
+                                        <span class="toggle-icon" id="task-0-2-icon">▼</span>
                                     </div>
                                 </div>
                                 <div class="task-content" id="task-0-2">
@@ -449,6 +525,7 @@
                                     </div>
                                     <div class="task-status">
                                         <span class="status-badge status-completed">완료</span>
+                                        <span class="toggle-icon" id="task-0-3-icon">▼</span>
                                     </div>
                                 </div>
                                 <div class="task-content" id="task-0-3">
@@ -485,6 +562,7 @@
                                     </div>
                                     <div class="task-status">
                                         <span class="status-badge status-completed">완료</span>
+                                        <span class="toggle-icon" id="task-0-4-icon">▼</span>
                                     </div>
                                 </div>
                                 <div class="task-content" id="task-0-4">
@@ -1413,9 +1491,23 @@
             }
         }
 
-        // 페이지 로드 시 Phase 1을 자동으로 펼침
+        // Task 토글 함수
+        function toggleTask(taskId) {
+            const content = document.getElementById(taskId);
+            const icon = document.getElementById(taskId + '-icon');
+
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                if (icon) icon.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                if (icon) icon.classList.add('expanded');
+            }
+        }
+
+        // 페이지 로드 시 Phase 2를 자동으로 펼침
         window.addEventListener('DOMContentLoaded', function() {
-            togglePhase('phase1');
+            togglePhase('phase2');
         });
     </script>
 </body>
