@@ -113,11 +113,62 @@ npm run clean
 
 ## 📚 문서
 
-- [아키텍처 명세서](./ARCHITECTURE.md) - 시스템 아키텍처, 기술 스택 및 모노레포 가이드
-- [CLAUDE.md](./CLAUDE.md) - AI 개발 가이드라인
-- [정치방망이 지침서](./정치방망이(POLIBAT)%20지침서.md) - 프로젝트 미션 및 비전
-- [정치방망이 개발참고서](./정치방망이(POLIBAT)%20개발참고서.md) - ID 체계 및 상태값 정의
-- [정치방망이 통합 화면명세서](./정치방망이(POLIBAT)%20통합%20화면명세서.md) - 화면별 상세 스펙
+### 핵심 문서 (루트)
+- **[CLAUDE.md](./CLAUDE.md)** - AI 개발 가이드라인 및 프로젝트 전체 개요
+- **[README.md](./README.md)** - 프로젝트 소개 및 Quick Start
+
+### 문서 구조 (`doc/` 폴더)
+
+프로젝트 문서는 카테고리별로 체계적으로 구성되어 있습니다:
+
+#### 📐 아키텍처 (`doc/architecture/`)
+설계 철학과 기술 선택, 현재 구현 상태를 다룹니다.
+- **[ARCHITECTURE.md](./doc/architecture/ARCHITECTURE.md)** - 전체 시스템 아키텍처, 기술 스택, 모노레포 구조 및 사용법
+- **[INFRASTRUCTURE.md](./doc/architecture/INFRASTRUCTURE.md)** - 인프라 환경 현황 (AWS EC2, PostgreSQL, Redis)
+- **[IMPLEMENTATION_STATUS.md](./doc/architecture/IMPLEMENTATION_STATUS.md)** - 구현 완료 현황 (73개 API, 화면 진행률)
+
+#### 🗺️ 로드맵 (`doc/roadmap/`)
+개발 계획과 Phase별 상세 작업 내역을 확인할 수 있습니다.
+- **[DEV_ROADMAP.md](./doc/roadmap/DEV_ROADMAP.md)** - 마스터 로드맵 (Phase 1-4 전체 개요)
+- **[DEV_ROADMAP_PHASE1.md](./doc/roadmap/DEV_ROADMAP_PHASE1.md)** - Phase 1: Backend 기반 구축 (Week 1-8)
+- **[DEV_ROADMAP_PHASE2.md](./doc/roadmap/DEV_ROADMAP_PHASE2.md)** - Phase 2: 핵심 기능 구현 (Week 9-20)
+- **[DEV_ROADMAP_PHASE3.md](./doc/roadmap/DEV_ROADMAP_PHASE3.md)** - Phase 3: 고도화 기능 (Week 21-32)
+- **[DEV_ROADMAP_PHASE4.md](./doc/roadmap/DEV_ROADMAP_PHASE4.md)** - Phase 4: 확장 및 장기 계획
+
+#### 📋 프로젝트 명세 (`doc/specs/`)
+프로젝트의 미션, 비전, 개발 규칙을 정의합니다.
+- **[정치방망이(POLIBAT) 지침서.md](./doc/specs/정치방망이(POLIBAT)%20지침서.md)** - 프로젝트 미션 및 비전
+- **[정치방망이(POLIBAT) 개발참고서.md](./doc/specs/정치방망이(POLIBAT)%20개발참고서.md)** - ID 체계, 상태값, 개발 규칙
+- **[정치방망이(POLIBAT) 통합 화면명세서.md](./doc/specs/정치방망이(POLIBAT)%20통합%20화면명세서.md)** - 화면별 상세 스펙
+
+#### 📚 개발 가이드 (`doc/guides/`)
+개발 환경 설정 및 배포 관련 가이드입니다.
+- **[README.setup.md](./doc/guides/README.setup.md)** - 개발 환경 설정 가이드
+- **[README.docker.md](./doc/guides/README.docker.md)** - Docker 환경 구성 가이드
+- **[SETUP_WINDOWS_POSTGRESQL.md](./doc/guides/SETUP_WINDOWS_POSTGRESQL.md)** - Windows PostgreSQL 설치 가이드
+
+#### 📊 대시보드 (`doc/dashboards/`)
+프로젝트 진행 현황을 시각적으로 확인할 수 있습니다.
+- **[project-status.html](./doc/dashboards/project-status.html)** - 프로젝트 현황 대시보드
+- **[wbs.html](./doc/dashboards/wbs.html)** - WBS 진행률 대시보드
+
+### 문서 활용 팁
+
+**신규 팀원**:
+1. `CLAUDE.md` 먼저 읽기 (프로젝트 전체 개요)
+2. `doc/specs/정치방망이(POLIBAT) 지침서.md` (미션 이해)
+3. `doc/architecture/ARCHITECTURE.md` (기술 스택 이해)
+4. `doc/guides/README.setup.md` (개발 환경 설정)
+
+**기능 개발 시**:
+1. `doc/roadmap/DEV_ROADMAP_PHASE*.md` (현재 Phase 확인)
+2. `doc/architecture/IMPLEMENTATION_STATUS.md` (구현 현황 확인)
+3. `doc/specs/정치방망이(POLIBAT) 통합 화면명세서.md` (UI/UX 스펙 확인)
+
+**AI 코딩 도구 활용 시**:
+1. `CLAUDE.md` 로드 (AI 개발 가이드라인)
+2. `doc/architecture/ARCHITECTURE.md` (기술 스택 및 패턴)
+3. 필요한 Phase별 로드맵만 선택적 로드 (토큰 절약)
 
 ## 🎯 주요 기능
 
