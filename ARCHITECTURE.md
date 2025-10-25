@@ -490,6 +490,117 @@ export interface Member {
 - AI가 각 파일의 목적을 즉시 파악
 - 새 기능 추가 시 패턴 복제 가능
 
+### 5.2 모노레포 사용법
+
+#### 5.2.1 개발 시작하기
+
+**1. 의존성 설치**:
+```bash
+npm install
+```
+
+**2. 개발 서버 시작**:
+```bash
+# 모든 앱 동시 실행
+npm run dev
+
+# 개별 앱 실행
+cd apps/admin && npm run dev  # Port 3000
+cd apps/web && npm run dev    # Port 8000
+cd apps/api && npm run dev    # Port 4000
+```
+
+**3. 빌드**:
+```bash
+# 모든 앱 빌드
+npm run build
+
+# 개별 앱 빌드
+cd apps/admin && npm run build
+```
+
+#### 5.2.2 주요 명령어
+
+```bash
+npm run dev          # 모든 앱 개발 서버 시작
+npm run build        # 모든 앱 빌드
+npm run test         # 모든 앱 테스트 실행
+npm run lint         # 린트 검사
+npm run type-check   # TypeScript 타입 검사
+npm run clean        # 빌드 결과물 정리
+```
+
+#### 5.2.3 공유 패키지 사용법
+
+**@polibat/types**:
+```typescript
+import { Member, MemberType, MemberStatus } from '@polibat/types';
+
+const member: Member = {
+  id: 'uuid',
+  memberId: 'NM000001',
+  memberType: MemberType.NORMAL,
+  status: MemberStatus.APPROVED,
+  // ...
+};
+```
+
+**@polibat/constants**:
+```typescript
+import { ID_PREFIXES, MEMBER_STATUS } from '@polibat/constants';
+
+const prefix = ID_PREFIXES.NORMAL_MEMBER; // 'NM'
+const status = MEMBER_STATUS.APPROVED; // '승인'
+```
+
+**@polibat/utils**:
+```typescript
+import { IdGenerator, DateUtils } from '@polibat/utils';
+
+// ID 생성
+const newId = IdGenerator.generate('NM', 123); // 'NM000124'
+
+// 날짜 포맷
+const formatted = DateUtils.formatBoardDate(new Date());
+```
+
+#### 5.2.4 문제 해결
+
+**의존성 문제**:
+```bash
+# 모든 node_modules 삭제 및 재설치
+npm run clean
+rm -rf node_modules
+npm install
+```
+
+**빌드 캐시 문제**:
+```bash
+# Turbo 캐시 삭제
+rm -rf .turbo
+npm run clean
+npm run build
+```
+
+**새 패키지 추가**:
+```bash
+# 1. packages 디렉토리에 새 패키지 생성
+mkdir -p packages/새패키지/src
+
+# 2. package.json 생성
+# {
+#   "name": "@polibat/새패키지",
+#   "version": "1.0.0",
+#   "main": "./dist/index.js",
+#   "types": "./dist/index.d.ts"
+# }
+
+# 3. Apps에서 사용
+# "dependencies": {
+#   "@polibat/새패키지": "workspace:*"
+# }
+```
+
 ---
 
 ## 6. 데이터베이스 설계
@@ -1703,331 +1814,13 @@ export class AiCostOptimizer {
 └───────────────────────────────────────────────┘
 ```
 
-### 10.2 Docker 구성
+> 📋 **현재 인프라 환경**: [INFRASTRUCTURE.md](./INFRASTRUCTURE.md) 참조
 
-#### Backend Dockerfile
-```dockerfile
-# apps/api/Dockerfile
-FROM node:20-alpine AS builder
-
-WORKDIR /app
-
-# 패키지 설치
-COPY package.json package-lock.json ./
-COPY prisma ./prisma/
-RUN npm ci
-
-# 소스 복사 및 빌드
-COPY . .
-RUN npm run build
-RUN npx prisma generate
-
-# Production 이미지
-FROM node:20-alpine
-
-WORKDIR /app
-
-# 프로덕션 의존성만 설치
-COPY package.json package-lock.json ./
-RUN npm ci --production
-
-# 빌드 결과물 복사
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-
-# 헬스체크
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:4000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
-
-EXPOSE 4000
-
-CMD ["node", "dist/main.js"]
-```
-
-#### docker-compose.yml (로컬 개발)
-```yaml
-version: '3.8'
-
-services:
-  # PostgreSQL은 Windows 로컬 설치로 대체 (주석 처리)
-  # postgres:
-  #   image: postgres:18-alpine
-  #   environment:
-  #     POSTGRES_DB: polibat_dev
-  #     POSTGRES_USER: polibat
-  #     POSTGRES_PASSWORD: polibat_dev_password
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:7-alpine
-    container_name: polibat-redis
-    command: redis-server --requirepass polibat_redis_password
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-  # API 서버 (로컬 개발 시에는 npm run dev로 실행 권장)
-  # api:
-  #   build:
-  #     context: ./apps/api
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     # Windows 로컬 PostgreSQL 사용
-  #     DATABASE_URL: postgresql://polibat:polibat_dev_password@host.docker.internal:5432/polibat_dev
-  #     REDIS_URL: redis://:polibat_redis_password@redis:6379
-  #     JWT_SECRET: dev-secret-key-change-this-in-production-12345
-  #   ports:
-  #     - "4000:4000"
-  #   depends_on:
-  #     - redis
-  #   volumes:
-  #     - ./apps/api:/app
-  #     - /app/node_modules
-
-volumes:
-  # postgres_data:  # PostgreSQL은 Windows 로컬 설치로 대체
-  redis_data:
-```
-
-#### 개발 환경 설정 (Windows)
-```powershell
-# PostgreSQL 연결 확인 (원격 서버)
-psql -h 43.201.115.132 -U polibat -d polibat -c "\dt"
-
-# Redis 시작 (Docker)
-docker compose up -d redis
-
-# Redis 연결 확인
-docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
-
-# API 서버 실행 (로컬 Node.js)
-cd apps/api
-npm run dev
-```
-
-### 10.3 CI/CD 파이프라인
-
-#### GitHub Actions 워크플로우
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to AWS
-
-on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
-
-env:
-  AWS_REGION: ap-northeast-2
-  ECR_REPOSITORY: polibat-api
-  ECS_SERVICE: polibat-api-service
-  ECS_CLUSTER: polibat-cluster
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run linter
-        run: npm run lint
-
-      - name: Run tests
-        run: npm test
-
-      - name: Check TypeScript
-        run: npm run type-check
-
-  build-and-push:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Build, tag, and push image to Amazon ECR
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-
-      - name: Deploy to Amazon ECS
-        run: |
-          aws ecs update-service \
-            --cluster $ECS_CLUSTER \
-            --service $ECS_SERVICE \
-            --force-new-deployment
-
-  deploy-frontend:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Build Admin Dashboard
-        run: |
-          cd apps/admin
-          npm ci
-          npm run build
-
-      - name: Deploy to S3
-        run: |
-          aws s3 sync apps/admin/dist s3://polibat-admin-bucket --delete
-
-      - name: Invalidate CloudFront
-        run: |
-          aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "/*"
-```
-
-### 10.4 모니터링 및 알림
-
-#### CloudWatch Alarms
-```typescript
-// infrastructure/monitoring/alarms.ts
-export const alarms = [
-  {
-    name: 'HighCPUUtilization',
-    metric: 'CPUUtilization',
-    threshold: 80,
-    evaluationPeriods: 2,
-    action: 'sns:alarm-topic',
-  },
-  {
-    name: 'HighMemoryUtilization',
-    metric: 'MemoryUtilization',
-    threshold: 90,
-    evaluationPeriods: 2,
-    action: 'sns:alarm-topic',
-  },
-  {
-    name: 'HighErrorRate',
-    metric: 'HTTPCode_Target_5XX_Count',
-    threshold: 10,
-    evaluationPeriods: 1,
-    action: 'sns:alarm-topic',
-  },
-  {
-    name: 'HighLatency',
-    metric: 'TargetResponseTime',
-    threshold: 1, // 1초
-    evaluationPeriods: 3,
-    action: 'sns:alarm-topic',
-  },
-];
-```
-
-#### 팀즈 웹훅 통합
-```typescript
-// api/src/shared/utils/teams-webhook.ts
-import axios from 'axios';
-
-export class TeamsWebhook {
-  private webhookUrl: string;
-
-  constructor() {
-    this.webhookUrl = process.env.TEAMS_WEBHOOK_URL!;
-  }
-
-  /**
-   * 일일 통계 알림
-   */
-  async sendDailyStats(stats: DailyStats) {
-    await axios.post(this.webhookUrl, {
-      '@type': 'MessageCard',
-      'summary': '정치방망이 일일 통계',
-      'sections': [
-        {
-          'activityTitle': '📊 정치방망이 일일 통계',
-          'activitySubtitle': new Date().toISOString().split('T')[0],
-          'facts': [
-            { 'name': '신규 회원', 'value': stats.newMembers },
-            { 'name': '신규 게시글', 'value': stats.newPosts },
-            { 'name': '신규 댓글', 'value': stats.newComments },
-            { 'name': '투표 참여', 'value': stats.voteParticipations },
-            { 'name': '방문자 수', 'value': stats.visitors },
-          ],
-        },
-      ],
-    });
-  }
-
-  /**
-   * 불편/제안 접수 알림
-   */
-  async sendSuggestionAlert(suggestion: Suggestion) {
-    await axios.post(this.webhookUrl, {
-      '@type': 'MessageCard',
-      'summary': '새로운 불편/제안 접수',
-      'sections': [
-        {
-          'activityTitle': `🔔 새로운 ${suggestion.type} 접수`,
-          'activitySubtitle': suggestion.title,
-          'text': suggestion.content,
-          'facts': [
-            { 'name': '작성자', 'value': suggestion.member.nickname },
-            { 'name': '접수 시간', 'value': suggestion.createdAt.toISOString() },
-          ],
-        },
-      ],
-      'potentialAction': [
-        {
-          '@type': 'OpenUri',
-          'name': '상세 보기',
-          'targets': [
-            {
-              'os': 'default',
-              'uri': `https://admin.polibat.com/suggestions/${suggestion.id}`,
-            },
-          ],
-        },
-      ],
-    });
-  }
-}
-```
+**설계 원칙**:
+- **고가용성**: Multi-AZ 구성 (RDS, ElastiCache)
+- **확장성**: Auto Scaling (ECS Fargate), CloudFront CDN
+- **보안**: VPC 격리, AWS Shield, KMS 암호화, Secrets Manager
+- **비용 최적화**: S3 정적 호스팅, CloudFront 캐싱, 적절한 인스턴스 크기 선택
 
 ---
 

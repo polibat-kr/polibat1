@@ -28,10 +28,9 @@
 - `정치방망이(POLIBAT) 통합 화면명세서.md` - UI/UX specifications
 
 ### 아키텍처 및 현황
-- `TO-BE-ARCHITECTURE.md` - Target architecture and tech stack
+- `ARCHITECTURE.md` - 아키텍처 설계 및 기술 스택 (모노레포 사용법 포함)
 - `INFRASTRUCTURE.md` - 인프라 환경 현황 (EC2, DB, Redis 등)
 - `IMPLEMENTATION_STATUS.md` - 구현 현황 (화면 + API)
-- `MONOREPO_GUIDE.md` - Monorepo structure and commands
 
 ### 로드맵
 - `DEV_ROADMAP.md` - 마스터 로드맵 (전체 개요, ~5,000토큰)
@@ -270,6 +269,5 @@ const result = callback?.(data);
 ## Reference
 
 - **Detailed Implementation**: `DEV_ROADMAP.md` (Appendix A: Codebase Implementation Status)
-- **Architecture**: `TO-BE-ARCHITECTURE.md`
-- **Monorepo Guide**: `MONOREPO_GUIDE.md`
+- **Architecture**: `ARCHITECTURE.md`
 - **Project Mission**: `정치방망이(POLIBAT) 지침서.md`

@@ -113,7 +113,7 @@ npm run clean
 
 ## 📚 문서
 
-- [TO-BE 아키텍처 명세서](./TO-BE-ARCHITECTURE.md) - 전체 시스템 아키텍처 및 기술 스펙
+- [아키텍처 명세서](./ARCHITECTURE.md) - 시스템 아키텍처, 기술 스택 및 모노레포 가이드
 - [CLAUDE.md](./CLAUDE.md) - AI 개발 가이드라인
 - [정치방망이 지침서](./정치방망이(POLIBAT)%20지침서.md) - 프로젝트 미션 및 비전
 - [정치방망이 개발참고서](./정치방망이(POLIBAT)%20개발참고서.md) - ID 체계 및 상태값 정의
