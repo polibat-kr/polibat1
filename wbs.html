@@ -316,29 +316,29 @@
         <div class="header">
             <h1>🎯 정치방망이(PoliBAT) 개발 WBS</h1>
             <p>Work Breakdown Structure - 개발 현황 대시보드</p>
-            <p style="font-size: 12px; margin-top: 10px;">최종 업데이트: 2025-10-25 | 버전: 2.5 (Phase 2 Week 4 완료)</p>
+            <p style="font-size: 12px; margin-top: 10px;">최종 업데이트: 2025-10-25 | 버전: 2.6 (Phase 2 Week 5-6 완료)</p>
         </div>
 
         <div class="stats">
             <div class="stat-card">
                 <h3>전체 진행률</h3>
-                <div class="number">40%</div>
+                <div class="number">45%</div>
                 <div class="percentage">🚀 Phase 2 진행 중!</div>
             </div>
             <div class="stat-card">
                 <h3>완료된 주차</h3>
-                <div class="number">12/40</div>
-                <div class="percentage">Week 1-12 완료</div>
+                <div class="number">14/40</div>
+                <div class="percentage">Week 1-14 완료</div>
             </div>
             <div class="stat-card">
                 <h3>구현된 API</h3>
-                <div class="number">73/100+</div>
-                <div class="percentage">16개 모듈 완료</div>
+                <div class="number">90/100+</div>
+                <div class="percentage">19개 모듈 완료</div>
             </div>
             <div class="stat-card">
                 <h3>현재 Phase</h3>
                 <div class="number">2/5</div>
-                <div class="percentage">Phase 2 Week 4/8 완료</div>
+                <div class="percentage">Phase 2 Week 6/8 완료</div>
             </div>
         </div>
 
@@ -1036,12 +1036,65 @@
                         </div>
                     </div>
 
+                    <!-- Week 5-6 -->
+                    <div class="week">
+                        <div class="week-header" onclick="toggleWeek('phase2-week5-6')">
+                            <div class="week-title">
+                                <span class="week-status status-completed"></span>
+                                <strong>Week 5-6 (Week 13-14): Banner, Suggestion, Policy API - ✅ 완료 (2025-10-25)</strong>
+                            </div>
+                            <span class="toggle-icon" id="phase2-week5-6-icon">▼</span>
+                        </div>
+                        <div class="week-body" id="phase2-week5-6-body">
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Banner API 6개 엔드포인트 (목록, 상세, 생성, 수정, 삭제, 순서변경)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Suggestion API 5개 엔드포인트 (목록, 상세, 생성, 수정, 답변처리)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">Admin Policy API 6개 엔드포인트 (템플릿 3개 + 콘텐츠 3개)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">BannerType enum 지원 (MAIN_TOP, MAIN_SIDE, etc.)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">SuggestionType enum 지원 (COMPLAINT, SUGGESTION)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">PolicyTarget enum 지원 (ALL, ALL_MEMBERS, NORMAL, POLITICIAN)</span>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" class="task-checkbox" checked disabled>
+                                    <span class="task-text task-completed">자동 ID 생성 (BN/RC/RS/TP 형식)</span>
+                                </li>
+                            </ul>
+                            <div class="deliverables">
+                                <h4>산출물 (완료)</h4>
+                                <ul>
+                                    <li>apps/api/src/features/admin/admin-banner.* (6개 API 완료)</li>
+                                    <li>apps/api/src/features/admin/admin-suggestion.* (5개 API 완료)</li>
+                                    <li>apps/api/src/features/admin/admin-policy.* (6개 API 완료)</li>
+                                    <li>Git 커밋: 3fbf45b (Banner), 74e3263 (Suggestion), 305fd3d (Policy)</li>
+                                    <li><strong>🎉 Phase 2 Week 5-6 완료! (2025-10-25)</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Remaining Weeks -->
                     <div class="week">
                         <div class="week-header" onclick="toggleWeek('phase2-remaining')">
                             <div class="week-title">
                                 <span class="week-status status-pending"></span>
-                                <strong>Week 5-8 (예정): 남은 작업</strong>
+                                <strong>Week 7-8 (예정): File Upload & Email Service</strong>
                             </div>
                             <span class="toggle-icon" id="phase2-remaining-icon">▼</span>
                         </div>
@@ -1049,23 +1102,11 @@
                             <ul class="task-list">
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">Admin Banner API (6개)</span>
-                                </li>
-                                <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">Admin Suggestion API (5개)</span>
-                                </li>
-                                <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">Admin Policy API (6개)</span>
-                                </li>
-                                <li class="task-item">
-                                    <input type="checkbox" class="task-checkbox" disabled>
                                     <span class="task-text">File Upload API (S3 + CloudFront 연동, 3개)</span>
                                 </li>
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
-                                    <span class="task-text">이메일 발송 (SES, 템플릿 6종)</span>
+                                    <span class="task-text">이메일 발송 서비스 (SES, 템플릿 6종)</span>
                                 </li>
                                 <li class="task-item">
                                     <input type="checkbox" class="task-checkbox" disabled>
@@ -1075,9 +1116,8 @@
                             <div class="deliverables">
                                 <h4>예정 산출물</h4>
                                 <ul>
-                                    <li>Admin Dashboard 완전 연동</li>
-                                    <li>파일 업로드 시스템</li>
-                                    <li>이메일 발송 서비스</li>
+                                    <li>파일 업로드 시스템 (이미지, 파일, 비디오)</li>
+                                    <li>이메일 발송 서비스 (환영, 인증, 알림 등)</li>
                                     <li>AI 서비스 2개 기능</li>
                                 </ul>
                                 <p style="margin-top: 10px;"><strong>상세 문서</strong>: <a href="DEV_ROADMAP_PHASE2.md" style="color: #667eea;">DEV_ROADMAP_PHASE2.md</a></p>
@@ -1329,9 +1369,9 @@
 
         <div class="footer">
             <p><strong>정치방망이(PoliBAT)</strong> - 국민 참여형 정치 플랫폼</p>
-            <p>작성: Claude Code (SuperClaude Framework) | 버전: 2.5 | 작성일: 2025-10-19 | 업데이트: 2025-10-25</p>
+            <p>작성: Claude Code (SuperClaude Framework) | 버전: 2.6 | 작성일: 2025-10-19 | 업데이트: 2025-10-25</p>
             <p style="margin-top: 5px; font-size: 11px; color: #888;">
-                Phase 1 완료 (2025-10-24) | Phase 2 Week 4/8 완료 (2025-10-25) | 전체 진행률 40%
+                Phase 1 완료 (2025-10-24) | Phase 2 Week 6/8 완료 (2025-10-25) | 전체 진행률 45%
             </p>
             <p style="margin-top: 10px;">
                 <a href="DEV_ROADMAP.md" style="color: #667eea; text-decoration: none;">📋 마스터 로드맵</a> |
