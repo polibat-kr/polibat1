@@ -19,7 +19,7 @@ export class AdminSearchController {
    * 통합 검색
    * GET /api/admin/search
    */
-  search = async (req: Request, res: Response): Promise<void> => {
+  search = async (req: Request, res: Response): Promise<any> => {
     try {
       const query = req.query.query as string;
 

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { MemberService } from './member.service';
-import { successResponse, createdResponse } from '../../shared/utils/api-response';
+import { successResponse } from '../../shared/utils/api-response';
 import {
   GetMembersQueryDto,
   UpdateMemberRequestDto,

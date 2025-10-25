@@ -1,4 +1,3 @@
-import { MemberStatus } from '@prisma/client';
 import { MemberRepository } from './member.repository';
 import { ApiError } from '../../shared/middleware/error-handler';
 import { ERROR_CODES } from '../../shared/utils/error-codes';
@@ -91,7 +90,7 @@ export class MemberService {
   static async updateMember(
     userId: string,
     data: UpdateMemberRequestDto,
-    requestorId: string
+    _requestorId: string
   ): Promise<MemberDto> {
     // Check if member exists
     const member = await MemberRepository.findByUserId(userId);

@@ -1,4 +1,4 @@
-import { Post } from '@prisma/client';
+// import { Post } from '@prisma/client';
 import { PostRepository } from './post.repository';
 import {
   GetPostsQueryDto,

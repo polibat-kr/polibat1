@@ -12,9 +12,9 @@ export class ReportController {
    * POST /api/reports
    * 신고 생성
    */
-  static async createReport(req: Request, res: Response, next: NextFunction) {
+  static async createReport(req: Request, res: Response, _next: NextFunction) {
     try {
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
       if (!userId) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
@@ -50,7 +50,7 @@ export class ReportController {
    * GET /api/reports/:reportId
    * 신고 상세 조회
    */
-  static async getReport(req: Request, res: Response, next: NextFunction) {
+  static async getReport(req: Request, res: Response, _next: NextFunction) {
     try {
       const { reportId } = req.params;
 
@@ -72,7 +72,7 @@ export class ReportController {
    * GET /api/reports
    * 신고 목록 조회 (관리자)
    */
-  static async getReports(req: Request, res: Response, next: NextFunction) {
+  static async getReports(req: Request, res: Response, _next: NextFunction) {
     try {
       const query: GetReportsQueryDto = {
         status: req.query.status as any,
@@ -98,9 +98,9 @@ export class ReportController {
    * GET /api/reports/my
    * 내가 신고한 목록 조회
    */
-  static async getMyReports(req: Request, res: Response, next: NextFunction) {
+  static async getMyReports(req: Request, res: Response, _next: NextFunction) {
     try {
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
       if (!userId) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
@@ -124,9 +124,9 @@ export class ReportController {
    * PATCH /api/reports/:reportId/process
    * 신고 처리 (관리자)
    */
-  static async processReport(req: Request, res: Response, next: NextFunction) {
+  static async processReport(req: Request, res: Response, _next: NextFunction) {
     try {
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
       if (!userId) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
@@ -160,9 +160,9 @@ export class ReportController {
    * DELETE /api/reports/:reportId
    * 신고 삭제 (본인만)
    */
-  static async deleteReport(req: Request, res: Response, next: NextFunction) {
+  static async deleteReport(req: Request, res: Response, _next: NextFunction) {
     try {
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
       if (!userId) {
         return res.status(401).json({ message: 'Unauthorized' });
       }

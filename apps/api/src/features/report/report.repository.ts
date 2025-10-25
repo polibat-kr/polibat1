@@ -3,7 +3,7 @@
  * 신고 데이터베이스 접근 레이어
  */
 
-import { PrismaClient, Report, ReportStatus, ReportTargetType, ActionType } from '@prisma/client';
+import { PrismaClient, Report, ReportTargetType } from '@prisma/client';
 import { GetReportsQueryDto, ProcessReportDto } from './report.dto';
 
 const prisma = new PrismaClient();

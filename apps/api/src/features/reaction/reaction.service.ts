@@ -3,7 +3,7 @@
  * 반응(좋아요/싫어요) 비즈니스 로직 처리
  */
 
-import { PrismaClient, ReactionType, ReactionTargetType } from '@prisma/client';
+import { PrismaClient, ReactionTargetType } from '@prisma/client';
 import { ReactionRepository } from './reaction.repository';
 import {
   CreateReactionDto,

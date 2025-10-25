@@ -2,7 +2,7 @@ import { PrismaClient, Vote, VoteOption, VoteParticipation, Prisma } from '@pris
 import {
   CreateVoteRequestDto,
   UpdateVoteRequestDto,
-  ParticipateVoteRequestDto,
+
 } from './vote.dto';
 
 const prisma = new PrismaClient();

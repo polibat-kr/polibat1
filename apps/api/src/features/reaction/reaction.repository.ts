@@ -4,7 +4,7 @@
  */
 
 import { PrismaClient, Reaction, ReactionType, ReactionTargetType } from '@prisma/client';
-import { CreateReactionDto, GetReactionsQueryDto } from './reaction.dto';
+import { GetReactionsQueryDto } from './reaction.dto';
 
 const prisma = new PrismaClient();
 

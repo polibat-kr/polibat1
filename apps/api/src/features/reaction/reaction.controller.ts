@@ -13,9 +13,9 @@ export class ReactionController {
    * POST /api/reactions
    * 반응 추가 또는 변경 (토글)
    */
-  static async addOrUpdateReaction(req: Request, res: Response, next: NextFunction) {
+  static async addOrUpdateReaction(req: Request, res: Response, _next: NextFunction) {
     try {
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
       if (!userId) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
@@ -52,9 +52,9 @@ export class ReactionController {
    * DELETE /api/reactions/:reactionId
    * 반응 삭제
    */
-  static async deleteReaction(req: Request, res: Response, next: NextFunction) {
+  static async deleteReaction(req: Request, res: Response, _next: NextFunction) {
     try {
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
       if (!userId) {
         return res.status(401).json({ message: 'Unauthorized' });
       }
@@ -83,7 +83,7 @@ export class ReactionController {
    * GET /api/posts/:postId/reactions
    * 게시글의 반응 목록 조회
    */
-  static async getPostReactions(req: Request, res: Response, next: NextFunction) {
+  static async getPostReactions(req: Request, res: Response, _next: NextFunction) {
     try {
       const { postId } = req.params;
       const query: GetReactionsQueryDto = {
@@ -92,7 +92,7 @@ export class ReactionController {
         limit: req.query.limit ? parseInt(req.query.limit as string) : undefined,
       };
 
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
 
       const result = await ReactionService.getReactionsByTarget('POST', postId, query, userId);
 
@@ -112,7 +112,7 @@ export class ReactionController {
    * GET /api/comments/:commentId/reactions
    * 댓글의 반응 목록 조회
    */
-  static async getCommentReactions(req: Request, res: Response, next: NextFunction) {
+  static async getCommentReactions(req: Request, res: Response, _next: NextFunction) {
     try {
       const { commentId } = req.params;
       const query: GetReactionsQueryDto = {
@@ -121,7 +121,7 @@ export class ReactionController {
         limit: req.query.limit ? parseInt(req.query.limit as string) : undefined,
       };
 
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
 
       const result = await ReactionService.getReactionsByTarget(
         'COMMENT',
@@ -146,10 +146,10 @@ export class ReactionController {
    * GET /api/reactions/stats/:targetType/:targetId
    * 반응 통계 조회
    */
-  static async getReactionStats(req: Request, res: Response, next: NextFunction) {
+  static async getReactionStats(req: Request, res: Response, _next: NextFunction) {
     try {
       const { targetType, targetId } = req.params;
-      const userId = req.user?.id;
+      const userId = req.user?.userId;
 
       const stats = await ReactionService.getReactionStats(
         targetType as ReactionTargetType,

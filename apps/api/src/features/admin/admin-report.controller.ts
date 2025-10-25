@@ -54,7 +54,7 @@ export class AdminReportController {
    * 신고 처리
    * PATCH /api/admin/reports/:reportId/process
    */
-  processReport = async (req: Request, res: Response): Promise<void> => {
+  processReport = async (req: Request, res: Response): Promise<any> => {
     try {
       const { reportId } = req.params;
       const adminId = req.user?.userId; // JWT 미들웨어에서 주입

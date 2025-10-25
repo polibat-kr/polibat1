@@ -34,6 +34,9 @@ export class ReportService {
     if (!uuid) {
       throw new Error(`${targetType} not found: ${targetId}`);
     }
+    if (!authorId) {
+      throw new Error(`Author not found for ${targetType}: ${targetId}`);
+    }
 
     // 2. 자신의 게시글/댓글은 신고 불가
     if (authorId === userId) {
