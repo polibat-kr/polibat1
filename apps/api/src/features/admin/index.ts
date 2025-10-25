@@ -71,3 +71,10 @@ export { AdminSuggestionService } from './admin-suggestion.service';
 export { AdminSuggestionRepository } from './admin-suggestion.repository';
 export * from './admin-suggestion.dto';
 export { default as adminSuggestionRoutes } from './admin-suggestion.routes';
+
+// Admin Policy Management
+export { AdminPolicyController } from './admin-policy.controller';
+export { AdminPolicyService } from './admin-policy.service';
+export { AdminPolicyRepository } from './admin-policy.repository';
+export * from './admin-policy.dto';
+export { default as adminPolicyRoutes } from './admin-policy.routes';
