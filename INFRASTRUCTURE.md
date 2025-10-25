@@ -162,7 +162,7 @@ REDIS_URL=redis://:polibat_redis_password@43.201.115.132:6379
 
 ---
 
-### 1.1 하이브리드 환경 구성
+### 1.1 하이브리드 환경 구성 (현재 로컬 환경인데 EC2 개발환경 셋팅 완료되면 Redis도 EC2로 셋팅예정)
 
 **구성 전략**: PostgreSQL 원격 서버 + Redis 로컬 Docker
 
@@ -347,131 +347,24 @@ docker exec -it polibat-redis redis-cli -a polibat_redis_password PING
 
 ---
 
-## 4. API 현황
+## 4. API 서버 상태
 
-### 4.1 구현 완료 API (총 73개 엔드포인트)
+**구현 현황**: 73개 API 엔드포인트 구현 완료 (Phase 1: 42개, Phase 2: 31개)
 
-#### Phase 1 Backend API (42개)
+> 📋 **상세 API 목록**은 [IMPLEMENTATION_STATUS.md](./IMPLEMENTATION_STATUS.md) 참조
 
-##### 인증 (5개)
-- ✅ POST /api/auth/signup
-- ✅ POST /api/auth/login
-- ✅ GET /api/auth/me
-- ✅ POST /api/auth/logout
-- ✅ POST /api/auth/refresh
+**주요 API 카테고리**:
+- ✅ 인증 (Authentication)
+- ✅ 회원 관리 (Member Management)
+- ✅ 게시글/댓글 (Posts/Comments)
+- ✅ 투표 (Voting)
+- ✅ 반응/신고 (Reactions/Reports)
+- ✅ Admin 통계 (Admin Stats)
+- ✅ Admin 콘텐츠 관리 (Admin Content Management)
 
-##### 회원 관리 (4개)
-- ✅ GET /api/members
-- ✅ GET /api/members/:memberId
-- ✅ PATCH /api/members/:memberId
-- ✅ PATCH /api/members/:memberId/status
-
-##### 게시글 (5개)
-- ✅ GET /api/posts
-- ✅ GET /api/posts/:postId
-- ✅ POST /api/posts
-- ✅ PATCH /api/posts/:postId
-- ✅ DELETE /api/posts/:postId
-
-##### 댓글 (5개)
-- ✅ GET /api/posts/:postId/comments
-- ✅ GET /api/comments/:commentId
-- ✅ POST /api/posts/:postId/comments
-- ✅ PATCH /api/comments/:commentId
-- ✅ DELETE /api/comments/:commentId
-
-##### 반응 (5개)
-- ✅ POST /api/reactions
-- ✅ DELETE /api/reactions/:reactionId
-- ✅ GET /api/posts/:postId/reactions
-- ✅ GET /api/comments/:commentId/reactions
-- ✅ GET /api/reactions/stats/:targetType/:targetId
-
-##### 신고 (6개)
-- ✅ POST /api/reports
-- ✅ GET /api/reports/:reportId
-- ✅ GET /api/reports
-- ✅ GET /api/reports/my
-- ✅ PATCH /api/reports/:reportId/process
-- ✅ DELETE /api/reports/:reportId
-
-##### 투표 (11개)
-- ✅ POST /api/votes
-- ✅ GET /api/votes
-- ✅ GET /api/votes/:voteId
-- ✅ PATCH /api/votes/:voteId
-- ✅ DELETE /api/votes/:voteId
-- ✅ POST /api/votes/:voteId/participate
-- ✅ DELETE /api/votes/:voteId/participate/:participationId
-- ✅ GET /api/votes/:voteId/results
-- ✅ PATCH /api/votes/:voteId/close
-- ✅ POST /api/votes/:voteId/options
-- ✅ PATCH /api/votes/:voteId/options/:optionId
-
-##### 헬스체크 (1개)
-- ✅ GET /health
-
-#### Phase 2 Admin Backend API (31개)
-
-##### Admin Stats API (6개)
-- ✅ GET /api/admin/stats/members
-- ✅ GET /api/admin/stats/posts
-- ✅ GET /api/admin/stats/comments
-- ✅ GET /api/admin/stats/votes
-- ✅ GET /api/admin/stats/reports
-- ✅ GET /api/admin/stats/dashboard
-
-##### Admin Member API (5개)
-- ✅ GET /api/admin/members
-- ✅ GET /api/admin/members/:memberId
-- ✅ PATCH /api/admin/members/:memberId
-- ✅ PATCH /api/admin/members/:memberId/status
-- ✅ GET /api/admin/members/:memberId/history
-
-##### Admin Post API (4개)
-- ✅ GET /api/admin/posts
-- ✅ GET /api/admin/posts/:postId
-- ✅ PATCH /api/admin/posts/:postId
-- ✅ PATCH /api/admin/posts/:postId/status
-
-##### Admin Comment API (2개)
-- ✅ GET /api/admin/comments
-- ✅ PATCH /api/admin/comments/:commentId/status
-
-##### Admin Report API (2개)
-- ✅ GET /api/admin/reports
-- ✅ PATCH /api/admin/reports/:reportId/process
-
-##### Admin Search API (1개)
-- ✅ GET /api/admin/search
-
-##### Admin Notice API (6개)
-- ✅ GET /api/admin/notices
-- ✅ GET /api/admin/notices/:noticeId
-- ✅ POST /api/admin/notices
-- ✅ PATCH /api/admin/notices/:noticeId
-- ✅ DELETE /api/admin/notices/:noticeId
-- ✅ PATCH /api/admin/notices/:noticeId/pin
-
-##### Admin Popup API (5개)
-- ✅ GET /api/admin/popups
-- ✅ GET /api/admin/popups/:popupId
-- ✅ POST /api/admin/popups
-- ✅ PATCH /api/admin/popups/:popupId
-- ✅ DELETE /api/admin/popups/:popupId
-
-**총 Phase 1**: 42개 | **총 Phase 2**: 31개 | **전체 합계**: 73개
-
-### 4.2 구현 예정 API
-
-#### File Upload API (3개) - Phase 2 Week 7-8
-- 🔲 POST /api/upload/image - 이미지 업로드 + 썸네일
-- 🔲 POST /api/upload/file - 일반 파일 업로드
-- 🔲 DELETE /api/upload/:fileId - 파일 삭제
-
-#### Email Service API (2개) - Phase 2 Week 7-8
-- 🔲 POST /api/email/send - 이메일 발송
-- 🔲 POST /api/email/template - 템플릿 기반 발송
+**다음 구현 예정**:
+- 🔲 File Upload API (3개)
+- 🔲 Email Service API (2개)
 
 ---
 
@@ -587,26 +480,26 @@ npx prisma migrate deploy
 
 ---
 
-## 10. 다음 단계
+## 10. 인프라 로드맵
 
-### 10.1 즉시 수행
-- ✅ Phase 1 완료 (42개 Backend API)
-- ✅ Phase 2 Week 1-4 완료 (31개 Admin API)
-- 🔲 Phase 2 Week 5-6 진행 중 (Banner, Suggestion, Policy API)
-- 🔲 Phase 2 Week 7-8 예정 (File Upload, Email Service)
+### 10.1 개발 환경 완성 (1개월)
+- 🔲 EC2 서버에 Redis 설치 및 설정
+- 🔲 API 서버 EC2 배포
+- 🔲 Admin Dashboard EC2 배포
+- 🔲 SSL 인증서 설정 (Let's Encrypt)
 
-### 10.2 단기 (1개월)
-- Phase 1 완료 (Backend 기반 구축)
-- Admin Dashboard API 완전 연동
+### 10.2 운영 환경 준비 (3개월)
+- 🔲 AWS RDS PostgreSQL 구성
+- 🔲 AWS ElastiCache Redis 구성
+- 🔲 AWS S3 정적 파일 호스팅
+- 🔲 CloudFront CDN 설정
 
-### 10.3 중기 (3개월)
-- Phase 2 완료 (핵심 기능 구현)
-- Frontend Website API 연동
-
-### 10.4 장기 (6개월+)
-- AWS 운영 환경 구축
-- CI/CD 파이프라인 구축
-- 모니터링 및 알림 시스템 구축
+### 10.3 운영 환경 고도화 (6개월+)
+- 🔲 ECS Fargate 컨테이너 실행
+- 🔲 Auto Scaling 설정
+- 🔲 CI/CD 파이프라인 구축
+- 🔲 모니터링 및 알림 시스템 구축 (CloudWatch, Teams)
+- 🔲 백업 및 복구 전략 수립
 
 ---
 

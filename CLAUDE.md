@@ -27,15 +27,22 @@
 - `정치방망이(POLIBAT) 개발참고서.md` - Development guidelines
 - `정치방망이(POLIBAT) 통합 화면명세서.md` - UI/UX specifications
 
-### 아키텍처 및 로드맵
+### 아키텍처 및 현황
 - `TO-BE-ARCHITECTURE.md` - Target architecture and tech stack
-- `DEV_ROADMAP.md` - **마스터 로드맵** (전체 개요, ~5,000토큰)
-- `DEV_ROADMAP_PHASE1.md` - Phase 1 상세 (Week 1-8, Backend 기반 구축)
-- `DEV_ROADMAP_PHASE2.md` - Phase 2 상세 (Week 9-20, 핵심 기능 구현)
-- `DEV_ROADMAP_PHASE3.md` - Phase 3 상세 (Week 21-32, 고도화 기능)
-- `DEV_ROADMAP_PHASE4.md` - Phase 4 상세 (Quarter 5+, 확장 및 장기 계획)
-- `CODEBASE_STATUS.md` - **현재 구현 상태** (기존 코드 분석, ~3,000토큰)
+- `INFRASTRUCTURE.md` - 인프라 환경 현황 (EC2, DB, Redis 등)
+- `IMPLEMENTATION_STATUS.md` - 구현 현황 (화면 + API)
 - `MONOREPO_GUIDE.md` - Monorepo structure and commands
+
+### 로드맵
+- `DEV_ROADMAP.md` - 마스터 로드맵 (전체 개요, ~5,000토큰)
+- `DEV_ROADMAP_PHASE1.md` - Phase 1 상세 (Week 1-8)
+- `DEV_ROADMAP_PHASE2.md` - Phase 2 상세 (Week 9-20)
+- `DEV_ROADMAP_PHASE3.md` - Phase 3 상세 (Week 21-32)
+- `DEV_ROADMAP_PHASE4.md` - Phase 4 상세 (Quarter 5+)
+
+### 시각화 대시보드
+- `project-status.html` - 프로젝트 현황 대시보드 (팀원 공유)
+- `wbs.html` - WBS 진행률 대시보드
 
 ### 문서 사용 가이드
 
@@ -43,7 +50,7 @@
 
 1. **세션 시작 시**:
    - `DEV_ROADMAP.md` (마스터)만 먼저 읽어 전체 흐름 파악 (~5,000토큰)
-   - `CODEBASE_STATUS.md`로 현재 구현 상태 확인 (~3,000토큰)
+   - `IMPLEMENTATION_STATUS.md`로 현재 구현 상태 확인 (~3,000토큰)
 
 2. **특정 Phase 작업 시**:
    - 해당 Phase 문서만 선택적으로 로드 (~8,000토큰)

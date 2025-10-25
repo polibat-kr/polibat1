@@ -1,8 +1,8 @@
-# 정치방망이(PoliBAT) 코드베이스 현황
+# 정치방망이(PoliBAT) 구현 현황
 
-**작성일**: 2025-10-19
-**버전**: 1.0
-**목적**: 현재 구현된 코드베이스의 상세 현황 문서
+**최종 업데이트**: 2025-10-25
+**버전**: 2.0
+**목적**: 화면 및 API 구현 현황 문서
 
 ---
 
@@ -196,59 +196,143 @@
 
 ---
 
-## 3. API 엔드포인트 (예상)
+## 3. API 구현 현황
 
-### 주의사항
-현재 Admin과 Frontend 모두 **실제 백엔드 API가 연결되어 있지 않습니다**.
-모든 데이터는 하드코딩된 샘플 데이터를 사용하며, API 호출은 `console.log`로 대체되어 있습니다.
+### 3.1 구현 완료 API (총 73개 엔드포인트)
 
-### 예상 API 구조
+#### Phase 1 Backend API (42개) ✅
 
-#### 인증
-- POST `/api/v1/auth/register` - 회원가입
-- POST `/api/v1/auth/login` - 로그인
-- POST `/api/v1/auth/logout` - 로그아웃
-- POST `/api/v1/auth/refresh` - 토큰 갱신
+##### 인증 (5개)
+- ✅ POST /api/auth/signup
+- ✅ POST /api/auth/login
+- ✅ GET /api/auth/me
+- ✅ POST /api/auth/logout
+- ✅ POST /api/auth/refresh
 
-#### 회원
-- GET `/api/v1/members` - 회원 목록 조회 (관리자)
-- GET `/api/v1/members/:id` - 회원 상세 조회
-- PUT `/api/v1/members/:id` - 회원 정보 수정
-- DELETE `/api/v1/members/:id` - 회원 탈퇴
-- PUT `/api/v1/members/:id/status` - 회원 상태 변경 (관리자)
+##### 회원 관리 (4개)
+- ✅ GET /api/members
+- ✅ GET /api/members/:memberId
+- ✅ PATCH /api/members/:memberId
+- ✅ PATCH /api/members/:memberId/status
 
-#### 게시글
-- GET `/api/v1/posts` - 게시글 목록
-- POST `/api/v1/posts` - 게시글 작성
-- GET `/api/v1/posts/:id` - 게시글 상세
-- PUT `/api/v1/posts/:id` - 게시글 수정
-- DELETE `/api/v1/posts/:id` - 게시글 삭제
-- POST `/api/v1/posts/:id/like` - 좋아요
-- POST `/api/v1/posts/:id/report` - 신고
+##### 게시글 (5개)
+- ✅ GET /api/posts
+- ✅ GET /api/posts/:postId
+- ✅ POST /api/posts
+- ✅ PATCH /api/posts/:postId
+- ✅ DELETE /api/posts/:postId
 
-#### 댓글
-- GET `/api/v1/posts/:postId/comments` - 댓글 목록
-- POST `/api/v1/posts/:postId/comments` - 댓글 작성
-- PUT `/api/v1/comments/:id` - 댓글 수정
-- DELETE `/api/v1/comments/:id` - 댓글 삭제
+##### 댓글 (5개)
+- ✅ GET /api/posts/:postId/comments
+- ✅ GET /api/comments/:commentId
+- ✅ POST /api/posts/:postId/comments
+- ✅ PATCH /api/comments/:commentId
+- ✅ DELETE /api/comments/:commentId
 
-#### 투표
-- GET `/api/v1/votes` - 투표 목록
-- POST `/api/v1/votes` - 투표 생성 (관리자)
-- GET `/api/v1/votes/:id` - 투표 상세
-- POST `/api/v1/votes/:id/cast` - 투표 참여
-- GET `/api/v1/votes/:id/results` - 투표 결과
+##### 반응 (5개)
+- ✅ POST /api/reactions
+- ✅ DELETE /api/reactions/:reactionId
+- ✅ GET /api/posts/:postId/reactions
+- ✅ GET /api/comments/:commentId/reactions
+- ✅ GET /api/reactions/stats/:targetType/:targetId
 
-#### 불편/제안
-- GET `/api/v1/suggestions` - 접수 목록
-- POST `/api/v1/suggestions` - 접수 작성
-- GET `/api/v1/suggestions/:id` - 접수 상세
-- PUT `/api/v1/suggestions/:id/reply` - 답변 작성 (관리자)
+##### 신고 (6개)
+- ✅ POST /api/reports
+- ✅ GET /api/reports/:reportId
+- ✅ GET /api/reports
+- ✅ GET /api/reports/my
+- ✅ PATCH /api/reports/:reportId/process
+- ✅ DELETE /api/reports/:reportId
 
-#### 공지사항
-- GET `/api/v1/notices` - 공지사항 목록
-- POST `/api/v1/notices` - 공지사항 작성 (관리자)
-- GET `/api/v1/notices/:id` - 공지사항 상세
+##### 투표 (11개)
+- ✅ POST /api/votes
+- ✅ GET /api/votes
+- ✅ GET /api/votes/:voteId
+- ✅ PATCH /api/votes/:voteId
+- ✅ DELETE /api/votes/:voteId
+- ✅ POST /api/votes/:voteId/participate
+- ✅ DELETE /api/votes/:voteId/participate/:participationId
+- ✅ GET /api/votes/:voteId/results
+- ✅ PATCH /api/votes/:voteId/close
+- ✅ POST /api/votes/:voteId/options
+- ✅ PATCH /api/votes/:voteId/options/:optionId
+
+##### 헬스체크 (1개)
+- ✅ GET /health
+
+#### Phase 2 Admin Backend API (31개) ✅
+
+##### Admin Stats API (6개)
+- ✅ GET /api/admin/stats/members
+- ✅ GET /api/admin/stats/posts
+- ✅ GET /api/admin/stats/comments
+- ✅ GET /api/admin/stats/votes
+- ✅ GET /api/admin/stats/reports
+- ✅ GET /api/admin/stats/dashboard
+
+##### Admin Member API (5개)
+- ✅ GET /api/admin/members
+- ✅ GET /api/admin/members/:memberId
+- ✅ PATCH /api/admin/members/:memberId
+- ✅ PATCH /api/admin/members/:memberId/status
+- ✅ GET /api/admin/members/:memberId/history
+
+##### Admin Post API (4개)
+- ✅ GET /api/admin/posts
+- ✅ GET /api/admin/posts/:postId
+- ✅ PATCH /api/admin/posts/:postId
+- ✅ PATCH /api/admin/posts/:postId/status
+
+##### Admin Comment API (2개)
+- ✅ GET /api/admin/comments
+- ✅ PATCH /api/admin/comments/:commentId/status
+
+##### Admin Report API (2개)
+- ✅ GET /api/admin/reports
+- ✅ PATCH /api/admin/reports/:reportId/process
+
+##### Admin Search API (1개)
+- ✅ GET /api/admin/search
+
+##### Admin Notice API (6개)
+- ✅ GET /api/admin/notices
+- ✅ GET /api/admin/notices/:noticeId
+- ✅ POST /api/admin/notices
+- ✅ PATCH /api/admin/notices/:noticeId
+- ✅ DELETE /api/admin/notices/:noticeId
+- ✅ PATCH /api/admin/notices/:noticeId/pin
+
+##### Admin Popup API (5개)
+- ✅ GET /api/admin/popups
+- ✅ GET /api/admin/popups/:popupId
+- ✅ POST /api/admin/popups
+- ✅ PATCH /api/admin/popups/:popupId
+- ✅ DELETE /api/admin/popups/:popupId
+
+**총 Phase 1**: 42개 | **총 Phase 2**: 31개 | **전체 합계**: 73개
+
+### 3.2 구현 예정 API
+
+#### File Upload API (3개) - Phase 2 Week 7-8
+- 🔲 POST /api/upload/image - 이미지 업로드 + 썸네일
+- 🔲 POST /api/upload/file - 일반 파일 업로드
+- 🔲 DELETE /api/upload/:fileId - 파일 삭제
+
+#### Email Service API (2개) - Phase 2 Week 7-8
+- 🔲 POST /api/email/send - 이메일 발송
+- 🔲 POST /api/email/template - 템플릿 기반 발송
+
+### 3.3 API 연동 현황
+
+**Admin Dashboard**:
+- ✅ Backend API 73개 구현 완료
+- 🔲 Frontend API 연동 대기 중 (16개 페이지)
+- 🔲 현재는 하드코딩된 샘플 데이터 사용
+
+**Frontend Website**:
+- ✅ Backend API 73개 구현 완료
+- 🔲 Frontend API 연동 대기 중 (22개 페이지)
+- 🔲 현재는 하드코딩된 샘플 데이터 사용
 
 ---
 
@@ -283,22 +367,24 @@
 ## 5. Missing Implementation (미구현 항목)
 
 ### 5.1 Backend
-- **전체 Backend API 미구현**: 모든 데이터가 프론트엔드 하드코딩 상태
-- **데이터베이스 연동 미구현**: PostgreSQL 스키마 미생성
-- **인증 시스템 미구현**: JWT 토큰 시스템 없음 (localStorage만 사용)
-- **파일 업로드 미구현**: S3 연동 없음
-- **이메일 발송 미구현**: SES 연동 없음
-- **AI 기능 미구현**: OpenAI API 연동 없음
+- ✅ **Backend API 구현 완료**: 73개 API 엔드포인트 구현 완료
+- ✅ **데이터베이스 연동 완료**: PostgreSQL 16 + Prisma (15개 테이블)
+- ✅ **인증 시스템 구현 완료**: JWT Access/Refresh Token + Redis
+- 🔲 **파일 업로드 미구현**: S3 연동 필요 (3개 API 예정)
+- 🔲 **이메일 발송 미구현**: SES 연동 필요 (2개 API 예정)
+- 🔲 **AI 기능 미구현**: OpenAI API 연동 필요
 
 ### 5.2 Admin Dashboard
-- **API 연동 미완성**: 모든 API 호출이 `console.log`로 대체
-- **파일 업로드 없음**: 이미지 업로드 기능 미구현
-- **실시간 기능 없음**: WebSocket 없음
+- ✅ **Backend API 준비 완료**: 73개 API 구현됨
+- 🔲 **Frontend API 연동 필요**: 16개 페이지 API 연동 작업 대기 중
+- 🔲 **파일 업로드 없음**: 이미지 업로드 기능 추가 필요
+- 🔲 **실시간 기능 없음**: WebSocket 연동 필요
 
 ### 5.3 Frontend Website
-- **API 연동 미완성**: 모든 데이터가 샘플 데이터
-- **파일 업로드 없음**: 게시글 이미지 업로드 미구현
-- **실시간 기능 없음**: 알림, 채팅 없음
+- ✅ **Backend API 준비 완료**: 73개 API 구현됨
+- 🔲 **Frontend API 연동 필요**: 22개 페이지 API 연동 작업 대기 중
+- 🔲 **파일 업로드 없음**: 게시글 이미지 업로드 기능 추가 필요
+- 🔲 **실시간 기능 없음**: 알림, 채팅 연동 필요
 
 ---
 
@@ -366,6 +452,8 @@
 ---
 
 **작성**: Claude Code (SuperClaude Framework)
-**버전**: 1.0
-**작성일**: 2025-10-19
-**참고**: DEV_ROADMAP.md Appendix A에서 분리
+**버전**: 2.0
+**최종 업데이트**: 2025-10-25
+**참조 문서**:
+- [INFRASTRUCTURE.md](./INFRASTRUCTURE.md) - 인프라 환경 현황
+- [DEV_ROADMAP.md](./DEV_ROADMAP.md) - 개발 로드맵
